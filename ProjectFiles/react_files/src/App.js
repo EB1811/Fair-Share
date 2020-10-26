@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './App.scss';
 
 // React Router
 import { Switch, Route, useLocation } from 'react-router-dom';

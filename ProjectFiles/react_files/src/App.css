@@ -1,3 +1,14 @@
 .App {
   text-align: center;
+  background-color: #ffb7c5;
+}
+
+.Title {
+  color: #5a3a3a;
+  padding: 50px;
+  font-size: 65px;
+}
+
+h1 {
+  color: #5a3a3a;
 }
