@@ -15,12 +15,16 @@ const MainPage = () => {
             </Container>
 
             <Container fluid>
-                <Button variant="primary" size="lg" block>
-                    <Link style={{textDecoration: "none"}} to='/Learn'><h1>Learn</h1></Link>
-                </Button>
-                <Button btn="custom1" variant="primary" size="lg" block>
-                    <Link style={{textDecoration: "none"}} to='/Distribute'><h1>Distribute</h1></Link>
-                </Button>
+                <Link style={{textDecoration: "none"}} to='/Learn'>
+                    <Button variant="primary" size="lg" block style={{borderColor: '#EB7C87'}}>
+                        <h1>Learn</h1>
+                    </Button>
+                </Link>
+                <Link style={{textDecoration: "none"}} to='/Distribute'>
+                    <Button variant="primary" size="lg" block style={{borderColor: '#EB7C87'}}>
+                        <h1>Distribute</h1>
+                    </Button>
+                </Link>
             </Container>
         </Container>
     )
