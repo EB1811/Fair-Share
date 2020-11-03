@@ -1,13 +1,13 @@
 import React from 'react'
-import '../../App.css';
+import Container from 'react-bootstrap/Container';
 
 const DistributeRentPage = () => {
     return (
-        <div className="App">
-             <h1>
+        <Container fluid>
+            <h1 className="Title">
                 Distribute Rent Page
             </h1>
-        </div>
+        </Container>
     )
 }
 

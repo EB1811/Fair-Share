@@ -1,13 +1,13 @@
 import React from 'react'
-import '../../App.css';
+import Container from 'react-bootstrap/Container';
 
 const LearnMainPage = () => {
     return (
-        <div className="App">
-             <h1>
+        <Container fluid>
+            <h1 className="Title">
                 Learn Main Page
             </h1>
-        </div>
+        </Container>
     )
 }
 

@@ -4,16 +4,22 @@
 }
 
 .Title {
-  color: #5a3a3a;
+  color: #ffffff;
   padding: 50px;
   font-size: 65px;
+  background-color: #ffb7c5;
 }
 
 h1 {
-  color: #5a3a3a;
+  color: #ffffff;
 }
 
 .bg-custom-button {
   background-color: #1F2833;
   border-color: #45A293;
+}
+
+/* Navigation bar (Middle of page)*/
+.absoluteNav {
+  position: absolute;
 }
