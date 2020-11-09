@@ -1,4 +1,6 @@
 import React from 'react'
+
+// Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/NavBar';
 import Nav from 'react-bootstrap/Nav';
@@ -10,7 +12,7 @@ const NavCom = () => {
     return (
         <Container fluid>
             <NavBar fixed="bottom" variant="dark">
-                <Nav className="justify-content-center" style={{ flex: 1, fontSize: "1.15em", borderTop: "1.5px solid white"}}>
+                <Nav className="justify-content-center" style={{ flex: 1, fontSize: "1.15em", borderTop: "1.5px solid #8d8d8d"}}>
                     <Nav.Item>
                         <Link className="nav-link" style={{textDecoration: "none"}} to='/'>Home</Link>
                     </Nav.Item>

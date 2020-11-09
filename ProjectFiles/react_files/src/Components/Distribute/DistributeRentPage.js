@@ -1,4 +1,6 @@
 import React from 'react'
+
+// Bootstrap Components
 import Container from 'react-bootstrap/Container';
 
 const DistributeRentPage = () => {

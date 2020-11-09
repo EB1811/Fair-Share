@@ -1,22 +1,12 @@
 .App {
   text-align: center;
-  background-color: #ffb7c5;
+  background-color: #efefef;
 }
 
 .Title {
-  color: #ffffff;
+  color: #777777;
   padding: 50px;
   font-size: 65px;
-  background-color: #ffb7c5;
-}
-
-h1 {
-  color: #ffffff;
-}
-
-.bg-custom-button {
-  background-color: #1F2833;
-  border-color: #45A293;
 }
 
 /* Navigation bar (Middle of page)*/
@@ -31,4 +21,15 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* This is modifying the btn-primary colors */
+.btn-primary {
+  color: #777777 !important;
+  background-color: transparent !important;
+  border-color: #777777 !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  color: #ff3b3f !important;
+  border-color: #ff3b3f !important;
 }
