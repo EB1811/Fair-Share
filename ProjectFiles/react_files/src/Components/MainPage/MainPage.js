@@ -3,8 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import NavBar from 'react-bootstrap/NavBar';
-import Nav from 'react-bootstrap/Nav';
 
 // React Router
 import { Link } from 'react-router-dom';
@@ -33,25 +31,6 @@ const MainPage = () => {
                     </Link>
                 </Col>
             </Row>
-        </Container>
-
-        <Container fluid>
-            <NavBar fixed="bottom" variant="dark">
-                <Nav className="justify-content-center" style={{ flex: 1}}>
-                    <Nav.Item>
-                        <Nav.Link href="/">Home</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link href="/">Collection</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link href="/">Contact</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link href="/">Blog</Nav.Link>
-                    </Nav.Item>
-                </Nav>
-            </NavBar>
         </Container>
         </div>
     )

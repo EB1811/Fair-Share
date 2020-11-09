@@ -11,6 +11,7 @@ import LearnMainPage from './Components/Learn/LearnMainPage';
 import DistributeMainPage from './Components/Distribute/DistributeMainPage';
 import DistributeRentPage from './Components/Distribute/DistributeRentPage';
 import DistributeGoodsPage from './Components/Distribute/DistributeGoodsPage';
+import NavCom from './Components/Navigation/NavCom';
 
 function App() {
   // Contains info about route.
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavCom/>
       <Switch location={location} key={location.pathname}>
           <Route exact path='/' component={MainPage}/>
           <Route exact path='/Learn' component={LearnMainPage}/>
