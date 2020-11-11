@@ -16,7 +16,7 @@ const DistributeMainPage = () => {
                 <Col><h1 className="Title">Distribute Main Page</h1></Col>
             </Row>
 
-            <Row>
+            <Row style={{marginTop: "2%"}}>
                 <Col xs={12} lg={6} style={{marginTop: "4px"}}>
                     <Link style={{textDecoration: "none"}} to='/Distribute/Rent'>
                         <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>

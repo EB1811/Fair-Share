@@ -12,7 +12,7 @@ const NavCom = () => {
     return (
         <Container fluid>
             <NavBar fixed="bottom" variant="dark">
-                <Nav className="justify-content-center" style={{ flex: 1, fontSize: "1.15em", borderTop: "1.5px solid #8d8d8d"}}>
+                <Nav className="justify-content-center" style={{ flex: 1, fontSize: "1.15em", borderTop: "1.5px solid #ff3b3f"}}>
                     <Nav.Item>
                         <Link className="nav-link" style={{textDecoration: "none"}} to='/'>Home</Link>
                     </Nav.Item>

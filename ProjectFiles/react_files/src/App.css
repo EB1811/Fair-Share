@@ -4,9 +4,10 @@
 }
 
 .Title {
-  color: #777777;
+  color: #a0a0a0;
+  font-weight: 700;
   padding: 50px;
-  font-size: 65px;
+  font-size: 100px;
 }
 
 /* Navigation bar (Middle of page)*/
@@ -25,9 +26,9 @@
 
 /* This is modifying the btn-primary colors */
 .btn-primary {
-  color: #777777 !important;
+  color: #666666 !important;
   background-color: transparent !important;
-  border-color: #777777 !important;
+  border-color: #5e5e5e !important;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
   color: #ff3b3f !important;
