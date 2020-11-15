@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 
 // React Router
 import { Link } from 'react-router-dom';
@@ -41,31 +42,30 @@ const InputGoodsInfo = (props) => {
 }
 
 const InputGroupInfo = (props) => {
-    const [groupCountInput, setGroupCountInput] = useState("");
-
     // Update number of users on submit.
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        props.setGroupCount(groupCountInput);
-        props.setStage(2);
+    const addToGroup = () => {
+        props.setGroup(props.group.concat(props.group.length));
     }
 
     return (
-        <Form onSubmit = {handleSubmit}>
-            <Form.Group controlId="InputGroupCount">
-                <Form.Label>Number of people in the group</Form.Label>
-                <Form.Control type="text" onChange={e => setGroupCountInput(e.target.value)}/>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+        <Container fluid>
+            <Row className="justify-content-sm-center">
+                <Col style={{ padding: "10px", marginBottom: "25px"}}><Button variant="primary" onClick={() => addToGroup()}>
+                    Add To Group
+                </Button></Col>
+            </Row>
+            <Row className="justify-content-sm-center contentOverflow">
+                <Col sm="8">
+                    {props.group.map((id) => (
+                        <Card body>User {id}</Card>
+                    ))}
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
 const DistributeEntry = (props) => {
-
     // Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
 
@@ -74,7 +74,7 @@ const DistributeEntry = (props) => {
     const [goodsTotalVal, setgoodsTotalVal] = useState(0);
 
     // Information about the group.
-    const [groupCount, setGroupCount] = useState(0);
+    const [group, setGroup] = useState([]);
 
     switch(stage) {
         case 0:
@@ -90,14 +90,7 @@ const DistributeEntry = (props) => {
             )
         case 1:
             return (
-                <Container fluid>
-                    <Row>
-                        <Col><h1 className="Title">{props.goodType} Entry</h1></Col>
-                    </Row>
-                    <Row className="justify-content-sm-center">
-                    <Col sm="5"><InputGroupInfo setGroupCount={setGroupCount} setStage={setStage}/></Col>
-                    </Row>
-                </Container>
+                <InputGroupInfo group={group} setGroup={setGroup} setStage={setStage}/>
             )
         case 2:
             return (
@@ -108,7 +101,6 @@ const DistributeEntry = (props) => {
                     <Row>
                         <h1>{goodsCount}</h1>
                         <h1>{goodsTotalVal}</h1>
-                        <h1>{groupCount}</h1>
                     </Row>
                 </Container>
             )

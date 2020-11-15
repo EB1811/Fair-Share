@@ -6,7 +6,7 @@
 .Title {
   color: #a0a0a0;
   font-weight: 700;
-  padding: 50px;
+  padding: 35px;
   font-size: 100px;
 }
 
@@ -22,6 +22,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* For dynamic content addition */
+.contentOverflow {
+  height: 500px;
+  max-height: 500px;
+  overflow: auto;
 }
 
 /* This is modifying the btn-primary colors */
