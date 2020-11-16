@@ -35,7 +35,7 @@ const InputGoodsInfo = (props) => {
                 <Form.Control type="text" onChange={e => setgoodsTotalValInput(e.target.value)}/>
             </Form.Group>
             <Button variant="primary" type="submit">
-                Submit
+                Next
             </Button>
         </Form>
     )
@@ -49,10 +49,11 @@ const InputGroupInfo = (props) => {
 
     return (
         <Container fluid>
-            <Row className="justify-content-sm-center">
-                <Col style={{ padding: "10px", marginBottom: "25px"}}><Button variant="primary" onClick={() => addToGroup()}>
-                    Add To Group
-                </Button></Col>
+            <Row className="justify-content-sm-center" style={{ marginBottom: "20px"}}>
+                <Col >
+                    <Button style={{ margin: "0 20px"}} variant="primary" onClick={() => addToGroup()}>Add To Group</Button>
+                    <Button style={{ margin: "0 20px"}} variant="primary" onClick={() => props.setStage(2)}>Next</Button>
+                </Col>
             </Row>
             <Row className="justify-content-sm-center contentOverflow">
                 <Col sm="8">
@@ -62,6 +63,32 @@ const InputGroupInfo = (props) => {
                 </Col>
             </Row>
         </Container>
+    )
+}
+
+const InputValuations = (props) => {
+    const [valuationsInput, setValuationsInput] = useState(0);
+    
+    // Update valuations on submit.
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        //props.setValuations(props.valuations.concat(valuations));
+        props.setValuations(valuationsInput);
+        props.setStage(3);
+    }
+
+    return (
+        <Form onSubmit = {handleSubmit}>
+            <Form.Group controlId="valuation">
+                <Form.Label>Room Value</Form.Label>
+                <Form.Control type="range" value={valuationsInput} min={0} max={100} step={1} onChange={e => setValuationsInput(e.target.value)}/>
+                <Form.Label>{valuationsInput}</Form.Label>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Next
+            </Button>
+        </Form>
     )
 }
 
@@ -75,6 +102,10 @@ const DistributeEntry = (props) => {
 
     // Information about the group.
     const [group, setGroup] = useState([]);
+
+    // Valuations.
+    //const [valuations, setValuations] = useState([]);
+    const [valuations, setValuations] = useState(0);
 
     switch(stage) {
         case 0:
@@ -95,12 +126,19 @@ const DistributeEntry = (props) => {
         case 2:
             return (
                 <Container fluid>
-                    <Row>
-                        <Col><h1 className="Title">{props.goodType} Entry</h1></Col>
+                    <Row className="justify-content-sm-center">
+                        <Col sm="8"><InputValuations valuations={valuations} setValuations={setValuations} setStage={setStage}/></Col>
                     </Row>
+                </Container>
+            )
+        case 3:
+            return (
+                <Container fluid>
                     <Row>
                         <h1>{goodsCount}</h1>
                         <h1>{goodsTotalVal}</h1>
+                        <h1>{group.length}</h1>
+                        <h1>{valuations}</h1>
                     </Row>
                 </Container>
             )
