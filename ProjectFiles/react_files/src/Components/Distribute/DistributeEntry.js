@@ -66,32 +66,6 @@ const InputGroupInfo = (props) => {
     )
 }
 
-const InputValuations = (props) => {
-    const [valuationsInput, setValuationsInput] = useState(0);
-    
-    // Update valuations on submit.
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        //props.setValuations(props.valuations.concat(valuations));
-        props.setValuations(valuationsInput);
-        props.setStage(3);
-    }
-
-    return (
-        <Form onSubmit = {handleSubmit}>
-            <Form.Group controlId="valuation">
-                <Form.Label>Room Value</Form.Label>
-                <Form.Control type="range" value={valuationsInput} min={0} max={100} step={1} onChange={e => setValuationsInput(e.target.value)}/>
-                <Form.Label>{valuationsInput}</Form.Label>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Next
-            </Button>
-        </Form>
-    )
-}
-
 const DistributeEntry = (props) => {
     // Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
@@ -103,16 +77,12 @@ const DistributeEntry = (props) => {
     // Information about the group.
     const [group, setGroup] = useState([]);
 
-    // Valuations.
-    //const [valuations, setValuations] = useState([]);
-    const [valuations, setValuations] = useState(0);
-
     switch(stage) {
         case 0:
             return (
                 <Container fluid>
                     <Row>
-                        <Col><h1 className="Title">{props.goodType} Entry</h1></Col>
+                        <Col><h1 className="Title">{props.i} Entry</h1></Col>
                     </Row>
                     <Row className="justify-content-sm-center">
                         <Col sm="5"><InputGoodsInfo setGoodsCount={setGoodsCount} setGoodsTotalVal={setgoodsTotalVal} setStage={setStage}/></Col>
@@ -127,18 +97,9 @@ const DistributeEntry = (props) => {
             return (
                 <Container fluid>
                     <Row className="justify-content-sm-center">
-                        <Col sm="8"><InputValuations valuations={valuations} setValuations={setValuations} setStage={setStage}/></Col>
-                    </Row>
-                </Container>
-            )
-        case 3:
-            return (
-                <Container fluid>
-                    <Row>
                         <h1>{goodsCount}</h1>
                         <h1>{goodsTotalVal}</h1>
                         <h1>{group.length}</h1>
-                        <h1>{valuations}</h1>
                     </Row>
                 </Container>
             )
