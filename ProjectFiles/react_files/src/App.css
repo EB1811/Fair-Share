@@ -24,7 +24,13 @@
   transform: translate(-50%, -50%);
 }
 
-/* For dynamic content addition */
+.medButtonText {
+  font-weight: 700;
+  font-size: 35px;
+  margin: 0 50px;
+}
+
+/* For dynamic content addition ADD BREAKPOINTS */
 .contentOverflow {
   height: 500px;
   max-height: 500px;
@@ -37,7 +43,16 @@
   background-color: transparent !important;
   border-color: #5e5e5e !important;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+.btn-primary:hover, .open>.dropdown-toggle.btn-primary {
   color: #ff3b3f !important;
+  border-color: #ff3b3f !important;
+}
+
+.btn:active, .btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
   border-color: #ff3b3f !important;
 }

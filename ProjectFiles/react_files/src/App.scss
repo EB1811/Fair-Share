@@ -3,5 +3,8 @@
 $navbar-dark-color: #777777;
 $navbar-dark-hover-color: #ff3b3f;
 
+$input-btn-focus-width: .1rem !default;
+$input-btn-focus-color: #ff3b3f;
+$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 @import '~bootstrap/scss/bootstrap';

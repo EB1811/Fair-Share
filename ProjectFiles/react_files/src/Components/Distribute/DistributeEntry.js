@@ -11,53 +11,54 @@ import Card from 'react-bootstrap/Card';
 // React Router
 import { Link } from 'react-router-dom';
 
-const InputGoodsInfo = (props) => {
-    const [goodsCountInput, setGoodsCountInput] = useState("");
-    const [goodsTotalValInput, setgoodsTotalValInput] = useState("");
+const InputGoodsInfo = ({setStage}) => {
+    // Information about goods.
+    const [goodsTotalVal, setgoodsTotalVal] = useState(0);
+    const [goodsCount, setGoodsCount] = useState(0);
 
-    // Update number of goods and their total value on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.setGoodsCount(goodsCountInput);
-        props.setGoodsTotalVal(goodsTotalValInput);
-        props.setStage(1);
+        setStage(1);
     }
 
     return (
         <Form onSubmit = {handleSubmit}>
             <Form.Group controlId="addGoodsCount">
                 <Form.Label>Number of rooms</Form.Label>
-                <Form.Control type="text" onChange={e => setGoodsCountInput(e.target.value)}/>
+                <Form.Control type="text" onChange={e => setGoodsCount(e.target.value)}/>
             </Form.Group>
             <Form.Group controlId="addGoodsTValue">
                 <Form.Label>Total monthly value of house</Form.Label>
-                <Form.Control type="text" onChange={e => setgoodsTotalValInput(e.target.value)}/>
+                <Form.Control type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
             </Form.Group>
-            <Button variant="primary" type="submit">
-                Next
+            <Button variant="primary" type="submit" size="lg">
+                <span className="medButtonText">Next</span>
             </Button>
         </Form>
     )
 }
 
-const InputGroupInfo = (props) => {
+const InputGroupInfo = ({setStage}) => {
+    // Information about the group.
+    const [group, setGroup] = useState([]);
+
     // Update number of users on submit.
     const addToGroup = () => {
-        props.setGroup(props.group.concat(props.group.length));
+        setGroup(group.concat(group.length));
     }
 
     return (
         <Container fluid>
             <Row className="justify-content-sm-center" style={{ marginBottom: "20px"}}>
                 <Col >
-                    <Button style={{ margin: "0 20px"}} variant="primary" onClick={() => addToGroup()}>Add To Group</Button>
-                    <Button style={{ margin: "0 20px"}} variant="primary" onClick={() => props.setStage(2)}>Next</Button>
+                    <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => addToGroup()}><span className="medButtonText">Add To Group</span></Button>
+                    <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => setStage(2)}><span className="medButtonText">Next</span></Button>
                 </Col>
             </Row>
             <Row className="justify-content-sm-center contentOverflow">
                 <Col sm="8">
-                    {props.group.map((id) => (
+                    {group.map((id) => (
                         <Card body>User {id}</Card>
                     ))}
                 </Col>
@@ -70,36 +71,24 @@ const DistributeEntry = (props) => {
     // Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
 
-    // Information about goods.
-    const [goodsCount, setGoodsCount] = useState(0);
-    const [goodsTotalVal, setgoodsTotalVal] = useState(0);
-
-    // Information about the group.
-    const [group, setGroup] = useState([]);
-
     switch(stage) {
         case 0:
             return (
                 <Container fluid>
-                    <Row>
-                        <Col><h1 className="Title">{props.i} Entry</h1></Col>
-                    </Row>
                     <Row className="justify-content-sm-center">
-                        <Col sm="5"><InputGoodsInfo setGoodsCount={setGoodsCount} setGoodsTotalVal={setgoodsTotalVal} setStage={setStage}/></Col>
+                        <Col sm="5"><InputGoodsInfo setStage={setStage}/></Col>
                     </Row>
                 </Container>
             )
         case 1:
             return (
-                <InputGroupInfo group={group} setGroup={setGroup} setStage={setStage}/>
+                <InputGroupInfo setStage={setStage}/>
             )
         case 2:
             return (
                 <Container fluid>
                     <Row className="justify-content-sm-center">
-                        <h1>{goodsCount}</h1>
-                        <h1>{goodsTotalVal}</h1>
-                        <h1>{group.length}</h1>
+                        End
                     </Row>
                 </Container>
             )
