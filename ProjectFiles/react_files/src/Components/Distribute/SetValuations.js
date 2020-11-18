@@ -19,8 +19,10 @@ const InputValuations = (props) => {
     return (
         <Form.Group controlId="valuation">
             <Form.Label>Room {props.curGood.id} Value</Form.Label>
-            <Form.Control type="range" value={tempValue} min={0} max={100} step={1} onChange={handleChange}/>
-            <Form.Label>{tempValue}</Form.Label>
+            <Col>
+                <Form.Control type="range" value={tempValue} min={0} max={100} step={1} onChange={handleChange} style={{width: "90%", display: "inline-block"}}/>
+                <Form.Label style={{width: "10%", margin: "5 0px"}}>{tempValue}</Form.Label>
+            </Col>
         </Form.Group>
     )
 }
@@ -57,7 +59,7 @@ const DistributeGoodsPage = () => {
     return (
         <Container fluid>
             <Row className="justify-content-sm-center">
-                <Col sm="8">
+                <Col sm="6">
                     <Form onSubmit = {handleSubmit}>
                         {goodsArr.map((good) => <InputValuations key={good.id} curGood={good} goodsArr={goodsArr}/>)}
 
