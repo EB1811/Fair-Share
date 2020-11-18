@@ -51,7 +51,7 @@ const InputGroupInfo = ({setStage}) => {
     return (
         <Container fluid>
             <Row className="justify-content-sm-center" style={{ marginBottom: "20px"}}>
-                <Col >
+                <Col>
                     <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => addToGroup()}><span className="medButtonText">Add To Group</span></Button>
                     <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => setStage(2)}><span className="medButtonText">Next</span></Button>
                 </Col>
@@ -59,7 +59,7 @@ const InputGroupInfo = ({setStage}) => {
             <Row className="justify-content-sm-center contentOverflow">
                 <Col sm="8">
                     {group.map((id) => (
-                        <Card body>User {id}</Card>
+                        <Card key={id} body>User {id}</Card>
                     ))}
                 </Col>
             </Row>
@@ -76,7 +76,7 @@ const DistributeEntry = (props) => {
             return (
                 <Container fluid>
                     <Row className="justify-content-sm-center">
-                        <Col sm="5"><InputGoodsInfo setStage={setStage}/></Col>
+                        <Col xs={12} sm={5}><InputGoodsInfo setStage={setStage}/></Col>
                     </Row>
                 </Container>
             )
@@ -88,7 +88,29 @@ const DistributeEntry = (props) => {
             return (
                 <Container fluid>
                     <Row className="justify-content-sm-center">
-                        End
+                        <Col >
+                            <h2>Number of {props.goodType}: </h2>
+                        </Col>
+                        
+                    </Row>
+                    <Row className="justify-content-sm-center">
+                        <Col>
+                            <h2>Total value of {props.goodType}: </h2>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-sm-center">
+                        <Col>
+                            <h2>Users: </h2>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-sm-center">
+                        <Col xs={12} sm={4} md={3} lg={2}>
+                            <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
+                                <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
+                                    <span className="medButtonText">Next</span>
+                                </Button>
+                            </Link>
+                        </Col>
                     </Row>
                 </Container>
             )

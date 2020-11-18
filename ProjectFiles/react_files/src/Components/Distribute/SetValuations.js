@@ -39,7 +39,7 @@ const createGoodsArr = (count) => {
 }
 */
 
-const DistributeGoodsPage = () => {
+const DistributeGoodsPage = (props) => {
     // Valuations. REDUX
     const [goodsArr, setGoodsArr] = useState([
         { good: "Room 1", value: 50, id: 1 },
@@ -54,6 +54,7 @@ const DistributeGoodsPage = () => {
         e.preventDefault();
 
         console.log(goodsArr);
+        props.history.push('/Results')
     }
 
     return (
@@ -64,7 +65,7 @@ const DistributeGoodsPage = () => {
                         {goodsArr.map((good) => <InputValuations key={good.id} curGood={good} goodsArr={goodsArr}/>)}
 
                         <Button variant="primary" type="submit">
-                            Next
+                            Finish
                         </Button>
                     </Form>
                 </Col>

@@ -12,6 +12,7 @@ import DistributeMainPage from './Components/Distribute/DistributeMainPage';
 import DistributeRentPage from './Components/Distribute/DistributeRentPage';
 import DistributeGoodsPage from './Components/Distribute/DistributeGoodsPage';
 import SetValuations from './Components/Distribute/SetValuations';
+import ResultsPage from './Components/Results/ResultsPage';
 import NavCom from './Components/Navigation/NavCom';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route exact path='/Distribute/Rent' component={DistributeRentPage}/>
           <Route exact path='/Distribute/Goods' component={DistributeGoodsPage}/>
           <Route exact path='/Distribute/Valuations' component={SetValuations}/>
+          <Route exact path='/Results' component={ResultsPage}/>
       </Switch>
     </div>
   );
