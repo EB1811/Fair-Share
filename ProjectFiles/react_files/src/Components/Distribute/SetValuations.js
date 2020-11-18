@@ -8,33 +8,50 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
 const InputValuations = (props) => {
+    const [tempValue, setTempValue] = useState(props.curGood.value);
+
+    const handleChange = (e) => {
+        setTempValue(e.target.value);
+
+        props.curGood.value = tempValue;
+    }
+
     return (
         <Form.Group controlId="valuation">
-            <Form.Label>Room Value</Form.Label>
-            <Form.Control type="range" value={props.valuationsInput} min={0} max={100} step={1} onChange={e => props.setValuationsInput(e.target.value)}/>
-            <Form.Label>{props.valuationsInput}</Form.Label>
+            <Form.Label>Room {props.curGood.id} Value</Form.Label>
+            <Form.Control type="range" value={tempValue} min={0} max={100} step={1} onChange={handleChange}/>
+            <Form.Label>{tempValue}</Form.Label>
         </Form.Group>
     )
 }
 
-const DistributeGoodsPage = () => {
-    // Valuations.
-    const [valuationsInput, setValuationsInput] = useState(0);
-    const [goodsArr, setGoodsArr] = useState([]);
-    const [valuations, setValuations] = useState([]);
-
-    const createGoodsArr = (count) => {
-        var i;
-        for(i=0; i<count; i++){
-            setGoodsArr(goodsArr.concat("Room" + i));
-        }
+// Use to create goods from redux.
+/*
+const createGoodsArr = (count) => {
+    var i;
+    var good;
+    for(i=0; i<count; i++){
+        good = {Good: "Room " + i, Value: 0}
+        setGoodsArr(goodsArr.concat(good));
     }
+}
+*/
+
+const DistributeGoodsPage = () => {
+    // Valuations. REDUX
+    const [goodsArr, setGoodsArr] = useState([
+        { good: "Room 1", value: 50, id: 1 },
+        { good: "Room 2", value: 0, id: 2 },
+        { good: "Room 3", value: 0, id: 3 }
+    ]);
+
+    
 
     // Update valuations on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setValuations(valuations.concat(valuationsInput));
+        console.log(goodsArr);
     }
 
     return (
@@ -42,7 +59,8 @@ const DistributeGoodsPage = () => {
             <Row className="justify-content-sm-center">
                 <Col sm="8">
                     <Form onSubmit = {handleSubmit}>
-                        <InputValuations valuationsInput={valuationsInput} setValuationsInput={setValuationsInput}/>
+                        {goodsArr.map((good) => <InputValuations key={good.id} curGood={good} goodsArr={goodsArr}/>)}
+
                         <Button variant="primary" type="submit">
                             Next
                         </Button>
