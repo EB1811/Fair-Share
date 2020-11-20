@@ -4,10 +4,19 @@
 }
 
 .Title {
-  color: #a0a0a0;
+  color: #ff3b3f;
   font-weight: 700;
   padding: 35px;
   font-size: 100px;
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.bgImage {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(5px);
 }
 
 /* Navigation bar (Middle of page)*/
