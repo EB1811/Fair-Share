@@ -23,7 +23,7 @@ const MainPage = () => {
                 <Col xs="12">
                     <Link style={{textDecoration: "none"}} to='/Distribute'>
                         <Button variant="primary" size="lg" style={{borderColor: '#ffffff'}}>
-                            <h1>Begin</h1>
+                            <h1 style={{}}>Begin</h1>
                         </Button>
                     </Link>
                 </Col>

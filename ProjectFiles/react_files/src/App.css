@@ -9,7 +9,7 @@
   padding: 35px;
   font-size: 100px;
   display: inline-block;
-  background-color: #ffffff;
+  background-color: #ffffff9c;
 }
 
 .bgImage {
@@ -47,13 +47,13 @@
 
 /* This is modifying the btn-primary colors */
 .btn-primary {
-  color: #666666 !important;
+  color: #ffffff !important;
   background-color: transparent !important;
-  border-color: #5e5e5e !important;
+  border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
-  color: #ff3b3f !important;
-  border-color: #ff3b3f !important;
+  color: #fff !important;
+  background-color: #ffffff42 !important;
 }
 
 .btn:active, .btn:focus {

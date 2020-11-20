@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 const NavCom = () => {
     return (
         <Container fluid>
-            <NavBar fixed="top" variant="dark" style={{backgroundColor: "#ffffff"}}>
-                <Nav className="justify-content-center" style={{ flex: 1, fontSize: "1.15em", paddingBottom: "10px", borderBottom: "1.5px solid #ff3b3f"}}>
+            <NavBar fixed="top" variant="dark" style={{backgroundColor: "#ff3b3f"}}>
+                <Nav className="justify-content-center" style={{ flex: 1, fontSize: "1.15em", paddingBottom: "10px"}}>
                     <Nav.Item>
                         <Link className="nav-link" style={{textDecoration: "none"}} to='/'>Home</Link>
                     </Nav.Item>
