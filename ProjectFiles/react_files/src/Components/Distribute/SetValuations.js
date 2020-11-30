@@ -31,10 +31,10 @@ const InputValuations = (props) => {
 }
 
 const DistributeGoodsPage = (props) => {
-    // Valuations. REDUX
+    // Valuations.
     const [goodsArr, setGoodsArr] = useState(props.temp);
 
-    // Update valuations on submit.
+    // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
 

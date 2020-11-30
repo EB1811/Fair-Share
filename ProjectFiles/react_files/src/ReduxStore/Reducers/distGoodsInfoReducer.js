@@ -1,11 +1,12 @@
 const initState = {
-    temp2: []
+    temp2: [],
+    totalValue: 0
 }
 
 const distGoodsInfoReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'GOODS_ACTION1':
-            console.log("Success", action.i)
+        case 'ADD_GOODS_AMOUNT':
+            console.log("Success", action.i);
 
             // Create array of objects based on how many goods there are.
             var tempArr = [];
@@ -17,11 +18,17 @@ const distGoodsInfoReducer = (state = initState, action) => {
             }
 
             return {
+                ...state,
                 temp2: tempArr
             };
-        case 'GOODS_ACTION2':
-            console.log("Error ", action.err)
-            return state
+        case 'UPDATE_TOTAL_VALUE':
+            console.log("Success ", action.i);
+            var newTotal = action.i;
+
+            return {
+                ...state,
+                totalValue: newTotal
+            };
         default:
             return state;
     }

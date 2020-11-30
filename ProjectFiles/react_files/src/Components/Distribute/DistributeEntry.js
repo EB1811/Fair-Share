@@ -68,6 +68,7 @@ const DistributeEntry = (props) => {
 
 // To access and modify redux store.
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         temp: state.distGoodsInfo.temp2
     }

@@ -15,7 +15,8 @@ const InputGoodsInfo = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.addTemp(goodsCount);
+        props.addGoodsAmount(goodsCount);
+        props.updateTotalValue(goodsTotalVal);
         props.setStage(1);
     }
 
@@ -45,7 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTemp: (item) => { dispatch({type: 'GOODS_ACTION1', i: item}) }
+        addGoodsAmount: (item) => { dispatch({type: 'ADD_GOODS_AMOUNT', i: item}) },
+        updateTotalValue: (tValue) => { dispatch({type: 'UPDATE_TOTAL_VALUE', i: tValue}) }
     }
 }
 

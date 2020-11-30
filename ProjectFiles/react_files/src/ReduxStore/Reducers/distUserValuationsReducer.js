@@ -4,7 +4,7 @@ const initState = {
 
 const distUserValuationsReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'VAL_ACTION1':
+        case 'VAL_ADD_VAL':
             console.log("Success")
             return state;
         case 'VAL_ACTION2':
