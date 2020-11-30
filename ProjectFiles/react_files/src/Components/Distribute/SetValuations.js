@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -7,8 +7,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
+// Redux
+import { connect } from 'react-redux';
+
 const InputValuations = (props) => {
-    const [tempValue, setTempValue] = useState(props.curGood.value);
+    const [tempValue, setTempValue] = useState(props.curGood.Value);
 
     const handleChange = (e) => {
         setTempValue(e.target.value);
@@ -18,7 +21,7 @@ const InputValuations = (props) => {
 
     return (
         <Form.Group controlId="valuation">
-            <Form.Label>Room {props.curGood.id} Value</Form.Label>
+            <Form.Label>{props.curGood.Good} Value</Form.Label>
             <Col>
                 <Form.Control type="range" value={tempValue} min={0} max={100} step={1} onChange={handleChange} style={{width: "90%", display: "inline-block"}}/>
                 <Form.Label style={{width: "10%", margin: "5 0px"}}>{tempValue}</Form.Label>
@@ -27,42 +30,23 @@ const InputValuations = (props) => {
     )
 }
 
-// Use to create goods from redux.
-/*
-const createGoodsArr = (count) => {
-    var i;
-    var good;
-    for(i=0; i<count; i++){
-        good = {Good: "Room " + i, Value: 0}
-        setGoodsArr(goodsArr.concat(good));
-    }
-}
-*/
-
 const DistributeGoodsPage = (props) => {
     // Valuations. REDUX
-    const [goodsArr, setGoodsArr] = useState([
-        { good: "Room 1", value: 50, id: 1 },
-        { good: "Room 2", value: 0, id: 2 },
-        { good: "Room 3", value: 0, id: 3 }
-    ]);
-
-    
+    const [goodsArr, setGoodsArr] = useState(props.temp);
 
     // Update valuations on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(goodsArr);
         props.history.push('/Results')
     }
 
     return (
-        <Container fluid>
-            <Row className="justify-content-sm-center">
+        <Container fluid style={{height: "100vh"}}>
+            <Row className="justify-content-sm-center align-items-center h-100">
                 <Col sm="6">
                     <Form onSubmit = {handleSubmit}>
-                        {goodsArr.map((good) => <InputValuations key={good.id} curGood={good} goodsArr={goodsArr}/>)}
+                        {goodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={goodsArr}/>)}
 
                         <Button variant="primary" type="submit">
                             Finish
@@ -74,7 +58,20 @@ const DistributeGoodsPage = (props) => {
     )
 }
 
-export default DistributeGoodsPage;
+// To access and modify redux store.
+const mapStateToProps = (state) => {
+    return {
+        temp: state.distGoodsInfo.temp2
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DistributeGoodsPage);
 
 
 

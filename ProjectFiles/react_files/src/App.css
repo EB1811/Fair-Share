@@ -47,12 +47,12 @@
 
 /* This is modifying the btn-primary colors */
 .btn-primary {
-  color: #ffffff !important;
+  color: #ff3b3f !important;
   background-color: transparent !important;
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
-  color: #fff !important;
+  color: #ff3b3f !important;
   background-color: #ffffff42 !important;
 }
 

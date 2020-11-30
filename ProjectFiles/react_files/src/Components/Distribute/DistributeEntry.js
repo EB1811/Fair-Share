@@ -1,71 +1,20 @@
 import React, { useState } from 'react'
 
+// React Components
+import InputGoodsInfo from './DistEntryForms/InputGoodsInfo';
+import InputGroupInfo from './DistEntryForms/InputGroupInfo';
+
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
 
 // React Router
 import { Link } from 'react-router-dom';
 
-const InputGoodsInfo = ({setStage}) => {
-    // Information about goods.
-    const [goodsTotalVal, setgoodsTotalVal] = useState(0);
-    const [goodsCount, setGoodsCount] = useState(0);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        setStage(1);
-    }
-
-    return (
-        <Form onSubmit = {handleSubmit}>
-            <Form.Group controlId="addGoodsCount">
-                <Form.Label>Number of rooms</Form.Label>
-                <Form.Control type="text" onChange={e => setGoodsCount(e.target.value)}/>
-            </Form.Group>
-            <Form.Group controlId="addGoodsTValue">
-                <Form.Label>Total monthly value of house</Form.Label>
-                <Form.Control type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
-            </Form.Group>
-            <Button variant="primary" type="submit" size="lg">
-                <span className="medButtonText">Next</span>
-            </Button>
-        </Form>
-    )
-}
-
-const InputGroupInfo = ({setStage}) => {
-    // Information about the group.
-    const [group, setGroup] = useState([]);
-
-    // Update number of users on submit.
-    const addToGroup = () => {
-        setGroup(group.concat(group.length));
-    }
-
-    return (
-        <Container fluid>
-            <Row className="justify-content-sm-center" style={{ marginBottom: "20px"}}>
-                <Col>
-                    <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => addToGroup()}><span className="medButtonText">Add To Group</span></Button>
-                    <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => setStage(2)}><span className="medButtonText">Next</span></Button>
-                </Col>
-            </Row>
-            <Row className="justify-content-sm-center contentOverflow">
-                <Col sm="8">
-                    {group.map((id) => (
-                        <Card key={id} body>User {id}</Card>
-                    ))}
-                </Col>
-            </Row>
-        </Container>
-    )
-}
+// Redux
+import { connect } from 'react-redux';
 
 const DistributeEntry = (props) => {
     // Stage determines which section of the goods entry input to render.
@@ -89,7 +38,7 @@ const DistributeEntry = (props) => {
                 <Container fluid>
                     <Row className="justify-content-sm-center">
                         <Col >
-                            <h2>Number of {props.goodType}: </h2>
+                            <h2>Number of {props.goodType}: {props.temp.length}</h2>
                         </Col>
                         
                     </Row>
@@ -117,4 +66,10 @@ const DistributeEntry = (props) => {
     }
 }
 
-export default DistributeEntry;
+// To access and modify redux store.
+const mapStateToProps = (state) => {
+    return {
+        temp: state.distGoodsInfo.temp2
+    }
+}
+export default connect(mapStateToProps)(DistributeEntry);
