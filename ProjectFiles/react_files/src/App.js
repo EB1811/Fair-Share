@@ -14,6 +14,7 @@ import DistributeGoodsPage from './Components/Distribute/DistributeGoodsPage';
 import SetValuations from './Components/Distribute/SetValuations';
 import ResultsPage from './Components/Results/ResultsPage';
 import NavCom from './Components/Navigation/NavCom';
+import CreateAccount from './Components/Account/CreateAccount';
 
 function App() {
   // Contains info about route.
@@ -30,6 +31,7 @@ function App() {
           <Route exact path='/Distribute/Goods' component={DistributeGoodsPage}/>
           <Route exact path='/Distribute/Valuations' component={SetValuations}/>
           <Route exact path='/Results' component={ResultsPage}/>
+          <Route exact path='/CreateAccount' component={CreateAccount}/>
       </Switch>
     </div>
   );
