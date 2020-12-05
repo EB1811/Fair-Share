@@ -1,0 +1,34 @@
+import React from 'react';
+
+// Router
+import { NavLink } from 'react-router-dom';
+
+// Redux
+import { connect } from 'react-redux';
+
+// Bootstrap Components
+import Nav from 'react-bootstrap/Nav';
+
+
+const SignedInLinks = (props) => {
+
+    const userLetter = props.profile.username ? props.profile.username.charAt(0) : ''
+    return (
+        <Nav className="justify-content-end" style={{ flex: 1, fontSize: "1em"}}>
+            <Nav.Item>
+                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/'>User</NavLink>
+            </Nav.Item>
+            <Nav.Item>
+                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/Learn'>Logout</NavLink>
+            </Nav.Item>
+        </Nav>
+    )
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // signOut: () => dispatch(signOut())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignedInLinks);
