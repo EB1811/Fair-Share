@@ -30,7 +30,7 @@ const NavCom = () => {
                         <Link className="nav-link" style={{textDecoration: "none"}} to='/'>About</Link>
                     </Nav.Item>
                 </Nav>
-                <Container style={{position: "absolute", right: "1%"}}>
+                <Container style={{position: "absolute", right: "1%", width: "auto"}}>
                     <SignedOutLinks/>
                 </Container>
             </NavBar>
