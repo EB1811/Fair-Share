@@ -19,6 +19,14 @@
   filter: blur(5px);
 }
 
+/* Word below icon */
+.iconDesc {
+  color: #48ff48;
+  font-weight: 300;
+  font-size: 2.75em;
+  margin-bottom: 0;
+}
+
 /* Navigation bar (Middle of page)*/
 .absoluteNavContainer {
   position: absolute;
@@ -47,13 +55,13 @@
 
 /* This is modifying the btn-primary colors */
 .btn-primary {
-  color: #ff3b3f !important;
-  background-color: transparent !important;
+  color: #000 !important;
+  background-color: #ffffff9c !important;
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
-  color: #ff3b3f !important;
-  background-color: #ffffff42 !important;
+  color: #000 !important;
+  background-color: #48ff48 !important;
 }
 
 .btn:active, .btn:focus {
