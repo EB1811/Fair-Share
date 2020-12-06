@@ -54,7 +54,7 @@ const DistributeEntry = (props) => {
                     </Row>
                     <Row className="justify-content-sm-center">
                         <Col xs={12} sm={4} md={3} lg={2}>
-                            <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
+                            <Link style={{textDecoration: "none"}} to='/Distribute/Questions'>
                                 <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
                                     <span className="medButtonText">Next</span>
                                 </Button>

@@ -3,40 +3,43 @@ import React, { useState } from 'react'
 // Bootstrap Components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 // Redux
 import { connect } from 'react-redux';
 
 const QuestionnaireQuestion = (props) => {
+    const [answer, setAnswer] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        props.addAnswer(props.question, answer);
+        setAnswer("");
+        props.setStage(props.stage + 1);
     }
 
     return (
-        <Container fluid style={{height: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-sm-center">
-                <Col xs={12} sm={5}>
-                    hi
-                </Col>
-            </Row>
-        </Container>
+        <Form onSubmit = {handleSubmit}>
+            <Form.Group controlId="question">
+                <Form.Label><h1>{ props.question }</h1></Form.Label>
+                <Form.Control type="text" value={answer} onChange={e => setAnswer(e.target.value)}/>
+            </Form.Group>
+            <Button variant="primary" type="submit" size="lg">
+                <span className="medButtonText">Next</span>
+            </Button>
+        </Form>
     )
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
     return {
-        //authStatus: state.firebase.auth,
-        //authError: state.auth.authError
+        answer: state.distQuestionsInfo.userValues
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        addAnswer: (question, answer) => { dispatch({type: question, ans: answer}) }
     }
 }
 
