@@ -56,7 +56,7 @@
 /* This is modifying the btn-primary colors */
 .btn-primary {
   color: #000 !important;
-  background-color: #ffffff9c !important;
+  background-color: #48ff48 !important;
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
