@@ -4,7 +4,6 @@
 }
 
 .Title {
-  color: #fff;
   font-weight: 700;
   padding: 35px;
   font-size: 100px;
@@ -28,7 +27,13 @@
 /* For big divs spanning page length */
 .divBlockWithContentPrimary {
   background-color: #6daffe;
+  color: #ffffff;
 }
+.divBlockWithContentSecondary {
+  background-color: #ffffff;
+  color: #5eeb78;
+}
+
 
 .medButtonText {
   font-weight: 700;
@@ -37,9 +42,13 @@
 
 /* For dynamic content addition ADD BREAKPOINTS */
 .contentOverflow {
-  height: 500px;
-  max-height: 500px;
+  max-height: 400px;
   overflow: auto;
+}
+
+.form-label {
+  font-weight: 400;
+  font-size: 1.65em;
 }
 
 /* This is modifying the btn-primary colors */
@@ -69,5 +78,5 @@
 }
 
 .form-control:focus {
-  border-color: #ff4e51 !important;
+  border-color: #5eeb78 !important;
 }

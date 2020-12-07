@@ -17,18 +17,20 @@ const ResultsPage = () => {
     ]);
 
     return (
-        <Container fluid>
-            <Row>
-                <Col><h1 className="Title">Results</h1></Col>
-            </Row>
-            <Row className="justify-content-sm-center">
-                <Col sm="6">
-                    {resultsArr.map((result) => 
-                        <h1 key={result.id}>
-                            {result.user}: {result.good} at £{result.price}
-                        </h1>
-                    )}
+        <Container fluid style={{height: "100vh"}}>
+            <Row className="justify-content-center align-items-center h-100 divBlockWithContentPrimary">
+                <Col xs="12" style={{margin: "2% 0"}}>
+                    <h1 className="Title">Results</h1>
                 </Col>
+                <Row className="w-100 divBlockWithContentSecondary justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
+                    <Col sm="6">
+                        {resultsArr.map((result) => 
+                            <h1 key={result.id}>
+                                {result.user}: {result.good} at £{result.price}
+                            </h1>
+                        )}
+                    </Col>
+                </Row>
             </Row>
         </Container>
     )

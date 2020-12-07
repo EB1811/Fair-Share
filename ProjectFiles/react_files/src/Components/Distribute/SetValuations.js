@@ -43,16 +43,22 @@ const DistributeGoodsPage = (props) => {
 
     return (
         <Container fluid style={{height: "100vh"}}>
-            <Row className="justify-content-sm-center align-items-center h-100">
-                <Col sm="6">
-                    <Form onSubmit = {handleSubmit}>
-                        {goodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={goodsArr}/>)}
-
-                        <Button variant="primary" type="submit">
-                            Finish
-                        </Button>
-                    </Form>
+            <Row className="justify-content-center align-items-center h-100 divBlockWithContentPrimary">
+                <Col xs="12" style={{margin: "2% 0"}}>
+                    <h1>Please enter your valuation for each room:</h1>
                 </Col>
+
+                <Row className="w-100 divBlockWithContentSecondary justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
+                    <Col sm="6">
+                        <Form onSubmit = {handleSubmit}>
+                            {goodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={goodsArr}/>)}
+
+                            <Button variant="primary" type="submit">
+                                Finish
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
             </Row>
         </Container>
     )

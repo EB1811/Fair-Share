@@ -24,10 +24,10 @@ const MainPage = () => {
         <div>
         <Container fluid style={{height: "100vh"}}>
             <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
-                <Col xs="12" style={{marginTop: "5%"}}><h1 className="Title">CE301 Project</h1></Col>
+                <Col xs="12" style={{marginTop: "4.5%"}}><h1 className="Title">CE301 Project</h1></Col>
 
-                <Row className="w-100 justify-content-center" style={{marginTop: "7.5%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
-                    <Row className="w-50" style={{marginBottom: "4%"}}>
+                <Row className="w-100 justify-content-center" style={{marginTop: "7%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
+                    <Row className="w-50" style={{marginBottom: "2.5%"}}>
                         <Col style={{display: "inline", marginTop: ""}}>
                             <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc">Fair</h1>

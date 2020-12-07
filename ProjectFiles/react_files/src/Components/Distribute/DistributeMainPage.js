@@ -17,12 +17,12 @@ const DistributeMainPage = () => {
     return (
         <Container fluid style={{height: "100vh"}}>
         <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
-            <Col xs="12" style={{marginTop: "4%"}}>
+            <Col xs="12" style={{marginTop: "3%"}}>
                 <h1 className="Title">Distribute Main Page</h1>
             </Col>
         
 
-            <Row className="w-100 justify-content-center" style={{marginTop: "6%", padding: "3% 0 4% 0", backgroundColor: "#fff"}}>
+            <Row className="w-100 justify-content-center  divBlockWithContentSecondary" style={{marginTop: "2.5%", padding: "3% 0 4% 0"}}>
                 <Row className="w-50" style={{marginBottom: "4%"}}>
                     <Col xs={12} lg={6}>
                         <img src={logo} alt="icon-house-rent" style={{width: "200px", height: "200px", marginBottom: "2%"}}/>

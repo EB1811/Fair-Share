@@ -21,7 +21,7 @@ const Login = (props) => {
 
     return (
         <Container fluid style={{height: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-sm-center">
+            <Row className="align-items-center h-100 justify-content-sm-center divBlockWithContentPrimary">
             <Col xs={12} sm={5}>
                 <Form onSubmit = {handleSubmit}>
                     <Form.Group controlId="email">
