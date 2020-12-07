@@ -10,6 +10,8 @@ import Col from 'react-bootstrap/Col';
 import logo1 from '../../Images/fair_ICON.svg';
 import logo2 from '../../Images/team_ICON.svg';
 import logo3 from '../../Images/check_ICON.svg';
+import logo4 from '../../Images/house_ICON.svg';
+import logo5 from '../../Images/jewelry_ICON.svg';
 
 // React Router
 import { Link } from 'react-router-dom';
@@ -51,11 +53,11 @@ const MainPage = () => {
                 <Row className="w-100 justify-content-center" style={{padding: "10% 0 2% 0", backgroundColor: "#ff4e51", zIndex: "10"}}>
                     <Row className="w-50" style={{marginBottom: "3%"}}>
                         <Col style={{display: "inline"}}>
-                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                            <img src={logo4} alt="icon-house-rent" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc2">Share Rent</h1>
                         </Col>
                         <Col style={{display: "inline"}}>
-                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                            <img src={logo5} alt="icon-jewelry-goods" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc2">Share Goods</h1>
                         </Col>
                     </Row>
