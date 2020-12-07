@@ -7,8 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Images
-import bgImg from '../../Images/group-division-rent-happy.jpg';
-import logo1 from '../../Images/fair_ICON2.svg';
+import logo1 from '../../Images/fair_ICON.svg';
+import logo2 from '../../Images/team_ICON.svg';
+import logo3 from '../../Images/check_ICON.svg';
 
 // React Router
 import { Link } from 'react-router-dom';
@@ -19,31 +20,55 @@ const MainPage = () => {
 
     return (
         <div>
-        <Container fluid style={{height: "100vh", backgroundImage: `url(${bgImg})`, position: "absolute"}} className="bgImage"/>
         <Container fluid style={{height: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-sm-center">
-                <Col xs="12" style={{marginTop: "1.5%"}}><h1 className="Title">CE301 Project</h1></Col>
-                <Row className="w-50" style={{marginTop: ""}}>
-                    <Col style={{display: "inline"}}>
-                        <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
-                        <h1 className="iconDesc">Fair</h1>
-                    </Col>
-                    <Col style={{display: "inline"}}>
-                        <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
-                        <h1 className="iconDesc">Personalised</h1>
-                    </Col>
-                    <Col style={{display: "inline"}}>
-                        <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
-                        <h1 className="iconDesc">Easy</h1>
+            <Row className="align-items-center h-100 justify-content-center" style={{backgroundColor: "#ff4e51"}}>
+                <Col xs="12" style={{marginTop: "5%"}}><h1 className="Title">CE301 Project</h1></Col>
+
+                <Row className="w-100 justify-content-center" style={{marginTop: "7.5%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
+                    <Row className="w-50" style={{marginBottom: "4%"}}>
+                        <Col style={{display: "inline", marginTop: ""}}>
+                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc">Fair</h1>
+                        </Col>
+                        <Col style={{display: "inline"}}>
+                            <img src={logo2} alt="icon-team-diverse" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc">Personalised</h1>
+                        </Col>
+                        <Col style={{display: "inline"}}>
+                            <img src={logo3} alt="icon-check-star" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc">Easy</h1>
+                        </Col>
+                    </Row>
+                    <Col xs="12" style={{margin: "3% 0"}}>
+                        <Link style={{textDecoration: "none"}} to='/Distribute'>
+                            <Button variant="secondary" size="lg" style={{borderColor: '#ffffff'}}>
+                                <h1 style={{}}>Begin</h1>
+                            </Button>
+                        </Link>
                     </Col>
                 </Row>
-                <Col xs="12" style={{marginTop: "1%"}}>
-                    <Link style={{textDecoration: "none"}} to='/Distribute'>
-                        <Button variant="primary" size="lg" style={{borderColor: '#ffffff'}}>
-                            <h1 style={{}}>Begin</h1>
-                        </Button>
-                    </Link>
-                </Col>
+
+                <Row className="w-100 justify-content-center" style={{padding: "10% 0 2% 0", backgroundColor: "#ff4e51", zIndex: "10"}}>
+                    <Row className="w-50" style={{marginBottom: "3%"}}>
+                        <Col style={{display: "inline"}}>
+                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc2">Share Rent</h1>
+                        </Col>
+                        <Col style={{display: "inline"}}>
+                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc2">Share Goods</h1>
+                        </Col>
+                    </Row>
+                </Row>
+
+                <Row className="w-100 justify-content-center" style={{padding: "10% 0 5% 0", backgroundColor: "#303030", zIndex: "10"}}>
+                    <Row className="w-50" style={{marginBottom: "3%"}}>
+                        <Col style={{display: "inline"}}>
+                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc">Footer</h1>
+                        </Col>
+                    </Row>
+                </Row>
             </Row>
         </Container>
         </div>

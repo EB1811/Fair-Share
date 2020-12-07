@@ -4,41 +4,25 @@
 }
 
 .Title {
-  color: #ff3b3f;
+  color: #fff;
   font-weight: 700;
   padding: 35px;
   font-size: 100px;
   display: inline-block;
-  background-color: #ffffff9c;
-}
-
-.bgImage {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  filter: blur(5px);
 }
 
 /* Word below icon */
 .iconDesc {
-  color: #48ff48;
+  color: #5eeb78;
   font-weight: 300;
   font-size: 2.75em;
   margin-bottom: 0;
 }
-
-/* Navigation bar (Middle of page)*/
-.absoluteNavContainer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.absoluteNavCenter {
-  margin-top: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.iconDesc2 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 2.75em;
+  margin-bottom: 0;
 }
 
 .medButtonText {
@@ -55,13 +39,23 @@
 
 /* This is modifying the btn-primary colors */
 .btn-primary {
-  color: #000 !important;
-  background-color: #48ff48 !important;
+  color: #fff !important;
+  background-color: #5eeb78 !important;
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
   color: #000 !important;
-  background-color: #48ff48 !important;
+  background-color: #5eeb78 !important;
+}
+/* This is modifying the btn-secondary colors */
+.btn-secondary {
+  color: #fff !important;
+  background-color: #5eeb78 !important;
+  border-color: transparent !important;
+}
+.btn-secondary:hover, .open>.dropdown-toggle.btn-secondary {
+  color: #fff !important;
+  background-color: #59da71 !important;
 }
 
 .btn:active, .btn:focus {
@@ -70,5 +64,5 @@
 }
 
 .form-control:focus {
-  border-color: #ff3b3f !important;
+  border-color: #ff4e51 !important;
 }
