@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 const DistributeMainPage = () => {
     return (
         <Container fluid style={{height: "100vh"}}>
-        <Row className="align-items-center h-100 justify-content-center" style={{backgroundColor: "#ff4e51"}}>
+        <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
             <Col xs="12" style={{marginTop: "4%"}}>
                 <h1 className="Title">Distribute Main Page</h1>
             </Col>

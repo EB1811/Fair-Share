@@ -25,6 +25,11 @@
   margin-bottom: 0;
 }
 
+/* For big divs spanning page length */
+.divBlockWithContentPrimary {
+  background-color: #6daffe;
+}
+
 .medButtonText {
   font-weight: 700;
   font-size: 35px;
@@ -44,8 +49,8 @@
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
-  color: #000 !important;
-  background-color: #5eeb78 !important;
+  color: #fff !important;
+  background-color: #59da71 !important;
 }
 /* This is modifying the btn-secondary colors */
 .btn-secondary {

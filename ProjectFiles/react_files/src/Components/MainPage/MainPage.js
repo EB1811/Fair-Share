@@ -23,7 +23,7 @@ const MainPage = () => {
     return (
         <div>
         <Container fluid style={{height: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-center" style={{backgroundColor: "#ff4e51"}}>
+            <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
                 <Col xs="12" style={{marginTop: "5%"}}><h1 className="Title">CE301 Project</h1></Col>
 
                 <Row className="w-100 justify-content-center" style={{marginTop: "7.5%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
@@ -50,7 +50,7 @@ const MainPage = () => {
                     </Col>
                 </Row>
 
-                <Row className="w-100 justify-content-center" style={{padding: "10% 0 2% 0", backgroundColor: "#ff4e51", zIndex: "10"}}>
+                <Row className="w-100 justify-content-center divBlockWithContentPrimary" style={{padding: "10% 0 2% 0", zIndex: "10"}}>
                     <Row className="w-50" style={{marginBottom: "3%"}}>
                         <Col style={{display: "inline"}}>
                             <img src={logo4} alt="icon-house-rent" style={{width: "125px", height: "125px"}}/>
