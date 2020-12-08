@@ -17,16 +17,18 @@ import logo5 from '../../Images/jewelry_ICON.svg';
 import { Link } from 'react-router-dom';
 
 const MainPage = () => {
-    // ADD ATTRIBUTIONS:
-    // <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
     return (
         <div>
-        <Container fluid style={{height: "100vh"}}>
+        <Container fluid style={{minHeight: "100vh"}}>
             <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
-                <Col xs="12" style={{marginTop: "4.5%"}}><h1 className="Title">CE301 Project</h1></Col>
+                <Row className="justify-content-center w-100"  style={{marginTop: "25px"}}>
+                    <h1 className="Title">CE301 Project</h1>
+                </Row>
+                <Col className="justify-content-center" xl="7">
+                    <h2 className="descText">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
+                </Col>
 
-                <Row className="w-100 justify-content-center" style={{marginTop: "7%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
+                <Row className="w-100 justify-content-center" style={{marginTop: "7.3%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
                     <Row className="w-50" style={{marginBottom: "2.5%"}}>
                         <Col style={{display: "inline", marginTop: ""}}>
                             <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
@@ -59,15 +61,6 @@ const MainPage = () => {
                         <Col style={{display: "inline"}}>
                             <img src={logo5} alt="icon-jewelry-goods" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc2">Share Goods</h1>
-                        </Col>
-                    </Row>
-                </Row>
-
-                <Row className="w-100 justify-content-center" style={{padding: "10% 0 5% 0", backgroundColor: "#303030", zIndex: "10"}}>
-                    <Row className="w-50" style={{marginBottom: "3%"}}>
-                        <Col style={{display: "inline"}}>
-                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
-                            <h1 className="iconDesc">Footer</h1>
                         </Col>
                     </Row>
                 </Row>

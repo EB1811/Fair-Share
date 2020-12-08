@@ -15,6 +15,7 @@ import QuestionnairePageShell from './Components/Questionnaire/QuestionnairePage
 import SetValuations from './Components/Distribute/SetValuations';
 import ResultsPage from './Components/Results/ResultsPage';
 import NavCom from './Components/Navigation/NavCom';
+import Footer from './Components/Navigation/Footer';
 import CreateAccount from './Components/Account/CreateAccount';
 import Login from './Components/Account/Login';
 
@@ -37,6 +38,7 @@ function App() {
           <Route exact path='/CreateAccount' component={CreateAccount}/>
           <Route exact path='/Login' component={Login}/>
       </Switch>
+      <Footer/>
     </div>
   );
 }
