@@ -43,7 +43,7 @@ const MainPage = () => {
                             <h1 className="iconDesc">Easy</h1>
                         </Col>
                     </Row>
-                    <Col xs="12" style={{margin: "3% 0"}}>
+                    <Col xs="12" style={{marginTop: "3%"}}>
                         <Link style={{textDecoration: "none"}} to='/Distribute'>
                             <Button variant="secondary" size="lg" style={{borderColor: '#ffffff'}}>
                                 <h1 style={{}}>Begin</h1>
@@ -52,8 +52,11 @@ const MainPage = () => {
                     </Col>
                 </Row>
 
-                <Row className="w-100 justify-content-center divBlockWithContentPrimary" style={{padding: "10% 0 2% 0", zIndex: "10"}}>
-                    <Row className="w-50" style={{marginBottom: "3%"}}>
+                <Row className="w-100 justify-content-center divBlockWithContentPrimary" style={{padding: "3% 0 3% 0", zIndex: "10"}}>
+                    <Col className="justify-content-center" xl="7">
+                        <h2 className="descText">We can help you</h2>
+                    </Col>
+                    <Row className="w-50" style={{margin: "1% 0 3% 0"}}>
                         <Col style={{display: "inline"}}>
                             <img src={logo4} alt="icon-house-rent" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc2">Share Rent</h1>
@@ -63,6 +66,12 @@ const MainPage = () => {
                             <h1 className="iconDesc2">Share Goods</h1>
                         </Col>
                     </Row>
+                    <Col className="justify-content-center" xl="7">
+                        <h2 className="descText">in an impartial way.</h2>
+                    </Col>
+                    <Col className="justify-content-center" xl="7">
+                        <h2 className="descTextBig">Guaranteed.</h2>
+                    </Col>
                 </Row>
             </Row>
         </Container>

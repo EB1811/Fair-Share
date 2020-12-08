@@ -19,7 +19,7 @@ const DistributeMainPage = () => {
         <Row className="align-items-center h-100 justify-content-center">
         <div className="h-100 w-100 d-flex flex-column">
             <Row className="justify-content-center w-100"  style={{marginTop: "25px", marginRight: "0", marginLeft: "0"}}>
-                <h1 className="Title">Distribute Main Page</h1>
+                <h1 className="Title">What would you like to share?</h1>
             </Row>
         
 
@@ -29,7 +29,7 @@ const DistributeMainPage = () => {
                         <img src={logo} alt="icon-house-rent" style={{width: "200px", height: "200px", marginBottom: "2%"}}/>
                         <Link style={{textDecoration: "none"}} to='/Distribute/Rent'>
                             <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
-                                <h2>Distribute Rent</h2>
+                                <h2>Share Rent</h2>
                             </Button>
                         </Link>
                     </Col>
@@ -37,7 +37,7 @@ const DistributeMainPage = () => {
                         <img src={logo2} alt="icon-jewelry-goods" style={{width: "150px", height: "200px", marginBottom: "2%"}}/>
                         <Link style={{textDecoration: "none"}} to='/Distribute/Goods'>
                             <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
-                                <h2>Distribute Goods</h2>
+                                <h2>Share Goods</h2>
                             </Button>
                         </Link>
                     </Col>

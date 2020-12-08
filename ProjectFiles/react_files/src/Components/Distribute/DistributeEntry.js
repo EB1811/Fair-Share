@@ -24,6 +24,9 @@ const DistributeEntry = (props) => {
         case 0:
             return (
                 <Container fluid>
+                    <Col xs="12" style={{margin: "100px 0"}}>
+                        <h1 className="Title2">House Information</h1>
+                    </Col>
                     <Row className="justify-content-sm-center">
                         <Col xs={12} sm={5}><InputGoodsInfo setStage={setStage}/></Col>
                     </Row>
@@ -31,11 +34,20 @@ const DistributeEntry = (props) => {
             )
         case 1:
             return (
-                <InputGroupInfo setStage={setStage}/>
+                <Container fluid>
+                    <Col xs="12" style={{margin: "100px 0"}}>
+                        <h1 className="Title2">Add users to group</h1>
+                    </Col>
+                    <InputGroupInfo setStage={setStage}/>
+                </Container>
             )
         case 2:
             return (
                 <Container fluid>
+                    <Col xs="12" style={{margin: "100px 0"}}>
+                        <h1 className="Title2">Confirm</h1>
+                    </Col>
+
                     <Row className="justify-content-sm-center">
                         <Col >
                             <h2>Number of {props.goodType}: {props.temp.length}</h2>
@@ -52,7 +64,7 @@ const DistributeEntry = (props) => {
                             <h2>Users: </h2>
                         </Col>
                     </Row>
-                    <Row className="justify-content-center">
+                    <Row className="justify-content-center" style={{margin: "15px 0"}}>
                             <Link style={{textDecoration: "none"}} to='/Distribute/Questions'>
                                 <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
                                     <span className="medButtonText">Next</span>

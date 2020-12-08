@@ -31,7 +31,7 @@ const InputGroupInfo = (props) => {
             <Row className="justify-content-sm-center contentOverflow">
                 <Col sm="8">
                     {group.map((id) => (
-                        <Card key={id} body>User {id}</Card>
+                        <Card style={{color: "#000"}} key={id} body>User {id}</Card>
                     ))}
                 </Col>
             </Row>
