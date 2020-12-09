@@ -48,7 +48,7 @@ const DistributeGoodsPage = (props) => {
                     <h1>Please enter your valuation for each room:</h1>
                 </Col>
 
-                <Row className="w-100 divBlockWithContentPrimary justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
+                <Row className="w-100 justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
                     <Col sm="6">
                         <Form onSubmit = {handleSubmit}>
                             {goodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={goodsArr}/>)}

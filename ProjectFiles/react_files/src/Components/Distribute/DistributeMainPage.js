@@ -23,7 +23,7 @@ const DistributeMainPage = () => {
             </Row>
         
 
-            <Row className="w-100 justify-content-center flex-grow-1 divBlockWithContentSecondary" style={{margin: "0", marginTop:"10.65%", padding: "3% 0 4% 0"}}>
+            <Row className="w-100 justify-content-center flex-grow-1" style={{margin: "0", marginTop:"10.65%", padding: "3% 0 4% 0", backgroundColor: "#fff"}}>
                 <Row className="w-50" style={{marginBottom: "4%"}}>
                     <Col xs={12} lg={6}>
                         <img src={logo} alt="icon-house-rent" style={{width: "200px", height: "200px", marginBottom: "2%"}}/>

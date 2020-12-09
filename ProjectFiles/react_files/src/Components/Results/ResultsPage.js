@@ -22,7 +22,7 @@ const ResultsPage = () => {
                 <Col xs="12" style={{margin: "2% 0"}}>
                     <h1 className="Title">Results</h1>
                 </Col>
-                <Row className="w-100 divBlockWithContentPrimary justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
+                <Row className="w-100 justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
                     <Col sm="6">
                         {resultsArr.map((result) => 
                             <h1 key={result.id}>
