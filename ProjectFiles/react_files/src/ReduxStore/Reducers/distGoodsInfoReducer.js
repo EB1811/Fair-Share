@@ -29,6 +29,16 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 ...state,
                 totalValue: newTotal
             };
+        case 'UPDATE_VALUATIONS':
+            console.log("Success", action.updatedArr);
+
+            // Create array of objects based on how many goods there are.
+            var tempArr = action.updatedArr;
+
+            return {
+                ...state,
+                goodsArray: tempArr
+            };
         default:
             return state;
     }
