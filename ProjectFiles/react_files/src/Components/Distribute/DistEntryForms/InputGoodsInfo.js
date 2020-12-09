@@ -24,11 +24,11 @@ const InputGoodsInfo = (props) => {
         <Form onSubmit = {handleSubmit}>
             <Form.Group controlId="addGoodsCount">
                 <Form.Label>Number of rooms</Form.Label>
-                <Form.Control type="text" onChange={e => setGoodsCount(e.target.value)}/>
+                <Form.Control size="sm" type="text" onChange={e => setGoodsCount(e.target.value)}/>
             </Form.Group>
             <Form.Group controlId="addGoodsTValue">
                 <Form.Label>Total monthly value of house</Form.Label>
-                <Form.Control type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
+                <Form.Control size="sm" type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
             </Form.Group>
             <Button variant="primary" type="submit" size="lg">
                 <span className="medButtonText">Next</span>
@@ -40,7 +40,7 @@ const InputGoodsInfo = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        temp: state.distGoodsInfo.temp2
+        temp: state.distGoodsInfo.goodsArray
     }
 }
 

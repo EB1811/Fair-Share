@@ -67,7 +67,7 @@ const DistributeGoodsPage = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        temp: state.distGoodsInfo.temp2
+        temp: state.distGoodsInfo.goodsArray
     }
 }
 

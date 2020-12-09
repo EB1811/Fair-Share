@@ -1,5 +1,5 @@
 const initState = {
-    temp2: [],
+    goodsArray: [],
     totalValue: 0
 }
 
@@ -19,7 +19,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
 
             return {
                 ...state,
-                temp2: tempArr
+                goodsArray: tempArr
             };
         case 'UPDATE_TOTAL_VALUE':
             console.log("Success ", action.i);

@@ -27,7 +27,7 @@ const DistributeEntry = (props) => {
                     <Col xs="12" style={{margin: "100px 0"}}>
                         <h1 className="Title2">House Information</h1>
                     </Col>
-                    <Row className="justify-content-sm-center">
+                    <Row className="justify-content-center">
                         <Col xs={12} sm={5}><InputGoodsInfo setStage={setStage}/></Col>
                     </Row>
                 </Container>
@@ -48,18 +48,18 @@ const DistributeEntry = (props) => {
                         <h1 className="Title2">Confirm</h1>
                     </Col>
 
-                    <Row className="justify-content-sm-center">
+                    <Row className="justify-content-center">
                         <Col >
                             <h2>Number of {props.goodType}: {props.temp.length}</h2>
                         </Col>
                         
                     </Row>
-                    <Row className="justify-content-sm-center">
+                    <Row className="justify-content-center">
                         <Col>
                             <h2>Total value of {props.goodType}: </h2>
                         </Col>
                     </Row>
-                    <Row className="justify-content-sm-center">
+                    <Row className="justify-content-center">
                         <Col>
                             <h2>Users: </h2>
                         </Col>
@@ -79,7 +79,7 @@ const DistributeEntry = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        temp: state.distGoodsInfo.temp2
+        temp: state.distGoodsInfo.goodsArray
     }
 }
 export default connect(mapStateToProps)(DistributeEntry);
