@@ -26,7 +26,7 @@ const Footer = () => {
                     <a style={{textDecoration: "none"}} href='Distribute/Goods'>
                         <h2 className="footerLink">Distribute Goods</h2>
                     </a>
-                    <a style={{textDecoration: "none"}} href='/'>
+                    <a style={{textDecoration: "none"}} href='/About'>
                         <h2 className="footerLink">About</h2>
                     </a>
                     <br/>

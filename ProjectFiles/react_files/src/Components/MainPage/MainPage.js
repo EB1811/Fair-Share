@@ -20,7 +20,7 @@ const MainPage = () => {
     return (
         <div>
         <Container fluid style={{minHeight: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
+            <Row className="align-items-center h-100 justify-content-center divBlockWithContentSecondary">
                 <Row className="justify-content-center w-100"  style={{marginTop: "25px"}}>
                     <h1 className="Title">CE301 Project</h1>
                 </Row>

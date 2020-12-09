@@ -7,6 +7,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 
 // Import all react components.
 import MainPage from './Components/MainPage/MainPage';
+import About from './Components/MainPage/About';
 import LearnMainPage from './Components/Learn/LearnMainPage';
 import DistributeMainPage from './Components/Distribute/DistributeMainPage';
 import DistributeRentPage from './Components/Distribute/DistributeRentPage';
@@ -28,6 +29,7 @@ function App() {
       <NavCom/>
       <Switch location={location} key={location.pathname}>
           <Route exact path='/' component={MainPage}/>
+          <Route exact path='/About' component={About}/>
           <Route exact path='/Learn' component={LearnMainPage}/>
           <Route exact path='/Distribute' component={DistributeMainPage}/>
           <Route exact path='/Distribute/Rent' component={DistributeRentPage}/>

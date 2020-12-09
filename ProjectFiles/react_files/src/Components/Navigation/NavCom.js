@@ -27,7 +27,7 @@ const NavCom = () => {
                         <Link className="nav-link" style={{textDecoration: "none"}} to='/Distribute'>Distribute</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Link className="nav-link" style={{textDecoration: "none"}} to='/'>About</Link>
+                        <Link className="nav-link" style={{textDecoration: "none"}} to='/About'>About</Link>
                     </Nav.Item>
                 </Nav>
                 <Container style={{position: "absolute", right: "1%", width: "auto"}}>

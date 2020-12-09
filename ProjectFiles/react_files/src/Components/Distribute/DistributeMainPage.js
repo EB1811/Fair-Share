@@ -15,15 +15,17 @@ import { Link } from 'react-router-dom';
 
 const DistributeMainPage = () => {
     return (
-        <Container fluid className="h-100 divBlockWithContentPrimary">
-        <Row className="align-items-center h-100 justify-content-center">
-        <div className="h-100 w-100 d-flex flex-column">
+        <Container fluid className="divBlockWithContentSecondary">
+        <Row className="align-items-center min-vh-100 justify-content-center">
+        <div className="min-vh-100 w-100 d-flex flex-column">
             <Row className="justify-content-center w-100"  style={{marginTop: "25px", marginRight: "0", marginLeft: "0"}}>
-                <h1 className="Title">What would you like to share?</h1>
+                <h1 className="Title">What would you like to do?</h1>
             </Row>
-        
+            <Row className="justify-content-center" style={{margin: "0"}} xl="7">
+                <h2 className="descText">Sharing a house with mates? <br/> Need to divide financial assets fairly? <br/> We can help.</h2>
+            </Row>
 
-            <Row className="w-100 justify-content-center flex-grow-1" style={{margin: "0", marginTop:"10.65%", padding: "3% 0 4% 0", backgroundColor: "#fff"}}>
+            <Row className="w-100 align-items-center justify-content-center flex-grow-1" style={{margin: "0", marginTop:"5.85%", padding: "10px 0", backgroundColor: "#fff"}}>
                 <Row className="w-50" style={{marginBottom: "4%"}}>
                     <Col xs={12} lg={6}>
                         <img src={logo} alt="icon-house-rent" style={{width: "200px", height: "200px", marginBottom: "2%"}}/>
