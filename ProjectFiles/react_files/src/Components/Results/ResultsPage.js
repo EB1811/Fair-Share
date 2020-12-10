@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -8,13 +8,33 @@ import Col from 'react-bootstrap/Col';
 // React Router
 import { Link } from 'react-router-dom';
 
-const ResultsPage = () => {
+// Redux
+import { connect } from 'react-redux';
+
+const ResultsPage = (props) => {
     // Temp Results data. REDUX
-    const [resultsArr, setResultsArr] = useState([
-        { good: "Room 1", user: "Jon", price: 400, id: 1 },
-        { good: "Room 2", user: "bob", price: 100, id: 2 },
-        { good: "Room 3", user: "mif", price: 500, id: 3 }
-    ]);
+    const [resultsArr, setResultsArr] = useState([]);
+
+    // ALGORITHM GOES IN A FUNCTION CALLED HERE...
+    useEffect(
+        () => {
+            console.log(props.goodsArr);
+            console.log(props.userArr);
+
+            //// PLACEHOLDER
+            // allocation = good name, user id, price, allocaiton id. 
+            var tempArr = [];
+            var i;
+            var allocation;
+            for(i = 0; i < props.goodsArr.length; i++){
+                allocation = {good: props.goodsArr[i].Good, user: props.userArr[i], price: (parseInt(props.tValue) / props.goodsArr.length), id: i};
+                tempArr.push(allocation);
+            }
+            setResultsArr(tempArr);
+            //// PLACEHOLDER
+
+        }, [props.goodsArr, props.userArr, setResultsArr],
+      )
 
     return (
         <Container fluid style={{height: "100vh"}}>
@@ -26,7 +46,7 @@ const ResultsPage = () => {
                     <Col sm="6">
                         {resultsArr.map((result) => 
                             <h1 key={result.id}>
-                                {result.user}: {result.good} at £{result.price}
+                                User with ID {result.user}: {result.good} at £{result.price}
                             </h1>
                         )}
                     </Col>
@@ -36,4 +56,19 @@ const ResultsPage = () => {
     )
 }
 
-export default ResultsPage;
+// To access and modify redux store.
+const mapStateToProps = (state) => {
+    return {
+        goodsArr: state.distGoodsInfo.goodsArray,
+        userArr: state.distGroupInfo.userArray,
+        tValue: state.distGoodsInfo.totalValue
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
