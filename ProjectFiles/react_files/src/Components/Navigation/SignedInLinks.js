@@ -14,10 +14,10 @@ const SignedInLinks = (props) => {
     return (
         <Nav className="justify-content-end" style={{ flex: 1, fontSize: "1em"}}>
             <Nav.Item>
-                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/'>User</NavLink>
+                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/Account'>User</NavLink>
             </Nav.Item>
             <Nav.Item>
-                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/Learn'>Logout</NavLink>
+                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/'>Logout</NavLink>
             </Nav.Item>
         </Nav>
     )

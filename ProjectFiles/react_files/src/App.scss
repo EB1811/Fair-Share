@@ -7,4 +7,19 @@ $input-btn-focus-width: .1rem !default;
 $input-btn-focus-color: #4dbd62;
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1100px,
+  xl: 1800px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1040px,
+  xl: 1740px
+);
+
 @import '~bootstrap/scss/bootstrap';

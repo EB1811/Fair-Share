@@ -70,7 +70,10 @@ a:active, a:visited {
   background-color: #6daffe;
   color: #ffffff;
 }
-
+.divBlockWithContentTertiary {
+  background-color: #ffffff;
+  color: #5eeb78;
+}
 
 .medButtonText {
   font-weight: 700;

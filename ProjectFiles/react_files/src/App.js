@@ -19,6 +19,7 @@ import NavCom from './Components/Navigation/NavCom';
 import Footer from './Components/Navigation/Footer';
 import CreateAccount from './Components/Account/CreateAccount';
 import Login from './Components/Account/Login';
+import AccountBoard from './Components/Account/AccountBoard';
 
 function App() {
   // Contains info about route.
@@ -39,6 +40,7 @@ function App() {
           <Route exact path='/Results' component={ResultsPage}/>
           <Route exact path='/CreateAccount' component={CreateAccount}/>
           <Route exact path='/Login' component={Login}/>
+          <Route exact path='/Account' component={AccountBoard}/>
       </Switch>
       <Footer/>
     </div>
