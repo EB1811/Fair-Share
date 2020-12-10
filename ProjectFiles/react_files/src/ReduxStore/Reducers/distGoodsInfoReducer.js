@@ -33,11 +33,11 @@ const distGoodsInfoReducer = (state = initState, action) => {
             console.log("Success", action.updatedArr);
 
             // Create array of objects based on how many goods there are.
-            var tempArr = action.updatedArr;
+            var tempUpdatedArr = action.updatedArr;
 
             return {
                 ...state,
-                goodsArray: tempArr
+                goodsArray: tempUpdatedArr
             };
         default:
             return state;

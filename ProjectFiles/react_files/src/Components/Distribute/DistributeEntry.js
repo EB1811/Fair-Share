@@ -76,6 +76,8 @@ const DistributeEntry = (props) => {
                     </Row>
                 </Container>
             )
+        default:
+            console.log("Major Error. Please restart application.")
     }
 }
 

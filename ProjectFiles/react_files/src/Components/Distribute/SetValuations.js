@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -33,7 +33,7 @@ const InputValuations = (props) => {
 
 const DistributeGoodsPage = (props) => {
     // Valuations.
-    const [localgoodsArr, setLocalGoodsArr] = useState(props.goodsArr);
+    const [localgoodsArr] = useState(props.goodsArr);
     const [total, setTotal] = useState(0);
 
     // Update redux valuations store on submit.

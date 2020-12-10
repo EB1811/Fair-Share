@@ -22,7 +22,7 @@ const QuestionnaireTitleBlock = () => {
 
 const QuestionnairePageShell = (props) => {
     // Information about goods.
-    const [questions, setQuestions] = useState([
+    const [questions] = useState([
         {question: "Question 1"},
         {question: "Question 2"},
         {question: "Question 3"}

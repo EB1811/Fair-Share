@@ -11,8 +11,6 @@ import Nav from 'react-bootstrap/Nav';
 
 
 const SignedInLinks = (props) => {
-
-    const userLetter = props.profile.username ? props.profile.username.charAt(0) : ''
     return (
         <Nav className="justify-content-end" style={{ flex: 1, fontSize: "1em"}}>
             <Nav.Item>
