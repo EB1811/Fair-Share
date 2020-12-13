@@ -15,7 +15,7 @@ const InputGoodsInfo = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.addGoodsAmount(goodsCount);
+        props.addGoodsAmount(goodsCount, props.goodType);
         props.updateTotalValue(goodsTotalVal);
         props.setStage(1);
     }
@@ -23,11 +23,19 @@ const InputGoodsInfo = (props) => {
     return (
         <Form onSubmit = {handleSubmit}>
             <Form.Group controlId="addGoodsCount">
-                <Form.Label>Number of rooms</Form.Label>
+                {
+                    props.goodType === 'Rent'
+                    ? <Form.Label>Number of rooms:</Form.Label>
+                    : <Form.Label>Number of goods:</Form.Label>
+                }
                 <Form.Control size="sm" type="text" onChange={e => setGoodsCount(e.target.value)}/>
             </Form.Group>
             <Form.Group controlId="addGoodsTValue">
-                <Form.Label>Total monthly value of house</Form.Label>
+                {
+                    props.goodType === 'Rent'
+                    ? <Form.Label>Total monthly value of house:</Form.Label>
+                    : <Form.Label>Total value of goods:</Form.Label>
+                }
                 <Form.Control size="sm" type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
             </Form.Group>
             <Button variant="primary" type="submit" size="lg">
@@ -46,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addGoodsAmount: (item) => { dispatch({type: 'ADD_GOODS_AMOUNT', i: item}) },
+        addGoodsAmount: (item, type) => { dispatch({type: 'ADD_GOODS_AMOUNT', i: item, t: type}) },
         updateTotalValue: (tValue) => { dispatch({type: 'UPDATE_TOTAL_VALUE', i: tValue}) }
     }
 }

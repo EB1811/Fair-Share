@@ -13,7 +13,10 @@ const distGoodsInfoReducer = (state = initState, action) => {
             var good;
             var i;
             for(i = 0; i < action.i; i++){
-                good = {Good: "Room " + (parseInt(i) + 1), Value: 0}
+                action.t === 'Rent'
+                ? good = {Good: "Room " + (parseInt(i) + 1), Value: 0}
+                : good = {Good: "Good " + (parseInt(i) + 1), Value: 0}
+
                 tempArr.push(good);
             }
 

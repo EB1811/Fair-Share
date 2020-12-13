@@ -25,10 +25,14 @@ const DistributeEntry = (props) => {
             return (
                 <Container fluid>
                     <Col xs="12" style={{margin: "100px 0"}}>
-                        <h1 className="Title2">House Information</h1>
+                        {
+                            props.goodType === 'Rent'
+                            ? <h1 className="Title2">House Information</h1>
+                            : <h1 className="Title2">Goods Information</h1>
+                        }
                     </Col>
                     <Row className="justify-content-center">
-                        <Col xs={12} sm={5}><InputGoodsInfo setStage={setStage}/></Col>
+                        <Col xs={12} sm={5}><InputGoodsInfo goodType={props.goodType} setStage={setStage}/></Col>
                     </Row>
                 </Container>
             )
@@ -50,13 +54,21 @@ const DistributeEntry = (props) => {
 
                     <Row className="justify-content-center">
                         <Col >
-                            <h2>Number of {props.goodType}: {props.goodsArr.length}</h2>
+                            {
+                                props.goodType === 'Rent'
+                                ? <h2>Number of Rooms: {props.goodsArr.length}</h2>
+                                : <h2>Number of Goods: {props.goodsArr.length}</h2>
+                            }
                         </Col>
                         
                     </Row>
                     <Row className="justify-content-center">
                         <Col>
-                            <h2>Total value of {props.goodType}: {props.goodsTotVal}</h2>
+                            {
+                                props.goodType === 'Rent'
+                                ? <h2>Total monthly value of House: {props.goodsTotVal}</h2>
+                                : <h2>Total value of Goods: {props.goodsTotVal}</h2>
+                            }
                         </Col>
                     </Row>
                     <Row className="justify-content-center">

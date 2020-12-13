@@ -52,7 +52,7 @@ const QuestionnairePageShell = (props) => {
                         <Col xs={12} sm={4}>
                             <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
                                 <Button variant="primary" size="lg">
-                                    <span className="medButtonText">Begin Valuing Rooms</span>
+                                    <span className="medButtonText">Begin Valuing Items</span>
                                 </Button>
                             </Link>
                         </Col>

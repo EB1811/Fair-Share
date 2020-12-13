@@ -12,11 +12,7 @@ const DistributeGoodsPage = () => {
     return (
         <Container fluid style={{height: "100vh"}}>
             <Row className="align-items-center h-100 justify-content-center divBlockWithContentPrimary">
-                <Col xs="12" style={{marginTop: "4.5%"}}>
-                    <h1 className="Title">Distribute Goods Page</h1>
-                </Col>
-
-                <Row className="w-100 divBlockWithContentSecondary justify-content-center" style={{marginTop: "5.15%", padding: "4% 0 10% 0"}}>
+                <Row className="w-100 justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
                     <Col xs={12} lg={10}>
                         <DistributeEntry goodType={"Goods"}/>
                     </Col>
