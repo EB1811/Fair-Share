@@ -48,7 +48,7 @@ const DistributeGoodsPage = (props) => {
         <Container fluid style={{height: "100vh"}}>
             <Row className="justify-content-center align-items-center h-100 divBlockWithContentPrimary">
                 <Col xs="12" style={{margin: "1% 0"}}>
-                    <h1>Please enter your valuation for each room:</h1>
+                    <h1>Please enter your valuation for each item:</h1>
                 </Col>
 
                 <Row className="w-100 justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
