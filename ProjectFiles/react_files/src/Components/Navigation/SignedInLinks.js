@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 // Bootstrap Components
 import Nav from 'react-bootstrap/Nav';
 
+//TODO: Add conditional formatting once server is made.
 
 const SignedInLinks = (props) => {
     return (
@@ -25,7 +26,7 @@ const SignedInLinks = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // signOut: () => dispatch(signOut())
+        //// signOut: () => dispatch(signOut())
     }
 }
 

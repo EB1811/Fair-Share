@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 
 const AccountBoard = (props) => {
+    //! Temp data. Change once server is set up.
     const [valArr] = useState([
         { name: "Valuation 1" },
         { name: "Valuation 2" },

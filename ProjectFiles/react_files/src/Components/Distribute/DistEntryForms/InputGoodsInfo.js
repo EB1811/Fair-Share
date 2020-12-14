@@ -48,7 +48,7 @@ const InputGoodsInfo = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        temp: state.distGoodsInfo.goodsArray
+        ////temp: state.distGoodsInfo.goodsArray
     }
 }
 

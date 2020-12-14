@@ -12,6 +12,8 @@ import Nav from 'react-bootstrap/Nav';
 // React Router
 import { Link } from 'react-router-dom';
 
+//TODO: Add conditional formatting once server is made.
+
 const NavCom = () => {
     return (
         <Container fluid style={{backgroundColor: "#fff"}}>

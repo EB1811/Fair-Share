@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const DistributeEntry = (props) => {
-    // Stage determines which section of the goods entry input to render.
+    //! Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
 
     switch(stage) {

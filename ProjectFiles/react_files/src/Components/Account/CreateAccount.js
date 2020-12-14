@@ -11,7 +11,7 @@ import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 
 const CreateAccount = (props) => {
-    // Information about goods.
+    // Auth data.
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [pass, setPass] = useState("");
@@ -49,10 +49,10 @@ const CreateAccount = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
+    ////console.log(state)
     return {
-        //authStatus: state.firebase.auth,
-        //authError: state.auth.authError
+        ////authStatus: state.firebase.auth,
+        ////authError: state.auth.authError
     }
 }
 

@@ -39,7 +39,7 @@ const DistributeGoodsPage = (props) => {
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(localgoodsArr.reduce((sum, {Value}) => sum + parseInt(Value), 0))
+        ////console.log(localgoodsArr.reduce((sum, {Value}) => sum + parseInt(Value), 0));
         props.updateGoodsValuations(localgoodsArr);
         props.history.push('/Results')
     }
@@ -70,7 +70,7 @@ const DistributeGoodsPage = (props) => {
     )
 }
 
-// To access and modify redux store.
+//* To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
         goodsArr: state.distGoodsInfo.goodsArray,

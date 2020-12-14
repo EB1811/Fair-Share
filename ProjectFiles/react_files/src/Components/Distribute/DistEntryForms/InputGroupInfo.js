@@ -20,7 +20,7 @@ const InputGroupInfo = (props) => {
     // Failed bool
     const [failed, setFailed] = useState(false);
 
-    // Update number of users on submit.
+    //* Update number of users on submit.
     const addToGroup = () => {
         if(localGroup.includes(userId)) {
             setFailed(true);
