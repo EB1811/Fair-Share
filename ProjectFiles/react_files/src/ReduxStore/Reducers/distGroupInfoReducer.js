@@ -8,7 +8,7 @@ const distGroupInfoReducer = (state = initState, action) => {
             console.log("Success", action.id);
 
             var tempArr = state.userArray;
-            tempArr.push(parseInt(action.id));
+            tempArr.push(String(action.id));
 
             return {
                 ...state,
