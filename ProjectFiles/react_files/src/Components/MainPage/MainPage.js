@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-// Images
+// Icons
 import logo1 from '../../Images/fair_ICON.svg';
 import logo2 from '../../Images/team_ICON.svg';
 import logo3 from '../../Images/check_ICON.svg';
@@ -21,8 +21,8 @@ const MainPage = () => {
         <div>
         <Container fluid style={{minHeight: "100vh"}}>
             <Row className="align-items-center h-100 justify-content-center divBlockWithContentSecondary">
-                <Row className="justify-content-center w-100"  style={{marginTop: "25px"}}>
-                    <h1 className="Title">CE301 Project</h1>
+                <Row className="justify-content-center w-100">
+                    <h1 className="Title" style={{marginTop: "25px", color: "#fff"}}>CE301 Project</h1>
                 </Row>
                 <Col className="justify-content-center" xl="7">
                     <h2 className="descText">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>

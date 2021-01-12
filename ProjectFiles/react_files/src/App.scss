@@ -37,11 +37,13 @@ $container-max-widths: (
   font-size: 100px;
   display: inline-block;
   margin: 0;
+  z-index: 1;
 }
 .Title2 {
   font-weight: 500;
   font-size: 65px;
 }
+
 
 .descText {
   font-weight: 400;
