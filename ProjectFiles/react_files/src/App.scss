@@ -23,3 +23,128 @@ $container-max-widths: (
 );
 
 @import '~bootstrap/scss/bootstrap';
+
+/* cool color: 219a99 */
+
+.App {
+  text-align: center;
+  background-color: #efefef;
+}
+
+.Title {
+  font-weight: 700;
+  padding: 35px;
+  font-size: 100px;
+  display: inline-block;
+  margin: 0;
+}
+.Title2 {
+  font-weight: 500;
+  font-size: 65px;
+}
+
+.descText {
+  font-weight: 400;
+  font-size: 1.5em;
+}
+.footerText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  color: #5eeb78;
+}
+.footerLink {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: #fff;
+}
+.footerLink:hover {
+  color: #5eeb78;
+}
+a:active, a:visited {
+  color: #fff;
+}
+/* Smaller Titles */
+@media only screen and (max-width: 1500px) {
+  .Title {
+    font-size: 5em;
+  }
+  .descText {
+    font-size: 1.35em;
+  }
+}
+
+/* Word below icon */
+.iconDesc {
+  color: #5eeb78;
+  font-weight: 300;
+  font-size: 2.75em;
+  margin-bottom: 0;
+}
+.iconDesc2 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 2.75em;
+  margin-bottom: 0;
+}
+
+/* For big divs spanning page length */
+.divBlockWithContentPrimary {
+  background-color: #6daffe;
+  color: #ffffff;
+}
+.divBlockWithContentSecondary {
+  background-color: #6daffe;
+  color: #ffffff;
+}
+.divBlockWithContentTertiary {
+  background-color: #ffffff;
+  color: #5eeb78;
+}
+
+.medButtonText {
+  font-weight: 700;
+  font-size: 35px;
+}
+
+/* For dynamic content addition ADD BREAKPOINTS */
+.contentOverflow {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.form-label {
+  font-weight: 400;
+  font-size: 1.65em;
+}
+
+/* This is modifying the btn-primary colors */
+.btn-primary {
+  color: #fff !important;
+  background-color: #5eeb78 !important;
+  border-color: transparent !important;
+}
+.btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+  color: #fff !important;
+  background-color: #59da71 !important;
+}
+/* This is modifying the btn-secondary colors */
+.btn-secondary {
+  color: #fff !important;
+  background-color: #5eeb78 !important;
+  border-color: transparent !important;
+}
+.btn-secondary:hover, .open>.dropdown-toggle.btn-secondary {
+  color: #fff !important;
+  background-color: #59da71 !important;
+}
+
+.btn:active, .btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  border-color: #5eeb78 !important;
+}
