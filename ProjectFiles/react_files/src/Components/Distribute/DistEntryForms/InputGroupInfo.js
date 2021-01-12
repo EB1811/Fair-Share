@@ -34,27 +34,30 @@ const InputGroupInfo = (props) => {
     }
 
     return (
-        <Container fluid>
-            <Row className="justify-content-center" style={{ marginBottom: "20px"}}>
-                <Row className="w-100 justify-content-center">
-                <Col xs="12" lg="5" className="align-items-center" style={{margin: "5px 0"}}>
-                    <div className="h-100 align-items-center d-flex">
+        <Container fluid className="h-100">
+            <Row className="justify-content-center divBlockWithContentTertiary">
+                <Col xs={12} sm={3} className="centerCardCompact">
+                    <Row className="align-items-center">
+                        <Col xs={9}>
                         {
                             failed 
-                            ? <Form.Control size="sm" placeholder="Invalid User" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{border: "1px solid red", marginLeft: "auto", marginRight: "auto", display: "block"}}/>
-                            : <Form.Control size="sm" placeholder="Enter User ID" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{marginLeft: "auto", marginRight: "auto", display: "block"}}/>
+                            ? <Form.Control size="sm" placeholder="Invalid User" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{border: "1px solid red", marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
+                            : <Form.Control size="sm" placeholder="Enter User ID" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
                         }
-                    </div>
-                </Col>
-                </Row>
-                <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => addToGroup()}><span className="medButtonText">Add To Group</span></Button>
-                <Button style={{ margin: "4px 20px"}} variant="primary" onClick={() => props.setStage(2)}><span className="medButtonText">Next</span></Button>
-            </Row>
-            <Row className="justify-content-center contentOverflow">
-                <Col sm="8">
-                    {localGroup.map((id) => (
-                        <Card style={{color: "#000"}} key={id} body>User {id}</Card>
-                    ))}
+                        </Col>
+                        <Col>
+                            <Button variant="primary" size="md" onClick={() => addToGroup()}><span>Add</span></Button>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center contentOverflow mt-3">
+                        <Col sm="8">
+                            {localGroup.map((id) => (
+                                <Card style={{color: "#000"}} key={id} body>User {id}</Card>
+                            ))}
+                        </Col>
+                    </Row>
+                    
+                    <Button style={{ margin: "0px 10px"}} variant="primary" size="md" className="mt-3" onClick={() => props.setStage(2)}><span className="smButtonText">Next</span></Button>
                 </Col>
             </Row>
         </Container>

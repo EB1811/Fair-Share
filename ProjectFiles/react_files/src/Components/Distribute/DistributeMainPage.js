@@ -30,7 +30,7 @@ const DistributeMainPage = () => {
                     <Col xs={12} lg={6}>
                         <img src={logo} alt="icon-house-rent" style={{width: "200px", height: "200px", marginBottom: "2%"}}/>
                         <Link style={{textDecoration: "none"}} to='/Distribute/Rent'>
-                            <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
+                            <Button variant="secondary" size="lg" block style={{borderColor: '#ffffff'}}>
                                 <h2>Share Rent</h2>
                             </Button>
                         </Link>
@@ -38,7 +38,7 @@ const DistributeMainPage = () => {
                     <Col xs={12} lg={6}>
                         <img src={logo2} alt="icon-jewelry-goods" style={{width: "150px", height: "200px", marginBottom: "2%"}}/>
                         <Link style={{textDecoration: "none"}} to='/Distribute/Goods'>
-                            <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
+                            <Button variant="secondary" size="lg" block style={{borderColor: '#ffffff'}}>
                                 <h2>Share Goods</h2>
                             </Button>
                         </Link>

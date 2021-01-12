@@ -23,25 +23,29 @@ const DistributeEntry = (props) => {
     switch(stage) {
         case 0:
             return (
-                <Container fluid>
-                    <Col xs="12" style={{margin: "100px 0"}}>
-                        {
-                            props.goodType === 'Rent'
-                            ? <h1 className="Title2">House Information</h1>
-                            : <h1 className="Title2">Goods Information</h1>
-                        }
-                    </Col>
-                    <Row className="justify-content-center">
-                        <Col xs={12} sm={5}><InputGoodsInfo goodType={props.goodType} setStage={setStage}/></Col>
+                <Container fluid className="vh-100" style={{minHeight: "100vh"}}>
+                    <Row className="align-items-center justify-content-center" style={{height: "30%"}}>
+                        <Col xs="8">
+                            {
+                                props.goodType === 'Rent'
+                                ? <h1 className="Title2">House Information</h1>
+                                : <h1 className="Title2">Goods Information</h1>
+                            }
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center align-items-center">
+                        <Col xs={12} sm={3}><InputGoodsInfo goodType={props.goodType} setStage={setStage}/></Col>
                     </Row>
                 </Container>
             )
         case 1:
             return (
-                <Container fluid>
-                    <Col xs="12" style={{margin: "100px 0"}}>
-                        <h1 className="Title2">Add users to group</h1>
-                    </Col>
+                <Container fluid className="vh-100"  style={{minHeight: "100vh"}}>
+                    <Row className="align-items-center justify-content-center" style={{height: "20%"}}>
+                        <Col xs="8">
+                            <h1 className="Title2">Add users to group</h1>
+                        </Col>
+                    </Row>
                     <InputGroupInfo setStage={setStage}/>
                 </Container>
             )

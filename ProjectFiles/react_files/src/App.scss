@@ -1,7 +1,7 @@
 //Redefining bootstrap variables.
 
 $navbar-dark-color: #666666;
-$navbar-dark-hover-color: #4dbd62;
+$navbar-dark-hover-color: #219a99;
 
 $input-btn-focus-width: .05rem !default;
 $input-btn-focus-color: #4dbd62;
@@ -24,7 +24,7 @@ $container-max-widths: (
 
 @import '~bootstrap/scss/bootstrap';
 
-/* cool color: 219a99 */
+/* cool color: 219a99, 32c4c4 */
 
 .App {
   text-align: center;
@@ -38,10 +38,12 @@ $container-max-widths: (
   display: inline-block;
   margin: 0;
   z-index: 1;
+  color: #fff;
 }
 .Title2 {
   font-weight: 500;
   font-size: 65px;
+  color: #5ad370;
 }
 
 
@@ -112,6 +114,13 @@ a:active, a:visited {
   box-shadow: 0 1px 4px #b3b3b3;
   font-size: 0.875rem;
 }
+.centerCardCompact {
+  background-color: #fff;
+  padding: 50px 25px;
+  color: #4dbd62;
+  box-shadow: 0 1px 4px #b3b3b3;
+  font-size: 0.875rem;
+}
 
 .smButtonText {
   font-weight: 400;
@@ -130,6 +139,7 @@ a:active, a:visited {
 
 /* For dynamic content addition ADD BREAKPOINTS */
 .contentOverflow {
+  height: 400px;
   max-height: 400px;
   overflow: auto;
 }
@@ -137,6 +147,7 @@ a:active, a:visited {
 .form-label {
   font-weight: 400;
   font-size: 1.5rem;
+  color: #000;
 }
 
 /* This is modifying the btn-primary colors */

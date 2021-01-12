@@ -21,7 +21,7 @@ const InputGoodsInfo = (props) => {
     }
 
     return (
-        <Form onSubmit = {handleSubmit}>
+        <Form onSubmit = {handleSubmit} className="centerCard">
             <Form.Group controlId="addGoodsCount">
                 {
                     props.goodType === 'Rent'
@@ -38,8 +38,8 @@ const InputGoodsInfo = (props) => {
                 }
                 <Form.Control size="sm" type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
             </Form.Group>
-            <Button variant="primary" type="submit" size="lg">
-                <span className="medButtonText">Next</span>
+            <Button variant="primary" type="submit" size="md" className="mt-5"> 
+                <span className="smButtonText">Next</span>
             </Button>
         </Form>
     )

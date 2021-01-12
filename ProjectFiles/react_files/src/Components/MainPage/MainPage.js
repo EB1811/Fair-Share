@@ -25,7 +25,7 @@ const MainPage = () => {
         <Container fluid style={{minHeight: "100vh"}}>
             <Row className="align-items-center h-100 justify-content-center divBlockWithContentSecondary">
                 <Row className="justify-content-center w-100">
-                    <h1 className="Title" style={{marginTop: "25px", color: "#fff"}}>CE301 Project</h1>
+                    <h1 className="Title" style={{marginTop: "25px"}}>CE301 Project</h1>
                 </Row>
                 <Col className="justify-content-center" xl="7">
                     <h2 className="descText">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
