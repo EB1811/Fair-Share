@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 const CreateAccount = (props) => {
     // Auth data.
     const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
     const [pass, setPass] = useState("");
 
     const handleSubmit = (e) => {
@@ -23,23 +22,19 @@ const CreateAccount = (props) => {
 
     return (
         <Container fluid style={{height: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-sm-center divBlockWithContentPrimary">
-            <Col xs={12} sm={5}>
+            <Row className="align-items-center h-100 justify-content-sm-center divBlockWithContentTertiary">
+            <Col xs={12} sm={3} className="centerCard">
                 <Form onSubmit = {handleSubmit}>
                     <Form.Group controlId="email">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="text" onChange={e => setEmail(e.target.value)}/>
                     </Form.Group>
-                    <Form.Group controlId="user">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" onChange={e => setUsername(e.target.value)}/>
-                    </Form.Group>
                     <Form.Group controlId="pass">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="text" onChange={e => setPass(e.target.value)}/>
                     </Form.Group>
-                    <Button variant="primary" type="submit" size="lg">
-                        <span className="medButtonText">Create Account</span>
+                    <Button variant="primary" type="submit" size="lg" className="mt-5">
+                        <span className="smButtonText">Create Account</span>
                     </Button>
                 </Form>
             </Col>

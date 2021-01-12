@@ -16,6 +16,9 @@ import logo5 from '../../Images/jewelry_ICON.svg';
 // React Router
 import { Link } from 'react-router-dom';
 
+//TODO Change these so that they are 'blocks'. Dont set position with margins.
+//TODO Change 'we can help you' block to be all in one row. Makes positioning and sizing easier. 
+
 const MainPage = () => {
     return (
         <div>
@@ -56,7 +59,7 @@ const MainPage = () => {
                     <Col className="justify-content-center" xl="7">
                         <h2 className="descText">We can help you</h2>
                     </Col>
-                    <Row className="w-50" style={{margin: "1% 0 3% 0"}}>
+                    <Row className="w-50" style={{margin: "15px 0 45px 0"}}>
                         <Col style={{display: "inline"}}>
                             <img src={logo4} alt="icon-house-rent" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc2">Share Rent</h1>

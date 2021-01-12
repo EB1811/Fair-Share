@@ -1,9 +1,9 @@
 //Redefining bootstrap variables.
 
-$navbar-dark-color: #000;
+$navbar-dark-color: #666666;
 $navbar-dark-hover-color: #4dbd62;
 
-$input-btn-focus-width: .1rem !default;
+$input-btn-focus-width: .05rem !default;
 $input-btn-focus-color: #4dbd62;
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
@@ -101,13 +101,31 @@ a:active, a:visited {
   color: #ffffff;
 }
 .divBlockWithContentTertiary {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   color: #5eeb78;
 }
 
+.centerCard {
+  background-color: #fff;
+  padding: 100px 50px;
+  color: #4dbd62;
+  box-shadow: 0 1px 4px #b3b3b3;
+  font-size: 0.875rem;
+}
+
+.smButtonText {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
 .medButtonText {
   font-weight: 700;
   font-size: 35px;
+
+}
+
+.navbarStyle {
+  font-size: 1.1rem;
+  font-weight: 400;
 }
 
 /* For dynamic content addition ADD BREAKPOINTS */
@@ -118,10 +136,13 @@ a:active, a:visited {
 
 .form-label {
   font-weight: 400;
-  font-size: 1.65em;
+  font-size: 1.5rem;
 }
 
 /* This is modifying the btn-primary colors */
+.btn {
+  border-radius: 0;
+}
 .btn-primary {
   color: #fff !important;
   background-color: #5eeb78 !important;
@@ -149,4 +170,8 @@ a:active, a:visited {
 
 .form-control:focus {
   border-color: #5eeb78 !important;
+}
+
+.form-label {
+  font-weight: 300;
 }
