@@ -38,27 +38,23 @@ const ResultsPage = (props) => {
       )
 
     return (
-        <Container fluid style={{height: "100vh"}}>
-            <Row className="justify-content-center align-items-center h-100 divBlockWithContentPrimary">
-                <Col xs="12" style={{margin: "2% 0"}}>
-                    <h1 className="Title">Results</h1>
-                </Col>
-                <Row className="w-100 justify-content-center" style={{marginBottom: "15%", padding: "4% 0 6% 0"}}>
-                    <Col sm="12">
+        <Container fluid className="divBlockWithContentTertiary min-vh-100">
+            <Row className="justify-content-center align-items-center min-vh-100">
+                <Col xs={12} sm={3} className="centerCard m-3">
+                    <h4>Results</h4>
+                    <Col sm="12 mt-5">
                         {resultsArr.map((result) => 
-                            <h2 key={result.id}>
+                            <p key={result.id}>
                                 User with ID {result.user}: {result.good} at £{result.price}
-                            </h2>
+                            </p>
                         )}
                     </Col>
-                    <Col xs={12} md={5} lg={3} style={{marginTop: "25px"}}>
-                        <Link style={{textDecoration: "none"}} to='/Distribute'>
-                            <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
-                                <h2>Share Again</h2>
-                            </Button>
-                        </Link>
-                    </Col>
-                </Row>
+                    <Link style={{textDecoration: "none"}} to='/Distribute'>
+                        <Button variant="primary" size="md" className="mt-5">
+                            <span className="smButtonText">Share Again</span>
+                        </Button>
+                    </Link>
+                </Col>
             </Row>
         </Container>
     )

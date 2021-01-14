@@ -21,12 +21,15 @@ const InputValuations = (props) => {
     }
 
     return (
-        <Form.Group controlId="valuation">
-            <Form.Label>{props.curGood.Good} Value</Form.Label>
-            <Col>
+        <Form.Group controlId="valuation" style={{margin: "0px"}}>
+            <div>
+                <Form.Label>{props.curGood.Good} Value</Form.Label>
+            </div>
+
+            <div>
                 <Form.Control type="range" value={tempValue} min={0} max={props.tValue} step={1} onInput={handleChange} onChange={handleChange} style={{width: "90%", display: "inline-block"}}/>
                 <Form.Label style={{width: "10%", margin: "5 0px"}}>{tempValue}</Form.Label>
-            </Col>
+            </div>
         </Form.Group>
     )
 }
@@ -45,26 +48,22 @@ const DistributeGoodsPage = (props) => {
     }
 
     return (
-        <Container fluid style={{height: "100vh"}}>
-            <Row className="justify-content-center align-items-center h-100 divBlockWithContentPrimary">
-                <Col xs="12" style={{margin: "1% 0"}}>
-                    <h1>Please enter your valuation for each item:</h1>
-                </Col>
+        <Container fluid className="divBlockWithContentTertiary min-vh-100">
+                <Row className="justify-content-center align-items-center min-vh-100">
+                    <Col xs={12} sm={6} className="centerCard m-3">
+                        <h4>Please enter your valuation for each item:</h4>
 
-                <Row className="w-100 justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
-                    <Col sm="6">
-                        <Form onSubmit = {handleSubmit}>
+                        <Form onSubmit = {handleSubmit} className="mt-5">
                             {localgoodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={localgoodsArr} setTotal={setTotal} tValue={props.tValue}/>)}
 
-                            <Col sm="12">
-                                <h3>Total Value: {total}</h3>
-                            </Col>
-                            <Button variant="primary" type="submit">
-                                Finish
+                            <div className="mt-3">
+                                <Form.Label>Total Value: {total}</Form.Label>
+                            </div>
+                            <Button variant="primary" size="md" className="mt-5" type="submit">
+                                <span className="smButtonText">Submit</span>
                             </Button>
                         </Form>
-                    </Col>
-                </Row>
+                </Col>
             </Row>
         </Container>
     )
