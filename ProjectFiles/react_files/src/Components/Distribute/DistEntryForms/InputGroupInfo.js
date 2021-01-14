@@ -36,32 +36,34 @@ const InputGroupInfo = (props) => {
     }
 
     return (
-        <Container fluid className="h-100">
-            <Row className="justify-content-center divBlockWithContentTertiary">
-                <Col xs={12} sm={3} className="centerCardCompact">
-                    <Row className="align-items-center">
-                        <Col xs={9}>
-                        {
-                            failed 
-                            ? <Form.Control size="sm" placeholder="Invalid User" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{border: "1px solid red", marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
-                            : <Form.Control size="sm" placeholder="Enter User ID" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
-                        }
-                        </Col>
-                        <Col>
-                            <Button variant="primary" size="md" onClick={() => addToGroup()}><span>Add</span></Button>
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-center contentOverflow mt-3">
-                        <Col sm="8">
-                            {localGroup.map((id) => (
-                                <Card style={{color: "#000"}} key={id} body>User {id}</Card>
-                            ))}
-                        </Col>
-                    </Row>
-                    
+        <Container fluid className="divBlockWithContentTertiary min-vh-100">
+            <Row className="justify-content-center align-items-center min-vh-100">
+                <Col xs={12} sm={3} className="centerCardCompact m-3">
+                    <h4>Please input a user id to add them to the group.</h4>
+                    <div className="mt-5 py-2" style={{borderTop: "1px solid #999999", borderBottom: "1px solid #999999"}}>
+                        <Row className="align-items-center">
+                            <Col xs={9}>
+                            {
+                                failed 
+                                ? <Form.Control size="sm" placeholder="Invalid User" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{border: "1px solid red", marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
+                                : <Form.Control size="sm" placeholder="Enter User ID" value={userId} type="text" onChange={e => setUserId(e.target.value)}  style={{marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
+                            }
+                            </Col>
+                            <Col>
+                                <Button variant="primary" size="md" onClick={() => addToGroup()}><span>Add</span></Button>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-center contentOverflow mt-3">
+                            <Col sm="10">
+                                {localGroup.map((id) => (
+                                    <Card style={{color: "#000"}} key={id} body>User {id}</Card>
+                                ))}
+                            </Col>
+                        </Row>
+                    </div>
                     
                     <Link style={{textDecoration: "none"}} to='/Distribute/Questions'>
-                        <Button style={{ margin: "0px 10px"}} variant="primary" size="md" className="mt-3"><span className="smButtonText">Next</span></Button>
+                        <Button variant="primary" size="md" className="mt-5"><span className="smButtonText">Next</span></Button>
                     </Link>
                 </Col>
             </Row>

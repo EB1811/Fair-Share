@@ -49,20 +49,20 @@ const DistributeGoodsPage = (props) => {
 
     return (
         <Container fluid className="divBlockWithContentTertiary min-vh-100">
-                <Row className="justify-content-center align-items-center min-vh-100">
-                    <Col xs={12} sm={6} className="centerCard m-3">
-                        <h4>Please enter your valuation for each item:</h4>
+            <Row className="justify-content-center align-items-center min-vh-100">
+                <Col xs={12} sm={6} className="centerCard m-3">
+                    <h4>Please enter your valuation for each item:</h4>
 
-                        <Form onSubmit = {handleSubmit} className="mt-5">
-                            {localgoodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={localgoodsArr} setTotal={setTotal} tValue={props.tValue}/>)}
+                    <Form onSubmit = {handleSubmit} className="mt-5">
+                        {localgoodsArr.map((good) => <InputValuations key={good.Good} curGood={good} goodsArr={localgoodsArr} setTotal={setTotal} tValue={props.tValue}/>)}
 
-                            <div className="mt-3">
-                                <Form.Label>Total Value: {total}</Form.Label>
-                            </div>
-                            <Button variant="primary" size="md" className="mt-5" type="submit">
-                                <span className="smButtonText">Submit</span>
-                            </Button>
-                        </Form>
+                        <div className="mt-3">
+                            <Form.Label>Total Value: {total}</Form.Label>
+                        </div>
+                        <Button variant="primary" size="md" className="mt-5" type="submit">
+                            <span className="smButtonText">Submit</span>
+                        </Button>
+                    </Form>
                 </Col>
             </Row>
         </Container>

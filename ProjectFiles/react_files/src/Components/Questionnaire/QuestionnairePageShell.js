@@ -23,9 +23,9 @@ const QuestionnairePageShell = (props) => {
 
     if(stage == 0) {
         return (
-            <Container fluid className="h-100">
-                <Row className="justify-content-center align-items-center h-100 divBlockWithContentTertiary">
-                    <Col xs={12} sm={3} className="centerCard">
+            <Container fluid className="divBlockWithContentTertiary min-vh-100">
+                <Row className="justify-content-center align-items-center min-vh-100">
+                    <Col xs={12} sm={3} className="centerCard m-3">
                         <p>
                         Please complete the following short questionnaire.<br/><br/>
                         Answers to these questions will determine what qualities the allocation algorithm will have.
@@ -39,9 +39,9 @@ const QuestionnairePageShell = (props) => {
         )
     } else if(stage > 0 && stage < 4) {
         return (
-            <Container fluid className="h-100">
-                <Row className="justify-content-center align-items-center h-100 divBlockWithContentTertiary">
-                    <Col xs={12} sm={3} className="centerCard">
+            <Container fluid className="divBlockWithContentTertiary min-vh-100">
+                <Row className="justify-content-center align-items-center min-vh-100">
+                    <Col xs={12} sm={3} className="centerCard m-3">
                         <QuestionnaireQuestion stage={stage} setStage={setStage} question={questions[stage - 1].question}/>
                     </Col>
                 </Row>
@@ -50,9 +50,9 @@ const QuestionnairePageShell = (props) => {
     } else {
         //TODO Add answers from questions. Since its just a page containing a button right now.
         return (
-            <Container fluid className="h-100">
-                <Row className="justify-content-center align-items-center h-100 divBlockWithContentTertiary">
-                    <Col xs={12} sm={3} className="centerCard">
+            <Container fluid className="divBlockWithContentTertiary min-vh-100">
+                <Row className="justify-content-center align-items-center min-vh-100">
+                    <Col xs={12} sm={3} className="centerCard m-3">
                         <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
                             <Button variant="primary" size="md">
                                 <span className="smButtonText">Begin Valuing Items</span>

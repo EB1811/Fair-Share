@@ -21,7 +21,7 @@ const InputGoodsInfo = (props) => {
     }
 
     return (
-        <Form onSubmit = {handleSubmit} className="centerCard">
+        <Form onSubmit = {handleSubmit}>
             <Form.Group controlId="addGoodsCount">
                 {
                     props.goodType === 'Rent'
