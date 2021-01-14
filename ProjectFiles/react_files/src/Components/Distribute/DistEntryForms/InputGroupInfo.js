@@ -11,6 +11,8 @@ import Form from 'react-bootstrap/Form';
 // Redux
 import { connect } from 'react-redux';
 
+// React Router
+import { Link } from 'react-router-dom';
 
 const InputGroupInfo = (props) => {
     // User ID.
@@ -57,7 +59,10 @@ const InputGroupInfo = (props) => {
                         </Col>
                     </Row>
                     
-                    <Button style={{ margin: "0px 10px"}} variant="primary" size="md" className="mt-3" onClick={() => props.setStage(2)}><span className="smButtonText">Next</span></Button>
+                    
+                    <Link style={{textDecoration: "none"}} to='/Distribute/Questions'>
+                        <Button style={{ margin: "0px 10px"}} variant="primary" size="md" className="mt-3"><span className="smButtonText">Next</span></Button>
+                    </Link>
                 </Col>
             </Row>
         </Container>

@@ -21,11 +21,11 @@ const QuestionnaireQuestion = (props) => {
     return (
         <Form onSubmit = {handleSubmit}>
             <Form.Group controlId="question">
-                <Form.Label><h1>{ props.question }</h1></Form.Label>
-                <Form.Control type="text" value={answer} onChange={e => setAnswer(e.target.value)}/>
+                <Form.Label>{ props.question }</Form.Label>
+                <Form.Control className="mt-2" type="text" value={answer} onChange={e => setAnswer(e.target.value)}/>
             </Form.Group>
-            <Button variant="primary" type="submit" size="lg">
-                <span className="medButtonText">Next</span>
+            <Button variant="primary" type="submit" size="md" className="mt-5">
+                <span className="smButtonText">Next</span>
             </Button>
         </Form>
     )

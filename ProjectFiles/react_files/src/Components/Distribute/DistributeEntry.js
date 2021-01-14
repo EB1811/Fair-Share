@@ -10,15 +10,14 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-// React Router
-import { Link } from 'react-router-dom';
-
 // Redux
 import { connect } from 'react-redux';
 
 const DistributeEntry = (props) => {
     //! Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
+
+    //TODO Add title to centerCard.
 
     switch(stage) {
         case 0:
@@ -47,49 +46,6 @@ const DistributeEntry = (props) => {
                         </Col>
                     </Row>
                     <InputGroupInfo setStage={setStage}/>
-                </Container>
-            )
-        case 2:
-            return (
-                <Container fluid>
-                    <Col xs="12" style={{margin: "100px 0"}}>
-                        <h1 className="Title2">Confirm</h1>
-                    </Col>
-
-                    <Row className="justify-content-center">
-                        <Col >
-                            {
-                                props.goodType === 'Rent'
-                                ? <h2>Number of Rooms: {props.goodsArr.length}</h2>
-                                : <h2>Number of Goods: {props.goodsArr.length}</h2>
-                            }
-                        </Col>
-                        
-                    </Row>
-                    <Row className="justify-content-center">
-                        <Col>
-                            {
-                                props.goodType === 'Rent'
-                                ? <h2>Total monthly value of House: {props.goodsTotVal}</h2>
-                                : <h2>Total value of Goods: {props.goodsTotVal}</h2>
-                            }
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-center">
-                        <Col>
-                            <h2>Users: </h2>
-                            {props.userArr.map((id) => (
-                                <span key={id}>User ID: {id},&nbsp;</span>
-                            ))}
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-center" style={{margin: "15px 0"}}>
-                            <Link style={{textDecoration: "none"}} to='/Distribute/Questions'>
-                                <Button variant="primary" size="lg" block style={{borderColor: '#ffffff'}}>
-                                    <span className="medButtonText">Next</span>
-                                </Button>
-                            </Link>
-                    </Row>
                 </Container>
             )
         default:

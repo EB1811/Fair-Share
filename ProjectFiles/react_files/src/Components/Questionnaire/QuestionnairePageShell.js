@@ -12,14 +12,6 @@ import Button from 'react-bootstrap/Button';
 // React Router
 import { Link } from 'react-router-dom';
 
-const QuestionnaireTitleBlock = () => {
-    return (
-        <Row className="align-items-center" xs="12" style={{margin: "100px"}}>
-            <h1 className="Title2">Short Questionnaire</h1>
-        </Row>
-    )
-}
-
 const QuestionnairePageShell = (props) => {
     // Information about goods.
     const [questions] = useState([
@@ -29,34 +21,44 @@ const QuestionnairePageShell = (props) => {
     ]);
     const [stage, setStage] = useState(0);
 
-    if(stage < 3) {
+    if(stage == 0) {
         return (
-            <Container fluid className="h-100 divBlockWithContentPrimary">
-                <Row className="h-100 justify-content-center">
-                    <Row className="w-100 divBlockWithContentPrimary justify-content-center" style={{marginBottom: "12.5%", padding: "4% 0 6% 0"}}>
-                        <QuestionnaireTitleBlock/>
-                        <Row className=" justify-content-center w-100" style={{}}>
-                            <Col xs={12} sm={4}>
-                                <QuestionnaireQuestion stage={stage} setStage={setStage} question={questions[stage].question}/>
-                            </Col>
-                        </Row>
-                    </Row>
+            <Container fluid className="h-100">
+                <Row className="justify-content-center align-items-center h-100 divBlockWithContentTertiary">
+                    <Col xs={12} sm={3} className="centerCard">
+                        <p>
+                        Please complete the following short questionnaire.<br/><br/>
+                        Answers to these questions will determine what qualities the allocation algorithm will have.
+                        </p>
+                        <Button variant="primary" size="md" className="mt-5" onClick={() => setStage(1)}>
+                            <span className="smButtonText">Begin</span>
+                        </Button>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    } else if(stage > 0 && stage < 4) {
+        return (
+            <Container fluid className="h-100">
+                <Row className="justify-content-center align-items-center h-100 divBlockWithContentTertiary">
+                    <Col xs={12} sm={3} className="centerCard">
+                        <QuestionnaireQuestion stage={stage} setStage={setStage} question={questions[stage - 1].question}/>
+                    </Col>
                 </Row>
             </Container>
         )
     } else {
+        //TODO Add answers from questions. Since its just a page containing a button right now.
         return (
-            <Container fluid className="divBlockWithContentPrimary" style={{height: "100vh"}}>
-                <Row className="align-items-center h-100 justify-content-center">
-                    <Row className="justify-content-center w-100">
-                        <Col xs={12} sm={4}>
-                            <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
-                                <Button variant="primary" size="lg">
-                                    <span className="medButtonText">Begin Valuing Items</span>
-                                </Button>
-                            </Link>
-                        </Col>
-                    </Row>
+            <Container fluid className="h-100">
+                <Row className="justify-content-center align-items-center h-100 divBlockWithContentTertiary">
+                    <Col xs={12} sm={3} className="centerCard">
+                        <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
+                            <Button variant="primary" size="md">
+                                <span className="smButtonText">Begin Valuing Items</span>
+                            </Button>
+                        </Link>
+                    </Col>
                 </Row>
             </Container>
         )
