@@ -21,7 +21,7 @@ const QuestionnairePageShell = (props) => {
     ]);
     const [stage, setStage] = useState(0);
 
-    if(stage == 0) {
+    if(stage === 0) {
         return (
             <Container fluid className="divBlockWithContentTertiary min-vh-100">
                 <Row className="justify-content-center align-items-center min-vh-100">
