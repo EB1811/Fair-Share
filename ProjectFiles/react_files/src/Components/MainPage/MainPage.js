@@ -21,45 +21,42 @@ import { Link } from 'react-router-dom';
 
 const MainPage = () => {
     return (
-        <div>
-        <Container fluid style={{minHeight: "100vh"}}>
-            <Row className="align-items-center h-100 justify-content-center divBlockWithContentSecondary">
-                <Row className="justify-content-center w-100">
-                    <h1 className="Title" style={{marginTop: "25px"}}>CE301 Project</h1>
-                </Row>
-                <Col className="justify-content-center" xl="7">
-                    <h2 className="descText">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
+        <Container fluid className="min-vh-100">
+            <Row className="justify-content-center align-items-center divBlockWithContentPrimary" style={{height: "45vh"}}>
+                <Col>
+                    <h1 className="Title w-100">CE301 Project</h1>
+                    <h2 className="descText w-100 mt-4">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
                 </Col>
+            </Row>
 
-                <Row className="w-100 justify-content-center" style={{marginTop: "7.3%", padding: "3% 0 3% 0", backgroundColor: "#fff", zIndex: "10"}}>
-                    <Row className="w-50" style={{marginBottom: "2.5%"}}>
-                        <Col style={{display: "inline", marginTop: ""}}>
-                            <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
-                            <h1 className="iconDesc">Fair</h1>
-                        </Col>
-                        <Col style={{display: "inline"}}>
-                            <img src={logo2} alt="icon-team-diverse" style={{width: "125px", height: "125px"}}/>
-                            <h1 className="iconDesc">Personalised</h1>
-                        </Col>
-                        <Col style={{display: "inline"}}>
-                            <img src={logo3} alt="icon-check-star" style={{width: "125px", height: "125px"}}/>
-                            <h1 className="iconDesc">Easy</h1>
-                        </Col>
-                    </Row>
-                    <Col xs="12" style={{marginTop: "3%"}}>
-                        <Link style={{textDecoration: "none"}} to='/Distribute'>
-                            <Button variant="secondary" size="lg" style={{borderColor: '#ffffff'}}>
-                                <h1 style={{}}>Begin</h1>
-                            </Button>
-                        </Link>
+            <Row className="justify-content-center align-items-center" style={{height: "50vh", backgroundColor: "#fff"}}>
+                <Row className="w-50">
+                    <Col xs="12" sm="4">
+                        <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
+                        <h1 className="iconDesc">Fair</h1>
+                    </Col>
+                    <Col xs="12" sm="4">
+                        <img src={logo2} alt="icon-team-diverse" style={{width: "125px", height: "125px"}}/>
+                        <h1 className="iconDesc">Personalised</h1>
+                    </Col>
+                    <Col xs="12" sm="4">
+                        <img src={logo3} alt="icon-check-star" style={{width: "125px", height: "125px"}}/>
+                        <h1 className="iconDesc">Easy</h1>
                     </Col>
                 </Row>
+                <div className="w-100">
+                    <Link style={{textDecoration: "none"}} to='/Distribute'>
+                        <Button variant="secondary" size="lg" style={{borderColor: '#ffffff'}}>
+                            <h1>Begin</h1>
+                        </Button>
+                    </Link>
+                </div>
+            </Row>
 
-                <Row className="w-100 justify-content-center divBlockWithContentPrimary" style={{padding: "3% 0 3% 0", zIndex: "10"}}>
-                    <Col className="justify-content-center" xl="7">
-                        <h2 className="descText">We can help you</h2>
-                    </Col>
-                    <Row className="w-50" style={{margin: "15px 0 45px 0"}}>
+            <Row className="justify-content-center divBlockWithContentPrimary align-items-center" style={{height: "50vh"}}>
+                <div className="w-50">
+                    <h2 className="descText w-100">We can help you</h2>
+                    <Row className="mt-5">
                         <Col style={{display: "inline"}}>
                             <img src={logo4} alt="icon-house-rent" style={{width: "125px", height: "125px"}}/>
                             <h1 className="iconDesc2">Share Rent</h1>
@@ -69,16 +66,11 @@ const MainPage = () => {
                             <h1 className="iconDesc2">Share Goods</h1>
                         </Col>
                     </Row>
-                    <Col className="justify-content-center" xl="7">
-                        <h2 className="descText">in an impartial way.</h2>
-                    </Col>
-                    <Col className="justify-content-center" xl="7">
-                        <h2 className="descTextBig">Guaranteed.</h2>
-                    </Col>
-                </Row>
+                    <h2 className="descText w-100 mt-5">in an impartial way.</h2>
+                    <h2 className="descTextBig w-100">Guaranteed.</h2>
+                </div>
             </Row>
         </Container>
-        </div>
     )
 }
 

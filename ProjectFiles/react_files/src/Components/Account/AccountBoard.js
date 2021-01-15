@@ -19,20 +19,20 @@ const AccountBoard = (props) => {
     ]);
 
     return (
-        <Container fluid className="divBlockWithContentPrimary" style={{minHeight: "100vh"}}>
-            <Row className= "justify-content-center divBlockWithContentTertiary">
+        <Container fluid className="divBlockWithContentTertiary" style={{minHeight: "100vh"}}>
+            <Row className= "justify-content-center">
                 <Col>
                     <div style={{minWidth: "200px", minHeight: "200px"}}>
                         Image
                     </div>
                 </Col>
             </Row>
-            <Row className= "justify-content-center divBlockWithContentTertiary">
+            <Row className= "justify-content-center">
                 <Col>
                     <h6>Account Settings</h6>
                 </Col>
             </Row>
-            <Row>
+            <Row className="centerCardCompact" style={{margin: "0 25px"}}>
                 {valArr.map((item) => (
                     <Col key={item.name} xs={12} sm={6} md={4} lg={3} xl={2} className= "justify-content-center">
                         <Card key={item.name} bg='light' text={'dark'} style={{minHeight: "300px", margin: "15px 0"}}>
