@@ -45,6 +45,10 @@ $container-max-widths: (
   color: #5ad370;
 }
 
+/* Colors */
+.greenText {
+  color: #61e078;
+}
 
 .descText {
   font-weight: 400;
@@ -80,7 +84,7 @@ a:active, a:visited {
 
 /* Word below icon */
 .iconDesc {
-  color: #5eeb78;
+  color: #61e078;
   font-weight: 300;
   font-size: 2.75em;
   margin-bottom: 0;
@@ -98,8 +102,8 @@ a:active, a:visited {
   color: #ffffff;
 }
 .divBlockWithContentSecondary {
-  background-color: #6daffe;
-  color: #ffffff;
+  background-color: #fff;
+  color: #444444;
 }
 .divBlockWithContentTertiary {
   background-color: #eeeeee;

@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 const DistributeMainPage = () => {
     return (
-        <Container fluid className="divBlockWithContentSecondary">
+        <Container fluid className="divBlockWithContentPrimary">
         <Row className="align-items-center min-vh-100 justify-content-center">
         <div className="min-vh-100 w-100 d-flex flex-column">
             <Row className="justify-content-center w-100"  style={{marginTop: "25px", marginRight: "0", marginLeft: "0"}}>
