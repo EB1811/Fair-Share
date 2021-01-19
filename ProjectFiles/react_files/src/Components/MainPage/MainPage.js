@@ -23,9 +23,9 @@ const MainPage = () => {
     return (
         <Container fluid className="min-vh-100">
             <Row className="justify-content-center align-items-center divBlockWithContentPrimary p-4" style={{minHeight: "45vh"}}>
-                <Col>
-                    <h1 className="Title w-100">CE301 Project</h1>
-                    <h2 className="descText w-100 mt-4">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
+                <Col xs="12">
+                    <h1 className="Title w-100">Fair / Share</h1>
+                    <h2 className="descText w-100 mt-3">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
                 </Col>
             </Row>
 

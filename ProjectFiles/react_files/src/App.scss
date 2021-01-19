@@ -32,8 +32,8 @@ $container-max-widths: (
 }
 
 .Title {
-  font-weight: 700;
-  font-size: 100px;
+  font-weight: 500;
+  font-size: 5em;
   display: inline-block;
   margin: 0;
   z-index: 1;
@@ -103,7 +103,7 @@ a:active, a:visited {
 }
 .divBlockWithContentSecondary {
   background-color: #fff;
-  color: #444444;
+  color: #333333;
 }
 .divBlockWithContentTertiary {
   background-color: #eeeeee;
