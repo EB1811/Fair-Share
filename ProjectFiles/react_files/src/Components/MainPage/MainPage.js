@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom';
 const MainPage = () => {
     return (
         <Container fluid className="min-vh-100">
-            <Row className="justify-content-center align-items-center divBlockWithContentPrimary p-4" style={{minHeight: "45vh"}}>
+            <Row className="justify-content-center align-items-center divBlockWithContentPrimary p-4" style={{minHeight: "40vh"}}>
                 <Col xs="12">
                     <h1 className="Title w-100">Fair / Share</h1>
                     <h2 className="descText w-100 mt-3">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
@@ -30,18 +30,21 @@ const MainPage = () => {
             </Row>
 
             <Row className="justify-content-center align-items-center p-4" style={{minHeight: "55vh", backgroundColor: "#fff"}}>
-                <Row className="w-50" style={{maxWidth: "950px"}}>
+                <Row style={{maxWidth: "950px", minWidth: "300px"}}>
                     <Col xs="12" sm="4">
                         <img src={logo1} alt="icon-fair-division" style={{width: "125px", height: "125px"}}/>
                         <h1 className="iconDesc">Fair</h1>
+                        <p className="iconDescSmall">Our algorithms results in mathematically proven fair allocations.</p>
                     </Col>
                     <Col xs="12" sm="4">
                         <img src={logo2} alt="icon-team-diverse" style={{width: "125px", height: "125px"}}/>
                         <h1 className="iconDesc">Personalised</h1>
+                        <p className="iconDescSmall">You decide which of our many algorithms to use, based on your preferences.</p>
                     </Col>
                     <Col xs="12" sm="4">
                         <img src={logo3} alt="icon-check-star" style={{width: "125px", height: "125px"}}/>
                         <h1 className="iconDesc">Easy</h1>
+                        <p className="iconDescSmall">The service is quick and straightforward.</p>
                     </Col>
                 </Row>
                 <div className="w-100">
