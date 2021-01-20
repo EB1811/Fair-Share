@@ -17,6 +17,8 @@ import logoStep2 from '../../Images/Questions-step2_ICON.svg';
 import logoStep3 from '../../Images/Values-step3_ICON.svg';
 import logoStep4 from '../../Images/Allocation-step4_ICON.svg';
 
+import titleImage from '../../Images/group-selfie-happy-fair.svg';
+
 // React Router
 import { Link } from 'react-router-dom';
 
@@ -29,10 +31,20 @@ Our algorithms devise an allocation of rooms that is mathematically fair.
 const MainPage = () => {
     return (
         <Container fluid className="min-vh-100">
-            <Row className="justify-content-center align-items-center divBlockWithContentPrimary p-4 backTitleImage" style={{minHeight: "40vh"}}>
+            <Row className="justify-content-center align-items-center divBlockWithContentTitle p-4 backTitleImage" style={{minHeight: "40vh", textAlign: "left"}}>
                 <Col xs="12" md="5">
                     <h1 className="Title w-100">Fair / Share</h1>
-                    <h2 className="descText mt-2">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
+                    <h3 className="descText mt-2">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h3>
+                    <div className="w-100 mt-5">
+                        <Link style={{textDecoration: "none"}} to='/Distribute'>
+                            <Button variant="secondary" size="sm">
+                                <span className="smButtonText">Begin</span>
+                            </Button>
+                        </Link>
+                    </div>
+                </Col>
+                <Col xs="12" md="5">
+                    <img src={titleImage} alt="group-selfie-happy-fair" style={{maxWidth: "100%"}}/>
                 </Col>
             </Row>
 
@@ -54,13 +66,6 @@ const MainPage = () => {
                         <p className="iconDescSmall">Our service is as quick and straightforward to use as possible.</p>
                     </Col>
                 </Row>
-                <div className="w-100">
-                    <Link style={{textDecoration: "none"}} to='/Distribute'>
-                        <Button variant="secondary" size="lg">
-                            <h1>Begin</h1>
-                        </Button>
-                    </Link>
-                </div>
             </Row>
 
             <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-4" style={{minHeight: "55vh"}}>

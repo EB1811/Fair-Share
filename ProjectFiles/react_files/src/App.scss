@@ -54,8 +54,11 @@ $container-max-widths: (
 .greenText {
   color: #49db64;
 }
-.emeraldText {
-  color: #63ebe4
+.blackText {
+  color: #333333
+}
+.whiteText {
+  color: #ffffff
 }
 
 .descText {
@@ -98,12 +101,12 @@ a:active, a:visited {
   margin-bottom: 0;
 }
 .iconDescSmall {
-  color: #73737e;
+  color: #6a6a74;
   font-weight: 300;
   font-size: 1.175em;
 }
 .iconDesc2 {
-  color: #fff;
+  color: #333333;
   font-weight: 300;
   font-size: 2.75em;
   margin-bottom: 0;
@@ -111,11 +114,12 @@ a:active, a:visited {
 
 /* For big divs spanning page length */
 .divBlockWithContentTitle {
-  color: #2d3133;
-}
-.divBlockWithContentPrimary {
   background-color: #6daffe;
   color: #fff;
+}
+.divBlockWithContentPrimary {
+  background-color: #71d88b;
+  color: #333333;
 }
 .divBlockWithContentSecondary {
   background-color: #fff;
@@ -142,8 +146,8 @@ a:active, a:visited {
 }
 
 .smButtonText {
-  font-weight: 400;
-  font-size: 1.6rem;
+  font-weight: 500;
+  font-size: 1.6em;
 }
 .medButtonText {
   font-weight: 700;
@@ -175,22 +179,24 @@ a:active, a:visited {
 }
 .btn-primary {
   color: #fff !important;
-  background-color: #8fe59f !important;
+  background-color: #4096ff !important;
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
   color: #fff !important;
-  background-color: #5eeb78 !important;
+  background-color: #2b8aff !important;
 }
 /* This is modifying the btn-secondary colors */
 .btn-secondary {
   color: #fff !important;
-  background-color: #77ee8d !important;
+  background-color: #4096ff !important;
   border-color: transparent !important;
+  box-shadow: 0 1px 4px #4096ff !important;
 }
 .btn-secondary:hover, .open>.dropdown-toggle.btn-secondary {
   color: #fff !important;
-  background-color: #5eeb78 !important;
+  background-color: #2b8aff !important;
+  box-shadow: 0 1px 4px #4096ff !important;
 }
 
 .btn:active, .btn:focus {
