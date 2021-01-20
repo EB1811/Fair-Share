@@ -13,19 +13,24 @@ import logo3 from '../../Images/check_ICON.svg';
 import logo4 from '../../Images/house_ICON.svg';
 import logo5 from '../../Images/jewelry_ICON.svg';
 
+import image from '../../Images/trees-house-snow-letterbox-color.png';
+
 // React Router
 import { Link } from 'react-router-dom';
 
-//TODO Change these so that they are 'blocks'. Dont set position with margins.
-//TODO Change 'we can help you' block to be all in one row. Makes positioning and sizing easier. 
+/*
+Renting an apartment with your friends can be tricky.
+How do you decide who gets what room without anyone feeling upset. 
+Our algorithms devise an allocation of rooms that is mathematically fair.
+*/
 
 const MainPage = () => {
     return (
         <Container fluid className="min-vh-100">
-            <Row className="justify-content-center align-items-center divBlockWithContentPrimary p-4" style={{minHeight: "40vh"}}>
-                <Col xs="12">
+            <Row className="justify-content-center align-items-center divBlockWithContentTitle p-4 backTitleImage" style={{minHeight: "40vh", backgroundImage: `url(${image})`}}>
+                <Col xs="12" md="5" style={{backgroundColor: "#ffffff50"}}>
                     <h1 className="Title w-100">Fair / Share</h1>
-                    <h2 className="descText w-100 mt-3">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
+                    <h2 className="descText mt-2">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h2>
                 </Col>
             </Row>
 
@@ -44,7 +49,7 @@ const MainPage = () => {
                     <Col xs="12" sm="4">
                         <img src={logo3} alt="icon-check-star" style={{width: "125px", height: "125px"}}/>
                         <h1 className="iconDesc">Easy</h1>
-                        <p className="iconDescSmall">The service is quick and straightforward.</p>
+                        <p className="iconDescSmall">Our service is as quick and straightforward to use as possible.</p>
                     </Col>
                 </Row>
                 <div className="w-100">

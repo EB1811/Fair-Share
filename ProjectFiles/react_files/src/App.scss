@@ -37,7 +37,7 @@ $container-max-widths: (
   display: inline-block;
   margin: 0;
   z-index: 1;
-  color: #fff;
+  color: #2d3133;
 }
 .Title2 {
   font-weight: 500;
@@ -45,9 +45,17 @@ $container-max-widths: (
   color: #5ad370;
 }
 
+.backTitleImage {
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
 /* Colors */
 .greenText {
   color: #61e078;
+}
+.emeraldText {
+  color: #63ebe4
 }
 
 .descText {
@@ -84,7 +92,7 @@ a:active, a:visited {
 
 /* Word below icon */
 .iconDesc {
-  color: #61e078;
+  color: #59e483;
   font-weight: 300;
   font-size: 2.75em;
   margin-bottom: 0;
@@ -102,9 +110,12 @@ a:active, a:visited {
 }
 
 /* For big divs spanning page length */
+.divBlockWithContentTitle {
+  color: #2d3133;
+}
 .divBlockWithContentPrimary {
-  background-color: #6daffe;
-  color: #ffffff;
+  background-color: #96c9f1;
+  color: #fff;
 }
 .divBlockWithContentSecondary {
   background-color: #fff;
@@ -164,22 +175,22 @@ a:active, a:visited {
 }
 .btn-primary {
   color: #fff !important;
-  background-color: #5eeb78 !important;
+  background-color: #8fe59f !important;
   border-color: transparent !important;
 }
 .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
   color: #fff !important;
-  background-color: #59da71 !important;
+  background-color: #5eeb78 !important;
 }
 /* This is modifying the btn-secondary colors */
 .btn-secondary {
   color: #fff !important;
-  background-color: #5eeb78 !important;
+  background-color: #8fe59f !important;
   border-color: transparent !important;
 }
 .btn-secondary:hover, .open>.dropdown-toggle.btn-secondary {
   color: #fff !important;
-  background-color: #59da71 !important;
+  background-color: #5eeb78 !important;
 }
 
 .btn:active, .btn:focus {
