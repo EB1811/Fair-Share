@@ -37,7 +37,7 @@ $container-max-widths: (
   display: inline-block;
   margin: 0;
   z-index: 1;
-  color: #2d3133;
+  color: #fff;
 }
 .Title2 {
   font-weight: 500;
@@ -52,7 +52,7 @@ $container-max-widths: (
 
 /* Colors */
 .greenText {
-  color: #61e078;
+  color: #49db64;
 }
 .emeraldText {
   color: #63ebe4
@@ -114,7 +114,7 @@ a:active, a:visited {
   color: #2d3133;
 }
 .divBlockWithContentPrimary {
-  background-color: #96c9f1;
+  background-color: #6daffe;
   color: #fff;
 }
 .divBlockWithContentSecondary {
@@ -185,7 +185,7 @@ a:active, a:visited {
 /* This is modifying the btn-secondary colors */
 .btn-secondary {
   color: #fff !important;
-  background-color: #8fe59f !important;
+  background-color: #77ee8d !important;
   border-color: transparent !important;
 }
 .btn-secondary:hover, .open>.dropdown-toggle.btn-secondary {

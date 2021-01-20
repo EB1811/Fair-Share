@@ -39,8 +39,11 @@ const Footer = () => {
                 <Col style={{marginBottom: "25px"}}>
                     <h2 className="footerText" style={{color: "#fff", fontSize: "12.5px"}}>
                         Icons made by <a style={{textDecoration: "none", fontSize: "12.5px"}} className="footerLink" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a style={{textDecoration: "none", fontSize: "12.5px"}} className="footerLink" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-                     </h2>
-                    <h2 className="footerText">Website made by Emmanuils Borovikovs (EB)</h2>
+                    </h2>
+                    <h2 className="footerText" style={{color: "#fff", fontSize: "12.5px"}}>
+                        Step 1-4 icons taken from <a style={{textDecoration: "none", fontSize: "12.5px"}} className="footerLink" href="https://undraw.co/" title="Freepik">undraw.co</a>
+                    </h2>
+                    <h2 className="footerText">Website designed and built by Emmanuils Borovikovs (EB)</h2>
                     <a style={{textDecoration: "none"}} href='https://github.com/EB1811'>
                         <h2 className="footerLink">GitHub</h2>
                     </a>
