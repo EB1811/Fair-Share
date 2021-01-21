@@ -29,6 +29,12 @@ How do you decide who gets what room without anyone feeling upset.
 Our algorithms devise an allocation of rooms that is mathematically fair.
 */
 
+//TODO Button to scroll to 'we can help' section.
+//TODO Maybe remove Distribute main page.
+//TODO Rework distribute pages, maybe adding another route for 'seperate finances'.
+//TODO Typography changes to other pages.
+//TODO Start authentication process.
+
 const MainPage = () => {
     return (
         <Container fluid className="min-vh-100">
