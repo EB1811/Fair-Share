@@ -12,6 +12,7 @@ import logo2 from '../../Images/team_ICON.svg';
 import logo3 from '../../Images/check_ICON.svg';
 import logo4 from '../../Images/house_ICON.svg';
 import logo5 from '../../Images/jewelry_ICON.svg';
+import logo6 from '../../Images/divorce-assets-finance_ICON.svg';
 import logoStep1 from '../../Images/Information-Entry-step1_ICON.svg';
 import logoStep2 from '../../Images/Questions-step2_ICON.svg';
 import logoStep3 from '../../Images/Values-step3_ICON.svg';
@@ -34,11 +35,21 @@ const MainPage = () => {
             <Row className="justify-content-center align-items-center divBlockWithContentTitle p-4 backTitleImage" style={{minHeight: "40vh", textAlign: "left"}}>
                 <Col xs="12" md="5">
                     <h1 className="Title w-100">Fair / Share</h1>
-                    <h3 className="descText mt-2">Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.</h3>
+                    <h3 className="descText mt-2">
+                        Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.<br/>
+                        Sharing a house with friends?
+                        Need to divide financial assets fairly?<br/>
+                        We can help.
+                    </h3>
                     <div className="w-100 mt-5">
                         <Link style={{textDecoration: "none"}} to='/Distribute'>
                             <Button variant="secondary" size="sm">
                                 <span className="smButtonText">Begin</span>
+                            </Button>
+                        </Link>
+                        <Link className="m-2" style={{textDecoration: "none"}} to='/Learn'>
+                            <Button variant="secondary" size="sm">
+                                <span className="smButtonText">Learn</span>
                             </Button>
                         </Link>
                     </div>
@@ -69,7 +80,7 @@ const MainPage = () => {
             </Row>
 
             <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-4" style={{minHeight: "55vh"}}>
-                <div className="w-50" style={{maxWidth: "950px"}}>
+                <div className="w-75" style={{maxWidth: "1250px"}}>
                     <h3 className="w-100">We can help you</h3>
                     <Row className="mt-5">
                         <Col style={{display: "inline"}}>
@@ -88,6 +99,15 @@ const MainPage = () => {
                                 Share any type of good such as jewelry, financial assets, or real estate.
                                 Simply enter the details of each good. 
                                 By assigning a monetary valuation for each good, we give you a envy-free allocation that maximizes the sum of bids.
+                            </p>
+                        </Col>
+                        <Col style={{display: "inline"}}>
+                            <img src={logo6} alt="divorce-assets-finance-fair" style={{width: "125px", height: "125px"}}/>
+                            <h1 className="iconDesc2">Separate Finances</h1>
+                            <p className="mt-2">
+                                When you divorce or end a civil partnership, separating your money and property is very tricky.
+                                Our service can help start things off by giving you a fair distribution of assets.
+                                And this isn't limited to finances. We can help you split anything that you might need.
                             </p>
                         </Col>
                     </Row>

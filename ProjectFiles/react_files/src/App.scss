@@ -63,7 +63,7 @@ $container-max-widths: (
 
 .descText {
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.30em;
 }
 .footerText {
   font-family: Arial, Helvetica, sans-serif;
@@ -106,7 +106,6 @@ a:active, a:visited {
   font-size: 1.175em;
 }
 .iconDesc2 {
-  color: #333333;
   font-weight: 300;
   font-size: 2.75em;
   margin-bottom: 0;
@@ -118,8 +117,8 @@ a:active, a:visited {
   color: #fff;
 }
 .divBlockWithContentPrimary {
-  background-color: #71d88b;
-  color: #333333;
+  background-color: #6daffe;
+  color: #fff;
 }
 .divBlockWithContentSecondary {
   background-color: #fff;
@@ -156,8 +155,8 @@ a:active, a:visited {
 }
 
 .navbarStyle {
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 1.1em;
+  font-weight: 500;
 }
 
 /* For dynamic content addition ADD BREAKPOINTS */

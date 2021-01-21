@@ -10,7 +10,7 @@ import Nav from 'react-bootstrap/Nav';
 
 const SignedOutLinks = (props) => {
     return (
-        <Nav className="justify-content-end navbarStyle" style={{ flex: 1}}>
+        <Nav className="justify-content-end" style={{ flex: 1}}>
             <Nav.Item>
                 <Link className="nav-link" style={{textDecoration: "none"}} to='/Login'>Login</Link>
             </Nav.Item>

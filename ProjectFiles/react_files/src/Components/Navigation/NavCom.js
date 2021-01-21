@@ -16,27 +16,25 @@ import { Link } from 'react-router-dom';
 
 const NavCom = () => {
     return (
-        <Container fluid style={{backgroundColor: "#fff"}}>
-            <NavBar variant="dark">
-                <Nav className="justify-content-md-center navbarStyle" style={{ flex: 1}}>
-                    <Nav.Item>
-                        <Link className="nav-link" style={{textDecoration: "none"}} to='/'>Home</Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Link className="nav-link" style={{textDecoration: "none"}} to='/Learn'>Learn</Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Link className="nav-link" style={{textDecoration: "none"}} to='/Distribute'>Distribute</Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Link className="nav-link" style={{textDecoration: "none"}} to='/About'>About</Link>
-                    </Nav.Item>
-                </Nav>
-                <Container style={{position: "absolute", right: "1%", width: "auto"}}>
-                    <SignedOutLinks/>
-                </Container>
-            </NavBar>
-        </Container>
+        <NavBar variant="dark" className="navbarStyle">
+            <Nav className="justify-content-md-center" style={{ flex: 1}}>
+                <Nav.Item>
+                    <Link className="nav-link" style={{textDecoration: "none"}} to='/'>Home</Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Link className="nav-link" style={{textDecoration: "none"}} to='/Learn'>Learn</Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Link className="nav-link" style={{textDecoration: "none"}} to='/Distribute'>Distribute</Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Link className="nav-link" style={{textDecoration: "none"}} to='/About'>About</Link>
+                </Nav.Item>
+            </Nav>
+            <Container style={{position: "absolute", right: "1%", width: "auto"}}>
+                <SignedOutLinks/>
+            </Container>
+        </NavBar>
     )
 }
 
