@@ -1,10 +1,10 @@
 //Redefining bootstrap variables.
 
-$navbar-dark-color: #666666;
-$navbar-dark-hover-color: #219a99;
+$navbar-dark-color: #777777;
+$navbar-dark-hover-color: #4096ff;
 
 $input-btn-focus-width: .05rem !default;
-$input-btn-focus-color: #4dbd62;
+$input-btn-focus-color: #4096ff;
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 $grid-breakpoints: (
@@ -53,6 +53,9 @@ $container-max-widths: (
 /* Colors */
 .greenText {
   color: #49db64;
+}
+.blueText {
+  color: #4096ff;
 }
 .blackText {
   color: #333333
@@ -204,7 +207,7 @@ a:active, a:visited {
 }
 
 .form-control:focus {
-  border-color: #5eeb78 !important;
+  border-color: #6daffe !important;
 }
 
 .form-label {

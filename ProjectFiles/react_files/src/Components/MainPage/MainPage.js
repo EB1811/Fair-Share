@@ -32,7 +32,7 @@ Our algorithms devise an allocation of rooms that is mathematically fair.
 const MainPage = () => {
     return (
         <Container fluid className="min-vh-100">
-            <Row className="justify-content-center align-items-center divBlockWithContentTitle p-4 backTitleImage" style={{minHeight: "40vh", textAlign: "left"}}>
+            <Row className="justify-content-center align-items-center divBlockWithContentTitle p-3 backTitleImage" style={{minHeight: "40vh", textAlign: "left"}}>
                 <Col xs="12" md="5">
                     <h1 className="Title w-100">Fair / Share</h1>
                     <h3 className="descText mt-2">
@@ -124,19 +124,19 @@ const MainPage = () => {
                     <Row>
                         <Col sm="3">
                             <img src={logoStep1} alt="icon-information-entry-step1" style={{width: "125px", height: "125px"}}/>
-                            <h5>1. Enter info about your items and group.</h5>
+                            <h5 className="descText">1. Enter info about your items and group.</h5>
                         </Col>
                         <Col sm="3">
                             <img src={logoStep2} alt="icon-questions-step2" style={{width: "125px", height: "125px"}}/>
-                            <h5>2. Complete a short questionnaire.</h5>
+                            <h5 className="descText">2. Complete a short questionnaire.</h5>
                         </Col>
                         <Col sm="3">
                             <img src={logoStep3} alt="icon-values-step3" style={{width: "125px", height: "125px"}}/>
-                            <h5>3. Assess the value of each item.</h5>
+                            <h5 className="descText">3. Assess the value of each item.</h5>
                         </Col>
                         <Col sm="3">
                             <img src={logoStep4} alt="icon-allocation-step4" style={{width: "125px", height: "125px"}}/>
-                            <h5>4. See who gets what.</h5>
+                            <h5 className="descText">4. See who gets what.</h5>
                         </Col>
                     </Row>
                 </Container>
