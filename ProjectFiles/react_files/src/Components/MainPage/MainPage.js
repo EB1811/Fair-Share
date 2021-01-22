@@ -25,11 +25,12 @@ import { Link } from 'react-router-dom';
 
 
 //// Button to scroll to 'we can help' section.
-//TODO Maybe remove Distribute main page.
+//TODO Rework Distribute main page.
 //TODO Rework distribute pages, maybe adding another route for 'seperate finances'.
-//TODO Typography changes to other pages.
+//// Typography changes to other pages.
 //TODO Start building learning page and add information about it into main page.
 //TODO Start authentication process.
+//TODO Responsiveness
 
 const MainPage = () => {
     // Scrolling.
@@ -41,12 +42,12 @@ const MainPage = () => {
             <Row className="justify-content-center align-items-center divBlockWithContentTitle p-3 backTitleImage" style={{minHeight: "40vh", textAlign: "left"}}>
                 <Col xs="12" md="5">
                     <h1 className="Title w-100">Fair / Share</h1>
-                    <h3 className="descText mt-2">
+                    <h5 className="descText mt-2">
                         Our service helps you solve day-to-day sharing problems using mathmatical algorithms that are tailored to you.<br/>
                         Sharing a house with friends?
                         Need to divide financial assets fairly?<br/>
                         We can help.
-                    </h3>
+                    </h5>
                     <div className="w-100 mt-5">
                         <Button variant="secondary" size="sm" onClick={executeScroll}>
                             <span className="smButtonText">Begin</span>
@@ -85,7 +86,7 @@ const MainPage = () => {
 
             <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-5" style={{minHeight: "60vh"}} ref={myRef}>
                 <div className="w-75" style={{maxWidth: "1250px"}}>
-                    <h3 className="w-100">We can help you</h3>
+                    <h3 className="">We can help you</h3>
                     <Row className="mt-5">
                         <Col style={{display: "inline"}}>
                             <img src={logo4} alt="icon-house-rent" style={{width: "125px", height: "125px"}}/>
@@ -136,8 +137,8 @@ const MainPage = () => {
             <Row className="justify-content-center divBlockWithContentSecondary align-items-center p-4" style={{minHeight: "60vh"}}>
                 <Container style={{maxWidth: "1200px"}}>
                     <Col xs="12">
-                        <h4>How does it work?</h4>
-                        <h1 className="descTextBig greenText">Simple</h1>
+                        <h5>How does it work?</h5>
+                        <h1 className="greenText">Simple</h1>
                     </Col>
                     <hr/>
                     <Row>

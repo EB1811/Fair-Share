@@ -24,7 +24,7 @@ const QuestionnaireQuestion = (props) => {
                 <Form.Label>{ props.question }</Form.Label>
                 <Form.Control className="mt-2" type="text" value={answer} onChange={e => setAnswer(e.target.value)}/>
             </Form.Group>
-            <Button variant="primary" type="submit" size="md" className="mt-5">
+            <Button variant="primary" type="submit" size="sm" className="mt-5">
                 <span className="smButtonText">Next</span>
             </Button>
         </Form>

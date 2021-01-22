@@ -26,11 +26,11 @@ const QuestionnairePageShell = (props) => {
             <Container fluid className="divBlockWithContentTertiary min-vh-100">
                 <Row className="justify-content-center align-items-center min-vh-100">
                     <Col xs={12} sm={3} className="centerCard m-3">
-                        <p>
+                        <h6 className="descText">
                         Please complete the following short questionnaire.<br/><br/>
                         Answers to these questions will determine what qualities the allocation algorithm will have.
-                        </p>
-                        <Button variant="primary" size="md" className="mt-5" onClick={() => setStage(1)}>
+                        </h6>
+                        <Button variant="primary" size="sm" className="mt-5" onClick={() => setStage(1)}>
                             <span className="smButtonText">Begin</span>
                         </Button>
                     </Col>
@@ -54,7 +54,7 @@ const QuestionnairePageShell = (props) => {
                 <Row className="justify-content-center align-items-center min-vh-100">
                     <Col xs={12} sm={3} className="centerCard m-3">
                         <Link style={{textDecoration: "none"}} to='/Distribute/Valuations'>
-                            <Button variant="primary" size="md">
+                            <Button variant="primary" size="sm">
                                 <span className="smButtonText">Begin Valuing Items</span>
                             </Button>
                         </Link>

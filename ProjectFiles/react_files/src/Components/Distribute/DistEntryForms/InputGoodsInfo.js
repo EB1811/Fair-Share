@@ -38,7 +38,7 @@ const InputGoodsInfo = (props) => {
                 }
                 <Form.Control size="sm" type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
             </Form.Group>
-            <Button variant="primary" type="submit" size="md" className="mt-5"> 
+            <Button variant="primary" type="submit" size="sm" className="mt-5"> 
                 <span className="smButtonText">Next</span>
             </Button>
         </Form>

@@ -39,7 +39,7 @@ const InputGroupInfo = (props) => {
         <Container fluid className="divBlockWithContentTertiary min-vh-100">
             <Row className="justify-content-center align-items-center min-vh-100">
                 <Col xs={12} sm={3} className="centerCardCompact m-3">
-                    <h4>Please input a user id to add them to the group.</h4>
+                    <h5 className="descText">Please input a user id to add them to the group.</h5>
                     <div className="mt-5 py-2" style={{borderTop: "1px solid #999999", borderBottom: "1px solid #999999"}}>
                         <Row className="align-items-center">
                             <Col xs={9}>
@@ -63,7 +63,7 @@ const InputGroupInfo = (props) => {
                     </div>
                     
                     <Link style={{textDecoration: "none"}} to='/Distribute/Questions'>
-                        <Button variant="primary" size="md" className="mt-5"><span className="smButtonText">Next</span></Button>
+                        <Button variant="primary" size="sm" className="mt-5"><span className="smButtonText">Next</span></Button>
                     </Link>
                 </Col>
             </Row>

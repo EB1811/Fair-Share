@@ -50,7 +50,7 @@ const ResultsPage = (props) => {
                         )}
                     </Col>
                     <Link style={{textDecoration: "none"}} to='/Distribute'>
-                        <Button variant="primary" size="md" className="mt-5">
+                        <Button variant="primary" size="sm" className="mt-5">
                             <span className="smButtonText">Share Again</span>
                         </Button>
                     </Link>

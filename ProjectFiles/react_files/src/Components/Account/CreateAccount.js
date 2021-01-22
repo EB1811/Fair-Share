@@ -33,7 +33,7 @@ const CreateAccount = (props) => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="text" onChange={e => setPass(e.target.value)}/>
                     </Form.Group>
-                    <Button variant="primary" type="submit" size="md" className="mt-5">
+                    <Button variant="primary" type="submit" size="sm" className="mt-5">
                         <span className="smButtonText">Create Account</span>
                     </Button>
                 </Form>

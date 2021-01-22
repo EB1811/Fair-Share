@@ -66,7 +66,6 @@ $container-max-widths: (
 
 .descText {
   font-weight: 400;
-  font-size: 1.30em;
 }
 .footerText {
   font-family: Arial, Helvetica, sans-serif;
@@ -90,9 +89,6 @@ a:active, a:visited {
 @media only screen and (max-width: 1500px) {
   .Title {
     font-size: 5em;
-  }
-  .descText {
-    font-size: 1.35em;
   }
 }
 
@@ -135,21 +131,21 @@ a:active, a:visited {
 .centerCard {
   background-color: #fff;
   padding: 100px 50px;
-  color: #000;
+  color: #333333;
   box-shadow: 0 1px 4px #b3b3b3;
   font-size: 1rem;
 }
 .centerCardCompact {
   background-color: #fff;
   padding: 50px 25px;
-  color: #000;
+  color: #333333;
   box-shadow: 0 1px 4px #b3b3b3;
   font-size: 1rem;
 }
 
 .smButtonText {
   font-weight: 500;
-  font-size: 1.6em;
+  font-size: 1.25rem;
 }
 .medButtonText {
   font-weight: 700;

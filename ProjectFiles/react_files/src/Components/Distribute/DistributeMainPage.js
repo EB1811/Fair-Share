@@ -13,15 +13,19 @@ import logo2 from '../../Images/jewelry_ICON.svg';
 // React Router
 import { Link } from 'react-router-dom';
 
+//TODO REDO THIS.
+
 const DistributeMainPage = () => {
     return (
         <Container fluid className="divBlockWithContentPrimary">
         <Row className="align-items-center min-vh-100 justify-content-center">
         <div className="min-vh-100 w-100 d-flex flex-column">
-            <Row className="justify-content-center w-100"  style={{marginTop: "25px", marginRight: "0", marginLeft: "0"}}>
-                <h1 className="Title">What would you like to do?</h1>
+            <Row className="justify-content-center w-100 align-items-center m-5">
+                <Col>
+                    <h1 className="Title">What would you like to do?</h1>
+                </Col>
             </Row>
-            <Row className="justify-content-center" style={{margin: "0"}} xl="7">
+            <Row className="justify-content-center mt-5" xl="7">
                 <h2 className="descText">Sharing a house with mates? <br/> Need to divide financial assets fairly? <br/> We can help.</h2>
             </Row>
 
