@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -23,19 +23,19 @@ import titleImage from '../../Images/group-selfie-happy-fair.svg';
 // React Router
 import { Link } from 'react-router-dom';
 
-/*
-Renting an apartment with your friends can be tricky.
-How do you decide who gets what room without anyone feeling upset. 
-Our algorithms devise an allocation of rooms that is mathematically fair.
-*/
 
-//TODO Button to scroll to 'we can help' section.
+//// Button to scroll to 'we can help' section.
 //TODO Maybe remove Distribute main page.
 //TODO Rework distribute pages, maybe adding another route for 'seperate finances'.
 //TODO Typography changes to other pages.
+//TODO Start building learning page and add information about it into main page.
 //TODO Start authentication process.
 
 const MainPage = () => {
+    // Scrolling.
+    const myRef = useRef(null);
+    const executeScroll = () => myRef.current.scrollIntoView();
+
     return (
         <Container fluid className="min-vh-100">
             <Row className="justify-content-center align-items-center divBlockWithContentTitle p-3 backTitleImage" style={{minHeight: "40vh", textAlign: "left"}}>
@@ -48,11 +48,9 @@ const MainPage = () => {
                         We can help.
                     </h3>
                     <div className="w-100 mt-5">
-                        <Link style={{textDecoration: "none"}} to='/Distribute'>
-                            <Button variant="secondary" size="sm">
-                                <span className="smButtonText">Begin</span>
-                            </Button>
-                        </Link>
+                        <Button variant="secondary" size="sm" onClick={executeScroll}>
+                            <span className="smButtonText">Begin</span>
+                        </Button>
                         <Link className="m-2" style={{textDecoration: "none"}} to='/Learn'>
                             <Button variant="secondary" size="sm">
                                 <span className="smButtonText">Learn</span>
@@ -85,7 +83,7 @@ const MainPage = () => {
                 </Row>
             </Row>
 
-            <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-4" style={{minHeight: "55vh"}}>
+            <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-5" style={{minHeight: "60vh"}} ref={myRef}>
                 <div className="w-75" style={{maxWidth: "1250px"}}>
                     <h3 className="w-100">We can help you</h3>
                     <Row className="mt-5">
@@ -97,6 +95,11 @@ const MainPage = () => {
                                 How do you decide who gets what room without anyone feeling upset. 
                                 Our algorithms use your values for each room to give you a mathematically fair allocation.
                             </p>
+                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Rent'>
+                                <Button variant="secondary" size="sm">
+                                    <span className="smButtonText">Start</span>
+                                </Button>
+                            </Link>
                         </Col>
                         <Col style={{display: "inline"}}>
                             <img src={logo5} alt="icon-jewelry-goods" style={{width: "125px", height: "125px"}}/>
@@ -106,6 +109,11 @@ const MainPage = () => {
                                 Simply enter the details of each good. 
                                 By assigning a monetary valuation for each good, we give you a envy-free allocation that maximizes the sum of bids.
                             </p>
+                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Goods'>
+                                <Button variant="secondary" size="sm">
+                                    <span className="smButtonText">Start</span>
+                                </Button>
+                            </Link>
                         </Col>
                         <Col style={{display: "inline"}}>
                             <img src={logo6} alt="divorce-assets-finance-fair" style={{width: "125px", height: "125px"}}/>
@@ -115,12 +123,17 @@ const MainPage = () => {
                                 Our service can help start things off by giving you a fair distribution of assets.
                                 And this isn't limited to finances. We can help you split anything that you might need.
                             </p>
+                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Goods'>
+                                <Button variant="secondary" size="sm">
+                                    <span className="smButtonText">Start</span>
+                                </Button>
+                            </Link>
                         </Col>
                     </Row>
                 </div>
             </Row>
 
-            <Row className="justify-content-center divBlockWithContentSecondary align-items-center p-4" style={{minHeight: "55vh"}}>
+            <Row className="justify-content-center divBlockWithContentSecondary align-items-center p-4" style={{minHeight: "60vh"}}>
                 <Container style={{maxWidth: "1200px"}}>
                     <Col xs="12">
                         <h4>How does it work?</h4>

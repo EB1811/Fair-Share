@@ -20,6 +20,7 @@ import Footer from './Components/Navigation/Footer';
 import CreateAccount from './Components/Account/CreateAccount';
 import Login from './Components/Account/Login';
 import AccountBoard from './Components/Account/AccountBoard';
+import ScrollToTop from './Components/Helpers/ScrollToTop';
 
 function App() {
   // Contains info about route.
@@ -28,6 +29,7 @@ function App() {
   return (
     <div className="App">
       <NavCom/>
+      <ScrollToTop/>
       <Switch location={location} key={location.pathname}>
           <Route exact path='/' component={MainPage}/>
           <Route exact path='/About' component={About}/>
