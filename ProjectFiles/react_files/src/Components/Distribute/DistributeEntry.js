@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams, Redirect } from 'react-router-dom';
 
 // React Components
 import InputGoodsInfo from './DistEntryForms/InputGoodsInfo';
@@ -15,26 +16,53 @@ import { connect } from 'react-redux';
 const DistributeEntry = (props) => {
     //! Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
+    let { goodsType } = useParams();
 
-    //TODO Add title to centerCard.
+    //TODO Different components for rent, and goods.
+    //? Goods and split finances might share component.
 
-    switch(stage) {
-        case 0:
-            return (
-                <Container fluid className="divBlockWithContentTertiary min-vh-100">
-                    <Row className="justify-content-center align-items-center min-vh-100">
-                        <Col xs={12} sm={3} className="centerCard m-3">
-                            <InputGoodsInfo goodType={props.goodType} setStage={setStage}/>
-                        </Col>
-                    </Row>
-                </Container>
-            )
-        case 1:
-            return (
-                <InputGroupInfo setStage={setStage}/>
-            )
-        default:
-            console.log("Major Error. Please restart application.")
+    if (goodsType.toLowerCase() === "rent") {
+        switch(stage) {
+            case 0:
+                return (
+                    <Container fluid className="divBlockWithContentTertiary min-vh-100">
+                        <Row className="justify-content-center align-items-center min-vh-100">
+                            <Col xs={12} sm={3} className="centerCard m-3">
+                                <InputGoodsInfo goodType={goodsType} setStage={setStage}/>
+                            </Col>
+                        </Row>
+                    </Container>
+                )
+            case 1:
+                return (
+                    <InputGroupInfo setStage={setStage}/>
+                )
+            default:
+                console.log("Major Error. Please restart application.")
+        }
+    } else if (goodsType.toLowerCase() === "goods") {
+        switch(stage) {
+            case 0:
+                return (
+                    <Container fluid className="divBlockWithContentTertiary min-vh-100">
+                        <Row className="justify-content-center align-items-center min-vh-100">
+                            <Col xs={12} sm={3} className="centerCard m-3">
+                                <InputGoodsInfo goodType={goodsType} setStage={setStage}/>
+                            </Col>
+                        </Row>
+                    </Container>
+                )
+            case 1:
+                return (
+                    <InputGroupInfo setStage={setStage}/>
+                )
+            default:
+                console.log("Major Error. Please restart application.")
+        }
+    } else {
+        return (
+            <Redirect to="/" />
+        )
     }
 }
 

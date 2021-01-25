@@ -3,7 +3,7 @@ import './App.css';
 import './App.scss';
 
 // React Router
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
 
 // Import all react components.
 import MainPage from './Components/MainPage/MainPage';
@@ -22,6 +22,8 @@ import Login from './Components/Account/Login';
 import AccountBoard from './Components/Account/AccountBoard';
 import ScrollToTop from './Components/Helpers/ScrollToTop';
 
+import DistributeEntry from './Components/Distribute/DistributeEntry';
+
 function App() {
   // Contains info about route.
   const location = useLocation();
@@ -35,14 +37,14 @@ function App() {
           <Route exact path='/About' component={About}/>
           <Route exact path='/Learn' component={LearnMainPage}/>
           <Route exact path='/Distribute' component={DistributeMainPage}/>
-          <Route exact path='/Distribute/Rent' component={DistributeRentPage}/>
-          <Route exact path='/Distribute/Goods' component={DistributeGoodsPage}/>
+          <Route exact path='/Distribute/Information/:goodsType' component={DistributeEntry}/>
           <Route exact path='/Distribute/Questions' component={QuestionnairePageShell}/>
           <Route exact path='/Distribute/Valuations' component={SetValuations}/>
           <Route exact path='/Results' component={ResultsPage}/>
           <Route exact path='/CreateAccount' component={CreateAccount}/>
           <Route exact path='/Login' component={Login}/>
           <Route exact path='/Account' component={AccountBoard}/>
+          <Route render={() => <Redirect to="/" />} />
       </Switch>
       <Footer/>
     </div>

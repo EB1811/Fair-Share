@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 
 
 //// Button to scroll to 'we can help' section.
-//TODO Rework Distribute main page.
+//TODO Rework Distribute main page. Maybe have a single goods page with parameters from URL determining what to output.
 //TODO Rework distribute pages, maybe adding another route for 'seperate finances'.
 //// Typography changes to other pages.
 //TODO Start building learning page and add information about it into main page.
@@ -34,8 +34,8 @@ import { Link } from 'react-router-dom';
 
 const MainPage = () => {
     // Scrolling.
-    const myRef = useRef(null);
-    const executeScroll = () => myRef.current.scrollIntoView();
+    const goodsDesc = useRef(null);
+    const executeScroll = () => goodsDesc.current.scrollIntoView({ behavior: 'smooth' });
 
     return (
         <Container fluid className="min-vh-100">
@@ -84,7 +84,7 @@ const MainPage = () => {
                 </Row>
             </Row>
 
-            <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-5" style={{minHeight: "60vh"}} ref={myRef}>
+            <Row className="justify-content-center divBlockWithContentPrimary align-items-center p-5" style={{minHeight: "60vh"}} ref={goodsDesc}>
                 <div className="w-75" style={{maxWidth: "1250px"}}>
                     <h3 className="">We can help you</h3>
                     <Row className="mt-5">
@@ -96,7 +96,7 @@ const MainPage = () => {
                                 How do you decide who gets what room without anyone feeling upset. 
                                 Our algorithms use your values for each room to give you a mathematically fair allocation.
                             </p>
-                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Rent'>
+                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Information/Rent'>
                                 <Button variant="secondary" size="sm">
                                     <span className="smButtonText">Start</span>
                                 </Button>
@@ -110,7 +110,7 @@ const MainPage = () => {
                                 Simply enter the details of each good. 
                                 By assigning a monetary valuation for each good, we give you a envy-free allocation that maximizes the sum of bids.
                             </p>
-                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Goods'>
+                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Information/Goods'>
                                 <Button variant="secondary" size="sm">
                                     <span className="smButtonText">Start</span>
                                 </Button>
@@ -124,7 +124,7 @@ const MainPage = () => {
                                 Our service can help start things off by giving you a fair distribution of assets.
                                 And this isn't limited to finances. We can help you split anything that you might need.
                             </p>
-                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Goods'>
+                            <Link className="m-2" style={{textDecoration: "none"}} to='/Distribute/Information/Goods'>
                                 <Button variant="secondary" size="sm">
                                     <span className="smButtonText">Start</span>
                                 </Button>

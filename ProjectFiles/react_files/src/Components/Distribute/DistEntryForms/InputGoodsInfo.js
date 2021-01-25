@@ -24,7 +24,7 @@ const InputGoodsInfo = (props) => {
         <Form onSubmit = {handleSubmit}>
             <Form.Group controlId="addGoodsCount">
                 {
-                    props.goodType === 'Rent'
+                    props.goodType.toLowerCase() === 'rent'
                     ? <Form.Label>Number of rooms:</Form.Label>
                     : <Form.Label>Number of goods:</Form.Label>
                 }
@@ -32,7 +32,7 @@ const InputGoodsInfo = (props) => {
             </Form.Group>
             <Form.Group controlId="addGoodsTValue">
                 {
-                    props.goodType === 'Rent'
+                    props.goodType.toLowerCase() === 'rent'
                     ? <Form.Label>Total monthly value of house:</Form.Label>
                     : <Form.Label>Total value of goods:</Form.Label>
                 }
