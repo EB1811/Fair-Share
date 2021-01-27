@@ -1,38 +1,38 @@
 const initState = {
     goodsArray: [],
-    totalValue: 0
-}
+    totalValue: 0,
+};
 
 const distGoodsInfoReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'ADD_GOODS_AMOUNT':
+        case "ADD_GOODS_AMOUNT":
             console.log("Success", action.i);
 
             // Create array of objects based on how many goods there are.
             var tempArr = [];
             var good;
             var i;
-            for(i = 0; i < action.i; i++){
-                action.t === 'Rent'
-                ? good = {Good: "Room " + (parseInt(i) + 1), Value: 0}
-                : good = {Good: "Good " + (parseInt(i) + 1), Value: 0}
+            for (i = 0; i < action.i; i++) {
+                action.t === "Rent"
+                    ? (good = { Good: "Room " + (parseInt(i) + 1), Value: 0 })
+                    : (good = { Good: "Good " + (parseInt(i) + 1), Value: 0 });
 
                 tempArr.push(good);
             }
 
             return {
                 ...state,
-                goodsArray: tempArr
+                goodsArray: tempArr,
             };
-        case 'UPDATE_TOTAL_VALUE':
+        case "UPDATE_TOTAL_VALUE":
             console.log("Success ", action.i);
             var newTotal = action.i;
 
             return {
                 ...state,
-                totalValue: newTotal
+                totalValue: newTotal,
             };
-        case 'UPDATE_VALUATIONS':
+        case "UPDATE_VALUATIONS":
             console.log("Success", action.updatedArr);
 
             // Create array of objects based on how many goods there are.
@@ -40,11 +40,11 @@ const distGoodsInfoReducer = (state = initState, action) => {
 
             return {
                 ...state,
-                goodsArray: tempUpdatedArr
+                goodsArray: tempUpdatedArr,
             };
         default:
             return state;
     }
-}
+};
 
 export default distGoodsInfoReducer;

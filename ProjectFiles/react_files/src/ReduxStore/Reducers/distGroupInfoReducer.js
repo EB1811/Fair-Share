@@ -1,10 +1,10 @@
 const initState = {
-    userArray: []
-}
+    userArray: [],
+};
 
 const distGroupInfoReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'ADD_USER':
+        case "ADD_USER":
             console.log("Success", action.id);
 
             var tempArr = state.userArray;
@@ -12,11 +12,11 @@ const distGroupInfoReducer = (state = initState, action) => {
 
             return {
                 ...state,
-                userArray: tempArr
+                userArray: tempArr,
             };
         default:
             return state;
     }
-}
+};
 
 export default distGroupInfoReducer;

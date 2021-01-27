@@ -1,33 +1,45 @@
-import React from 'react';
+import React from "react";
 
 // Router
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // Bootstrap Components
-import Nav from 'react-bootstrap/Nav';
+import Nav from "react-bootstrap/Nav";
 
 //TODO: Add conditional formatting once server is made.
 
 const SignedInLinks = (props) => {
     return (
-        <Nav className="justify-content-end navbarStyle" style={{ flex: 1}}>
+        <Nav className='justify-content-end navbarStyle' style={{ flex: 1 }}>
             <Nav.Item>
-                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/Account'>User</NavLink>
+                <NavLink
+                    className='nav-link'
+                    style={{ textDecoration: "none" }}
+                    to='/Account'
+                >
+                    User
+                </NavLink>
             </Nav.Item>
             <Nav.Item>
-                <NavLink className="nav-link" style={{textDecoration: "none"}} to='/'>Logout</NavLink>
+                <NavLink
+                    className='nav-link'
+                    style={{ textDecoration: "none" }}
+                    to='/'
+                >
+                    Logout
+                </NavLink>
             </Nav.Item>
         </Nav>
-    )
-}
+    );
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         //// signOut: () => dispatch(signOut())
-    }
-}
+    };
+};
 
 export default connect(null, mapDispatchToProps)(SignedInLinks);
