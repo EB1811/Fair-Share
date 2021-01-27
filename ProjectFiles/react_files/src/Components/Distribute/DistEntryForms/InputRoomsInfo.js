@@ -15,7 +15,7 @@ const InputRoomsInfo = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.addGoodsAmount(goodsCount, props.goodType);
+        props.addGoodsAmount(goodsCount);
         props.updateTotalValue(goodsTotalVal);
         props.setStage(1);
     };
@@ -62,8 +62,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addGoodsAmount: (item, type) => {
-            dispatch({ type: "ADD_GOODS_AMOUNT", i: item, t: type });
+        addGoodsAmount: (item) => {
+            dispatch({ type: "ADD_ROOMS", roomCount: item });
         },
         updateTotalValue: (tValue) => {
             dispatch({ type: "UPDATE_TOTAL_VALUE", i: tValue });

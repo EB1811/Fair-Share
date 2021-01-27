@@ -24,7 +24,7 @@ const InputGoodsInfo = (props) => {
             setFailed(true);
             setGoodName("");
         } else {
-            //props.addUser(userId);
+            props.addGoods(goodName);
             setLocalGoods(localGoods.concat(goodName));
             setGoodName("");
             setFailed(false);
@@ -66,7 +66,7 @@ const InputGoodsInfo = (props) => {
                         ) : (
                             <Form.Control
                                 size='sm'
-                                placeholder='Enter User ID'
+                                placeholder='Name'
                                 value={goodName}
                                 type='text'
                                 onChange={(e) => setGoodName(e.target.value)}
@@ -111,4 +111,19 @@ const InputGoodsInfo = (props) => {
     );
 };
 
-export default InputGoodsInfo;
+// To access and modify redux store.
+const mapStateToProps = (state) => {
+    return {
+        stateGoodsArray: state.distGoodsInfo.goodsArray,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addGoods: (goodName) => {
+            dispatch({ type: "ADD_GOODS", goodName: goodName });
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputGoodsInfo);

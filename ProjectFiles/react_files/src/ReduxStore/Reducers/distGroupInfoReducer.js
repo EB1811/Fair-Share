@@ -5,7 +5,7 @@ const initState = {
 const distGroupInfoReducer = (state = initState, action) => {
     switch (action.type) {
         case "ADD_USER":
-            console.log("Success", action.id);
+            console.log("Success", action.type);
 
             var tempArr = state.userArray;
             tempArr.push(String(action.id));
