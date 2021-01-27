@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useParams, Redirect } from 'react-router-dom';
 
 // React Components
+import InputRoomsInfo from './DistEntryForms/InputRoomsInfo';
 import InputGoodsInfo from './DistEntryForms/InputGoodsInfo';
 import InputGroupInfo from './DistEntryForms/InputGroupInfo';
 
@@ -28,7 +29,7 @@ const DistributeEntry = (props) => {
                     <Container fluid className="divBlockWithContentTertiary min-vh-100">
                         <Row className="justify-content-center align-items-center min-vh-100">
                             <Col xs={12} sm={3} className="centerCard m-3">
-                                <InputGoodsInfo goodType={goodsType} setStage={setStage}/>
+                                <InputRoomsInfo goodType={goodsType} setStage={setStage}/>
                             </Col>
                         </Row>
                     </Container>
@@ -46,7 +47,7 @@ const DistributeEntry = (props) => {
                 return (
                     <Container fluid className="divBlockWithContentTertiary min-vh-100">
                         <Row className="justify-content-center align-items-center min-vh-100">
-                            <Col xs={12} sm={3} className="centerCard m-3">
+                            <Col xs={12} sm={4} className="centerCard m-3">
                                 <InputGoodsInfo goodType={goodsType} setStage={setStage}/>
                             </Col>
                         </Row>

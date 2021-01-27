@@ -25,8 +25,8 @@ import { Link } from 'react-router-dom';
 
 
 //// Button to scroll to 'we can help' section.
-//TODO Rework Distribute main page. Maybe have a single goods page with parameters from URL determining what to output.
-//TODO Rework distribute pages, maybe adding another route for 'seperate finances'.
+//// Rework Distribute main page. Maybe have a single goods page with parameters from URL determining what to output.
+//TODO Rework distribute pages by creating seperate components for rent share and goods share. Maybe adding another component for 'seperate finances'.
 //// Typography changes to other pages.
 //TODO Start building learning page and add information about it into main page.
 //TODO Start authentication process.

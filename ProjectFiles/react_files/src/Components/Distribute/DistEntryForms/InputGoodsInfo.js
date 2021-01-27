@@ -2,61 +2,68 @@ import React, { useState } from 'react'
 
 // Bootstrap Components
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
 // Redux
 import { connect } from 'react-redux';
 
 const InputGoodsInfo = (props) => {
-    // Information about goods.
-    const [goodsTotalVal, setgoodsTotalVal] = useState(0);
-    const [goodsCount, setGoodsCount] = useState(0);
+    // Goods Name.
+    const [goodName, setGoodName] = useState("");
+    // Local group for rendering.
+    const [localGoods, setLocalGoods] = useState([]);
+    // Failed bool used for conditional css.
+    const [failed, setFailed] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        props.addGoodsAmount(goodsCount, props.goodType);
-        props.updateTotalValue(goodsTotalVal);
+    //* Add good to state and store..
+    const addGood = () => {
+        if(localGoods.includes(goodName)) {
+            setFailed(true);
+            setGoodName("");
+        } else {
+            //props.addUser(userId);
+            setLocalGoods(localGoods.concat(goodName));
+            setGoodName("");
+            setFailed(false);
+        }
+    }
+    // Next state.
+    const nextState = () => {
         props.setStage(1);
     }
 
     return (
-        <Form onSubmit = {handleSubmit}>
-            <Form.Group controlId="addGoodsCount">
+        <div>
+        <h5 className="descText">Please input the good's name and price.</h5>
+        <div className="mt-5 py-2" style={{borderTop: "1px solid #999999", borderBottom: "1px solid #999999"}}>
+            <Row className="align-items-center">
+                <Col xs={9}>
                 {
-                    props.goodType.toLowerCase() === 'rent'
-                    ? <Form.Label>Number of rooms:</Form.Label>
-                    : <Form.Label>Number of goods:</Form.Label>
+                    failed 
+                    ? <Form.Control size="sm" placeholder="Invalid User" value={goodName} type="text" onChange={e => setGoodName(e.target.value)}  style={{border: "1px solid red", marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
+                    : <Form.Control size="sm" placeholder="Enter User ID" value={goodName} type="text" onChange={e => setGoodName(e.target.value)}  style={{marginLeft: "auto", marginRight: "auto", display: "inline"}}/>
                 }
-                <Form.Control size="sm" type="text" onChange={e => setGoodsCount(e.target.value)}/>
-            </Form.Group>
-            <Form.Group controlId="addGoodsTValue">
-                {
-                    props.goodType.toLowerCase() === 'rent'
-                    ? <Form.Label>Total monthly value of house:</Form.Label>
-                    : <Form.Label>Total value of goods:</Form.Label>
-                }
-                <Form.Control size="sm" type="text" onChange={e => setgoodsTotalVal(e.target.value)}/>
-            </Form.Group>
-            <Button variant="primary" type="submit" size="sm" className="mt-5"> 
-                <span className="smButtonText">Next</span>
-            </Button>
-        </Form>
-    )
+                </Col>
+                <Col>
+                    <Button variant="primary" size="md" onClick={() => addGood()}><span>Add</span></Button>
+                </Col>
+            </Row>
+            <Row className="justify-content-center contentOverflow mt-3">
+                <Col sm="10">
+                    {localGoods.map((id) => (
+                        <Card style={{color: "#000"}} key={id} body>{id}</Card>
+                    ))}
+                </Col>
+            </Row>
+        </div>
+        
+        
+        <Button variant="primary" size="sm" className="mt-5" onClick={nextState}><span className="smButtonText">Next</span></Button>
+        </div>
+ )
 }
 
-// To access and modify redux store.
-const mapStateToProps = (state) => {
-    return {
-        ////temp: state.distGoodsInfo.goodsArray
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addGoodsAmount: (item, type) => { dispatch({type: 'ADD_GOODS_AMOUNT', i: item, t: type}) },
-        updateTotalValue: (tValue) => { dispatch({type: 'UPDATE_TOTAL_VALUE', i: tValue}) }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputGoodsInfo);
+export default InputGoodsInfo;
