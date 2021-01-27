@@ -22,6 +22,8 @@ const InputValuations = (props) => {
         );
     };
 
+    console.log(props.curGood.Value);
+
     return (
         <Form.Group controlId='valuation' style={{ margin: "0px" }}>
             <div>
