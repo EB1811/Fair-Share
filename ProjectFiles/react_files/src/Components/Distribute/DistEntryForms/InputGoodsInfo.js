@@ -13,21 +13,40 @@ import { connect } from "react-redux";
 const InputGoodsInfo = (props) => {
     // Goods Name.
     const [goodName, setGoodName] = useState("");
+    const [goodValue, setGoodValue] = useState("");
     // Local group for rendering.
     const [localGoods, setLocalGoods] = useState([]);
     // Failed bool used for conditional css.
-    const [failed, setFailed] = useState(false);
+    const [nameFailed, setNameFailed] = useState(false);
+    const [nameFailedEmpty, setNameFailedEmpty] = useState(false);
+    const [valueFailed, setValueFailed] = useState(false);
 
-    //* Add good to state and store..
+    //* Add good to state and store.
+    //? Maybe make goods value and name not turn into a object for the state, i.e., simply pass goodName and goodValue.
     const addGood = () => {
-        if (localGoods.includes(goodName)) {
-            setFailed(true);
+        if (
+            localGoods.filter((good) => good.goodName === goodName).length > 0
+        ) {
+            setNameFailed(true);
+            setNameFailedEmpty(false);
             setGoodName("");
+        } else if (goodName === "") {
+            setNameFailed(true);
+            setNameFailedEmpty(true);
+        } else if (goodValue < 1 && goodValue) {
+            setValueFailed(true);
+            setGoodValue("");
         } else {
-            props.addGoods(goodName);
-            setLocalGoods(localGoods.concat(goodName));
+            let good = { goodName: goodName, goodValue: goodValue };
+            // State
+            props.addGoods(good);
+
+            setLocalGoods(localGoods.concat(good));
             setGoodName("");
-            setFailed(false);
+            setGoodValue("");
+            setNameFailed(false);
+            setNameFailedEmpty(false);
+            setValueFailed(false);
         }
     };
     // Next state.
@@ -49,10 +68,14 @@ const InputGoodsInfo = (props) => {
             >
                 <Row className='align-items-center'>
                     <Col xs={9}>
-                        {failed ? (
+                        {nameFailed ? (
                             <Form.Control
                                 size='sm'
-                                placeholder='Invalid User'
+                                placeholder={
+                                    nameFailedEmpty
+                                        ? "Name cannot be empty"
+                                        : "Good with name already exists"
+                                }
                                 value={goodName}
                                 type='text'
                                 onChange={(e) => setGoodName(e.target.value)}
@@ -77,6 +100,36 @@ const InputGoodsInfo = (props) => {
                                 }}
                             />
                         )}
+                        {valueFailed ? (
+                            <Form.Control
+                                size='sm'
+                                placeholder='Value cannot be less than 1'
+                                value={goodValue}
+                                type='number'
+                                onChange={(e) => setGoodValue(e.target.value)}
+                                style={{
+                                    border: "1px solid red",
+                                    marginLeft: "auto",
+                                    marginRight: "auto",
+                                    display: "inline",
+                                }}
+                                className='mt-1'
+                            />
+                        ) : (
+                            <Form.Control
+                                size='sm'
+                                placeholder='Estimated Value (Optional)'
+                                value={goodValue}
+                                type='number'
+                                onChange={(e) => setGoodValue(e.target.value)}
+                                style={{
+                                    marginLeft: "auto",
+                                    marginRight: "auto",
+                                    display: "inline",
+                                }}
+                                className='mt-1'
+                            />
+                        )}
                     </Col>
                     <Col>
                         <Button
@@ -90,9 +143,13 @@ const InputGoodsInfo = (props) => {
                 </Row>
                 <Row className='justify-content-center contentOverflow mt-3'>
                     <Col sm='10'>
-                        {localGoods.map((id) => (
-                            <Card style={{ color: "#000" }} key={id} body>
-                                {id}
+                        {localGoods.map((good) => (
+                            <Card
+                                style={{ color: "#000" }}
+                                key={good.goodName}
+                                body
+                            >
+                                {good.goodName} | {good.goodValue}
                             </Card>
                         ))}
                     </Col>
@@ -120,8 +177,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addGoods: (goodName) => {
-            dispatch({ type: "ADD_GOODS", goodName: goodName });
+        addGoods: (good) => {
+            dispatch({ type: "ADD_GOODS", good: good });
+        },
+        updateTotalValue: (tValue) => {
+            dispatch({ type: "UPDATE_TOTAL_VALUE", i: tValue });
         },
     };
 };

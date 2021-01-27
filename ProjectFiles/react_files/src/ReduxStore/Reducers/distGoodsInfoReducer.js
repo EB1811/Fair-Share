@@ -24,12 +24,20 @@ const distGoodsInfoReducer = (state = initState, action) => {
 
             // Add good name to goods array by first turning it into a good object.
             var tempGoodsArr = state.goodsArray;
-            var good = { Good: String(action.goodName), Value: 0 };
+            var good = {
+                Good: String(action.good.goodName),
+                Value: 0,
+            };
             tempGoodsArr.push(good);
+
+            var goodsTotalVal = 1000;
+            if (action.good.goodValue) {
+                goodsTotalVal = state.totalValue + action.good.goodValue;
+            }
 
             return {
                 ...state,
-                totalValue: 1000,
+                totalValue: goodsTotalVal,
                 goodsArray: tempGoodsArr,
             };
         case "UPDATE_TOTAL_VALUE":
