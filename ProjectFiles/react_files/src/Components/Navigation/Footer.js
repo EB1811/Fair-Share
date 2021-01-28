@@ -21,15 +21,21 @@ const Footer = () => {
                     </a>
                     <a
                         style={{ textDecoration: "none" }}
-                        href='Distribute/Rent'
+                        href='/Distribute/Information/Rent'
                     >
                         <h2 className='footerLink'>Distribute Rent</h2>
                     </a>
                     <a
                         style={{ textDecoration: "none" }}
-                        href='Distribute/Goods'
+                        href='/Distribute/Information/Goods'
                     >
                         <h2 className='footerLink'>Distribute Goods</h2>
+                    </a>
+                    <a
+                        style={{ textDecoration: "none" }}
+                        href='/Distribute/Information/Goods'
+                    >
+                        <h2 className='footerLink'>Separate Finances</h2>
                     </a>
                     <a style={{ textDecoration: "none" }} href='/About'>
                         <h2 className='footerLink'>About</h2>
@@ -82,7 +88,7 @@ const Footer = () => {
                         className='footerText'
                         style={{ color: "#fff", fontSize: "12.5px" }}
                     >
-                        Step 1-4 icons taken from{" "}
+                        Step 1-4 icons and group image taken from{" "}
                         <a
                             style={{
                                 textDecoration: "none",

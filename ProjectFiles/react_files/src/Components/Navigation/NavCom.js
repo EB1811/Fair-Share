@@ -40,15 +40,6 @@ const NavCom = () => {
                     <Link
                         className='nav-link'
                         style={{ textDecoration: "none" }}
-                        to='/Distribute'
-                    >
-                        Distribute
-                    </Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link
-                        className='nav-link'
-                        style={{ textDecoration: "none" }}
                         to='/About'
                     >
                         About
