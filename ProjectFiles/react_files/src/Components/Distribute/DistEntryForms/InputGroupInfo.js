@@ -46,6 +46,9 @@ const InputGroupInfo = (props) => {
             props.history.push("/Distribute/Questions");
         }
     };
+    const prevStage = () => {
+        props.setStage(0);
+    };
 
     return (
         <Container fluid className='divBlockWithContentTertiary min-vh-100'>
@@ -109,6 +112,14 @@ const InputGroupInfo = (props) => {
                             </Alert>
                         ) : null}
 
+                        <Button
+                            variant='primary'
+                            size='sm'
+                            onClick={prevStage}
+                            className='mr-2'
+                        >
+                            <span className='smButtonText'>Previous</span>
+                        </Button>
                         <Button
                             variant='primary'
                             size='sm'

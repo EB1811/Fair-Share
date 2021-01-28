@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 
 const InputRoomsInfo = (props) => {
     // Information about goods.
-    const [houseValue, setHouseValue] = useState(0);
-    const [roomCount, setRoomCount] = useState(0);
+    const [houseValue, setHouseValue] = useState(props.stateHouseValue);
+    const [roomCount, setRoomCount] = useState(props.stateRoomCount);
     // Failed bool used for conditional css.
     const [roomCountFailed, setRoomCountFailed] = useState(false);
     const [houseValueFailed, setHouseValueFailed] = useState(false);
@@ -82,7 +82,8 @@ const InputRoomsInfo = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        ////temp: state.distGoodsInfo.goodsArray
+        stateRoomCount: state.distGoodsInfo.goodsArray.length,
+        stateHouseValue: state.distGoodsInfo.totalValue,
     };
 };
 

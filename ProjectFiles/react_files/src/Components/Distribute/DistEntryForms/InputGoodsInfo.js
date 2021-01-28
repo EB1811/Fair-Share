@@ -16,7 +16,7 @@ const InputGoodsInfo = (props) => {
     const [goodName, setGoodName] = useState("");
     const [goodValue, setGoodValue] = useState("");
     // Local group for rendering.
-    const [localGoods, setLocalGoods] = useState([]);
+    const [localGoods, setLocalGoods] = useState(props.stateGoodsArray);
     // Failed bool used for conditional css.
     const [nameFailed, setNameFailed] = useState(false);
     const [nameFailedEmpty, setNameFailedEmpty] = useState(false);
@@ -26,24 +26,25 @@ const InputGoodsInfo = (props) => {
     //* Add good to state and store.
     //? Maybe make goods value and name not turn into a object for the state, i.e., simply pass goodName and goodValue.
     const addGood = () => {
-        if (
-            localGoods.filter((good) => good.goodName === goodName).length > 0
-        ) {
+        if (localGoods.filter((good) => good.Good === goodName).length > 0) {
             setNameFailed(true);
             setNameFailedEmpty(false);
             setGoodName("");
         } else if (goodName === "") {
             setNameFailed(true);
             setNameFailedEmpty(true);
-        } else if (goodValue < 1 && goodValue) {
+        } else if (goodValue && goodValue < 1) {
             setValueFailed(true);
             setGoodValue("");
         } else {
-            let good = { goodName: goodName, goodValue: goodValue };
+            let good = {
+                Good: String(goodName),
+                Value: 0,
+            };
+            setLocalGoods(localGoods.concat(good));
             // State
             props.addGoods(good);
 
-            setLocalGoods(localGoods.concat(good));
             setGoodName("");
             setGoodValue("");
             setNameFailed(false);
@@ -152,10 +153,10 @@ const InputGoodsInfo = (props) => {
                         {localGoods.map((good) => (
                             <Card
                                 style={{ color: "#000" }}
-                                key={good.goodName}
+                                key={good.Good}
                                 body
                             >
-                                {good.goodName} | {good.goodValue}
+                                {good.Good} | {good.Value}
                             </Card>
                         ))}
                     </Col>

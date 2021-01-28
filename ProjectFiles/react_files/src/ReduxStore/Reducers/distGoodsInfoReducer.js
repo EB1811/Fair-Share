@@ -25,7 +25,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
             // Add good name to goods array by first turning it into a good object.
             var tempGoodsArr = state.goodsArray;
             var good = {
-                Good: String(action.good.goodName),
+                Good: String(action.good.Good),
                 Value: 0,
             };
             tempGoodsArr.push(good);
