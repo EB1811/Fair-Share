@@ -7,12 +7,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 // Redux
 import { connect } from "react-redux";
 
 // React Router
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const InputGroupInfo = (props) => {
     // User ID.
@@ -20,19 +21,29 @@ const InputGroupInfo = (props) => {
     // Local group for rendering.
     const [localGroup, setLocalGroup] = useState([]);
     // Failed bool for conditional rendering failure state.
-    const [failed, setFailed] = useState(false);
+    const [userIdFailed, setUserIdFailed] = useState(false);
+    const [groupCountFailed, setGroupCountFailed] = useState(false);
 
-    //* Update number of users on submit.
+    // Update number of users on submit.
     const addToGroup = () => {
         //! This will be changed to looking to see if user id exists in database.
         if (props.group.includes(userId)) {
-            setFailed(true);
+            setUserIdFailed(true);
             setUserId("");
         } else {
             props.addUser(userId);
             setLocalGroup(localGroup.concat(userId));
             setUserId("");
-            setFailed(false);
+            setUserIdFailed(false);
+        }
+    };
+    // Validate group then continue to next page.
+    const checkGroup = () => {
+        if (props.group.length < 2) {
+            setGroupCountFailed(true);
+        } else {
+            setGroupCountFailed(false);
+            props.history.push("/Distribute/Questions");
         }
     };
 
@@ -44,7 +55,7 @@ const InputGroupInfo = (props) => {
                         Please input a user id to add them to the group.
                     </h5>
                     <div
-                        className='mt-5 py-2'
+                        className='mt-4 py-2'
                         style={{
                             borderTop: "1px solid #999999",
                             borderBottom: "1px solid #999999",
@@ -55,7 +66,7 @@ const InputGroupInfo = (props) => {
                                 <Form.Control
                                     size='sm'
                                     placeholder={
-                                        failed
+                                        userIdFailed
                                             ? "Invalid User"
                                             : "Enter User ID"
                                     }
@@ -63,7 +74,7 @@ const InputGroupInfo = (props) => {
                                     type='text'
                                     onChange={(e) => setUserId(e.target.value)}
                                     style={
-                                        failed
+                                        userIdFailed
                                             ? { border: "1px solid red" }
                                             : {}
                                     }
@@ -93,15 +104,21 @@ const InputGroupInfo = (props) => {
                             </Col>
                         </Row>
                     </div>
+                    <div className='mt-4'>
+                        {groupCountFailed ? (
+                            <Alert variant={"danger"}>
+                                Error! Must have at least 2 users.
+                            </Alert>
+                        ) : null}
 
-                    <Link
-                        style={{ textDecoration: "none" }}
-                        to='/Distribute/Questions'
-                    >
-                        <Button variant='primary' size='sm' className='mt-5'>
+                        <Button
+                            variant='primary'
+                            size='sm'
+                            onClick={checkGroup}
+                        >
                             <span className='smButtonText'>Next</span>
                         </Button>
-                    </Link>
+                    </div>
                 </Col>
             </Row>
         </Container>
@@ -123,4 +140,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputGroupInfo);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(InputGroupInfo)
+);

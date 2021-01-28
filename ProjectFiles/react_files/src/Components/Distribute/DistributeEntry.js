@@ -15,11 +15,9 @@ import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 
 const DistributeEntry = () => {
-    //! Stage determines which section of the goods entry input to render.
+    // Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
     let { goodsType } = useParams();
-
-    //TODO Different components for rent, and goods.
     //? Goods and split finances might share component.
     //? If goods and split finances sections use the same component, redo conditional rendering.
 
