@@ -24,7 +24,8 @@ const InputGroupInfo = (props) => {
 
     //* Update number of users on submit.
     const addToGroup = () => {
-        if (localGroup.includes(userId)) {
+        //! This will be changed to looking to see if user id exists in database.
+        if (props.group.includes(userId)) {
             setFailed(true);
             setUserId("");
         } else {
@@ -51,38 +52,22 @@ const InputGroupInfo = (props) => {
                     >
                         <Row className='align-items-center'>
                             <Col xs={9}>
-                                {failed ? (
-                                    <Form.Control
-                                        size='sm'
-                                        placeholder='Invalid User'
-                                        value={userId}
-                                        type='text'
-                                        onChange={(e) =>
-                                            setUserId(e.target.value)
-                                        }
-                                        style={{
-                                            border: "1px solid red",
-                                            marginLeft: "auto",
-                                            marginRight: "auto",
-                                            display: "inline",
-                                        }}
-                                    />
-                                ) : (
-                                    <Form.Control
-                                        size='sm'
-                                        placeholder='Enter User ID'
-                                        value={userId}
-                                        type='text'
-                                        onChange={(e) =>
-                                            setUserId(e.target.value)
-                                        }
-                                        style={{
-                                            marginLeft: "auto",
-                                            marginRight: "auto",
-                                            display: "inline",
-                                        }}
-                                    />
-                                )}
+                                <Form.Control
+                                    size='sm'
+                                    placeholder={
+                                        failed
+                                            ? "Invalid User"
+                                            : "Enter User ID"
+                                    }
+                                    value={userId}
+                                    type='text'
+                                    onChange={(e) => setUserId(e.target.value)}
+                                    style={
+                                        failed
+                                            ? { border: "1px solid red" }
+                                            : {}
+                                    }
+                                />
                             </Col>
                             <Col>
                                 <Button
