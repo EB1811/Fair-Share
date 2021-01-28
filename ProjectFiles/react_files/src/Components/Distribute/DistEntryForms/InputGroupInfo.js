@@ -19,7 +19,7 @@ const InputGroupInfo = (props) => {
     // User ID.
     const [userId, setUserId] = useState("");
     // Local group for rendering.
-    const [localGroup, setLocalGroup] = useState([]);
+    const [localGroup, setLocalGroup] = useState(props.stateUserArray);
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
@@ -27,19 +27,19 @@ const InputGroupInfo = (props) => {
     // Update number of users on submit.
     const addToGroup = () => {
         //! This will be changed to looking to see if user id exists in database.
-        if (props.group.includes(userId)) {
+        if (props.stateUserArray.includes(userId)) {
             setUserIdFailed(true);
             setUserId("");
         } else {
-            props.addUser(userId);
             setLocalGroup(localGroup.concat(userId));
+            props.addUser(userId);
             setUserId("");
             setUserIdFailed(false);
         }
     };
     // Validate group then continue to next page.
     const checkGroup = () => {
-        if (props.group.length < 2) {
+        if (props.stateUserArray.length < 2) {
             setGroupCountFailed(true);
         } else {
             setGroupCountFailed(false);
@@ -137,7 +137,7 @@ const InputGroupInfo = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        group: state.distGroupInfo.userArray,
+        stateUserArray: state.distGroupInfo.userArray,
     };
 };
 

@@ -39,6 +39,7 @@ const InputGoodsInfo = (props) => {
         } else {
             let good = {
                 Good: String(goodName),
+                estValue: goodValue,
                 Value: 0,
             };
             setLocalGoods(localGoods.concat(good));
@@ -156,7 +157,7 @@ const InputGoodsInfo = (props) => {
                                 key={good.Good}
                                 body
                             >
-                                {good.Good} | {good.Value}
+                                {good.Good} | {good.estValue}
                             </Card>
                         ))}
                     </Col>

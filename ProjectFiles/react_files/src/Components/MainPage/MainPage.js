@@ -34,7 +34,7 @@ import { Link } from "react-router-dom";
 //TODO Start building learning page and add information about it into main page.
 //TODO Start authentication process.
 //TODO Responsiveness.
-//TODO Back button to distribution process.
+//// Back button to distribution process.
 
 const MainPage = () => {
     // Scrolling.
