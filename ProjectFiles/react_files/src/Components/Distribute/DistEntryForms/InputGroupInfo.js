@@ -51,9 +51,7 @@ const InputGroupInfo = (props) => {
         <Container fluid className='divBlockWithContentTertiary min-vh-100'>
             <Row className='justify-content-center align-items-center min-vh-100'>
                 <Col xs={12} sm={3} className='centerCardCompact m-3'>
-                    <h5 className='descText'>
-                        Please input a user id to add them to the group.
-                    </h5>
+                    <h5>Enter a user id to add them to the group.</h5>
                     <div
                         className='mt-4 py-2'
                         style={{

@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 // Redux
 import { connect } from "react-redux";
@@ -20,6 +21,7 @@ const InputGoodsInfo = (props) => {
     const [nameFailed, setNameFailed] = useState(false);
     const [nameFailedEmpty, setNameFailedEmpty] = useState(false);
     const [valueFailed, setValueFailed] = useState(false);
+    const [goodsCountFailed, setGoodsCountFailed] = useState(false);
 
     //* Add good to state and store.
     //? Maybe make goods value and name not turn into a object for the state, i.e., simply pass goodName and goodValue.
@@ -51,16 +53,19 @@ const InputGoodsInfo = (props) => {
     };
     // Next state.
     const nextState = () => {
-        props.setStage(1);
+        if (props.stateGoodsArray.length < 2) {
+            setGoodsCountFailed(true);
+        } else {
+            setGoodsCountFailed(false);
+            props.setStage(1);
+        }
     };
 
     return (
         <div>
-            <h5 className='descText'>
-                Please input the good's name and price.
-            </h5>
+            <h5>Enter a item's name and price.</h5>
             <div
-                className='mt-5 py-2'
+                className='mt-4 py-2'
                 style={{
                     borderTop: "1px solid #999999",
                     borderBottom: "1px solid #999999",
@@ -141,6 +146,7 @@ const InputGoodsInfo = (props) => {
                         </Button>
                     </Col>
                 </Row>
+                <hr />
                 <Row className='justify-content-center contentOverflow mt-3'>
                     <Col sm='10'>
                         {localGoods.map((good) => (
@@ -156,14 +162,17 @@ const InputGoodsInfo = (props) => {
                 </Row>
             </div>
 
-            <Button
-                variant='primary'
-                size='sm'
-                className='mt-5'
-                onClick={nextState}
-            >
-                <span className='smButtonText'>Next</span>
-            </Button>
+            <div className='mt-4'>
+                {goodsCountFailed ? (
+                    <Alert variant={"danger"}>
+                        Error! Must have at least 2 items.
+                    </Alert>
+                ) : null}
+
+                <Button variant='primary' size='sm' onClick={nextState}>
+                    <span className='smButtonText'>Next</span>
+                </Button>
+            </div>
         </div>
     );
 };

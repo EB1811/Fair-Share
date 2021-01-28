@@ -50,7 +50,11 @@ const DistributeEntry = () => {
                         className='divBlockWithContentTertiary min-vh-100'
                     >
                         <Row className='justify-content-center align-items-center min-vh-100'>
-                            <Col xs={12} sm={4} className='centerCard m-3'>
+                            <Col
+                                xs={12}
+                                sm={4}
+                                className='centerCardCompact m-3'
+                            >
                                 <InputGoodsInfo setStage={setStage} />
                             </Col>
                         </Row>
