@@ -25,11 +25,16 @@ import { Link } from "react-router-dom";
 
 //// Button to scroll to 'we can help' section.
 //// Rework Distribute main page. Maybe have a single goods page with parameters from URL determining what to output.
-//TODO Rework distribute pages by creating seperate components for rent share and goods share. Maybe adding another component for 'seperate finances'.
+//// Rework distribute pages by creating seperate components for rent share and goods share. Maybe adding another component for 'seperate finances'.
 //// Typography changes to other pages.
+//TODO Delete distribution main page.
+//TODO Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
+//TODO Update navbar: add all types of distributions links (rent, goods, finances), add brand logo, move to left. Make links active when user is on the page corresponding to that link.
+//TODO Conditional rendering failure state in inputting group and house info.
 //TODO Start building learning page and add information about it into main page.
 //TODO Start authentication process.
-//TODO Responsiveness
+//TODO Responsiveness.
+//TODO Back button to distribution process.
 
 const MainPage = () => {
     // Scrolling.

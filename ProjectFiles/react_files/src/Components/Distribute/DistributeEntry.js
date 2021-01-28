@@ -14,7 +14,7 @@ import Col from "react-bootstrap/Col";
 // Redux
 import { connect } from "react-redux";
 
-const DistributeEntry = (props) => {
+const DistributeEntry = () => {
     //! Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
     let { goodsType } = useParams();
@@ -33,10 +33,7 @@ const DistributeEntry = (props) => {
                     >
                         <Row className='justify-content-center align-items-center min-vh-100'>
                             <Col xs={12} sm={3} className='centerCard m-3'>
-                                <InputRoomsInfo
-                                    goodType={goodsType}
-                                    setStage={setStage}
-                                />
+                                <InputRoomsInfo setStage={setStage} />
                             </Col>
                         </Row>
                     </Container>
@@ -56,10 +53,7 @@ const DistributeEntry = (props) => {
                     >
                         <Row className='justify-content-center align-items-center min-vh-100'>
                             <Col xs={12} sm={4} className='centerCard m-3'>
-                                <InputGoodsInfo
-                                    goodType={goodsType}
-                                    setStage={setStage}
-                                />
+                                <InputGoodsInfo setStage={setStage} />
                             </Col>
                         </Row>
                     </Container>

@@ -9,41 +9,67 @@ import { connect } from "react-redux";
 
 const InputRoomsInfo = (props) => {
     // Information about goods.
-    const [goodsTotalVal, setgoodsTotalVal] = useState(0);
-    const [goodsCount, setGoodsCount] = useState(0);
+    const [houseValue, setHouseValue] = useState(0);
+    const [roomCount, setRoomCount] = useState(0);
+    // Failed bool used for conditional css.
+    const [roomCountFailed, setRoomCountFailed] = useState(false);
+    const [houseValueFailed, setHouseValueFailed] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.addGoodsAmount(goodsCount);
-        props.updateTotalValue(goodsTotalVal);
-        props.setStage(1);
+        // Conditional styling
+        if (roomCount < 2) {
+            setRoomCountFailed(true);
+            setRoomCount("");
+        } else {
+            setRoomCountFailed(false);
+        }
+        if (houseValue < 1) {
+            setHouseValueFailed(true);
+            setHouseValue("");
+        } else {
+            setHouseValueFailed(false);
+        }
+
+        if (roomCount > 1 && houseValue > 0) {
+            setRoomCountFailed(false);
+            setHouseValueFailed(false);
+
+            props.addGoodsAmount(roomCount);
+            props.updateTotalValue(houseValue);
+            props.setStage(1);
+        }
     };
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId='addGoodsCount'>
-                {props.goodType.toLowerCase() === "rent" ? (
-                    <Form.Label>Number of rooms:</Form.Label>
-                ) : (
-                    <Form.Label>Number of goods:</Form.Label>
-                )}
+            <Form.Group controlId='addRoomCount'>
+                <Form.Label>Number of rooms:</Form.Label>
                 <Form.Control
                     size='sm'
-                    type='text'
-                    onChange={(e) => setGoodsCount(e.target.value)}
+                    type='number'
+                    value={roomCount}
+                    placeholder={
+                        roomCountFailed ? "Must have at least 2 rooms." : ""
+                    }
+                    style={roomCountFailed ? { border: "1px solid red" } : {}}
+                    onChange={(e) => setRoomCount(e.target.value)}
                 />
             </Form.Group>
             <Form.Group controlId='addGoodsTValue'>
-                {props.goodType.toLowerCase() === "rent" ? (
-                    <Form.Label>Total monthly value of house:</Form.Label>
-                ) : (
-                    <Form.Label>Total value of goods:</Form.Label>
-                )}
+                <Form.Label>Total monthly cost of house:</Form.Label>
                 <Form.Control
                     size='sm'
-                    type='text'
-                    onChange={(e) => setgoodsTotalVal(e.target.value)}
+                    type='number'
+                    value={houseValue}
+                    placeholder={
+                        houseValueFailed
+                            ? "Total cost must be greater than 0."
+                            : ""
+                    }
+                    style={houseValueFailed ? { border: "1px solid red" } : {}}
+                    onChange={(e) => setHouseValue(e.target.value)}
                 />
             </Form.Group>
             <Button variant='primary' type='submit' size='sm' className='mt-5'>

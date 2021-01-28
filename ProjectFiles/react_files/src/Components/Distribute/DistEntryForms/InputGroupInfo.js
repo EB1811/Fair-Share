@@ -19,7 +19,7 @@ const InputGroupInfo = (props) => {
     const [userId, setUserId] = useState("");
     // Local group for rendering.
     const [localGroup, setLocalGroup] = useState([]);
-    // Failed bool
+    // Failed bool for conditional rendering failure state.
     const [failed, setFailed] = useState(false);
 
     //* Update number of users on submit.
