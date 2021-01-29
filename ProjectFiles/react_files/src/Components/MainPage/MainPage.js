@@ -36,6 +36,8 @@ import { Link } from "react-router-dom";
 //TODO Responsiveness.
 //// Back button to distribution process.
 
+//? Some goods having an estimated value while others not, messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate
+
 const MainPage = () => {
     // Scrolling.
     const goodsDesc = useRef(null);

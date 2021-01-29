@@ -1,211 +1,228 @@
 //Redefining bootstrap variables.
 
-$navbar-dark-color: #777777;
-$navbar-dark-hover-color: #4096ff;
+$navbar-light-color: #777777;
+$navbar-light-hover-color: #4096ff;
+$navbar-light-active-color: #4096ff;
 
-$input-btn-focus-width: .05rem !default;
+// Dropdowns
+//$dropdown-link-color
+
+$input-btn-focus-width: 0.05rem !default;
 $input-btn-focus-color: #4096ff;
-$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
+$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 $grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 1100px,
-  xl: 1800px
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 1100px,
+    xl: 1800px,
 );
 
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 1040px,
-  xl: 1740px
+    sm: 540px,
+    md: 720px,
+    lg: 1040px,
+    xl: 1740px,
 );
 
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 /* cool color: 219a99, 32c4c4 */
 
 .App {
-  text-align: center;
-  background-color: #efefef;
+    text-align: center;
+    background-color: #efefef;
 }
 
 .Title {
-  font-weight: 500;
-  font-size: 5em;
-  display: inline-block;
-  margin: 0;
-  z-index: 1;
-  color: #fff;
+    font-weight: 500;
+    font-size: 5em;
+    display: inline-block;
+    margin: 0;
+    z-index: 1;
+    color: #fff;
 }
 .Title2 {
-  font-weight: 500;
-  font-size: 65px;
-  color: #5ad370;
+    font-weight: 500;
+    font-size: 65px;
+    color: #5ad370;
 }
 
 .backTitleImage {
-  background-repeat: no-repeat;
-  background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 /* Colors */
 .greenText {
-  color: #49db64;
+    color: #49db64;
 }
 .blueText {
-  color: #4096ff;
+    color: #4096ff;
 }
 .blackText {
-  color: #333333
+    color: #333333;
 }
 .whiteText {
-  color: #ffffff
+    color: #ffffff;
+}
+
+.brandName {
+    color: #4096ff;
+    font-weight: 500;
+    font-size: 1.25em;
 }
 
 .descText {
-  font-weight: 400;
+    font-weight: 400;
 }
 .footerText {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  color: #5eeb78;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #5eeb78;
 }
 .footerLink {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #fff;
 }
 .footerLink:hover {
-  color: #5eeb78;
+    color: #5eeb78;
 }
-a:active, a:visited {
-  color: #fff;
+a:active,
+a:visited {
+    color: #fff;
 }
 /* Smaller Titles */
 @media only screen and (max-width: 1500px) {
-  .Title {
-    font-size: 5em;
-  }
+    .Title {
+        font-size: 5em;
+    }
 }
 
 /* Word below icon */
 .iconDesc {
-  color: #59e483;
-  font-weight: 300;
-  font-size: 2.75em;
-  margin-bottom: 0;
+    color: #59e483;
+    font-weight: 300;
+    font-size: 2.75em;
+    margin-bottom: 0;
 }
 .iconDescSmall {
-  color: #6a6a74;
-  font-weight: 300;
-  font-size: 1.175em;
+    color: #6a6a74;
+    font-weight: 300;
+    font-size: 1.175em;
 }
 .iconDesc2 {
-  font-weight: 300;
-  font-size: 2.75em;
-  margin-bottom: 0;
+    font-weight: 300;
+    font-size: 2.75em;
+    margin-bottom: 0;
 }
 
 /* For big divs spanning page length */
 .divBlockWithContentTitle {
-  background-color: #6daffe;
-  color: #fff;
+    background-color: #6daffe;
+    color: #fff;
 }
 .divBlockWithContentPrimary {
-  background-color: #6daffe;
-  color: #fff;
+    background-color: #6daffe;
+    color: #fff;
 }
 .divBlockWithContentSecondary {
-  background-color: #fff;
-  color: #333333;
+    background-color: #fff;
+    color: #333333;
 }
 .divBlockWithContentTertiary {
-  background-color: #eeeeee;
-  color: #000000;
+    background-color: #eeeeee;
+    color: #000000;
 }
 
 .centerCard {
-  background-color: #fff;
-  padding: 100px 50px;
-  color: #333333;
-  box-shadow: 0 1px 4px #b3b3b3;
-  font-size: 1rem;
+    background-color: #fff;
+    padding: 100px 50px;
+    color: #333333;
+    box-shadow: 0 1px 4px #b3b3b3;
+    font-size: 1rem;
 }
 .centerCardCompact {
-  background-color: #fff;
-  padding: 50px 25px;
-  color: #333333;
-  box-shadow: 0 1px 4px #b3b3b3;
-  font-size: 1rem;
+    background-color: #fff;
+    padding: 50px 25px;
+    color: #333333;
+    box-shadow: 0 1px 4px #b3b3b3;
+    font-size: 1rem;
 }
 
 .smButtonText {
-  font-weight: 500;
-  font-size: 1.25rem;
+    font-weight: 500;
+    font-size: 1.25rem;
 }
 .medButtonText {
-  font-weight: 700;
-  font-size: 35px;
-
+    font-weight: 700;
+    font-size: 35px;
 }
 
 .navbarStyle {
-  font-size: 1.1em;
-  font-weight: 500;
+    font-size: 1.1em;
+    font-weight: 500;
 }
 
 /* For dynamic content addition ADD BREAKPOINTS */
 .contentOverflow {
-  height: 400px;
-  max-height: 400px;
-  overflow: auto;
+    height: 400px;
+    max-height: 400px;
+    overflow: auto;
 }
 
 .form-label {
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: #000;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #000;
 }
 
 /* This is modifying the btn-primary colors */
 .btn {
-  border-radius: 0;
+    border-radius: 0;
 }
 .btn-primary {
-  color: #fff !important;
-  background-color: #4096ff !important;
-  border-color: transparent !important;
+    color: #fff !important;
+    background-color: #4096ff !important;
+    border-color: transparent !important;
 }
-.btn-primary:hover, .open>.dropdown-toggle.btn-primary {
-  color: #fff !important;
-  background-color: #2b8aff !important;
+.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary {
+    color: #fff !important;
+    background-color: #2b8aff !important;
 }
 /* This is modifying the btn-secondary colors */
 .btn-secondary {
-  color: #fff !important;
-  background-color: #4096ff !important;
-  border-color: transparent !important;
-  box-shadow: 0 1px 4px #4096ff !important;
+    color: #fff !important;
+    background-color: #4096ff !important;
+    border-color: transparent !important;
+    box-shadow: 0 1px 4px #4096ff !important;
 }
-.btn-secondary:hover, .open>.dropdown-toggle.btn-secondary {
-  color: #fff !important;
-  background-color: #2b8aff !important;
-  box-shadow: 0 1px 4px #4096ff !important;
+.btn-secondary:hover,
+.open > .dropdown-toggle.btn-secondary {
+    color: #fff !important;
+    background-color: #2b8aff !important;
+    box-shadow: 0 1px 4px #4096ff !important;
 }
 
-.btn:active, .btn:focus {
-  outline: none !important;
-  box-shadow: none !important;
+.btn:active,
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .form-control:focus {
-  border-color: #6daffe !important;
+    border-color: #6daffe !important;
 }
 
 .form-label {
-  font-weight: 300;
+    font-weight: 300;
+}
+
+.dropdown-item {
+    color: #777777 !important;
 }

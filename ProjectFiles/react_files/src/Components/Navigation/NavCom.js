@@ -8,15 +8,76 @@ import SignedOutLinks from "./SignedOutLinks";
 import Container from "react-bootstrap/Container";
 import NavBar from "react-bootstrap/NavBar";
 import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 // React Router
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import Navbar from "react-bootstrap/NavBar";
 
 //TODO: Add conditional formatting once server is made.
 
 const NavCom = () => {
     return (
-        <NavBar variant='dark' className='navbarStyle'>
+        <NavBar expand='md' style={{ backgroundColor: "#fff" }} variant='light'>
+            <Container fluid>
+                <Navbar.Brand>
+                    <Link style={{ textDecoration: "none" }} to='/'>
+                        <span className='brandName'>Fair / Share</span>
+                    </Link>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Collapse id='basic-navbar-nav' className='ml-3'>
+                    <Nav className='mr-auto'>
+                        <NavLink className='nav-link' exact to='/'>
+                            Home
+                        </NavLink>
+                        <NavLink className='nav-link' exact to='/Learn'>
+                            Learn
+                        </NavLink>
+                        <span style={{ padding: "0.5rem", color: "#777777" }}>
+                            |
+                        </span>
+
+                        <span
+                            className=''
+                            style={{
+                                display: "block",
+                                padding: "0.5rem",
+                                fontWeight: "500",
+                            }}
+                        >
+                            Share:
+                        </span>
+                        <NavLink
+                            className='nav-link'
+                            exact
+                            to='/Distribute/Information/Rent'
+                        >
+                            Rent
+                        </NavLink>
+                        <NavLink
+                            className='nav-link'
+                            exact
+                            to='/Distribute/Information/Goods'
+                        >
+                            Goods
+                        </NavLink>
+                        <NavLink
+                            className='nav-link'
+                            exact
+                            to='/Distribute/Information/Goods'
+                        >
+                            Finances
+                        </NavLink>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </NavBar>
+    );
+};
+
+/*
+<NavBar variant='dark' className='navbarStyle'>
             <Nav className='justify-content-md-center' style={{ flex: 1 }}>
                 <Nav.Item>
                     <Link
@@ -52,7 +113,6 @@ const NavCom = () => {
                 <SignedOutLinks />
             </Container>
         </NavBar>
-    );
-};
+*/
 
 export default NavCom;
