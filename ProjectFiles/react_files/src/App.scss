@@ -51,13 +51,13 @@ $container-max-widths: (
 /* Smaller Titles */
 @media only screen and (max-width: 930px) {
     .Title {
-        font-size: 4em;
+        font-size: 3.9em;
     }
     .descText {
         font-size: 1.1rem;
     }
 }
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 774px) {
     .Title {
         font-size: 5em;
     }
@@ -71,6 +71,78 @@ $container-max-widths: (
     }
     .descText {
         font-size: 1rem;
+    }
+}
+
+/* Word below icon */
+.iconDesc {
+    color: #59e483;
+    font-weight: 300;
+    font-size: 2.75em;
+    margin-bottom: 0;
+}
+.iconDescSmall {
+    color: #6a6a74;
+    font-weight: 300;
+    font-size: 1.175em;
+}
+.iconDesc2 {
+    font-weight: 300;
+    font-size: 2.75em;
+    margin-bottom: 0;
+}
+// Paragraph under each service.
+.goodDescParagraph {
+    height: 120px;
+}
+@media only screen and (max-width: 1250px) {
+    .goodDescParagraph {
+        height: 115px;
+        font-size: 0.9rem;
+    }
+    .iconDesc2 {
+        font-size: 2.25em;
+    }
+}
+@media only screen and (max-width: 1199px) {
+    .goodDescParagraph {
+        font-size: 1rem;
+        height: 90px;
+    }
+    .iconDesc2 {
+        font-size: 2.75em;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .goodDescParagraph {
+        font-size: 0.9rem;
+        height: 95px;
+    }
+}
+@media only screen and (max-width: 810px) {
+    .goodDescParagraph {
+        font-size: 0.9rem;
+        height: 110px;
+    }
+    .iconDesc2 {
+        font-size: 2.25em;
+    }
+}
+@media only screen and (max-width: 774px) {
+    .goodDescParagraph {
+        font-size: 1rem;
+        height: auto;
+    }
+    .iconDesc2 {
+        font-size: 2.75em;
+    }
+}
+@media only screen and (max-width: 774px) {
+    .goodDescParagraph {
+        font-size: 0.9rem;
+    }
+    .iconDesc2 {
+        font-size: 2.25em;
     }
 }
 
@@ -120,24 +192,6 @@ $container-max-widths: (
 a:active,
 a:visited {
     color: #fff;
-}
-
-/* Word below icon */
-.iconDesc {
-    color: #59e483;
-    font-weight: 300;
-    font-size: 2.75em;
-    margin-bottom: 0;
-}
-.iconDescSmall {
-    color: #6a6a74;
-    font-weight: 300;
-    font-size: 1.175em;
-}
-.iconDesc2 {
-    font-weight: 300;
-    font-size: 2.75em;
-    margin-bottom: 0;
 }
 
 /* For big divs spanning page length */

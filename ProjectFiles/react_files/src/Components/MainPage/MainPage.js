@@ -93,8 +93,11 @@ const MainPage = () => {
                 className='justify-content-center align-items-center p-4'
                 style={{ minHeight: "55vh", backgroundColor: "#fff" }}
             >
-                <Row style={{ maxWidth: "950px", minWidth: "300px" }}>
-                    <Col xs='12' sm='4'>
+                <Row
+                    style={{ maxWidth: "950px", minWidth: "300px" }}
+                    className='justify-content-center align-items-center'
+                >
+                    <Col xs='12' sm='6' md='4' className='my-2'>
                         <img
                             src={logo1}
                             alt='icon-fair-division'
@@ -106,7 +109,7 @@ const MainPage = () => {
                             allocations.
                         </p>
                     </Col>
-                    <Col xs='12' sm='4'>
+                    <Col xs='12' sm='6' md='4' className='my-2'>
                         <img
                             src={logo2}
                             alt='icon-team-diverse'
@@ -118,7 +121,7 @@ const MainPage = () => {
                             based on your preferences.
                         </p>
                     </Col>
-                    <Col xs='12' sm='4'>
+                    <Col xs='12' sm='6' md='4' className='my-2'>
                         <img
                             src={logo3}
                             alt='icon-check-star'
@@ -138,17 +141,24 @@ const MainPage = () => {
                 style={{ minHeight: "60vh" }}
                 ref={goodsDesc}
             >
-                <div className='w-75' style={{ maxWidth: "1250px" }}>
+                <div className='' style={{ maxWidth: "1250px" }}>
                     <h3 className=''>We can help you</h3>
-                    <Row className='mt-5'>
-                        <Col style={{ display: "inline" }}>
+                    <Row className='mt-5 justify-content-center align-items-center'>
+                        <Col
+                            style={{ display: "inline" }}
+                            xs='12'
+                            sm='12'
+                            md='6'
+                            lg='4'
+                            className='my-3'
+                        >
                             <img
                                 src={logo4}
                                 alt='icon-house-rent'
                                 style={{ width: "125px", height: "125px" }}
                             />
                             <h1 className='iconDesc2'>Share Rent</h1>
-                            <p className='mt-2'>
+                            <p className='mt-2 goodDescParagraph'>
                                 Renting an apartment with your friends can be
                                 tricky. How do you decide who gets what room
                                 without anyone feeling upset. Our algorithms use
@@ -165,14 +175,21 @@ const MainPage = () => {
                                 </Button>
                             </Link>
                         </Col>
-                        <Col style={{ display: "inline" }}>
+                        <Col
+                            style={{ display: "inline" }}
+                            xs='12'
+                            sm='12'
+                            md='6'
+                            lg='4'
+                            className='my-3'
+                        >
                             <img
                                 src={logo5}
                                 alt='icon-jewelry-goods'
                                 style={{ width: "125px", height: "125px" }}
                             />
                             <h1 className='iconDesc2'>Share Goods</h1>
-                            <p className='mt-2'>
+                            <p className='mt-2 goodDescParagraph'>
                                 Share any type of good such as jewelry,
                                 financial assets, or real estate. Simply enter
                                 the details of each good. By assigning a
@@ -190,20 +207,27 @@ const MainPage = () => {
                                 </Button>
                             </Link>
                         </Col>
-                        <Col style={{ display: "inline" }}>
+                        <Col
+                            style={{ display: "inline" }}
+                            xs='12'
+                            sm='12'
+                            md='6'
+                            lg='4'
+                            className='my-3'
+                        >
                             <img
                                 src={logo6}
                                 alt='divorce-assets-finance-fair'
                                 style={{ width: "125px", height: "125px" }}
                             />
                             <h1 className='iconDesc2'>Separate Finances</h1>
-                            <p className='mt-2'>
+                            <p className='mt-2 goodDescParagraph'>
                                 When you divorce or end a civil partnership,
                                 separating your money and property is very
                                 tricky. Our service can help start things off by
-                                giving you a fair distribution of assets. And
-                                this isn't limited to finances. We can help you
-                                split anything that you might need.
+                                giving you a fair distribution of assets based
+                                on which goods you value. And this isn't limited
+                                to finances.
                             </p>
                             <Link
                                 className='m-2'
@@ -230,7 +254,7 @@ const MainPage = () => {
                     </Col>
                     <hr />
                     <Row>
-                        <Col sm='3'>
+                        <Col sm='6' md='3' className='my-2'>
                             <img
                                 src={logoStep1}
                                 alt='icon-information-entry-step1'
@@ -240,7 +264,7 @@ const MainPage = () => {
                                 1. Enter info about your items and group.
                             </h5>
                         </Col>
-                        <Col sm='3'>
+                        <Col sm='6' md='3' className='my-2'>
                             <img
                                 src={logoStep2}
                                 alt='icon-questions-step2'
@@ -250,7 +274,7 @@ const MainPage = () => {
                                 2. Complete a short questionnaire.
                             </h5>
                         </Col>
-                        <Col sm='3'>
+                        <Col sm='6' md='3' className='my-2'>
                             <img
                                 src={logoStep3}
                                 alt='icon-values-step3'
@@ -260,7 +284,7 @@ const MainPage = () => {
                                 3. Assess the value of each item.
                             </h5>
                         </Col>
-                        <Col sm='3'>
+                        <Col sm='6' md='3' className='my-2'>
                             <img
                                 src={logoStep4}
                                 alt='icon-allocation-step4'
