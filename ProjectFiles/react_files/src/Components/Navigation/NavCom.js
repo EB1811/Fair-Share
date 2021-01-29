@@ -68,9 +68,6 @@ const NavCom = () => {
                         >
                             Finances
                         </NavLink>
-                        <span style={{ padding: "0.5rem", color: "#777777" }}>
-                            |
-                        </span>
                     </Nav>
                     <SignedOutLinks />
                 </Navbar.Collapse>

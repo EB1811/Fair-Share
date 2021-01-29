@@ -50,7 +50,7 @@ const MainPage = () => {
                 className='justify-content-center align-items-center divBlockWithContentTitle p-3 backTitleImage'
                 style={{ minHeight: "40vh", textAlign: "left" }}
             >
-                <Col xs='12' md='5'>
+                <Col xs='12' md='6' lg='5'>
                     <h1 className='Title w-100'>Fair / Share</h1>
                     <h5 className='descText mt-2'>
                         Our service helps you solve day-to-day sharing problems
@@ -80,7 +80,7 @@ const MainPage = () => {
                         </Link>
                     </div>
                 </Col>
-                <Col xs='12' md='5'>
+                <Col xs='12' md='6' lg='5'>
                     <img
                         src={titleImage}
                         alt='group-selfie-happy-fair'
