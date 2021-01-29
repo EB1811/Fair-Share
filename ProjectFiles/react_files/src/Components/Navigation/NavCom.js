@@ -1,14 +1,13 @@
 import React from "react";
 
 // React Components
-//import SignedInLinks from './SignedInLinks';
+//import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import NavBar from "react-bootstrap/NavBar";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 
 // React Router
 import { NavLink, Link } from "react-router-dom";
@@ -69,7 +68,11 @@ const NavCom = () => {
                         >
                             Finances
                         </NavLink>
+                        <span style={{ padding: "0.5rem", color: "#777777" }}>
+                            |
+                        </span>
                     </Nav>
+                    <SignedOutLinks />
                 </Navbar.Collapse>
             </Container>
         </NavBar>

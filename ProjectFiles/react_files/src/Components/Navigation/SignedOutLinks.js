@@ -1,7 +1,7 @@
 import React from "react";
 
 // Router
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // Bootstrap Components
 import Nav from "react-bootstrap/Nav";
@@ -12,22 +12,22 @@ const SignedOutLinks = (props) => {
     return (
         <Nav className='justify-content-end' style={{ flex: 1 }}>
             <Nav.Item>
-                <Link
+                <NavLink
                     className='nav-link'
                     style={{ textDecoration: "none" }}
                     to='/Login'
                 >
                     Login
-                </Link>
+                </NavLink>
             </Nav.Item>
             <Nav.Item>
-                <Link
+                <NavLink
                     className='nav-link'
                     style={{ textDecoration: "none" }}
                     to='/CreateAccount'
                 >
                     Create Account
-                </Link>
+                </NavLink>
             </Nav.Item>
         </Nav>
     );
