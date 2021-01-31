@@ -42,7 +42,14 @@ const ResultsPage = (props) => {
     return (
         <Container fluid className='divBlockWithContentTertiary min-vh-100'>
             <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col xs={12} sm={3} className='centerCard m-3'>
+                <Col
+                    xs={10}
+                    sm={8}
+                    md={7}
+                    lg={6}
+                    className='centerCardCompact m-3'
+                    style={{ maxWidth: "700px" }}
+                >
                     <h4>Results</h4>
                     <Col sm='12 mt-5'>
                         {resultsArr.map((result) => (
@@ -52,7 +59,7 @@ const ResultsPage = (props) => {
                             </p>
                         ))}
                     </Col>
-                    <Link style={{ textDecoration: "none" }} to='/Distribute'>
+                    <Link style={{ textDecoration: "none" }} to='/'>
                         <Button variant='primary' size='sm' className='mt-5'>
                             <span className='smButtonText'>Share Again</span>
                         </Button>

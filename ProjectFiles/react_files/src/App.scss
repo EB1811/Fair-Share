@@ -56,6 +56,9 @@ $container-max-widths: (
     .descText {
         font-size: 1.1rem;
     }
+    .navbar {
+        font-size: 0.875rem;
+    }
 }
 @media only screen and (max-width: 774px) {
     .Title {
@@ -174,6 +177,12 @@ $container-max-widths: (
 .descText {
     font-weight: 400;
 }
+.lowWeight {
+    font-weight: 400;
+}
+h6 {
+    font-weight: 400;
+}
 .footerText {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 300;
@@ -225,6 +234,14 @@ a:visited {
     color: #333333;
     box-shadow: 0 1px 4px #b3b3b3;
     font-size: 1rem;
+}
+@media only screen and (max-width: 774px) {
+    .centerCard {
+        padding: 100px 35px;
+    }
+    h5 {
+        font-size: 1rem;
+    }
 }
 
 .smButtonText {

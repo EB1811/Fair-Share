@@ -21,8 +21,16 @@ const Login = (props) => {
 
     return (
         <Container fluid style={{ height: "100vh" }}>
-            <Row className='align-items-center h-100 justify-content-sm-center divBlockWithContentTertiary'>
-                <Col xs={12} sm={3} className='centerCard'>
+            <Row className='align-items-center min-vh-100 justify-content-center divBlockWithContentTertiary'>
+                <Col
+                    xs={10}
+                    sm={7}
+                    md={5}
+                    lg={4}
+                    xl={3}
+                    className='centerCard'
+                    style={{ maxWidth: "510px" }}
+                >
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId='email'>
                             <Form.Label>Email</Form.Label>

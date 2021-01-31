@@ -53,7 +53,15 @@ const InputGroupInfo = (props) => {
     return (
         <Container fluid className='divBlockWithContentTertiary min-vh-100'>
             <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col xs={12} sm={3} className='centerCardCompact m-3'>
+                <Col
+                    xs={10}
+                    sm={8}
+                    md={6}
+                    lg={5}
+                    xl={3}
+                    className='centerCardCompact m-3'
+                    style={{ maxWidth: "650px" }}
+                >
                     <h5>Enter a user id to add them to the group.</h5>
                     <div
                         className='mt-4 py-2'
@@ -63,7 +71,7 @@ const InputGroupInfo = (props) => {
                         }}
                     >
                         <Row className='align-items-center'>
-                            <Col xs={9}>
+                            <Col xs={8} sm={9}>
                                 <Form.Control
                                     size='sm'
                                     placeholder={
@@ -81,7 +89,7 @@ const InputGroupInfo = (props) => {
                                     }
                                 />
                             </Col>
-                            <Col>
+                            <Col xs={4} sm={3}>
                                 <Button
                                     variant='primary'
                                     size='md'

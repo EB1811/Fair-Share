@@ -25,8 +25,16 @@ const QuestionnairePageShell = (props) => {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
-                    <Col xs={12} sm={3} className='centerCard m-3'>
-                        <h6 className='descText'>
+                    <Col
+                        xs={10}
+                        sm={7}
+                        md={5}
+                        lg={4}
+                        xl={3}
+                        className='centerCard m-3'
+                        style={{ maxWidth: "510px" }}
+                    >
+                        <h6>
                             Please complete the following short questionnaire.
                             <br />
                             <br />
@@ -49,7 +57,15 @@ const QuestionnairePageShell = (props) => {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
-                    <Col xs={12} sm={3} className='centerCard m-3'>
+                    <Col
+                        xs={10}
+                        sm={7}
+                        md={5}
+                        lg={4}
+                        xl={3}
+                        className='centerCard m-3'
+                        style={{ maxWidth: "510px" }}
+                    >
                         <QuestionnaireQuestion
                             stage={stage}
                             setStage={setStage}
@@ -64,7 +80,15 @@ const QuestionnairePageShell = (props) => {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
-                    <Col xs={12} sm={3} className='centerCard m-3'>
+                    <Col
+                        xs={10}
+                        sm={7}
+                        md={5}
+                        lg={4}
+                        xl={3}
+                        className='centerCard m-3'
+                        style={{ maxWidth: "510px" }}
+                    >
                         <Link
                             style={{ textDecoration: "none" }}
                             to='/Distribute/Valuations'

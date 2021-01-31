@@ -30,7 +30,15 @@ const DistributeEntry = () => {
                         className='divBlockWithContentTertiary min-vh-100'
                     >
                         <Row className='justify-content-center align-items-center min-vh-100'>
-                            <Col xs={12} sm={3} className='centerCard m-3'>
+                            <Col
+                                xs={10}
+                                sm={7}
+                                md={5}
+                                lg={4}
+                                xl={3}
+                                className='centerCard'
+                                style={{ maxWidth: "510px" }}
+                            >
                                 <InputRoomsInfo setStage={setStage} />
                             </Col>
                         </Row>
@@ -51,9 +59,13 @@ const DistributeEntry = () => {
                     >
                         <Row className='justify-content-center align-items-center min-vh-100'>
                             <Col
-                                xs={12}
-                                sm={4}
+                                xs={10}
+                                sm={7}
+                                md={5}
+                                lg={4}
+                                xl={3}
                                 className='centerCardCompact m-3'
+                                style={{ maxWidth: "510px" }}
                             >
                                 <InputGoodsInfo setStage={setStage} />
                             </Col>

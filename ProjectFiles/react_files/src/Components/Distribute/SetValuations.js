@@ -25,7 +25,7 @@ const InputValuations = (props) => {
     return (
         <Form.Group controlId='valuation' style={{ margin: "0px" }}>
             <div>
-                <Form.Label>{props.curGood.Good} Value</Form.Label>
+                <h5 className='lowWeight'>{props.curGood.Good} Value</h5>
             </div>
 
             <div>
@@ -63,10 +63,15 @@ const DistributeGoodsPage = (props) => {
     return (
         <Container fluid className='divBlockWithContentTertiary min-vh-100'>
             <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col xs={12} sm={6} className='centerCard m-3'>
-                    <h4 className='descText'>
-                        Please enter your valuation for each item:
-                    </h4>
+                <Col
+                    xs={10}
+                    sm={8}
+                    md={7}
+                    lg={6}
+                    className='centerCardCompact m-3'
+                    style={{ maxWidth: "800px" }}
+                >
+                    <h4>Please enter your valuation for each item:</h4>
 
                     <Form onSubmit={handleSubmit} className='mt-5'>
                         {localgoodsArr.map((good) => (
@@ -80,7 +85,7 @@ const DistributeGoodsPage = (props) => {
                         ))}
 
                         <div className='mt-3'>
-                            <Form.Label>Total Value: {total}</Form.Label>
+                            <h5 className='lowWeight'>Total Value: {total}</h5>
                         </div>
                         <Button
                             variant='primary'
