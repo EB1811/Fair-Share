@@ -74,7 +74,7 @@ const InputGoodsInfo = (props) => {
                 }}
             >
                 <Row className='align-items-center'>
-                    <Col xs={9}>
+                    <Col xs={12} sm={9}>
                         {nameFailed ? (
                             <Form.Control
                                 size='sm'
@@ -138,11 +138,12 @@ const InputGoodsInfo = (props) => {
                             />
                         )}
                     </Col>
-                    <Col>
+                    <Col xs={12} sm={3}>
                         <Button
                             variant='primary'
                             size='md'
                             onClick={() => addGood()}
+                            className='m-3'
                         >
                             <span>Add</span>
                         </Button>

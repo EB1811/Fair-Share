@@ -60,9 +60,9 @@ const DistributeEntry = () => {
                         <Row className='justify-content-center align-items-center min-vh-100'>
                             <Col
                                 xs={10}
-                                sm={7}
-                                md={5}
-                                lg={4}
+                                sm={8}
+                                md={6}
+                                lg={5}
                                 xl={3}
                                 className='centerCardCompact m-3'
                                 style={{ maxWidth: "510px" }}

@@ -67,6 +67,9 @@ $container-max-widths: (
     .descText {
         font-size: 1.25rem;
     }
+    .form-label {
+        font-size: 1.15rem !important;
+    }
 }
 @media only screen and (max-width: 500px) {
     .Title {
@@ -237,7 +240,7 @@ a:visited {
 }
 @media only screen and (max-width: 774px) {
     .centerCard {
-        padding: 100px 35px;
+        padding: 75px 35px;
     }
     h5 {
         font-size: 1rem;
