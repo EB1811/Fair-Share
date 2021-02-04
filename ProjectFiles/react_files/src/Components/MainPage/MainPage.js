@@ -33,8 +33,9 @@ import { Link } from "react-router-dom";
 //// Conditional rendering failure state in inputting group and house info.
 //TODO Start building learning page and add information about it into main page.
 //TODO Start authentication process.
-//TODO Responsiveness.
+//// Responsiveness.
 //// Back button to distribution process.
+//TODO Connect to test web api, sending json, and getting parsing the returned json.
 
 //? Some goods having an estimated value while others not, messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate
 
