@@ -15,9 +15,8 @@ import { Link } from "react-router-dom";
 const ResultsPage = (props) => {
     const [resultsArr, setResultsArr] = useState([]);
 
-    //! ALGORITHM GOES IN A FUNCTION CALLED HERE...
+    //* Create a value matrix using user and good valuations. Connect to api with value matrix.
     useEffect(() => {
-        //! PLACEHOLDER
         //* allocation = good name, user id, price, allocaiton id.
         var tempArr = [];
         var i;
@@ -36,7 +35,6 @@ const ResultsPage = (props) => {
             console.log("Not enough users");
         }
         setResultsArr(tempArr);
-        //! PLACEHOLDER
     }, [props.goodsArr, props.userArr, props.tValue, setResultsArr]);
 
     return (

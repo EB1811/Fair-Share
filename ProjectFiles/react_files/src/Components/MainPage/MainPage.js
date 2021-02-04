@@ -22,6 +22,27 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 
 // React Router
 import { Link } from "react-router-dom";
+/*
+useEffect(() => {
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Origin: "http://localhost:3000",
+        },
+        body: JSON.stringify({
+            valueMatrix: [
+                [1, 1, 0],
+                [1, 1, 1],
+                [1, 0, 0],
+            ],
+        }),
+    };
+    fetch("https://localhost:5001/api/getAllocation", requestOptions)
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+}, []);
+*/
 
 //// Button to scroll to 'we can help' section.
 //// Rework Distribute main page. Maybe have a single goods page with parameters from URL determining what to output.
@@ -35,7 +56,7 @@ import { Link } from "react-router-dom";
 //TODO Start authentication process.
 //// Responsiveness.
 //// Back button to distribution process.
-//TODO Connect to test web api, sending json, and getting parsing the returned json.
+//// Connect to test web api, sending json, and getting parsing the returned json.
 
 //? Some goods having an estimated value while others not, messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate
 

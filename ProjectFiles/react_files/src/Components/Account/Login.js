@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // Bootstrap Components
 import Button from "react-bootstrap/Button";
@@ -18,26 +18,6 @@ const Login = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
     };
-
-    useEffect(() => {
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Origin: "http://localhost:3000",
-            },
-            body: JSON.stringify({
-                valueMatrix: [
-                    [1, 1, 0],
-                    [1, 1, 1],
-                    [1, 0, 0],
-                ],
-            }),
-        };
-        fetch("https://localhost:5001/api/getAllocation", requestOptions)
-            .then((res) => res.json())
-            .then((data) => console.log(data));
-    }, []);
 
     return (
         <Container fluid style={{ height: "100vh" }}>
