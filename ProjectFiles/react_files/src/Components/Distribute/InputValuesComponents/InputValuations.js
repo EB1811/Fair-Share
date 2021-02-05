@@ -51,7 +51,7 @@ const InputValuationsForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         ////console.log(props.usersArr);
-
+        setTotal(0);
         props.nextUser();
     };
 

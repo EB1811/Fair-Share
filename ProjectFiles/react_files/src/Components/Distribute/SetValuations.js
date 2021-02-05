@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 
 // React Components
-import InputValuationsForm from "./InputValuesComponents/InputValueations";
+import InputValuationsForm from "./InputValuesComponents/InputValuations";
 
 const DistributeGoodsPage = (props) => {
     // Valuations.
