@@ -10,96 +10,55 @@ import Form from "react-bootstrap/Form";
 // Redux
 import { connect } from "react-redux";
 
-const InputValuations = (props) => {
-    const [tempValue, setTempValue] = useState(props.curGood.Value);
-
-    const handleChange = (e) => {
-        setTempValue(e.target.value);
-        props.curGood.Value = e.target.value;
-
-        props.setTotal(
-            props.goodsArr.reduce((sum, { Value }) => sum + parseInt(Value), 0)
-        );
-    };
-
-    return (
-        <Form.Group controlId='valuation' style={{ margin: "0px" }}>
-            <div>
-                <h5 className='lowWeight'>{props.curGood.Good} Value</h5>
-            </div>
-
-            <div>
-                <Form.Control
-                    type='range'
-                    value={tempValue}
-                    min={0}
-                    max={props.tValue}
-                    step={1}
-                    onInput={handleChange}
-                    onChange={handleChange}
-                    style={{ width: "90%", display: "inline-block" }}
-                />
-                <Form.Label style={{ width: "10%", margin: "5 0px" }}>
-                    {tempValue}
-                </Form.Label>
-            </div>
-        </Form.Group>
-    );
-};
+// React Components
+import InputValuationsForm from "./InputValuesComponents/InputValueations";
 
 const DistributeGoodsPage = (props) => {
     // Valuations.
-    const [localgoodsArr] = useState(props.goodsArr);
-    const [total, setTotal] = useState(0);
+    const [currUser, setCurrUser] = useState(0);
+    const [isAllUsersDone, setIsAllUsersDone] = useState(false);
 
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
         ////console.log(localgoodsArr.reduce((sum, {Value}) => sum + parseInt(Value), 0));
-        props.updateGoodsValuations(localgoodsArr);
-        props.history.push("/Results");
+        //props.updateGoodsValuations(localgoodsArr);
+        //props.history.push("/Results");
     };
 
-    return (
-        <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-            <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col
-                    xs={10}
-                    sm={8}
-                    md={7}
-                    lg={6}
-                    className='centerCardCompact m-3'
-                    style={{ maxWidth: "800px" }}
+    const nextUser = () => {};
+
+    if (props.userArr) {
+        if (!allUsersDone) {
+            return (
+                <Container
+                    fluid
+                    className='divBlockWithContentTertiary min-vh-100'
                 >
-                    <h4>Please enter your valuation for each item:</h4>
-
-                    <Form onSubmit={handleSubmit} className='mt-5'>
-                        {localgoodsArr.map((good) => (
-                            <InputValuations
-                                key={good.Good}
-                                curGood={good}
-                                goodsArr={localgoodsArr}
-                                setTotal={setTotal}
-                                tValue={props.tValue}
-                            />
-                        ))}
-
-                        <div className='mt-3'>
-                            <h5 className='lowWeight'>Total Value: {total}</h5>
-                        </div>
-                        <Button
-                            variant='primary'
-                            size='sm'
-                            className='mt-5'
-                            type='submit'
+                    <Row className='justify-content-center align-items-center min-vh-100'>
+                        <Col
+                            xs={10}
+                            sm={8}
+                            md={7}
+                            lg={6}
+                            className='centerCardCompact m-3'
+                            style={{ maxWidth: "800px" }}
                         >
-                            <span className='smButtonText'>Submit</span>
-                        </Button>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
-    );
+                            <h4>
+                                {props.userArr[currUser]}, enter your valuation
+                                for each item:
+                            </h4>
+                            <InputValuationsForm
+                                currUser={currUser}
+                                nextUser={nextUser}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            );
+        } else {
+        }
+    }
 };
 
 //* To access and modify redux store.
@@ -107,6 +66,7 @@ const mapStateToProps = (state) => {
     return {
         goodsArr: state.distGoodsInfo.goodsArray,
         tValue: state.distGoodsInfo.totalValue,
+        userArr: state.distGroupInfo.userArray,
     };
 };
 
