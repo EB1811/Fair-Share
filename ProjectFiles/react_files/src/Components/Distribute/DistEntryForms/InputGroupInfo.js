@@ -25,7 +25,7 @@ const InputGroupInfo = (props) => {
     // Update number of users on submit.
     const addToGroup = () => {
         //! This will be changed to looking to see if user id exists in database.
-        if (props.stateUserArraysome((obj) => obj.name === userId)) {
+        if (props.stateUserArray.some((obj) => obj.name === userId)) {
             setUserIdFailed(true);
             setUserId("");
         } else {

@@ -20,14 +20,14 @@ const DistributeGoodsPage = (props) => {
     // Goes to get valuations for next user, if they exist.
     const nextUser = () => {
         // Check if next user exists.
-        if (currUser < props.userArr.length) {
+        if (currUser < props.userArr.length - 1) {
             setCurrUser(currUser + 1);
         } else {
             setIsAllUsersDone(true);
         }
     };
 
-    if (props.userArr) {
+    if (props.userArr.length > 0) {
         if (!isAllUsersDone) {
             return (
                 <Container
@@ -44,8 +44,8 @@ const DistributeGoodsPage = (props) => {
                             style={{ maxWidth: "800px" }}
                         >
                             <h4>
-                                {props.userArr[currUser]}, enter your valuation
-                                for each item:
+                                {props.userArr[currUser].name}, enter your
+                                valuation for each item:
                             </h4>
                             <InputValuationsForm
                                 currUser={currUser}
@@ -58,6 +58,8 @@ const DistributeGoodsPage = (props) => {
         } else {
             return <div>Done</div>;
         }
+    } else {
+        return <div>No Users Defined</div>;
     }
 };
 

@@ -2,19 +2,20 @@ import React, { useState } from "react";
 
 // Bootstrap Components
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 // Redux
 import { connect } from "react-redux";
 
 const InputValuationsForGood = (props) => {
-    const [tempValue, setTempValue] = useState(props.curGood.Value);
-
     const handleChange = (e) => {
-        setTempValue(e.target.value);
         props.curGood.Value = e.target.value;
 
         props.setTotal(
-            props.goodsArr.reduce((sum, { Value }) => sum + parseInt(Value), 0)
+            props.usersGoodsArr.reduce(
+                (sum, { Value }) => sum + parseInt(Value),
+                0
+            )
         );
     };
 
@@ -27,7 +28,7 @@ const InputValuationsForGood = (props) => {
             <div>
                 <Form.Control
                     type='range'
-                    value={tempValue}
+                    value={props.curGood.Value}
                     min={0}
                     max={props.tValue}
                     step={1}
@@ -36,7 +37,7 @@ const InputValuationsForGood = (props) => {
                     style={{ width: "90%", display: "inline-block" }}
                 />
                 <Form.Label style={{ width: "10%", margin: "5 0px" }}>
-                    {tempValue}
+                    {props.curGood.Value}
                 </Form.Label>
             </div>
         </Form.Group>
@@ -49,17 +50,18 @@ const InputValuationsForm = (props) => {
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
+        ////console.log(props.usersArr);
 
         props.nextUser();
     };
 
     return (
         <Form onSubmit={handleSubmit} className='mt-5'>
-            {props.goodsArr.map((good) => (
+            {props.usersArr[props.currUser].userGoodsArr.map((good) => (
                 <InputValuationsForGood
                     key={good.Good}
                     curGood={good}
-                    goodsArr={props.goodsArr}
+                    usersGoodsArr={props.usersArr[props.currUser].userGoodsArr}
                     setTotal={setTotal}
                     tValue={props.tValue}
                 />
@@ -70,7 +72,7 @@ const InputValuationsForm = (props) => {
             </div>
             <Button variant='primary' size='sm' className='mt-5' type='submit'>
                 <span className='smButtonText'>
-                    {currUser >= props.userArr.length - 1
+                    {props.currUser >= props.usersArr.length - 1
                         ? "Finish"
                         : "Next User"}
                 </span>
@@ -82,9 +84,8 @@ const InputValuationsForm = (props) => {
 //* To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        goodsArr: state.distGoodsInfo.goodsArray,
         tValue: state.distGoodsInfo.totalValue,
-        userArr: state.distGroupInfo.userArray,
+        usersArr: state.distGroupInfo.userArray,
     };
 };
 

@@ -11,7 +11,7 @@ const distGroupInfoReducer = (state = initState, action) => {
             var tempArr = state.userArray;
             tempArr.push({
                 name: String(action.id),
-                goodsArr: action.goods,
+                userGoodsArr: JSON.parse(JSON.stringify(action.goods)), // Deep clone goods array.
             });
 
             return {

@@ -58,6 +58,7 @@ useEffect(() => {
 //// Back button to distribution process.
 //// Connect to test web api, sending json, and getting parsing the returned json.
 //TODO User group should be populated by the user who creates the session.
+//TODO Question asking if user wants to input valuations locally or by adding users to sessions.
 
 //? Some goods having an estimated value while others not messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate
 
