@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
 
 // Redux
 import { connect } from "react-redux";
@@ -18,18 +17,18 @@ const DistributeGoodsPage = (props) => {
     const [currUser, setCurrUser] = useState(0);
     const [isAllUsersDone, setIsAllUsersDone] = useState(false);
 
-    // Update redux valuations store on submit.
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        ////console.log(localgoodsArr.reduce((sum, {Value}) => sum + parseInt(Value), 0));
-        //props.updateGoodsValuations(localgoodsArr);
-        //props.history.push("/Results");
+    // Goes to get valuations for next user, if they exist.
+    const nextUser = () => {
+        // Check if next user exists.
+        if (currUser < props.userArr.length) {
+            setCurrUser(currUser + 1);
+        } else {
+            setIsAllUsersDone(true);
+        }
     };
 
-    const nextUser = () => {};
-
     if (props.userArr) {
-        if (!allUsersDone) {
+        if (!isAllUsersDone) {
             return (
                 <Container
                     fluid
@@ -57,6 +56,7 @@ const DistributeGoodsPage = (props) => {
                 </Container>
             );
         } else {
+            return <div>Done</div>;
         }
     }
 };
