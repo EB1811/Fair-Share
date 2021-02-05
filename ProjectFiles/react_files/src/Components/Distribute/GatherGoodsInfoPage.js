@@ -14,7 +14,7 @@ import Col from "react-bootstrap/Col";
 // Redux
 import { connect } from "react-redux";
 
-const DistributeEntry = () => {
+const GatherGoodsInfoPage = () => {
     // Stage determines which section of the goods entry input to render.
     const [stage, setStage] = useState(0);
     let { goodsType } = useParams();
@@ -90,4 +90,4 @@ const mapStateToProps = (state) => {
         userArr: state.distGroupInfo.userArray,
     };
 };
-export default connect(mapStateToProps)(DistributeEntry);
+export default connect(mapStateToProps)(GatherGoodsInfoPage);

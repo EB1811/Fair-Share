@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 // React Components
 import InputValuationsForm from "./InputValuesComponents/InputValuations";
 
-const DistributeGoodsPage = (props) => {
+const SetValuationsPage = (props) => {
     // Valuations.
     const [currUser, setCurrUser] = useState(0);
     const [isAllUsersDone, setIsAllUsersDone] = useState(false);
@@ -80,7 +80,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DistributeGoodsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SetValuationsPage);

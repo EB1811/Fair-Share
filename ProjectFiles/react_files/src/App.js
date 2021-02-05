@@ -10,7 +10,7 @@ import MainPage from "./Components/MainPage/MainPage";
 import About from "./Components/MainPage/About";
 import LearnMainPage from "./Components/Learn/LearnMainPage";
 import QuestionnairePageShell from "./Components/Questionnaire/QuestionnairePageShell";
-import SetValuations from "./Components/Distribute/SetValuations";
+import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
 import ResultsPage from "./Components/Results/ResultsPage";
 import NavCom from "./Components/Navigation/NavCom";
 import Footer from "./Components/Navigation/Footer";
@@ -19,7 +19,7 @@ import Login from "./Components/Account/Login";
 import AccountBoard from "./Components/Account/AccountBoard";
 import ScrollToTop from "./Components/Helpers/ScrollToTop";
 
-import DistributeEntry from "./Components/Distribute/DistributeEntry";
+import GatherGoodsInfoPage from "./Components/Distribute/GatherGoodsInfoPage";
 
 function App() {
     // Contains info about route.
@@ -36,7 +36,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Information/:goodsType'
-                    component={DistributeEntry}
+                    component={GatherGoodsInfoPage}
                 />
                 <Route
                     exact
@@ -46,7 +46,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Valuations'
-                    component={SetValuations}
+                    component={SetValuationsPage}
                 />
                 <Route exact path='/Results' component={ResultsPage} />
                 <Route exact path='/CreateAccount' component={CreateAccount} />
