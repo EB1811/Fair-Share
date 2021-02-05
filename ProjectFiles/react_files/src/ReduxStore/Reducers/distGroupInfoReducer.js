@@ -1,4 +1,5 @@
 const initState = {
+    // Array of users with their own goods and valuations array.
     userArray: [],
 };
 
@@ -8,7 +9,10 @@ const distGroupInfoReducer = (state = initState, action) => {
             console.log("Success", action.type);
 
             var tempArr = state.userArray;
-            tempArr.push(String(action.id));
+            tempArr.push({
+                name: String(action.id),
+                goodsArr: action.goods,
+            });
 
             return {
                 ...state,

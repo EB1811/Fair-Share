@@ -18,8 +18,6 @@ import { withRouter } from "react-router-dom";
 const InputGroupInfo = (props) => {
     // User ID.
     const [userId, setUserId] = useState("");
-    // Local group for rendering.
-    const [localGroup, setLocalGroup] = useState(props.stateUserArray);
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
@@ -27,12 +25,11 @@ const InputGroupInfo = (props) => {
     // Update number of users on submit.
     const addToGroup = () => {
         //! This will be changed to looking to see if user id exists in database.
-        if (props.stateUserArray.includes(userId)) {
+        if (props.stateUserArraysome((obj) => obj.name === userId)) {
             setUserIdFailed(true);
             setUserId("");
         } else {
-            setLocalGroup(localGroup.concat(userId));
-            props.addUser(userId);
+            props.addUser(userId, props.stateGoodsArr);
             setUserId("");
             setUserIdFailed(false);
         }
@@ -101,13 +98,13 @@ const InputGroupInfo = (props) => {
                         </Row>
                         <Row className='justify-content-center contentOverflow mt-3'>
                             <Col sm='10'>
-                                {localGroup.map((id) => (
+                                {props.stateUserArray.map((user) => (
                                     <Card
                                         style={{ color: "#000" }}
-                                        key={id}
+                                        key={user.name}
                                         body
                                     >
-                                        User {id}
+                                        User {user.name}
                                     </Card>
                                 ))}
                             </Col>
@@ -146,13 +143,14 @@ const InputGroupInfo = (props) => {
 const mapStateToProps = (state) => {
     return {
         stateUserArray: state.distGroupInfo.userArray,
+        stateGoodsArr: state.distGoodsInfo.goodsArray,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addUser: (userId) => {
-            dispatch({ type: "ADD_USER", id: userId });
+        addUser: (userId, goodsArr) => {
+            dispatch({ type: "ADD_USER", id: userId, goods: goodsArr });
         },
     };
 };
