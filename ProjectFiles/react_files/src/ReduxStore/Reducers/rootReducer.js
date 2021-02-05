@@ -1,15 +1,15 @@
 // Redux
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 // Reducers
-import distGoodsInfoReducer from './distGoodsInfoReducer';
-import distGroupInfoReducer from './distGroupInfoReducer';
-import distQuestionsReducer from './distQuestionsReducer';
+import distGoodsInfoReducer from "./distGoodsInfoReducer";
+import GroupValuesReducer from "./GroupValuesReducer";
+import distQuestionsReducer from "./distQuestionsReducer";
 
 const rootReducer = combineReducers({
     distGoodsInfo: distGoodsInfoReducer,
-    distGroupInfo: distGroupInfoReducer,
-    distQuestionsInfo: distQuestionsReducer
-})
+    distGroupInfo: GroupValuesReducer,
+    distQuestionsInfo: distQuestionsReducer,
+});
 
 export default rootReducer;
