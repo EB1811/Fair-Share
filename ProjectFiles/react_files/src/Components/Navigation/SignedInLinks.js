@@ -1,17 +1,23 @@
 import React from "react";
 
 // Router
-import { NavLink } from "react-router-dom";
-
-// Redux
-import { connect } from "react-redux";
+import { NavLink, withRouter } from "react-router-dom";
 
 // Bootstrap Components
 import Nav from "react-bootstrap/Nav";
 
-//TODO: Add conditional formatting once server is made.
+// rrf
+import { useFirebase } from "react-redux-firebase";
 
 const SignedInLinks = (props) => {
+    const firebase = useFirebase();
+
+    const logout = () => {
+        firebase.logout();
+
+        props.history.push("/");
+    };
+
     return (
         <Nav className='justify-content-end' style={{ flex: 1 }}>
             <span style={{ padding: "0.5rem", color: "#777777" }}>|</span>
@@ -25,22 +31,16 @@ const SignedInLinks = (props) => {
                 </NavLink>
             </Nav.Item>
             <Nav.Item>
-                <NavLink
+                <span
+                    onClick={logout}
                     className='nav-link'
-                    style={{ textDecoration: "none" }}
-                    to='/'
+                    style={{ cursor: "pointer" }}
                 >
                     Logout
-                </NavLink>
+                </span>
             </Nav.Item>
         </Nav>
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        //// signOut: () => dispatch(signOut())
-    };
-};
-
-export default connect(null, mapDispatchToProps)(SignedInLinks);
+export default withRouter(SignedInLinks);

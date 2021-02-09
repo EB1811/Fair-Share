@@ -1,7 +1,7 @@
 import React from "react";
 
 // React Components
-//import SignedInLinks from "./SignedInLinks";
+import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 
 // Bootstrap Components
@@ -13,9 +13,12 @@ import Nav from "react-bootstrap/Nav";
 import { NavLink, Link } from "react-router-dom";
 import Navbar from "react-bootstrap/NavBar";
 
+// Redux
+import { connect } from "react-redux";
+
 //TODO: Add conditional formatting once server is made.
 
-const NavCom = () => {
+const NavCom = (props) => {
     return (
         <NavBar expand='md' style={{ backgroundColor: "#fff" }} variant='light'>
             <Container fluid>
@@ -69,50 +72,24 @@ const NavCom = () => {
                             Finances
                         </NavLink>
                     </Nav>
-                    <SignedOutLinks />
+                    {props.authStatus.isLoaded &&
+                        (props.authStatus.uid ? (
+                            <SignedInLinks />
+                        ) : (
+                            <SignedOutLinks />
+                        ))}
                 </Navbar.Collapse>
             </Container>
         </NavBar>
     );
 };
 
-/*
-<NavBar variant='dark' className='navbarStyle'>
-            <Nav className='justify-content-md-center' style={{ flex: 1 }}>
-                <Nav.Item>
-                    <Link
-                        className='nav-link'
-                        style={{ textDecoration: "none" }}
-                        to='/'
-                    >
-                        Home
-                    </Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link
-                        className='nav-link'
-                        style={{ textDecoration: "none" }}
-                        to='/Learn'
-                    >
-                        Learn
-                    </Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link
-                        className='nav-link'
-                        style={{ textDecoration: "none" }}
-                        to='/About'
-                    >
-                        About
-                    </Link>
-                </Nav.Item>
-            </Nav>
-            <Container
-                style={{ position: "absolute", right: "1%", width: "auto" }}
-            >
-                <SignedOutLinks />
-            </Container>
-        </NavBar>
-*/
+const mapStateToProps = (state) => {
+    //console.log(state)
+    return {
+        authStatus: state.firebase.auth,
+        profile: state.firebase.profile,
+    };
+};
 
-export default NavCom;
+export default connect(mapStateToProps)(NavCom);

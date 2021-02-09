@@ -24,7 +24,7 @@ const SignedOutLinks = (props) => {
             <Nav.Item>
                 <NavLink
                     className='nav-link'
-                    style={{ textDecoration: "none" }}
+                    style={{ textDecoration: "none", cursor: "pointer" }}
                     to='/CreateAccount'
                 >
                     Create Account
