@@ -18,6 +18,9 @@ import "firebase/firestore";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance, reduxFirestore } from "redux-firestore";
 
+// Start firebase firestore.
+firebase.firestore();
+
 // Setting up firebase with redux.
 const createStoreWithFirebase = compose(
     reduxFirestore(firebase) // firebase instance as first argument, rfConfig as optional second

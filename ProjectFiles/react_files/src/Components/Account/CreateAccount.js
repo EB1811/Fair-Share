@@ -9,14 +9,32 @@ import Col from "react-bootstrap/Col";
 
 // Redux
 import { connect } from "react-redux";
+// Redux Firebase
+import { useFirebase } from "react-redux-firebase";
 
 const CreateAccount = (props) => {
     // Auth data.
     const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [pass, setPass] = useState("");
+    const firebase = useFirebase();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (email && pass) {
+            firebase
+                .createUser(
+                    { email: email, password: pass },
+                    { username: username, email: email }
+                )
+                .then(() => {
+                    console.log("Success");
+                })
+                .catch((err) => {
+                    props.signUpError(err);
+                });
+        }
     };
 
     return (
@@ -35,14 +53,21 @@ const CreateAccount = (props) => {
                         <Form.Group controlId='email'>
                             <Form.Label>Email</Form.Label>
                             <Form.Control
-                                type='text'
+                                type='email'
                                 onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId='username'>
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                type='text'
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group controlId='pass'>
                             <Form.Label>Password</Form.Label>
                             <Form.Control
-                                type='text'
+                                type='password'
                                 onChange={(e) => setPass(e.target.value)}
                             />
                         </Form.Group>
@@ -64,13 +89,17 @@ const CreateAccount = (props) => {
 const mapStateToProps = (state) => {
     ////console.log(state)
     return {
-        ////authStatus: state.firebase.auth,
-        ////authError: state.auth.authError
+        auth: state.firebase.auth,
+        authError: state.auth.authError,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        signUpError: (error) => {
+            dispatch({ type: "SIGNUP_FAILED", err: error });
+        },
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
