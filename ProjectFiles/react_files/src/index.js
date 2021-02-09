@@ -1,26 +1,53 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Redux
-import { createStore } from 'redux';
-import { Provider  } from 'react-redux';
-import rootReducer from './ReduxStore/Reducers/rootReducer'
+import { createStore, compose } from "redux";
+import { Provider } from "react-redux";
+import rootReducer from "./ReduxStore/Reducers/rootReducer";
 
-const reduxStore = createStore(rootReducer);
+// Firebase
+import fbConfig from "./FirebaseConfig/fbConfig";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { createFirestoreInstance, reduxFirestore } from "redux-firestore";
+
+// Setting up firebase with redux.
+const createStoreWithFirebase = compose(
+    reduxFirestore(firebase) // firebase instance as first argument, rfConfig as optional second
+)(createStore);
+const reduxStore = createStoreWithFirebase(rootReducer);
+
+// React-Redux-Firebase.
+const rrfConfig = {
+    userProfile: "users",
+    useFirestoreForProfile: true,
+};
+const rrfProps = {
+    firebase,
+    config: fbConfig,
+    config: rrfConfig,
+    dispatch: reduxStore.dispatch,
+    createFirestoreInstance,
+};
 
 ReactDOM.render(
-  <Provider store = {reduxStore}>
-    <Router>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
+    <Provider store={reduxStore}>
+        <ReactReduxFirebaseProvider {...rrfProps}>
+            <Router>
+                <React.StrictMode>
+                    <App />
+                </React.StrictMode>
+            </Router>
+        </ReactReduxFirebaseProvider>
+    </Provider>,
+    document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
