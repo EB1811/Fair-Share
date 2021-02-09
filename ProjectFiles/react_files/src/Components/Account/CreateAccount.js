@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 
 // Redux
 import { connect } from "react-redux";
-// Redux Firebase
+// rrf
 import { useFirebase } from "react-redux-firebase";
 
 const CreateAccount = (props) => {
@@ -29,7 +29,9 @@ const CreateAccount = (props) => {
                     { username: username, email: email }
                 )
                 .then(() => {
-                    console.log("Success");
+                    props.signUpSuccess();
+
+                    props.history.push("/");
                 })
                 .catch((err) => {
                     props.signUpError(err);
@@ -89,7 +91,6 @@ const CreateAccount = (props) => {
 const mapStateToProps = (state) => {
     ////console.log(state)
     return {
-        auth: state.firebase.auth,
         authError: state.auth.authError,
     };
 };
@@ -98,6 +99,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         signUpError: (error) => {
             dispatch({ type: "SIGNUP_FAILED", err: error });
+        },
+        signUpSuccess: () => {
+            dispatch({ type: "SIGNUP_SUCCESS" });
         },
     };
 };

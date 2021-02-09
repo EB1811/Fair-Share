@@ -34,7 +34,8 @@ import { Link } from "react-router-dom";
 //TODO Start building learning page and add information about it into main page.
 //// Start authentication process.
 //TODO Create auth reducer to store auth error.
-//TODO Ability to create account.
+//// Ability to create account.
+//TODO Login and account creation validation.
 //// Responsiveness.
 //// Back button to distribution process.
 //// Connect to test web api, sending json, and getting parsing the returned json.

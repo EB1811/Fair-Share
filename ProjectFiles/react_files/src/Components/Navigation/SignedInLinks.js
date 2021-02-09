@@ -6,6 +6,8 @@ import { NavLink, withRouter } from "react-router-dom";
 // Bootstrap Components
 import Nav from "react-bootstrap/Nav";
 
+// Redux
+import { connect } from "react-redux";
 // rrf
 import { useFirebase } from "react-redux-firebase";
 
@@ -13,8 +15,9 @@ const SignedInLinks = (props) => {
     const firebase = useFirebase();
 
     const logout = () => {
-        firebase.logout();
-
+        firebase.logout().then(() => {
+            props.logoutSuccess();
+        });
         props.history.push("/");
     };
 
@@ -43,4 +46,12 @@ const SignedInLinks = (props) => {
     );
 };
 
-export default withRouter(SignedInLinks);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logoutSuccess: () => {
+            dispatch({ type: "LOGOUT_SUCCESS" });
+        },
+    };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(SignedInLinks));

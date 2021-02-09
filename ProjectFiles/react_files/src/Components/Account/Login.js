@@ -9,14 +9,30 @@ import Col from "react-bootstrap/Col";
 
 // Redux
 import { connect } from "react-redux";
+// rrf
+import { useFirebase } from "react-redux-firebase";
 
 const Login = (props) => {
     // Auth data.
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
+    const firebase = useFirebase();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (email && pass) {
+            firebase
+                .login({ email: email, password: pass })
+                .then(() => {
+                    props.loginSuccess();
+
+                    props.history.push("/");
+                })
+                .catch((err) => {
+                    props.loginError(err);
+                });
+        }
     };
 
     return (
@@ -64,13 +80,19 @@ const Login = (props) => {
 const mapStateToProps = (state) => {
     ////console.log(state)
     return {
-        ////authStatus: state.firebase.auth,
-        ////authError: state.auth.authError
+        authError: state.auth.authError,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        loginError: (error) => {
+            dispatch({ type: "LOGIN_FAILED", err: error });
+        },
+        loginSuccess: () => {
+            dispatch({ type: "LOGIN_SUCCESS" });
+        },
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
