@@ -13,6 +13,7 @@ import { useFirebase } from "react-redux-firebase";
 
 const SignedInLinks = (props) => {
     const firebase = useFirebase();
+    const userLetter = props.profile.username ? props.profile.username : "";
 
     const logout = () => {
         firebase.logout().then(() => {
@@ -30,7 +31,7 @@ const SignedInLinks = (props) => {
                     style={{ textDecoration: "none" }}
                     to='/Account'
                 >
-                    User
+                    {userLetter}
                 </NavLink>
             </Nav.Item>
             <Nav.Item>

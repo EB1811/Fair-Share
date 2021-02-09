@@ -33,9 +33,11 @@ import { Link } from "react-router-dom";
 //// Conditional rendering failure state in inputting group and house info.
 //TODO Start building learning page and add information about it into main page.
 //// Start authentication process.
-//TODO Create auth reducer to store auth error.
+//// Create auth reducer to store auth error.
 //// Ability to create account.
 //TODO Login and account creation validation.
+//TODO Link account page to users profile.
+//TODO Route guarding.
 //// Responsiveness.
 //// Back button to distribution process.
 //// Connect to test web api, sending json, and getting parsing the returned json.

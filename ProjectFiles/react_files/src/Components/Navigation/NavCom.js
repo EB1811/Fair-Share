@@ -74,7 +74,7 @@ const NavCom = (props) => {
                     </Nav>
                     {props.authStatus.isLoaded &&
                         (props.authStatus.uid ? (
-                            <SignedInLinks />
+                            <SignedInLinks profile={props.profile} />
                         ) : (
                             <SignedOutLinks />
                         ))}
