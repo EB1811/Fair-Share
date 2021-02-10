@@ -24,26 +24,26 @@ const InputGroupInfo = ({
     history,
 }) => {
     // User ID.
-    const [userId, setUserId] = useState("");
+    const [userEmail, setUserEmail] = useState("");
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
 
     // Add initial user (the user who is on the page) on page load.
     useEffect(() => {
-        if (profile) {
-            addUser(profile.username, stateGoodsArr);
+        if (profile.isLoaded) {
+            addUser(profile.email, profile.username, stateGoodsArr);
         }
     }, [profile, stateGoodsArr, addUser]);
 
     // Update number of users on submit.
     const addToGroup = () => {
-        if (stateUserArray.some((obj) => obj.name === userId)) {
+        if (stateUserArray.some((obj) => obj.name === userEmail)) {
             setUserIdFailed(true);
-            setUserId("");
+            setUserEmail("");
         } else {
-            addUser(userId, stateGoodsArr);
-            setUserId("");
+            addUser(userEmail, "temp username", stateGoodsArr);
+            setUserEmail("");
             setUserIdFailed(false);
         }
     };
@@ -72,7 +72,7 @@ const InputGroupInfo = ({
                     className='centerCardCompact m-3'
                     style={{ maxWidth: "650px" }}
                 >
-                    <h5>Enter a user id to add them to the group.</h5>
+                    <h5>Enter a user email to add them to the group.</h5>
                     <div
                         className='mt-4 py-2'
                         style={{
@@ -87,11 +87,13 @@ const InputGroupInfo = ({
                                     placeholder={
                                         userIdFailed
                                             ? "Invalid User"
-                                            : "Enter User ID"
+                                            : "Enter User email"
                                     }
-                                    value={userId}
-                                    type='text'
-                                    onChange={(e) => setUserId(e.target.value)}
+                                    value={userEmail}
+                                    type='email'
+                                    onChange={(e) =>
+                                        setUserEmail(e.target.value)
+                                    }
                                     style={
                                         userIdFailed
                                             ? { border: "1px solid red" }
@@ -114,10 +116,10 @@ const InputGroupInfo = ({
                                 {stateUserArray.map((user) => (
                                     <Card
                                         style={{ color: "#000" }}
-                                        key={user.name}
+                                        key={user.userEmail}
                                         body
                                     >
-                                        User {user.name}
+                                        {user.username}
                                     </Card>
                                 ))}
                             </Col>
@@ -163,8 +165,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addUser: (userId, goodsArr) => {
-            dispatch({ type: "ADD_USER", id: userId, goods: goodsArr });
+        addUser: (userEmail, username, goodsArr) => {
+            dispatch({
+                type: "ADD_USER",
+                email: userEmail,
+                username: username,
+                goods: goodsArr,
+            });
         },
     };
 };
