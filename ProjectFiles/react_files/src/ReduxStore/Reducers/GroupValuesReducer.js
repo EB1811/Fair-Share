@@ -16,7 +16,7 @@ const GroupValuesReducer = (state = initState, action) => {
 
             const tempUserArr = [...state.userArray];
             tempUserArr.push({
-                userEmail: String(action.id),
+                userEmail: String(action.email),
                 username: String(action.username),
                 userGoodsArr: JSON.parse(JSON.stringify(action.goods)), // Deep clone goods array.
             });

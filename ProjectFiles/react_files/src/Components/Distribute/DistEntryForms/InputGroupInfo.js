@@ -10,7 +10,10 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
 // Redux
+import { compose } from "redux";
 import { connect } from "react-redux";
+// rrf
+import { firestoreConnect } from "react-redux-firebase";
 
 // React Router
 import { withRouter } from "react-router-dom";
@@ -18,6 +21,7 @@ import { withRouter } from "react-router-dom";
 const InputGroupInfo = ({
     setStage,
     profile,
+    firebaseUsers,
     stateUserArray,
     stateGoodsArr,
     addUser,
@@ -38,13 +42,18 @@ const InputGroupInfo = ({
 
     // Update number of users on submit.
     const addToGroup = () => {
-        if (stateUserArray.some((obj) => obj.name === userEmail)) {
-            setUserIdFailed(true);
-            setUserEmail("");
-        } else {
-            addUser(userEmail, "temp username", stateGoodsArr);
+        const user = firebaseUsers.filter((user) => user.email === userEmail);
+        if (
+            firebaseUsers &&
+            !stateUserArray.some((obj) => obj.userEmail === userEmail) &&
+            user.length > 0
+        ) {
+            addUser(user[0].email, user[0].username, stateGoodsArr);
             setUserEmail("");
             setUserIdFailed(false);
+        } else {
+            setUserIdFailed(true);
+            setUserEmail("");
         }
     };
     // Validate group then continue to next page.
@@ -158,6 +167,7 @@ const InputGroupInfo = ({
 const mapStateToProps = (state) => {
     return {
         profile: state.firebase.profile,
+        firebaseUsers: state.firestore.ordered.users,
         stateUserArray: state.distGroupInfo.userArray,
         stateGoodsArr: state.distGoodsInfo.goodsArray,
     };
@@ -177,5 +187,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InputGroupInfo)
+    compose(
+        firestoreConnect(() => ["users"]),
+        connect(mapStateToProps, mapDispatchToProps)
+    )(InputGroupInfo)
 );

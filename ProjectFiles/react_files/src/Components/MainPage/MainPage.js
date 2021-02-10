@@ -41,7 +41,8 @@ import { Link } from "react-router-dom";
 //// Responsiveness.
 //// Back button to distribution process.
 //// Connect to test web api, sending json, and getting parsing the returned json.
-//TODO User group should be populated by the user who creates the session.
+//// User group should be populated by the user who creates the session.
+//TODO Ability to delete users from group.
 //TODO Question asking if user wants to input valuations locally or by adding users to sessions.
 //TODO Make results page parse data from API.
 //TODO Update to react 4.
