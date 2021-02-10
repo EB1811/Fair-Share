@@ -8,8 +8,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 
-// Redux
-import { connect } from "react-redux";
 // rrf
 import { useFirebase } from "react-redux-firebase";
 
@@ -17,7 +15,14 @@ const Login = (props) => {
     // Auth data.
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
+    const [error, setError] = useState();
     const firebase = useFirebase();
+
+    // Creating an error massage from the given Error object.
+    const errorMessage = (error) => {
+        console.log("Login Failed: ", error.message);
+        setError("Login Failed: " + error.message);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,12 +31,10 @@ const Login = (props) => {
             firebase
                 .login({ email: email, password: pass })
                 .then(() => {
-                    props.loginSuccess();
-
                     props.history.push("/");
                 })
                 .catch((err) => {
-                    props.loginError(err);
+                    errorMessage(err);
                 });
         }
     };
@@ -63,11 +66,9 @@ const Login = (props) => {
                                 onChange={(e) => setPass(e.target.value)}
                             />
                         </Form.Group>
-                        {props.authError ? (
+                        {error ? (
                             <Alert variant={"danger"}>
-                                <span className='smallInfoText'>
-                                    {props.authError}
-                                </span>
+                                <span className='smallInfoText'>{error}</span>
                             </Alert>
                         ) : (
                             <h5>&nbsp;</h5>
@@ -82,22 +83,4 @@ const Login = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    ////console.log(state)
-    return {
-        authError: state.auth.authError,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loginError: (error) => {
-            dispatch({ type: "LOGIN_FAILED", err: error });
-        },
-        loginSuccess: () => {
-            dispatch({ type: "LOGIN_SUCCESS" });
-        },
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

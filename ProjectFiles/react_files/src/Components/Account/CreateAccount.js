@@ -8,8 +8,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 
-// Redux
-import { connect } from "react-redux";
 // rrf
 import { useFirebase } from "react-redux-firebase";
 
@@ -18,7 +16,14 @@ const CreateAccount = (props) => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [pass, setPass] = useState("");
+    const [error, setError] = useState();
     const firebase = useFirebase();
+
+    // Creating an error massage from the given Error object.
+    const errorMessage = (error) => {
+        console.log("Signup Failed: ", error.message);
+        setError("Signup Failed: " + error.message);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,15 +36,13 @@ const CreateAccount = (props) => {
                         { username: username, email: email }
                     )
                     .then(() => {
-                        props.signUpSuccess();
-
                         props.history.push("/");
                     })
                     .catch((err) => {
-                        props.signUpError(err);
+                        errorMessage(err);
                     });
             } else {
-                props.signUpError(Error("Username cannot be empty."));
+                errorMessage(Error("Username cannot be empty."));
             }
         }
     };
@@ -78,11 +81,9 @@ const CreateAccount = (props) => {
                                 onChange={(e) => setPass(e.target.value)}
                             />
                         </Form.Group>
-                        {props.authError ? (
+                        {error ? (
                             <Alert variant={"danger"}>
-                                <span className='smallInfoText'>
-                                    {props.authError}
-                                </span>
+                                <span className='smallInfoText'>{error}</span>
                             </Alert>
                         ) : (
                             <h5>&nbsp;</h5>
@@ -97,22 +98,4 @@ const CreateAccount = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    ////console.log(state)
-    return {
-        authError: state.auth.authError,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signUpError: (error) => {
-            dispatch({ type: "SIGNUP_FAILED", err: error });
-        },
-        signUpSuccess: () => {
-            dispatch({ type: "SIGNUP_SUCCESS" });
-        },
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
+export default CreateAccount;

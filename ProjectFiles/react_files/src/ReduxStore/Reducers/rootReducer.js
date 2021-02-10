@@ -5,7 +5,6 @@ import { combineReducers } from "redux";
 import distGoodsInfoReducer from "./distGoodsInfoReducer";
 import GroupValuesReducer from "./GroupValuesReducer";
 import distQuestionsReducer from "./distQuestionsReducer";
-import authReducer from "./authReducer";
 
 // Firebase Reducer.
 import { firestoreReducer } from "redux-firestore";
@@ -15,8 +14,6 @@ const rootReducer = combineReducers({
     distGoodsInfo: distGoodsInfoReducer,
     distGroupInfo: GroupValuesReducer,
     distQuestionsInfo: distQuestionsReducer,
-    // Store potential auth error.
-    auth: authReducer,
     // Firebase
     firebase: firebaseReducer,
     firestore: firestoreReducer,
