@@ -42,6 +42,9 @@ const CreateAccount = (props) => {
                         errorMessage(err);
                     });
             } else {
+                setEmail("");
+                setUsername("");
+                setPass("");
                 errorMessage(Error("Username cannot be empty."));
             }
         }
@@ -64,6 +67,7 @@ const CreateAccount = (props) => {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 type='email'
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </Form.Group>
@@ -71,6 +75,7 @@ const CreateAccount = (props) => {
                             <Form.Label>Username</Form.Label>
                             <Form.Control
                                 type='text'
+                                value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </Form.Group>
@@ -78,6 +83,7 @@ const CreateAccount = (props) => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type='password'
+                                value={pass}
                                 onChange={(e) => setPass(e.target.value)}
                             />
                         </Form.Group>

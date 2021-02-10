@@ -34,6 +34,8 @@ const Login = (props) => {
                     props.history.push("/");
                 })
                 .catch((err) => {
+                    setEmail("");
+                    setPass("");
                     errorMessage(err);
                 });
         }
@@ -56,6 +58,7 @@ const Login = (props) => {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 type='email'
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </Form.Group>
@@ -63,6 +66,7 @@ const Login = (props) => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type='password'
+                                value={pass}
                                 onChange={(e) => setPass(e.target.value)}
                             />
                         </Form.Group>

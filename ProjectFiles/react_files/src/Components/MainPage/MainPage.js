@@ -35,7 +35,7 @@ import { Link } from "react-router-dom";
 //// Start authentication process.
 //// Create auth reducer to store auth error.
 //// Ability to create account.
-//TODO Login and account creation validation.
+//// Login and account creation validation.
 //TODO Link account page to users profile.
 //TODO Route guarding.
 //// Responsiveness.
