@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 
 // Redux
 import { connect } from "react-redux";
@@ -51,23 +52,27 @@ const Login = (props) => {
                         <Form.Group controlId='email'>
                             <Form.Label>Email</Form.Label>
                             <Form.Control
-                                type='text'
+                                type='email'
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </Form.Group>
-                        <Form.Group controlId='pass'>
+                        <Form.Group controlId='pass' className='mb-4'>
                             <Form.Label>Password</Form.Label>
                             <Form.Control
-                                type='text'
+                                type='password'
                                 onChange={(e) => setPass(e.target.value)}
                             />
                         </Form.Group>
-                        <Button
-                            variant='primary'
-                            type='submit'
-                            size='sm'
-                            className='mt-5'
-                        >
+                        {props.authError ? (
+                            <Alert variant={"danger"}>
+                                <span className='smallInfoText'>
+                                    {props.authError}
+                                </span>
+                            </Alert>
+                        ) : (
+                            <h5>&nbsp;</h5>
+                        )}
+                        <Button variant='primary' type='submit' size='sm'>
                             <span className='smButtonText'>Login</span>
                         </Button>
                     </Form>

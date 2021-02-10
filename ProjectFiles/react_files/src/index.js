@@ -35,6 +35,7 @@ const rrfConfig = {
 const rrfProps = {
     firebase,
     config: fbConfig,
+    // eslint-disable-next-line
     config: rrfConfig,
     dispatch: reduxStore.dispatch,
     createFirestoreInstance,
