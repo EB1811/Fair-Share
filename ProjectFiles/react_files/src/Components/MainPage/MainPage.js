@@ -48,6 +48,7 @@ import { Link } from "react-router-dom";
 
 //? Some goods having an estimated value while others not messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate.
 //? Questionnaire at the start, or some way of being able to add user without user id, for local shares.
+//? More username error types e.g., must be over 6 characters.
 
 const MainPage = () => {
     // Scrolling.

@@ -71,9 +71,7 @@ const Login = (props) => {
                             />
                         </Form.Group>
                         {error ? (
-                            <Alert variant={"danger"}>
-                                <span className='smallInfoText'>{error}</span>
-                            </Alert>
+                            <Alert variant={"danger"}>{error}</Alert>
                         ) : (
                             <h5>&nbsp;</h5>
                         )}

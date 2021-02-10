@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -15,36 +15,49 @@ import { connect } from "react-redux";
 // React Router
 import { withRouter } from "react-router-dom";
 
-const InputGroupInfo = (props) => {
+const InputGroupInfo = ({
+    setStage,
+    profile,
+    stateUserArray,
+    stateGoodsArr,
+    addUser,
+    history,
+}) => {
     // User ID.
     const [userId, setUserId] = useState("");
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
 
+    // Add initial user (the user who is on the page) on page load.
+    useEffect(() => {
+        if (profile) {
+            addUser(profile.username, stateGoodsArr);
+        }
+    }, [profile, stateGoodsArr, addUser]);
+
     // Update number of users on submit.
     const addToGroup = () => {
-        //! This will be changed to looking to see if user id exists in database.
-        if (props.stateUserArray.some((obj) => obj.name === userId)) {
+        if (stateUserArray.some((obj) => obj.name === userId)) {
             setUserIdFailed(true);
             setUserId("");
         } else {
-            props.addUser(userId, props.stateGoodsArr);
+            addUser(userId, stateGoodsArr);
             setUserId("");
             setUserIdFailed(false);
         }
     };
     // Validate group then continue to next page.
     const checkGroup = () => {
-        if (props.stateUserArray.length < 2) {
+        if (stateUserArray.length < 2) {
             setGroupCountFailed(true);
         } else {
             setGroupCountFailed(false);
-            props.history.push("/Distribute/Questions");
+            history.push("/Distribute/Questions");
         }
     };
     const prevStage = () => {
-        props.setStage(0);
+        setStage(0);
     };
 
     return (
@@ -98,7 +111,7 @@ const InputGroupInfo = (props) => {
                         </Row>
                         <Row className='justify-content-center contentOverflow mt-3'>
                             <Col sm='10'>
-                                {props.stateUserArray.map((user) => (
+                                {stateUserArray.map((user) => (
                                     <Card
                                         style={{ color: "#000" }}
                                         key={user.name}
@@ -142,6 +155,7 @@ const InputGroupInfo = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
+        profile: state.firebase.profile,
         stateUserArray: state.distGroupInfo.userArray,
         stateGoodsArr: state.distGoodsInfo.goodsArray,
     };

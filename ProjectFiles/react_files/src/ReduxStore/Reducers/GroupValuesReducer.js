@@ -14,7 +14,7 @@ const GroupValuesReducer = (state = initState, action) => {
         case "ADD_USER":
             console.log("Success", action.type);
 
-            var tempUserArr = state.userArray;
+            const tempUserArr = [...state.userArray];
             tempUserArr.push({
                 //! userID,
                 name: String(action.id),

@@ -23,7 +23,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
             console.log("Success", action.type);
 
             // Add good name to goods array by first turning it into a good object.
-            var tempGoodsArr = state.goodsArray;
+            var tempGoodsArr = [...state.goodsArray];
             /*
             var good = {
                 Good: String(action.good.Good),
