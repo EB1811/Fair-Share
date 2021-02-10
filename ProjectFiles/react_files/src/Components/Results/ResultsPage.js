@@ -13,30 +13,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ResultsPage = (props) => {
-    const [resultsArr, setResultsArr] = useState([]);
-
-    //* Create a value matrix using user and good valuations. Connect to api with value matrix.
-    useEffect(() => {
-        //* allocation = good name, user id, price, allocaiton id.
-        var tempArr = [];
-        var i;
-        var allocation;
-        if (props.goodsArr.length <= props.userArr.length) {
-            for (i = 0; i < props.goodsArr.length; i++) {
-                allocation = {
-                    good: props.goodsArr[i].Good,
-                    user: props.userArr[i],
-                    price: parseInt(props.tValue) / props.goodsArr.length,
-                    id: i,
-                };
-                tempArr.push(allocation);
-            }
-        } else {
-            console.log("Not enough users");
-        }
-        setResultsArr(tempArr);
-    }, [props.goodsArr, props.userArr, props.tValue, setResultsArr]);
-
+    console.log(props.stateAllocations);
     return (
         <Container fluid className='divBlockWithContentTertiary min-vh-100'>
             <Row className='justify-content-center align-items-center min-vh-100'>
@@ -50,10 +27,9 @@ const ResultsPage = (props) => {
                 >
                     <h4>Results</h4>
                     <Col sm='12 mt-5'>
-                        {resultsArr.map((result) => (
-                            <p key={result.id}>
-                                User with ID {result.user}: {result.good} at £
-                                {result.price}
+                        {props.stateAllocations.map((user) => (
+                            <p key={user.email}>
+                                {user.username}: {user.alloGoods}
                             </p>
                         ))}
                     </Col>
@@ -71,14 +47,8 @@ const ResultsPage = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        goodsArr: state.distGoodsInfo.goodsArray,
-        userArr: state.distGroupInfo.userArray,
-        tValue: state.distGoodsInfo.totalValue,
+        stateAllocations: state.distGroupInfo.allocations,
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
+export default connect(mapStateToProps)(ResultsPage);

@@ -26,6 +26,7 @@ const SetValuationsPage = (props) => {
         } else {
             // Dispatch to get results and redirect to results page.
             props.getAllocation();
+            props.history.push("/Results");
         }
     };
 

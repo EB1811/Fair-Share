@@ -56,6 +56,7 @@ const GroupValuesReducer = (state = initState, action) => {
                 }
             }
 
+            const tempAlloArray = [...state.allocations];
             // Connect to API.
             const requestOptions = {
                 method: "POST",
@@ -69,13 +70,23 @@ const GroupValuesReducer = (state = initState, action) => {
             };
             fetch("https://localhost:5001/api/getAllocation", requestOptions)
                 .then((res) => res.json())
-                .then((data) => console.log(data))
+                .then((data) => {
+                    data.map((user) =>
+                        tempAlloArray.push({
+                            userEmail: state.userArray[user.who].userEmail,
+                            username: state.userArray[user.who].username,
+                            alloGoods: user.goodsList,
+                        })
+                    );
+                })
                 .catch((err) => {
                     console.log(err);
                 });
+            console.log(tempAlloArray);
 
             return {
                 ...state,
+                userArray: tempAlloArray,
             };
         default:
             return state;
