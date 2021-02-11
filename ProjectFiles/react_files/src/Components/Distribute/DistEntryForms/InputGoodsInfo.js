@@ -15,8 +15,6 @@ const InputGoodsInfo = (props) => {
     // Goods Name.
     const [goodName, setGoodName] = useState("");
     const [goodValue, setGoodValue] = useState("");
-    // Local group for rendering.
-    const [localGoods, setLocalGoods] = useState(props.stateGoodsArray);
     // Failed bool used for conditional css.
     const [nameFailed, setNameFailed] = useState(false);
     const [nameFailedEmpty, setNameFailedEmpty] = useState(false);
@@ -26,7 +24,10 @@ const InputGoodsInfo = (props) => {
     //* Add good to state and store.
     //? Maybe make goods value and name not turn into a object for the state, i.e., simply pass goodName and goodValue.
     const addGood = () => {
-        if (localGoods.filter((good) => good.Good === goodName).length > 0) {
+        if (
+            props.stateGoodsArray.filter((good) => good.Good === goodName)
+                .length > 0
+        ) {
             setNameFailed(true);
             setNameFailedEmpty(false);
             setGoodName("");
@@ -42,7 +43,6 @@ const InputGoodsInfo = (props) => {
                 estValue: goodValue,
                 Value: 0,
             };
-            setLocalGoods(localGoods.concat(good));
             // State
             props.addGoods(good);
 
@@ -52,6 +52,9 @@ const InputGoodsInfo = (props) => {
             setNameFailedEmpty(false);
             setValueFailed(false);
         }
+    };
+    const deleteGood = (goodName) => {
+        props.deleteGood(goodName);
     };
     // Next state.
     const nextState = () => {
@@ -152,13 +155,19 @@ const InputGoodsInfo = (props) => {
                 <hr />
                 <Row className='justify-content-center contentOverflow mt-3'>
                     <Col sm='10'>
-                        {localGoods.map((good) => (
+                        {props.stateGoodsArray.map((good) => (
                             <Card
                                 style={{ color: "#000" }}
                                 key={good.Good}
                                 body
                             >
                                 {good.Good} | {good.estValue}
+                                <button
+                                    className='close'
+                                    onClick={() => deleteGood(good.Good)}
+                                >
+                                    ×
+                                </button>
                             </Card>
                         ))}
                     </Col>
@@ -191,6 +200,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addGoods: (good) => {
             dispatch({ type: "ADD_GOODS", good: good });
+        },
+        deleteGood: (goodName) => {
+            dispatch({ type: "DELETE_GOOD", goodName: goodName });
         },
         updateTotalValue: (tValue) => {
             dispatch({ type: "UPDATE_TOTAL_VALUE", i: tValue });

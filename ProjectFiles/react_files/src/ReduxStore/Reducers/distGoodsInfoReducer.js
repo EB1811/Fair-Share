@@ -43,6 +43,17 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 totalValue: goodsTotalVal,
                 goodsArray: tempGoodsArr,
             };
+        case "DELETE_GOOD":
+            console.log("Success", action.type);
+
+            const newGoodsArr = [...state.goodsArray].filter((good) => {
+                return good.Good !== action.goodName;
+            });
+
+            return {
+                ...state,
+                goodsArray: newGoodsArr,
+            };
         case "UPDATE_TOTAL_VALUE":
             console.log("Success ", action.type);
             var newTotal = action.i;

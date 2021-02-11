@@ -5,7 +5,7 @@ const initState = {
 
     //* Array holding the allocations.
     //? Hold userId in 'user' key?
-    // [{user, goods}...]
+    // [{userEmail, username, userGoodsArr}...]
     allocations: [],
 };
 
@@ -25,7 +25,17 @@ const GroupValuesReducer = (state = initState, action) => {
                 ...state,
                 userArray: tempUserArr,
             };
-        //* Connect to API and get allocations using userArray.
+        case "DELETE_USER":
+            console.log("Success", action.type);
+
+            const newUserArr = [...state.userArray].filter((user) => {
+                return user.userEmail !== action.userEmail;
+            });
+
+            return {
+                ...state,
+                userArray: newUserArr,
+            };
         case "SET_ALLOCATIONS":
             console.log("Success", action.type);
 

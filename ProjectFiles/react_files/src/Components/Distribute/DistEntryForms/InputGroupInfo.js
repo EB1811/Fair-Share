@@ -25,6 +25,7 @@ const InputGroupInfo = ({
     stateUserArray,
     stateGoodsArr,
     addUser,
+    removeUser,
     history,
 }) => {
     // User ID.
@@ -63,6 +64,11 @@ const InputGroupInfo = ({
         } else {
             setGroupCountFailed(false);
             history.push("/Distribute/Questions");
+        }
+    };
+    const deleteUser = (userEmail) => {
+        if (userEmail !== profile.email) {
+            removeUser(userEmail);
         }
     };
     const prevStage = () => {
@@ -124,11 +130,26 @@ const InputGroupInfo = ({
                             <Col sm='10'>
                                 {stateUserArray.map((user) => (
                                     <Card
-                                        style={{ color: "#000" }}
+                                        style={{
+                                            color: "#000",
+                                            textAlign: "left",
+                                        }}
                                         key={user.userEmail}
                                         body
                                     >
                                         {user.username}
+                                        {user.userEmail !== profile.email ? (
+                                            <button
+                                                className='close'
+                                                onClick={() =>
+                                                    deleteUser(user.userEmail)
+                                                }
+                                            >
+                                                ×
+                                            </button>
+                                        ) : (
+                                            <button className='close'></button>
+                                        )}
                                     </Card>
                                 ))}
                             </Col>
@@ -181,6 +202,12 @@ const mapDispatchToProps = (dispatch) => {
                 email: userEmail,
                 username: username,
                 goods: goodsArr,
+            });
+        },
+        removeUser: (userEmail) => {
+            dispatch({
+                type: "DELETE_USER",
+                userEmail: userEmail,
             });
         },
     };

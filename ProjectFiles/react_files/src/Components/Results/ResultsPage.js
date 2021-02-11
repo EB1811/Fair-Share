@@ -75,7 +75,7 @@ const ResultsPage = ({
                     console.log(err);
                 });
         }
-    }, [setStateAllocation, userArray]);
+    }, [setStateAllocation, userArray, goodsArray]);
 
     if (stateAllocation.length > 0) {
         console.log(stateAllocation);
