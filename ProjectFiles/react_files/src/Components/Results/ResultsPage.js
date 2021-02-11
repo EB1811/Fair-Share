@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -12,43 +12,131 @@ import { connect } from "react-redux";
 // React Router
 import { Link } from "react-router-dom";
 
-const ResultsPage = (props) => {
-    console.log(props.stateAllocations);
-    return (
-        <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-            <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col
-                    xs={10}
-                    sm={8}
-                    md={7}
-                    lg={6}
-                    className='centerCardCompact m-3'
-                    style={{ maxWidth: "700px" }}
-                >
-                    <h4>Results</h4>
-                    <Col sm='12 mt-5'>
-                        {props.stateAllocations.map((user) => (
-                            <p key={user.email}>
-                                {user.username}: {user.alloGoods}
-                            </p>
-                        ))}
+const ResultsPage = ({
+    userArray,
+    stateAllocation,
+    setStateAllocation,
+    goodsArray,
+}) => {
+    // Get results.
+    useEffect(() => {
+        if (userArray.length > 0 && goodsArray.length > 0) {
+            //* API accepts JSON format with a matrix representing each user as a row, and each good as a column. Row, Column = user valuation.
+            /*
+            {
+                "valueMatrix": 
+                [ 
+                    [500, 100, 700, 1], 
+                    [1000, 200, 800, 5], 
+                    [100, 500, 1000, 100]
+                ]
+            }
+            */
+
+            // First convert valuations in user array into a format compatible with API.
+            const userCount = userArray.length;
+            const goodsCount = userArray[0].userGoodsArr.length;
+            var valueMatrix = Array.from(
+                Array(userCount),
+                () => new Array(goodsCount)
+            );
+            for (var i = 0; i < userCount; i++) {
+                for (var j = 0; j < goodsCount; j++) {
+                    valueMatrix[i][j] = userArray[i].userGoodsArr[j].Value;
+                }
+            }
+
+            // Connect to API.
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Origin: "http://localhost:3000",
+                },
+                body: JSON.stringify({
+                    valueMatrix: valueMatrix,
+                }),
+            };
+            const tempAlloArray = [];
+            fetch("https://localhost:5001/api/getAllocation", requestOptions)
+                .then((res) => res.json())
+                .then((data) => {
+                    data.map((user) =>
+                        tempAlloArray.push({
+                            userEmail: userArray[user.who].userEmail,
+                            username: userArray[user.who].username,
+                            alloGoods: user.goodsList,
+                        })
+                    );
+
+                    setStateAllocation(tempAlloArray);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, [setStateAllocation, userArray]);
+
+    if (stateAllocation.length > 0) {
+        console.log(stateAllocation);
+        return (
+            <Container fluid className='divBlockWithContentTertiary min-vh-100'>
+                <Row className='justify-content-center align-items-center min-vh-100'>
+                    <Col
+                        xs={10}
+                        sm={8}
+                        md={7}
+                        lg={6}
+                        className='centerCardCompact m-3'
+                        style={{ maxWidth: "700px" }}
+                    >
+                        <h4>Results</h4>
+                        <Col sm='12 mt-5'>
+                            {stateAllocation.map((user) => (
+                                <p key={user.userEmail}>
+                                    {user.username}:&nbsp;
+                                    {user.alloGoods.map((goodIndex) => (
+                                        <span key={goodsArray[goodIndex].Good}>
+                                            {goodsArray[goodIndex].Good}&nbsp;
+                                        </span>
+                                    ))}
+                                </p>
+                            ))}
+                        </Col>
+                        <Link style={{ textDecoration: "none" }} to='/'>
+                            <Button
+                                variant='primary'
+                                size='sm'
+                                className='mt-5'
+                            >
+                                <span className='smButtonText'>
+                                    Share Again
+                                </span>
+                            </Button>
+                        </Link>
                     </Col>
-                    <Link style={{ textDecoration: "none" }} to='/'>
-                        <Button variant='primary' size='sm' className='mt-5'>
-                            <span className='smButtonText'>Share Again</span>
-                        </Button>
-                    </Link>
-                </Col>
-            </Row>
-        </Container>
-    );
+                </Row>
+            </Container>
+        );
+    } else {
+        return <div>Loading</div>;
+    }
 };
 
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        stateAllocations: state.distGroupInfo.allocations,
+        stateAllocation: state.distGroupInfo.allocations,
+        userArray: state.distGroupInfo.userArray,
+        goodsArray: state.distGoodsInfo.goodsArray,
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setStateAllocation: (allocationArr) => {
+            dispatch({ type: "SET_ALLOCATIONS", allocationArr: allocationArr });
+        },
     };
 };
 
-export default connect(mapStateToProps)(ResultsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);

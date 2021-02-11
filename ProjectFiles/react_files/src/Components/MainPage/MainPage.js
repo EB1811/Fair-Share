@@ -47,9 +47,12 @@ import { Link } from "react-router-dom";
 //TODO Make results page parse data from API.
 //TODO Update to react 4.
 
+//! Loading signed in links currently loads each link individually, e.g., first logout, then name.
+
 //? Some goods having an estimated value while others not messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate.
 //? Questionnaire at the start, or some way of being able to add user without user id, for local shares.
 //? More username error types e.g., must be over 6 characters.
+//? Maybe create a value matrix in input valuations component instead of results page.
 
 const MainPage = () => {
     // Scrolling.

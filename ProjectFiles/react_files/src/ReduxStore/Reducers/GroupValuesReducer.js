@@ -26,67 +26,14 @@ const GroupValuesReducer = (state = initState, action) => {
                 userArray: tempUserArr,
             };
         //* Connect to API and get allocations using userArray.
-        case "GET_ALLOCATIONS":
+        case "SET_ALLOCATIONS":
             console.log("Success", action.type);
 
-            //* API accepts JSON format with a matrix representing each user as a row, and each good as a column. Row, Column = user valuation.
-            /*
-            {
-                "valueMatrix": 
-                [ 
-                    [500, 100, 700, 1], 
-                    [1000, 200, 800, 5], 
-                    [100, 500, 1000, 100]
-                ]
-            }
-            */
-
-            // First convert valuations in user array into a format compatible with API.
-            //? Maybe send list of users and their valuations and let API convert to matrix (potentially simpler).
-            const userCount = state.userArray.length;
-            const goodsCount = state.userArray[0].userGoodsArr.length;
-            var valueMatrix = Array.from(
-                Array(userCount),
-                () => new Array(goodsCount)
-            );
-            for (var i = 0; i < userCount; i++) {
-                for (var j = 0; j < goodsCount; j++) {
-                    valueMatrix[i][j] =
-                        state.userArray[i].userGoodsArr[j].Value;
-                }
-            }
-
-            const tempAlloArray = [...state.allocations];
-            // Connect to API.
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Origin: "http://localhost:3000",
-                },
-                body: JSON.stringify({
-                    valueMatrix: valueMatrix,
-                }),
-            };
-            fetch("https://localhost:5001/api/getAllocation", requestOptions)
-                .then((res) => res.json())
-                .then((data) => {
-                    data.map((user) =>
-                        tempAlloArray.push({
-                            userEmail: state.userArray[user.who].userEmail,
-                            username: state.userArray[user.who].username,
-                            alloGoods: user.goodsList,
-                        })
-                    );
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            console.log(tempAlloArray);
+            const newAllocationsArr = [...action.allocationArr];
 
             return {
                 ...state,
-                userArray: tempAlloArray,
+                allocations: newAllocationsArr,
             };
         default:
             return state;
