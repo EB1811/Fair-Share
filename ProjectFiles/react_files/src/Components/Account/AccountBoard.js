@@ -1,23 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 
 import { Redirect } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
 const AccountBoard = () => {
-    //! Temp data. Change once server is set up.
-    const [valArr] = useState([
-        { name: "Valuation 1" },
-        { name: "Valuation 2" },
-        { name: "Valuation 3" },
-        { name: "Valuation 4" },
-    ]);
     // Getting from store.
     const profile = useSelector((state) => state.firebase.profile);
     const auth = useSelector((state) => state.firebase.auth);

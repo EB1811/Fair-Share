@@ -23,38 +23,18 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 // React Router
 import { Link } from "react-router-dom";
 
-//// Button to scroll to 'we can help' section.
-//// Rework Distribute main page. Maybe have a single goods page with parameters from URL determining what to output.
-//// Rework distribute pages by creating seperate components for rent share and goods share. Maybe adding another component for 'seperate finances'.
-//// Typography changes to other pages.
-//// Delete distribution main page.
-//// Update navbar: add all types of distributions links (rent, goods, finances), add brand logo, move to left. Make links active when user is on the page corresponding to that link.
-//// Conditional rendering failure state in inputting group and house info.
-//TODO Start building learning page and add information about it into main page.
-//// Start authentication process.
-//// Create auth reducer to store auth error.
-//// Ability to create account.
-//// Login and account creation validation.
-//// Link account page to users profile.
-//// Route guarding.
-//// Responsiveness.
-//// Back button to distribution process.
-//// Connect to test web api, sending json, and getting parsing the returned json.
-//// User group should be populated by the user who creates the session.
-//// Ability to delete users from group.
+//TODO Buildi the learning page and add information about it into main page.
 //TODO Question asking if user wants to input valuations locally or by adding users to sessions.
-//// Make results page parse data from API.
 //TODO Results page ui improvements.
 //TODO Update to react 4.
 //TODO Account actions in /Account page.
-
-//! Loading signed in links currently loads each link individually, e.g., first logout, then name.
 
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
 //? Some goods having an estimated value while others not messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate.
 //? Questionnaire at the start, or some way of being able to add user without user id, for local shares.
 //? More username error types e.g., must be over 6 characters.
 //? Maybe create a value matrix in input valuations component instead of results page.
+//? Maybe wait for auth to load before rendering anything in App.js.
 
 const MainPage = () => {
     // Scrolling.

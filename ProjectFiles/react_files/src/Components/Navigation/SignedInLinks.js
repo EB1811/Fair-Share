@@ -22,29 +22,33 @@ const SignedInLinks = (props) => {
         props.history.push("/");
     };
 
-    return (
-        <Nav className='justify-content-end' style={{ flex: 1 }}>
-            <span style={{ padding: "0.5rem", color: "#777777" }}>|</span>
-            <Nav.Item>
-                <NavLink
-                    className='nav-link'
-                    style={{ textDecoration: "none" }}
-                    to='/Account'
-                >
-                    {userLetter}
-                </NavLink>
-            </Nav.Item>
-            <Nav.Item>
-                <span
-                    onClick={logout}
-                    className='nav-link'
-                    style={{ cursor: "pointer" }}
-                >
-                    Logout
-                </span>
-            </Nav.Item>
-        </Nav>
-    );
+    if (userLetter) {
+        return (
+            <Nav className='justify-content-end' style={{ flex: 1 }}>
+                <span style={{ padding: "0.5rem", color: "#777777" }}>|</span>
+                <Nav.Item>
+                    <NavLink
+                        className='nav-link'
+                        style={{ textDecoration: "none" }}
+                        to='/Account'
+                    >
+                        {userLetter}
+                    </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                    <span
+                        onClick={logout}
+                        className='nav-link'
+                        style={{ cursor: "pointer" }}
+                    >
+                        Logout
+                    </span>
+                </Nav.Item>
+            </Nav>
+        );
+    } else {
+        return null;
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
