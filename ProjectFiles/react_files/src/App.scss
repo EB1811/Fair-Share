@@ -76,6 +76,15 @@ $container-max-widths: (
         font-size: 1rem;
     }
 }
+/* Text link */
+.textLink {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+.textLinkSmall {
+    font-size: 0.85rem;
+    font-weight: 300;
+}
 
 /* Word below icon */
 .iconDesc {
@@ -156,16 +165,16 @@ $container-max-widths: (
 
 /* Colors */
 .greenText {
-    color: #49db64;
+    color: #49db64 !important;
 }
 .blueText {
-    color: #4096ff;
+    color: #4096ff !important;
 }
 .blackText {
-    color: #333333;
+    color: #333333 !important;
 }
 .whiteText {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .brandName {

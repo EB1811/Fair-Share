@@ -10,10 +10,7 @@ import { Redirect } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-// Redux
-import { connect } from "react-redux";
-
-const AccountBoard = (props) => {
+const AccountBoard = () => {
     //! Temp data. Change once server is set up.
     const [valArr] = useState([
         { name: "Valuation 1" },
@@ -22,65 +19,125 @@ const AccountBoard = (props) => {
         { name: "Valuation 4" },
     ]);
     // Getting from store.
-    const authLoaded = useSelector((state) => state.firebase.auth.isLoaded);
-    const authId = useSelector((state) => state.firebase.auth.uid);
+    const profile = useSelector((state) => state.firebase.profile);
+    const auth = useSelector((state) => state.firebase.auth);
 
-    if (authLoaded) {
-        if (authId) {
+    if (profile.isLoaded && auth.isLoaded) {
+        if (profile && auth) {
+            console.log(auth);
             return (
-                <Container
-                    fluid
-                    className='divBlockWithContentTertiary'
-                    style={{ minHeight: "100vh" }}
-                >
-                    <Row className='justify-content-center'>
-                        <Col>
+                <Container fluid style={{ height: "100vh" }}>
+                    <Row className='align-items-center min-vh-100 justify-content-center divBlockWithContentTertiary'>
+                        <Col
+                            xs={10}
+                            sm={7}
+                            md={5}
+                            lg={4}
+                            xl={3}
+                            className='centerCardCompact'
+                            style={{ maxWidth: "510px" }}
+                        >
+                            <Row>
+                                <Col>
+                                    <h4>{profile.username}</h4>
+                                </Col>
+                            </Row>
+                            <hr />
+                            <div className='d-flex textLink'>
+                                <span className='text-muted'>
+                                    Email:{" "}
+                                    <span className='ml-1'>
+                                        {profile.email}
+                                    </span>
+                                </span>
+                                <span className='ml-auto'>
+                                    <a
+                                        href='/'
+                                        style={{ cursor: "pointer" }}
+                                        className='text-muted'
+                                    >
+                                        Change
+                                    </a>
+                                </span>
+                            </div>
+                            <div className='d-flex textLink'>
+                                <span className='text-muted '>
+                                    Email Verified:{" "}
+                                    <span className='ml-1'>
+                                        {auth.emailVerified ? "Yes" : "No"}
+                                    </span>
+                                </span>
+                                {!auth.emailVerified ? (
+                                    <span className='ml-auto'>
+                                        <a
+                                            href='/'
+                                            style={{ cursor: "pointer" }}
+                                            className='text-muted'
+                                        >
+                                            Verify
+                                        </a>
+                                    </span>
+                                ) : null}
+                            </div>
+                            <div className='d-flex textLink'>
+                                <span className='text-muted '>
+                                    Username:{" "}
+                                    <span className='ml-1'>
+                                        {profile.username}
+                                    </span>
+                                </span>
+                                <span className='ml-auto'>
+                                    <a
+                                        href='/'
+                                        style={{ cursor: "pointer" }}
+                                        className='text-muted'
+                                    >
+                                        Change
+                                    </a>
+                                </span>
+                            </div>
                             <div
+                                className='d-flex textLinkSmall mt-3'
                                 style={{
-                                    minWidth: "200px",
-                                    minHeight: "200px",
+                                    fontStyle: "italic",
                                 }}
                             >
-                                Image
+                                <span className='text-muted'>
+                                    Account Created:{" "}
+                                    <span
+                                        style={{
+                                            fontStyle: "italic",
+                                        }}
+                                        className='ml-1'
+                                    >
+                                        {new Date(
+                                            auth.createdAt * 1
+                                        ).toLocaleDateString()}
+                                    </span>
+                                </span>
                             </div>
-                        </Col>
-                    </Row>
-                    <Row className='justify-content-center'>
-                        <Col>
-                            <h6>Account Settings</h6>
-                        </Col>
-                    </Row>
-                    <Row
-                        className='centerCardCompact'
-                        style={{ margin: "0 25px" }}
-                    >
-                        {valArr.map((item) => (
-                            <Col
-                                key={item.name}
-                                xs={12}
-                                sm={6}
-                                md={4}
-                                lg={3}
-                                xl={2}
-                                className='justify-content-center'
+                            <div
+                                className='d-flex textLinkSmall'
+                                style={{
+                                    fontStyle: "italic",
+                                }}
                             >
-                                <Card
-                                    key={item.name}
-                                    bg='light'
-                                    text={"dark"}
-                                    style={{
-                                        minHeight: "300px",
-                                        margin: "15px 0",
-                                    }}
-                                >
-                                    <Card.Header>10/12/20</Card.Header>
-                                    <Card.Body>
-                                        <Card.Title>{item.name}</Card.Title>
-                                        <Card.Text>{item.name}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
+                                <span className='text-muted'>
+                                    Last Logged In:{" "}
+                                    <span
+                                        style={{
+                                            fontStyle: "italic",
+                                        }}
+                                        className='ml-1'
+                                    >
+                                        {new Date(
+                                            auth.lastLoginAt * 1
+                                        ).toLocaleDateString()}
+                                    </span>
+                                </span>
+                            </div>
+                            <hr />
+                        </Col>
                     </Row>
                 </Container>
             );
@@ -103,17 +160,4 @@ const AccountBoard = (props) => {
         );
     }
 };
-
-const mapStateToProps = (state) => {
-    //console.log(state)
-    return {
-        //authStatus: state.firebase.auth,
-        //authError: state.auth.authError
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AccountBoard);
+export default AccountBoard;
