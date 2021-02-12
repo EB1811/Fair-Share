@@ -96,6 +96,22 @@ const AccountBoard = () => {
                                     </a>
                                 </span>
                             </div>
+                            <div className='d-flex textLink'>
+                                <span className='text-muted '>
+                                    Password:{" "}
+                                    <span className='ml-1'>**********</span>
+                                </span>
+                                <span className='ml-auto'>
+                                    <a
+                                        href='/'
+                                        style={{ cursor: "pointer" }}
+                                        className='text-muted'
+                                    >
+                                        Change
+                                    </a>
+                                </span>
+                            </div>
+
                             <div
                                 className='d-flex textLinkSmall mt-3'
                                 style={{
