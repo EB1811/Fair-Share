@@ -23,18 +23,16 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 // React Router
 import { Link } from "react-router-dom";
 
-//TODO Buildi the learning page and add information about it into main page.
+//TODO Build the learning page and add information about it into main page.
 //TODO Question asking if user wants to input valuations locally or by adding users to sessions.
 //TODO Results page ui improvements.
 //TODO Update to react 4.
 //TODO Account actions in /Account page.
 
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
-//? Some goods having an estimated value while others not messes up total value calculations. Maybe make total value calc only include goods with estimated values if some goods has an estimate.
-//? Questionnaire at the start, or some way of being able to add user without user id, for local shares.
 //? More username error types e.g., must be over 6 characters.
-//? Maybe create a value matrix in input valuations component instead of results page.
-//? Maybe wait for auth to load before rendering anything in App.js.
+//? Create a value matrix in input valuations component instead of results page.
+//? Wait for auth to load before rendering anything in App.js.
 
 const MainPage = () => {
     // Scrolling.

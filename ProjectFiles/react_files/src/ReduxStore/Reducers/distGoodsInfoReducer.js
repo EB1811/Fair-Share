@@ -32,11 +32,18 @@ const distGoodsInfoReducer = (state = initState, action) => {
             };*/
             tempGoodsArr.push(action.good);
 
-            var goodsTotalVal = 1000;
-            if (action.good.estValue) {
-                goodsTotalVal =
-                    state.totalValue + parseInt(action.good.estValue);
+            var goodsTotalVal;
+            if (tempGoodsArr.some((good) => good.estValue > 0)) {
+                goodsTotalVal = tempGoodsArr.reduce(
+                    (t, good) => t + parseInt(good.estValue),
+                    0
+                );
+                goodsTotalVal = goodsTotalVal < 1000 ? 1000 : goodsTotalVal;
+            } else {
+                goodsTotalVal = 1000;
             }
+
+            console.log(goodsTotalVal);
 
             return {
                 ...state,
