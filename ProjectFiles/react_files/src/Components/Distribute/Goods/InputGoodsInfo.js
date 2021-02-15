@@ -57,12 +57,12 @@ const InputGoodsInfo = (props) => {
         props.deleteGood(goodName);
     };
     // Next state.
-    const nextState = () => {
+    const nextPage = () => {
         if (props.stateGoodsArray.length < 2) {
             setGoodsCountFailed(true);
         } else {
             setGoodsCountFailed(false);
-            props.setStage(1);
+            props.next();
         }
     };
 
@@ -181,7 +181,7 @@ const InputGoodsInfo = (props) => {
                     </Alert>
                 ) : null}
 
-                <Button variant='primary' size='sm' onClick={nextState}>
+                <Button variant='primary' size='sm' onClick={nextPage}>
                     <span className='smButtonText'>Next</span>
                 </Button>
             </div>

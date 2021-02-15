@@ -38,7 +38,7 @@ const InputRoomsInfo = (props) => {
 
             props.addGoodsAmount(roomCount);
             props.updateTotalValue(houseValue);
-            props.setStage(1);
+            props.next();
         }
     };
 

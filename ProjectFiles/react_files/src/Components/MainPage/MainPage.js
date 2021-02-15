@@ -23,10 +23,13 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 // React Router
 import { Link } from "react-router-dom";
 
-//TODO Question asking if user wants to input valuations locally or by adding users to sessions.
-//TODO Change gather goods info to use react router rather than getting 'id' form url.
-//TODO Remove router push from input goods info component and add it to gather goods page.
-//TODO End process from a method checking stage, instead of having a page with a CTA to leave page.
+//// Question asking if user wants to input valuations locally or by adding users to sessions.
+//TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
+////Rework router and whole info gathering process.
+//TODO Fix navbar and footer links to reflect new router rework.
+//// Change gather goods info to use react router rather than getting 'id' form url.
+//// Remove router push from input goods info component and add it to gather goods page.
+//TODO Set up local vs remote sharing pages. Either in route or in conditional rendering.
 //TODO Account actions in /Account page.
 //TODO Results page ui improvements.
 //TODO Update to react 4.
@@ -37,6 +40,8 @@ import { Link } from "react-router-dom";
 //? More username error types e.g., must be over 6 characters.
 //? Create a value matrix in input valuations component instead of results page.
 //? Wait for auth to load before rendering anything in App.js.
+
+//! Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 
 const MainPage = () => {
     // Scrolling.
@@ -171,7 +176,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/Questions/Rent'
+                                to='/Distribute/Rent/Questions/0'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>
@@ -203,7 +208,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/Questions/Goods'
+                                to='/Distribute/Goods/Questions/0'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>
@@ -235,7 +240,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/Questions/Goods'
+                                to='/Distribute/Goods/Questions/0'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>

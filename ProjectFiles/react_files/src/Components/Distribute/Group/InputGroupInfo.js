@@ -19,7 +19,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import { withRouter } from "react-router-dom";
 
 const InputGroupInfo = ({
-    setStage,
     profile,
     firebaseUsers,
     stateUserArray,
@@ -70,9 +69,6 @@ const InputGroupInfo = ({
         if (userEmail !== profile.email) {
             removeUser(userEmail);
         }
-    };
-    const prevStage = () => {
-        setStage(0);
     };
 
     return (
@@ -161,15 +157,6 @@ const InputGroupInfo = ({
                                 Error! Must have at least 2 users.
                             </Alert>
                         ) : null}
-
-                        <Button
-                            variant='primary'
-                            size='sm'
-                            onClick={prevStage}
-                            className='mr-2'
-                        >
-                            <span className='smButtonText'>Previous</span>
-                        </Button>
                         <Button
                             variant='primary'
                             size='sm'

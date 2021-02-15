@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // React Components
-import QuestionnaireQuestion from "./QuestionnaireQuestion";
+import QuestionnaireQuestion from "../Questionnaire/QuestionnaireQuestion";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -12,20 +12,25 @@ import Button from "react-bootstrap/Button";
 // React Router
 import { useParams, Link } from "react-router-dom";
 
-import shareLocal from "../../Images/meeting-local-group_ICON.svg";
-import shareOnlineGroup from "../../Images/share-online-group_ICON.svg";
+import shareLocal from "../../../Images/meeting-local-group_ICON.svg";
+import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
 
-const QuestionnairePageShell = () => {
+const RentQuestionnairePageShell = (props) => {
     // Information about goods.
     const [questions] = useState([
         { question: "Question 1" },
         { question: "Question 2" },
         { question: "Question 3" },
     ]);
-    let { goodsType } = useParams();
-    const [stage, setStage] = useState(0);
+    // Stage = question.
+    let { stage } = useParams();
 
-    if (stage === 0) {
+    // Go to next question.
+    const setStage = (stage) => {
+        props.history.push(`/Distribute/Rent/Questions/${stage}`);
+    };
+
+    if (stage === "0") {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
@@ -49,7 +54,11 @@ const QuestionnairePageShell = () => {
                             variant='primary'
                             size='sm'
                             className='mt-5'
-                            onClick={() => setStage(1)}
+                            onClick={() =>
+                                props.history.push(
+                                    "/Distribute/Rent/Questions/1"
+                                )
+                            }
                         >
                             <span className='smButtonText'>Begin</span>
                         </Button>
@@ -57,7 +66,7 @@ const QuestionnairePageShell = () => {
                 </Row>
             </Container>
         );
-    } else if (stage === 1) {
+    } else if (stage === "1") {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
@@ -76,7 +85,11 @@ const QuestionnairePageShell = () => {
                                     src={shareLocal}
                                     className='SVGButton'
                                     alt='meeting-local-group_ICON'
-                                    onClick={() => setStage(2)}
+                                    onClick={() =>
+                                        props.history.push(
+                                            "/Distribute/Rent/Questions/2"
+                                        )
+                                    }
                                 />
                                 <p
                                     className='mt-3 text-muted'
@@ -92,7 +105,11 @@ const QuestionnairePageShell = () => {
                                     src={shareOnlineGroup}
                                     className='SVGButton'
                                     alt='share-online-group_ICON.svg'
-                                    onClick={() => setStage(2)}
+                                    onClick={() =>
+                                        props.history.push(
+                                            "/Distribute/Rent/Questions/2"
+                                        )
+                                    }
                                 />
                                 <p
                                     className='mt-3 text-muted'
@@ -145,7 +162,7 @@ const QuestionnairePageShell = () => {
                     >
                         <Link
                             style={{ textDecoration: "none" }}
-                            to={`/Distribute/Information/${goodsType}`}
+                            to={"/Distribute/Rent/GoodInfo"}
                         >
                             <Button variant='primary' size='sm'>
                                 <span className='smButtonText'>
@@ -160,4 +177,4 @@ const QuestionnairePageShell = () => {
     }
 };
 
-export default QuestionnairePageShell;
+export default RentQuestionnairePageShell;
