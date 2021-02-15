@@ -63,7 +63,7 @@ const InputGroupInfo = ({
             setGroupCountFailed(true);
         } else {
             setGroupCountFailed(false);
-            history.push("/Distribute/Questions");
+            history.push("/Distribute/Valuations");
         }
     };
     const deleteUser = (userEmail) => {

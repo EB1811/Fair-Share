@@ -40,7 +40,7 @@ function App() {
                 />
                 <Route
                     exact
-                    path='/Distribute/Questions'
+                    path='/Distribute/Questions/:goodsType'
                     component={QuestionnairePageShell}
                 />
                 <Route

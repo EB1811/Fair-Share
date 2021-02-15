@@ -10,15 +10,16 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 // React Router
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-const QuestionnairePageShell = (props) => {
+const QuestionnairePageShell = () => {
     // Information about goods.
     const [questions] = useState([
         { question: "Question 1" },
         { question: "Question 2" },
         { question: "Question 3" },
     ]);
+    let { goodsType } = useParams();
     const [stage, setStage] = useState(0);
 
     if (stage === 0) {
@@ -76,7 +77,7 @@ const QuestionnairePageShell = (props) => {
             </Container>
         );
     } else {
-        //TODO Add answers from questions. Since its just a page containing a button right now.
+        //TODO End process from a method checking stage, instead of having a page with a CTA to leave page.
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
@@ -91,7 +92,7 @@ const QuestionnairePageShell = (props) => {
                     >
                         <Link
                             style={{ textDecoration: "none" }}
-                            to='/Distribute/Valuations'
+                            to={`/Distribute/Information/${goodsType}`}
                         >
                             <Button variant='primary' size='sm'>
                                 <span className='smButtonText'>
