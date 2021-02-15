@@ -62,15 +62,16 @@ const QuestionnairePageShell = () => {
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
                     <Col
-                        xs={10}
-                        sm={7}
-                        md={5}
-                        lg={4}
+                        xs={11}
+                        sm={11}
+                        md={10}
+                        lg={7}
                         xl={5}
                         className='centerCard m-3'
+                        style={{ maxWidth: "800px" }}
                     >
-                        <Row className='align-items-center'>
-                            <Col xs={6}>
+                        <Row>
+                            <Col xs={12} sm={6} className='my-2'>
                                 <img
                                     src={shareLocal}
                                     className='SVGButton'
@@ -86,7 +87,7 @@ const QuestionnairePageShell = () => {
                                     needed.
                                 </p>
                             </Col>
-                            <Col xs={6}>
+                            <Col xs={12} sm={6} className='my-2'>
                                 <img
                                     src={shareOnlineGroup}
                                     className='SVGButton'
