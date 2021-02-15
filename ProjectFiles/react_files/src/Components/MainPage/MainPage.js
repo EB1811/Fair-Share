@@ -93,45 +93,48 @@ const MainPage = () => {
                 className='justify-content-center align-items-center p-4'
                 style={{ minHeight: "55vh", backgroundColor: "#fff" }}
             >
-                <Row
-                    style={{ maxWidth: "950px", minWidth: "300px" }}
-                    className='justify-content-center align-items-center'
-                >
+                <Row style={{ maxWidth: "950px", minWidth: "300px" }}>
                     <Col xs='12' sm='6' md='4' className='my-2'>
-                        <img
-                            src={logo1}
-                            alt='icon-fair-division'
-                            style={{ width: "125px", height: "125px" }}
-                        />
-                        <h1 className='iconDesc'>Fair</h1>
-                        <p className='iconDescSmall'>
-                            Our algorithms results in mathematically proven fair
-                            allocations.
-                        </p>
+                        <div>
+                            <img
+                                src={logo1}
+                                alt='icon-fair-division'
+                                style={{ width: "125px", height: "125px" }}
+                            />
+                            <h1 className='iconDesc'>Fair</h1>
+                            <p className='iconDescSmall'>
+                                Our algorithms results in mathematically proven
+                                fair allocations.
+                            </p>
+                        </div>
                     </Col>
                     <Col xs='12' sm='6' md='4' className='my-2'>
-                        <img
-                            src={logo2}
-                            alt='icon-team-diverse'
-                            style={{ width: "125px", height: "125px" }}
-                        />
-                        <h1 className='iconDesc'>Personalised</h1>
-                        <p className='iconDescSmall'>
-                            You decide which of our many algorithms to use,
-                            based on your preferences.
-                        </p>
+                        <div>
+                            <img
+                                src={logo2}
+                                alt='icon-team-diverse'
+                                style={{ width: "125px", height: "125px" }}
+                            />
+                            <h1 className='iconDesc'>Personalised</h1>
+                            <p className='iconDescSmall'>
+                                You decide which of our many algorithms to use,
+                                based on your preferences.
+                            </p>
+                        </div>
                     </Col>
                     <Col xs='12' sm='6' md='4' className='my-2'>
-                        <img
-                            src={logo3}
-                            alt='icon-check-star'
-                            style={{ width: "125px", height: "125px" }}
-                        />
-                        <h1 className='iconDesc'>Easy</h1>
-                        <p className='iconDescSmall'>
-                            Our service is as quick and straightforward to use
-                            as possible.
-                        </p>
+                        <div className='h-100'>
+                            <img
+                                src={logo3}
+                                alt='icon-check-star'
+                                style={{ width: "125px", height: "125px" }}
+                            />
+                            <h1 className='iconDesc'>Easy</h1>
+                            <p className='iconDescSmall'>
+                                Our service is as quick and straightforward to
+                                use as possible.
+                            </p>
+                        </div>
                     </Col>
                 </Row>
             </Row>
