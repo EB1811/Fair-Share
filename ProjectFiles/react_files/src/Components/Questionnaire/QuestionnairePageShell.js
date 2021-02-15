@@ -12,6 +12,9 @@ import Button from "react-bootstrap/Button";
 // React Router
 import { useParams, Link } from "react-router-dom";
 
+import shareLocal from "../../Images/meeting-local-group_ICON.svg";
+import shareOnlineGroup from "../../Images/share-online-group_ICON.svg";
+
 const QuestionnairePageShell = () => {
     // Information about goods.
     const [questions] = useState([
@@ -54,7 +57,56 @@ const QuestionnairePageShell = () => {
                 </Row>
             </Container>
         );
-    } else if (stage > 0 && stage < 4) {
+    } else if (stage === 1) {
+        return (
+            <Container fluid className='divBlockWithContentTertiary min-vh-100'>
+                <Row className='justify-content-center align-items-center min-vh-100'>
+                    <Col
+                        xs={10}
+                        sm={7}
+                        md={5}
+                        lg={4}
+                        xl={5}
+                        className='centerCard m-3'
+                    >
+                        <Row className='align-items-center'>
+                            <Col xs={6}>
+                                <img
+                                    src={shareLocal}
+                                    className='SVGButton'
+                                    alt='meeting-local-group_ICON'
+                                    onClick={() => setStage(2)}
+                                />
+                                <p
+                                    className='mt-3 text-muted'
+                                    style={{ fontSize: "0.9rem" }}
+                                >
+                                    Share locally, passing your device around to
+                                    gather everyone's valuations. No login
+                                    needed.
+                                </p>
+                            </Col>
+                            <Col xs={6}>
+                                <img
+                                    src={shareOnlineGroup}
+                                    className='SVGButton'
+                                    alt='share-online-group_ICON.svg'
+                                    onClick={() => setStage(2)}
+                                />
+                                <p
+                                    className='mt-3 text-muted'
+                                    style={{ fontSize: "0.9rem" }}
+                                >
+                                    Share using an online group, having members
+                                    login and get invited to your party.
+                                </p>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    } else if (stage > 1 && stage < 4) {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>

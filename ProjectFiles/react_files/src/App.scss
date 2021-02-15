@@ -257,6 +257,16 @@ a:visited {
     }
 }
 
+.SVGButton {
+    width: 135px;
+    height: 135px;
+    cursor: pointer;
+    filter: grayscale(80%);
+}
+.SVGButton:hover {
+    filter: grayscale(25%);
+}
+
 .smButtonText {
     font-weight: 500;
     font-size: 1.25rem;
