@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -10,17 +10,12 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
 // Redux
-import { compose } from "redux";
 import { connect } from "react-redux";
-// rrf
-import { firestoreConnect } from "react-redux-firebase";
 
 // React Router
 import { withRouter } from "react-router-dom";
 
-const InputGroupInfo = ({
-    profile,
-    firebaseUsers,
+const LocalInputGroupInfoPage = ({
     stateUserArray,
     stateGoodsArr,
     addUser,
@@ -28,32 +23,23 @@ const InputGroupInfo = ({
     history,
 }) => {
     // User ID.
-    const [userEmail, setUserEmail] = useState("");
+    const [username, setUsername] = useState("");
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
 
-    // Add initial user (the user who is on the page) on page load.
-    useEffect(() => {
-        if (profile.isLoaded) {
-            addUser(profile.email, profile.username, stateGoodsArr);
-        }
-    }, [profile, stateGoodsArr, addUser]);
-
     // Update number of users on submit.
     const addToGroup = () => {
-        const user = firebaseUsers.filter((user) => user.email === userEmail);
         if (
-            firebaseUsers &&
-            !stateUserArray.some((obj) => obj.userEmail === userEmail) &&
-            user.length > 0
+            username &&
+            !stateUserArray.some((obj) => obj.username === username)
         ) {
-            addUser(user[0].email, user[0].username, stateGoodsArr);
-            setUserEmail("");
+            addUser(username, stateGoodsArr);
+            setUsername("");
             setUserIdFailed(false);
         } else {
             setUserIdFailed(true);
-            setUserEmail("");
+            setUsername("");
         }
     };
     // Validate group then continue to next page.
@@ -63,11 +49,6 @@ const InputGroupInfo = ({
         } else {
             setGroupCountFailed(false);
             history.push("/Distribute/Valuations");
-        }
-    };
-    const deleteUser = (userEmail) => {
-        if (userEmail !== profile.email) {
-            removeUser(userEmail);
         }
     };
 
@@ -83,7 +64,7 @@ const InputGroupInfo = ({
                     className='centerCardCompact m-3'
                     style={{ maxWidth: "650px" }}
                 >
-                    <h5>Enter a user email to add them to the group.</h5>
+                    <h5>Enter a user's name to add them to the group.</h5>
                     <div
                         className='mt-4 py-2'
                         style={{
@@ -97,13 +78,13 @@ const InputGroupInfo = ({
                                     size='sm'
                                     placeholder={
                                         userIdFailed
-                                            ? "Invalid User"
-                                            : "Enter User email"
+                                            ? "Invalid Username"
+                                            : "Enter User's name"
                                     }
-                                    value={userEmail}
-                                    type='email'
+                                    value={username}
+                                    type='text'
                                     onChange={(e) =>
-                                        setUserEmail(e.target.value)
+                                        setUsername(e.target.value)
                                     }
                                     style={
                                         userIdFailed
@@ -130,22 +111,18 @@ const InputGroupInfo = ({
                                             color: "#000",
                                             textAlign: "left",
                                         }}
-                                        key={user.userEmail}
+                                        key={user.username}
                                         body
                                     >
                                         {user.username}
-                                        {user.userEmail !== profile.email ? (
-                                            <button
-                                                className='close'
-                                                onClick={() =>
-                                                    deleteUser(user.userEmail)
-                                                }
-                                            >
-                                                ×
-                                            </button>
-                                        ) : (
-                                            <button className='close'></button>
-                                        )}
+                                        <button
+                                            className='close'
+                                            onClick={() =>
+                                                removeUser(user.username)
+                                            }
+                                        >
+                                            ×
+                                        </button>
                                     </Card>
                                 ))}
                             </Col>
@@ -174,8 +151,6 @@ const InputGroupInfo = ({
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        profile: state.firebase.profile,
-        firebaseUsers: state.firestore.ordered.users,
         stateUserArray: state.distGroupInfo.userArray,
         stateGoodsArr: state.distGoodsInfo.goodsArray,
     };
@@ -183,26 +158,22 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addUser: (userEmail, username, goodsArr) => {
+        addUser: (username, goodsArr) => {
             dispatch({
                 type: "ADD_USER",
-                email: userEmail,
                 username: username,
                 goods: goodsArr,
             });
         },
-        removeUser: (userEmail) => {
+        removeUser: (username) => {
             dispatch({
                 type: "DELETE_USER",
-                userEmail: userEmail,
+                username: username,
             });
         },
     };
 };
 
 export default withRouter(
-    compose(
-        firestoreConnect(() => ["users"]),
-        connect(mapStateToProps, mapDispatchToProps)
-    )(InputGroupInfo)
+    connect(mapStateToProps, mapDispatchToProps)(LocalInputGroupInfoPage)
 );

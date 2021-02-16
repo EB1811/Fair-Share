@@ -18,9 +18,10 @@ import ScrollToTop from "./Components/Helpers/ScrollToTop";
 
 import Goods_GatherInfoPage from "./Components/Distribute/Goods/Goods_GatherInfoPage";
 import Rent_GatherInfoPage from "./Components/Distribute/Rent/Rent_GatherInfoPage";
-import InputGroupInfo from "./Components/Distribute/Group/InputGroupInfo";
-import GoodsQuestionnairePageShell from "./Components/Distribute/Goods/GoodsQuestionnairePageShell";
-import RentQuestionnairePageShell from "./Components/Distribute/Rent/RentQuestionnairePageShell";
+import RemoteInputGroupInfoPage from "./Components/Distribute/Group/RemoteInputGroupInfoPage";
+import LocalInputGroupInfoPage from "./Components/Distribute/Group/LocalInputGroupInfoPage";
+import GoodsQuestionnairePageShell from "./Components/Distribute/Goods/GoodsQuestionnairePage";
+import RentQuestionnairePageShell from "./Components/Distribute/Rent/RentQuestionnairePage";
 import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
 import ResultsPage from "./Components/Results/ResultsPage";
 
@@ -59,13 +60,23 @@ function App() {
                 />
                 <Route
                     exact
-                    path='/Distribute/Goods/GroupInfo'
-                    component={InputGroupInfo}
+                    path='/Distribute/Goods/GroupInfo/Local'
+                    component={LocalInputGroupInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Rent/GroupInfo'
-                    component={InputGroupInfo}
+                    path='/Distribute/Rent/GroupInfo/Local'
+                    component={LocalInputGroupInfoPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Goods/GroupInfo/Remote'
+                    component={RemoteInputGroupInfoPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Rent/GroupInfo/Remote'
+                    component={RemoteInputGroupInfoPage}
                 />
                 <Route
                     exact

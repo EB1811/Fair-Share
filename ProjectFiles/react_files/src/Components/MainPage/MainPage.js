@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 //// Question asking if user wants to input valuations locally or by adding users to sessions.
 //TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
 ////Rework router and whole info gathering process.
-//TODO Fix navbar and footer links to reflect new router rework.
+//// Fix navbar and footer links to reflect new router rework.
 //// Change gather goods info to use react router rather than getting 'id' form url.
 //// Remove router push from input goods info component and add it to gather goods page.
 //TODO Set up local vs remote sharing pages. Either in route or in conditional rendering.

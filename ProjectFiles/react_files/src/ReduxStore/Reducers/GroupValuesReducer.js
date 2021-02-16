@@ -1,11 +1,11 @@
 const initState = {
     //* Array of users with their own goods and valuations array.
-    // [{name, userGoodsArr}...]
+    // [{userEmail?, username, userGoodsArr}...]
     userArray: [],
 
     //* Array holding the allocations.
     //? Hold userId in 'user' key?
-    // [{userEmail, username, userGoodsArr}...]
+    // [{userEmail?, username, userGoodsArr}...]
     allocations: [],
 };
 
@@ -16,7 +16,7 @@ const GroupValuesReducer = (state = initState, action) => {
 
             const tempUserArr = [...state.userArray];
             tempUserArr.push({
-                userEmail: String(action.email),
+                userEmail: action.email ? String(action.email) : null,
                 username: String(action.username),
                 userGoodsArr: JSON.parse(JSON.stringify(action.goods)), // Deep clone goods array.
             });
@@ -29,7 +29,11 @@ const GroupValuesReducer = (state = initState, action) => {
             console.log("Success", action.type);
 
             const newUserArr = [...state.userArray].filter((user) => {
-                return user.userEmail !== action.userEmail;
+                if (user.userEmail) {
+                    return user.userEmail !== action.userEmail;
+                } else {
+                    return user.username !== action.username;
+                }
             });
 
             return {
