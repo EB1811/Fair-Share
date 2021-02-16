@@ -15,8 +15,7 @@ const AccountBoard = () => {
     const auth = useSelector((state) => state.firebase.auth);
 
     if (profile.isLoaded && auth.isLoaded) {
-        if (profile && auth) {
-            console.log(auth);
+        if (profile && !auth.isEmpty) {
             return (
                 <Container fluid style={{ height: "100vh" }}>
                     <Row className='align-items-center min-vh-100 justify-content-center divBlockWithContentTertiary'>

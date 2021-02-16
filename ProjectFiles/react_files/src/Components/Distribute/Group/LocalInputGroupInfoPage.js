@@ -13,7 +13,7 @@ import Alert from "react-bootstrap/Alert";
 import { connect } from "react-redux";
 
 // React Router
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 const LocalInputGroupInfoPage = ({
     stateUserArray,
@@ -52,100 +52,104 @@ const LocalInputGroupInfoPage = ({
         }
     };
 
-    return (
-        <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-            <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col
-                    xs={10}
-                    sm={8}
-                    md={6}
-                    lg={5}
-                    xl={3}
-                    className='centerCardCompact m-3'
-                    style={{ maxWidth: "650px" }}
-                >
-                    <h5>Enter a user's name to add them to the group.</h5>
-                    <div
-                        className='mt-4 py-2'
-                        style={{
-                            borderTop: "1px solid #999999",
-                            borderBottom: "1px solid #999999",
-                        }}
+    if (stateGoodsArr.length > 0) {
+        return (
+            <Container fluid className='divBlockWithContentTertiary min-vh-100'>
+                <Row className='justify-content-center align-items-center min-vh-100'>
+                    <Col
+                        xs={10}
+                        sm={8}
+                        md={6}
+                        lg={5}
+                        xl={3}
+                        className='centerCardCompact m-3'
+                        style={{ maxWidth: "650px" }}
                     >
-                        <Row className='align-items-center'>
-                            <Col xs={8} sm={9}>
-                                <Form.Control
-                                    size='sm'
-                                    placeholder={
-                                        userIdFailed
-                                            ? "Invalid Username"
-                                            : "Enter User's name"
-                                    }
-                                    value={username}
-                                    type='text'
-                                    onChange={(e) =>
-                                        setUsername(e.target.value)
-                                    }
-                                    style={
-                                        userIdFailed
-                                            ? { border: "1px solid red" }
-                                            : {}
-                                    }
-                                />
-                            </Col>
-                            <Col xs={4} sm={3}>
-                                <Button
-                                    variant='primary'
-                                    size='md'
-                                    onClick={() => addToGroup()}
-                                >
-                                    <span>Add</span>
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row className='justify-content-center contentOverflow mt-3'>
-                            <Col sm='10'>
-                                {stateUserArray.map((user) => (
-                                    <Card
-                                        style={{
-                                            color: "#000",
-                                            textAlign: "left",
-                                        }}
-                                        key={user.username}
-                                        body
-                                    >
-                                        {user.username}
-                                        <button
-                                            className='close'
-                                            onClick={() =>
-                                                removeUser(user.username)
-                                            }
-                                        >
-                                            ×
-                                        </button>
-                                    </Card>
-                                ))}
-                            </Col>
-                        </Row>
-                    </div>
-                    <div className='mt-4'>
-                        {groupCountFailed ? (
-                            <Alert variant={"danger"}>
-                                Error! Must have at least 2 users.
-                            </Alert>
-                        ) : null}
-                        <Button
-                            variant='primary'
-                            size='sm'
-                            onClick={checkGroup}
+                        <h5>Enter a user's name to add them to the group.</h5>
+                        <div
+                            className='mt-4 py-2'
+                            style={{
+                                borderTop: "1px solid #999999",
+                                borderBottom: "1px solid #999999",
+                            }}
                         >
-                            <span className='smButtonText'>Next</span>
-                        </Button>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-    );
+                            <Row className='align-items-center'>
+                                <Col xs={8} sm={9}>
+                                    <Form.Control
+                                        size='sm'
+                                        placeholder={
+                                            userIdFailed
+                                                ? "Invalid Username"
+                                                : "Enter User's name"
+                                        }
+                                        value={username}
+                                        type='text'
+                                        onChange={(e) =>
+                                            setUsername(e.target.value)
+                                        }
+                                        style={
+                                            userIdFailed
+                                                ? { border: "1px solid red" }
+                                                : {}
+                                        }
+                                    />
+                                </Col>
+                                <Col xs={4} sm={3}>
+                                    <Button
+                                        variant='primary'
+                                        size='md'
+                                        onClick={() => addToGroup()}
+                                    >
+                                        <span>Add</span>
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row className='justify-content-center contentOverflow mt-3'>
+                                <Col sm='10'>
+                                    {stateUserArray.map((user) => (
+                                        <Card
+                                            style={{
+                                                color: "#000",
+                                                textAlign: "left",
+                                            }}
+                                            key={user.username}
+                                            body
+                                        >
+                                            {user.username}
+                                            <button
+                                                className='close'
+                                                onClick={() =>
+                                                    removeUser(user.username)
+                                                }
+                                            >
+                                                ×
+                                            </button>
+                                        </Card>
+                                    ))}
+                                </Col>
+                            </Row>
+                        </div>
+                        <div className='mt-4'>
+                            {groupCountFailed ? (
+                                <Alert variant={"danger"}>
+                                    Error! Must have at least 2 users.
+                                </Alert>
+                            ) : null}
+                            <Button
+                                variant='primary'
+                                size='sm'
+                                onClick={checkGroup}
+                            >
+                                <span className='smButtonText'>Next</span>
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    } else {
+        return <Redirect to='/' />;
+    }
 };
 
 // To access and modify redux store.

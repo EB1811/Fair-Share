@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 
 // React Router
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 const RemoteInputGroupInfoPage = ({
     profile,
@@ -71,104 +71,123 @@ const RemoteInputGroupInfoPage = ({
         }
     };
 
-    return (
-        <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-            <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col
-                    xs={10}
-                    sm={8}
-                    md={6}
-                    lg={5}
-                    xl={3}
-                    className='centerCardCompact m-3'
-                    style={{ maxWidth: "650px" }}
+    if (stateGoodsArr.length > 0) {
+        if (profile) {
+            return (
+                <Container
+                    fluid
+                    className='divBlockWithContentTertiary min-vh-100'
                 >
-                    <h5>Enter a user email to add them to the group.</h5>
-                    <div
-                        className='mt-4 py-2'
-                        style={{
-                            borderTop: "1px solid #999999",
-                            borderBottom: "1px solid #999999",
-                        }}
-                    >
-                        <Row className='align-items-center'>
-                            <Col xs={8} sm={9}>
-                                <Form.Control
-                                    size='sm'
-                                    placeholder={
-                                        userIdFailed
-                                            ? "Invalid User"
-                                            : "Enter User email"
-                                    }
-                                    value={userEmail}
-                                    type='email'
-                                    onChange={(e) =>
-                                        setUserEmail(e.target.value)
-                                    }
-                                    style={
-                                        userIdFailed
-                                            ? { border: "1px solid red" }
-                                            : {}
-                                    }
-                                />
-                            </Col>
-                            <Col xs={4} sm={3}>
+                    <Row className='justify-content-center align-items-center min-vh-100'>
+                        <Col
+                            xs={10}
+                            sm={8}
+                            md={6}
+                            lg={5}
+                            xl={3}
+                            className='centerCardCompact m-3'
+                            style={{ maxWidth: "650px" }}
+                        >
+                            <h5>
+                                Enter a user email to add them to the group.
+                            </h5>
+                            <div
+                                className='mt-4 py-2'
+                                style={{
+                                    borderTop: "1px solid #999999",
+                                    borderBottom: "1px solid #999999",
+                                }}
+                            >
+                                <Row className='align-items-center'>
+                                    <Col xs={8} sm={9}>
+                                        <Form.Control
+                                            size='sm'
+                                            placeholder={
+                                                userIdFailed
+                                                    ? "Invalid User"
+                                                    : "Enter User email"
+                                            }
+                                            value={userEmail}
+                                            type='email'
+                                            onChange={(e) =>
+                                                setUserEmail(e.target.value)
+                                            }
+                                            style={
+                                                userIdFailed
+                                                    ? {
+                                                          border:
+                                                              "1px solid red",
+                                                      }
+                                                    : {}
+                                            }
+                                        />
+                                    </Col>
+                                    <Col xs={4} sm={3}>
+                                        <Button
+                                            variant='primary'
+                                            size='md'
+                                            onClick={() => addToGroup()}
+                                        >
+                                            <span>Add</span>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                                <Row className='justify-content-center contentOverflow mt-3'>
+                                    <Col sm='10'>
+                                        {stateUserArray.map((user) => (
+                                            <Card
+                                                style={{
+                                                    color: "#000",
+                                                    textAlign: "left",
+                                                }}
+                                                key={user.userEmail}
+                                                body
+                                            >
+                                                {user.username}
+                                                {user.userEmail !==
+                                                profile.email ? (
+                                                    <button
+                                                        className='close'
+                                                        onClick={() =>
+                                                            deleteUser(
+                                                                user.userEmail
+                                                            )
+                                                        }
+                                                    >
+                                                        ×
+                                                    </button>
+                                                ) : (
+                                                    <button className='close'></button>
+                                                )}
+                                            </Card>
+                                        ))}
+                                    </Col>
+                                </Row>
+                            </div>
+                            <div className='mt-4'>
+                                {groupCountFailed ? (
+                                    <Alert variant={"danger"}>
+                                        Error! Must have at least 2 users.
+                                    </Alert>
+                                ) : null}
                                 <Button
                                     variant='primary'
-                                    size='md'
-                                    onClick={() => addToGroup()}
+                                    size='sm'
+                                    onClick={checkGroup}
                                 >
-                                    <span>Add</span>
+                                    <span className='smButtonText'>Next</span>
                                 </Button>
-                            </Col>
-                        </Row>
-                        <Row className='justify-content-center contentOverflow mt-3'>
-                            <Col sm='10'>
-                                {stateUserArray.map((user) => (
-                                    <Card
-                                        style={{
-                                            color: "#000",
-                                            textAlign: "left",
-                                        }}
-                                        key={user.userEmail}
-                                        body
-                                    >
-                                        {user.username}
-                                        {user.userEmail !== profile.email ? (
-                                            <button
-                                                className='close'
-                                                onClick={() =>
-                                                    deleteUser(user.userEmail)
-                                                }
-                                            >
-                                                ×
-                                            </button>
-                                        ) : (
-                                            <button className='close'></button>
-                                        )}
-                                    </Card>
-                                ))}
-                            </Col>
-                        </Row>
-                    </div>
-                    <div className='mt-4'>
-                        {groupCountFailed ? (
-                            <Alert variant={"danger"}>
-                                Error! Must have at least 2 users.
-                            </Alert>
-                        ) : null}
-                        <Button
-                            variant='primary'
-                            size='sm'
-                            onClick={checkGroup}
-                        >
-                            <span className='smButtonText'>Next</span>
-                        </Button>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-    );
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            );
+        } else {
+            return <Redirect to='/Login' />;
+        }
+    } else {
+        return <Redirect to='/' />;
+    }
 };
 
 // To access and modify redux store.

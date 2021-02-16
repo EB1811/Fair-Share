@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 //// Remove router push from input goods info component and add it to gather goods page.
 //// Set up local vs remote sharing pages. Either in route or in conditional rendering.
 //TODO Route guarding checking if all questions are answered, users exists, goods exists etc.
-//TODO Make sure results work for both local and remote groups.
+//// Make sure results work for both local and remote groups.
 //TODO Account actions in /Account page.
 //TODO Results page ui improvements.
 //TODO Update to react 4.

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // React Router
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -55,7 +55,7 @@ const SetValuationsPage = (props) => {
             </Container>
         );
     } else {
-        return <div>No Users Defined</div>;
+        return <Redirect to='/' />;
     }
 };
 
