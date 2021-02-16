@@ -25,6 +25,21 @@ const GroupValuesReducer = (state = initState, action) => {
                 ...state,
                 userArray: tempUserArr,
             };
+        case "ADD_INIT_USER":
+            const tempInitUserArr = [...state.userArray];
+            if (tempInitUserArr.length < 1) {
+                console.log("Success", action.type);
+                tempInitUserArr.push({
+                    userEmail: String(action.email),
+                    username: String(action.username),
+                    userGoodsArr: JSON.parse(JSON.stringify(action.goods)), // Deep clone goods array.
+                });
+            }
+
+            return {
+                ...state,
+                userArray: tempInitUserArr,
+            };
         case "DELETE_USER":
             console.log("Success", action.type);
 

@@ -30,7 +30,7 @@ import { Link } from "react-router-dom";
 //// Change gather goods info to use react router rather than getting 'id' form url.
 //// Remove router push from input goods info component and add it to gather goods page.
 //// Set up local vs remote sharing pages. Either in route or in conditional rendering.
-//TODO Route guarding checking if all questions are answered, users exists, goods exists etc.
+//// Route guarding checking if all questions are answered, users exists, goods exists etc.
 //// Make sure results work for both local and remote groups.
 //TODO Account actions in /Account page.
 //TODO Results page ui improvements.
@@ -44,7 +44,7 @@ import { Link } from "react-router-dom";
 //? Wait for auth to load before rendering anything in App.js.
 //? Questionnaire 1 or 2 page components depends on if questions are same or different.
 
-//! Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
+//// Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 
 const MainPage = () => {
     // Scrolling.

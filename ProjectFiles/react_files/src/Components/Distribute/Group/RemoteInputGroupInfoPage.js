@@ -24,6 +24,7 @@ const RemoteInputGroupInfoPage = ({
     stateUserArray,
     stateGoodsArr,
     addUser,
+    addInitUser,
     removeUser,
     history,
 }) => {
@@ -36,9 +37,9 @@ const RemoteInputGroupInfoPage = ({
     // Add initial user (the user who is on the page) on page load.
     useEffect(() => {
         if (profile.isLoaded) {
-            addUser(profile.email, profile.username, stateGoodsArr);
+            addInitUser(profile.email, profile.username, stateGoodsArr);
         }
-    }, [profile, stateGoodsArr, addUser]);
+    }, [profile, stateGoodsArr, addInitUser]);
 
     // Update number of users on submit.
     const addToGroup = () => {
@@ -205,6 +206,14 @@ const mapDispatchToProps = (dispatch) => {
         addUser: (userEmail, username, goodsArr) => {
             dispatch({
                 type: "ADD_USER",
+                email: userEmail,
+                username: username,
+                goods: goodsArr,
+            });
+        },
+        addInitUser: (userEmail, username, goodsArr) => {
+            dispatch({
+                type: "ADD_INIT_USER",
                 email: userEmail,
                 username: username,
                 goods: goodsArr,
