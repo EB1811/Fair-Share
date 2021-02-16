@@ -29,7 +29,9 @@ import { Link } from "react-router-dom";
 //// Fix navbar and footer links to reflect new router rework.
 //// Change gather goods info to use react router rather than getting 'id' form url.
 //// Remove router push from input goods info component and add it to gather goods page.
-//TODO Set up local vs remote sharing pages. Either in route or in conditional rendering.
+//// Set up local vs remote sharing pages. Either in route or in conditional rendering.
+//TODO Route guarding checking if all questions are answered, users exists, goods exists etc.
+//TODO Make sure results work for both local and remote groups.
 //TODO Account actions in /Account page.
 //TODO Results page ui improvements.
 //TODO Update to react 4.

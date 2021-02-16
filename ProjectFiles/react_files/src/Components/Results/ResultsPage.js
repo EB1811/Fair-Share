@@ -58,12 +58,14 @@ const ResultsPage = ({
                 }),
             };
             const tempAlloArray = [];
-            fetch("https://localhost:5001/api/getAllocation", requestOptions)
+            fetch("http://localhost:5000/api/getAllocation", requestOptions)
                 .then((res) => res.json())
                 .then((data) => {
                     data.map((user) =>
                         tempAlloArray.push({
-                            userEmail: userArray[user.who].userEmail,
+                            userEmail: userArray[user.who].userEmail
+                                ? userArray[user.who].userEmail
+                                : null,
                             username: userArray[user.who].username,
                             alloGoods: user.goodsList,
                         })
@@ -93,7 +95,13 @@ const ResultsPage = ({
                         <h4>Results</h4>
                         <Col sm='12 mt-5'>
                             {stateAllocation.map((user) => (
-                                <p key={user.userEmail}>
+                                <p
+                                    key={
+                                        user.userEmail
+                                            ? user.userEmail
+                                            : user.username
+                                    }
+                                >
                                     {user.username}:&nbsp;
                                     {user.alloGoods.map((goodIndex) => (
                                         <span key={goodsArray[goodIndex].Good}>
