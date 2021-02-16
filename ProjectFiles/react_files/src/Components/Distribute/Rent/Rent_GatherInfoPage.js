@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 
 const Rent_GatherInfoPage = (props) => {
     const next = () => {
-        props.history.push("/Distribute/Rent/GroupInfo");
+        props.history.push(`/Distribute/Rent/GroupInfo/${props.shareMethod}`);
     };
 
     return (
@@ -41,6 +41,7 @@ const mapStateToProps = (state) => {
         goodsArr: state.distGoodsInfo.goodsArray,
         goodsTotVal: state.distGoodsInfo.totalValue,
         userArr: state.distGroupInfo.userArray,
+        shareMethod: state.questionnaireAnswers.shareMethod,
     };
 };
 export default connect(mapStateToProps)(Rent_GatherInfoPage);

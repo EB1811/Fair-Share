@@ -104,7 +104,7 @@ const GoodsQuestionnairePageShell = (props) => {
                     >
                         <Link
                             style={{ textDecoration: "none" }}
-                            to={"/Distribute/Goods/GoodInfo"}
+                            to={`/Distribute/Goods/GoodInfo/`}
                         >
                             <Button variant='primary' size='sm'>
                                 <span className='smButtonText'>

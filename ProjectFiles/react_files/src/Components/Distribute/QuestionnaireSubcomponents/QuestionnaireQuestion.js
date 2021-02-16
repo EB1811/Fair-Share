@@ -38,7 +38,7 @@ const QuestionnaireQuestion = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        answer: state.distQuestionsInfo.userValues,
+        answer: state.questionnaireAnswers.userValues,
     };
 };
 

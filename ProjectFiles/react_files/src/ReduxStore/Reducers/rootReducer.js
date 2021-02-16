@@ -13,7 +13,7 @@ import { firebaseReducer } from "react-redux-firebase";
 const rootReducer = combineReducers({
     distGoodsInfo: distGoodsInfoReducer,
     distGroupInfo: GroupValuesReducer,
-    distQuestionsInfo: distQuestionsReducer,
+    questionnaireAnswers: distQuestionsReducer,
     // Firebase
     firebase: firebaseReducer,
     firestore: firestoreReducer,

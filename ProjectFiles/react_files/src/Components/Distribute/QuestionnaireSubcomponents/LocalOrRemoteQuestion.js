@@ -4,7 +4,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
 
 import { withRouter } from "react-router";
 
@@ -16,6 +16,7 @@ import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
 
 const LocalOrRemoteQuestion = (props) => {
     const dispatch = useDispatch();
+    // Set the group info gathering method (local or remote) then go to next question page.
     const setMethod = (method) => {
         dispatch(questionnaireActions.setShareMethod(method));
 
