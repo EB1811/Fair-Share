@@ -1,4 +1,5 @@
 const initState = {
+    shareMethod: null,
     userValues: [
         {
             question: "Question 1",
@@ -18,6 +19,15 @@ const initState = {
 const distQuestionsReducer = (state = initState, action) => {
     var tempArr = [];
     switch (action.type) {
+        case "SET_SHARE_METHOD":
+            console.log("Success", action.type);
+
+            const newShareMethod = action.method;
+
+            return {
+                ...state,
+                shareMethod: newShareMethod,
+            };
         case "Question 1":
             console.log("Success", action.ans);
 

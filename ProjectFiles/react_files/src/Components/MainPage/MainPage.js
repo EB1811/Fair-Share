@@ -40,6 +40,7 @@ import { Link } from "react-router-dom";
 //? More username error types e.g., must be over 6 characters.
 //? Create a value matrix in input valuations component instead of results page.
 //? Wait for auth to load before rendering anything in App.js.
+//? Questionnaire 1 or 2 page components depends on if questions are same or different.
 
 //! Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 

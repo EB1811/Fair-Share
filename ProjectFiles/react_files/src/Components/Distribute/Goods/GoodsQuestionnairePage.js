@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-// React Components
+// Questions
+import LocalOrRemoteQuestion from "../QuestionnaireSubcomponents/LocalOrRemoteQuestion";
 import QuestionnaireQuestion from "../QuestionnaireSubcomponents/QuestionnaireQuestion";
 
 // Bootstrap Components
@@ -11,9 +12,6 @@ import Button from "react-bootstrap/Button";
 
 // React Router
 import { useParams, Link } from "react-router-dom";
-
-import shareLocal from "../../../Images/meeting-local-group_ICON.svg";
-import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
 
 const GoodsQuestionnairePageShell = (props) => {
     // Information about goods.
@@ -67,63 +65,7 @@ const GoodsQuestionnairePageShell = (props) => {
             </Container>
         );
     } else if (stage === "1") {
-        return (
-            <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-                <Row className='justify-content-center align-items-center min-vh-100'>
-                    <Col
-                        xs={11}
-                        sm={11}
-                        md={10}
-                        lg={7}
-                        xl={5}
-                        className='centerCard m-3'
-                        style={{ maxWidth: "800px" }}
-                    >
-                        <Row>
-                            <Col xs={12} sm={6} className='my-2'>
-                                <img
-                                    src={shareLocal}
-                                    className='SVGButton'
-                                    alt='meeting-local-group_ICON'
-                                    onClick={() =>
-                                        props.history.push(
-                                            "/Distribute/Goods/Questions/2"
-                                        )
-                                    }
-                                />
-                                <p
-                                    className='mt-3 text-muted'
-                                    style={{ fontSize: "0.9rem" }}
-                                >
-                                    Share locally, passing your device around to
-                                    gather everyone's valuations. No login
-                                    needed.
-                                </p>
-                            </Col>
-                            <Col xs={12} sm={6} className='my-2'>
-                                <img
-                                    src={shareOnlineGroup}
-                                    className='SVGButton'
-                                    alt='share-online-group_ICON.svg'
-                                    onClick={() =>
-                                        props.history.push(
-                                            "/Distribute/Goods/Questions/2"
-                                        )
-                                    }
-                                />
-                                <p
-                                    className='mt-3 text-muted'
-                                    style={{ fontSize: "0.9rem" }}
-                                >
-                                    Share using an online group, having members
-                                    login and get invited to your party.
-                                </p>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
-        );
+        return <LocalOrRemoteQuestion goodType='Goods' />;
     } else if (stage > 1 && stage < 4) {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
