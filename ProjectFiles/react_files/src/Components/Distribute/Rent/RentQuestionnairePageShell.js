@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // React Components
-import QuestionnaireQuestion from "../Questionnaire/QuestionnaireQuestion";
+import QuestionnaireQuestion from "../QuestionnaireSubcomponents/QuestionnaireQuestion";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";

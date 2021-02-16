@@ -53,21 +53,21 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             exact
-                            to='/Distribute/Information/Rent'
+                            to='/Distribute/Rent/Questions/0'
                         >
                             Rent
                         </NavLink>
                         <NavLink
                             className='nav-link'
                             exact
-                            to='/Distribute/Information/Goods'
+                            to='/Distribute/Goods/Questions/0'
                         >
                             Goods
                         </NavLink>
                         <NavLink
                             className='nav-link'
                             exact
-                            to='/Distribute/Information/Goods'
+                            to='/Distribute/Goods/Questions/0'
                         >
                             Finances
                         </NavLink>
