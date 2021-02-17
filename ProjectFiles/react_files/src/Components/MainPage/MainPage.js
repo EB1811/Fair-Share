@@ -39,6 +39,7 @@ import { Link } from "react-router-dom";
 ////
 //TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
 ////
+//? Maybe Re-authenticate a user.
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
 //? More username error types e.g., must be over 6 characters.
 //? Create a value matrix in input valuations component instead of results page.

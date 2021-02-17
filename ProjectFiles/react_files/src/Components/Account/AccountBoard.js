@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import { Redirect } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import { useFirebase } from "react-redux-firebase";
+import { useFirebase, useFirestore } from "react-redux-firebase";
 
 import SmallChangeEmailForm from "./AccountActions/SmallChangeEmailForm";
 import SmallChangeUsernameForm from "./AccountActions/SmallChangeUsernameForm";
@@ -16,11 +16,11 @@ import SmallChangePasswordForm from "./AccountActions/SmallChangePasswordForm";
 
 const AccountBoard = () => {
     const firebase = useFirebase();
+    const firestore = useFirestore();
 
     // Getting from store.
     const profile = useSelector((state) => state.firebase.profile);
     const auth = useSelector((state) => state.firebase.auth);
-
     const [errorMessage, setErrorMessage] = useState("");
 
     // Change render.
@@ -36,6 +36,25 @@ const AccountBoard = () => {
             .then(() => {
                 console.log("Email Sent");
                 setVEmailSent(true);
+            })
+            .catch((err) => {
+                console.log("Error: " + err.message);
+                setErrorMessage(err.message);
+            });
+    };
+
+    // Delete account.
+    const [delAccountSelected, setDelAccountSelected] = useState(false);
+    const deleteAccount = () => {
+        const uid = auth.uid;
+        const user = firebase.auth().currentUser;
+        user.delete()
+            .then(() => {
+                firestore.delete({
+                    collection: "users",
+                    doc: uid,
+                });
+                console.log("Account Deleted");
             })
             .catch((err) => {
                 console.log("Error: " + err.message);
@@ -258,6 +277,40 @@ const AccountBoard = () => {
                                             auth.lastLoginAt * 1
                                         ).toLocaleDateString()}
                                     </span>
+                                </span>
+                            </div>
+                            <div
+                                className='d-flex mt-2'
+                                style={{
+                                    fontStyle: "italic",
+                                }}
+                            >
+                                <span className='text-muted'>
+                                    {delAccountSelected ? (
+                                        <button
+                                            onClick={() => deleteAccount()}
+                                            className='ml-auto text-muted btn btn-link textLinkSmall'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Click to confirm
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() =>
+                                                setDelAccountSelected(true)
+                                            }
+                                            className='ml-auto text-muted btn btn-link textLinkSmall'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Delete Account
+                                        </button>
+                                    )}
                                 </span>
                             </div>
                             {errorMessage ? (
