@@ -12,6 +12,7 @@ import { useFirebase } from "react-redux-firebase";
 
 import SmallChangeEmailForm from "./AccountActions/SmallChangeEmailForm";
 import SmallChangeUsernameForm from "./AccountActions/SmallChangeUsernameForm";
+import SmallChangePasswordForm from "./AccountActions/SmallChangePasswordForm";
 
 const AccountBoard = () => {
     const firebase = useFirebase();
@@ -25,6 +26,7 @@ const AccountBoard = () => {
     // Change render.
     const [emailChange, setEmailChange] = useState(false);
     const [usernameChange, setUsernameChange] = useState(false);
+    const [passChange, setPassChange] = useState(false);
 
     // Verify email.
     const [vEmailSent, setVEmailSent] = useState(false);
@@ -40,7 +42,6 @@ const AccountBoard = () => {
                 setErrorMessage(err.message);
             });
     };
-    // Change password.
 
     if (profile.isLoaded && auth.isLoaded) {
         if (profile && !auth.isEmpty) {
@@ -179,16 +180,43 @@ const AccountBoard = () => {
                             <div className='d-flex textLink'>
                                 <span className='text-muted '>
                                     Password:{" "}
-                                    <span className='ml-1'>**********</span>
+                                    <span className='ml-1'>
+                                        {passChange ? (
+                                            <SmallChangePasswordForm
+                                                setPassChange={setPassChange}
+                                                setErrorMessage={
+                                                    setErrorMessage
+                                                }
+                                            />
+                                        ) : (
+                                            "**********"
+                                        )}
+                                    </span>
                                 </span>
                                 <span className='ml-auto'>
-                                    <a
-                                        href='/'
-                                        style={{ cursor: "pointer" }}
-                                        className='text-muted'
-                                    >
-                                        Reset
-                                    </a>
+                                    {!passChange ? (
+                                        <button
+                                            onClick={() => setPassChange(true)}
+                                            className='ml-auto text-muted btn btn-link textLink'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Change
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() => setPassChange(false)}
+                                            className='ml-auto text-muted btn btn-link textLink'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    )}
                                 </span>
                             </div>
 
