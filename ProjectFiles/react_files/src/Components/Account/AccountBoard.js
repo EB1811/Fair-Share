@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useFirebase } from "react-redux-firebase";
 
 import SmallChangeEmailForm from "./AccountActions/SmallChangeEmailForm";
+import SmallChangeUsernameForm from "./AccountActions/SmallChangeUsernameForm";
 
 const AccountBoard = () => {
     const firebase = useFirebase();
@@ -21,8 +22,10 @@ const AccountBoard = () => {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    // Change email render.
+    // Change render.
     const [emailChange, setEmailChange] = useState(false);
+    const [usernameChange, setUsernameChange] = useState(false);
+
     // Verify email.
     const [vEmailSent, setVEmailSent] = useState(false);
     const verify = () => {
@@ -33,10 +36,10 @@ const AccountBoard = () => {
                 setVEmailSent(true);
             })
             .catch((err) => {
-                console.log("Error: " + err);
+                console.log("Error: " + err.message);
+                setErrorMessage(err.message);
             });
     };
-    // Change username (+displayName).
     // Change password.
 
     if (profile.isLoaded && auth.isLoaded) {
@@ -76,17 +79,32 @@ const AccountBoard = () => {
                                     </span>
                                 </span>
                                 <span className='ml-auto'>
-                                    <button
-                                        onClick={() => setEmailChange(true)}
-                                        disabled={emailChange}
-                                        className='ml-auto text-muted btn btn-link textLink'
-                                        style={{
-                                            padding: "0",
-                                            border: "none",
-                                        }}
-                                    >
-                                        Change
-                                    </button>
+                                    {!emailChange ? (
+                                        <button
+                                            onClick={() => setEmailChange(true)}
+                                            disabled={emailChange}
+                                            className='ml-auto text-muted btn btn-link textLink'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Change
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() =>
+                                                setEmailChange(false)
+                                            }
+                                            className='ml-auto text-muted btn btn-link textLink'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    )}
                                 </span>
                             </div>
                             <div className='d-flex textLink'>
@@ -114,17 +132,48 @@ const AccountBoard = () => {
                                 <span className='text-muted '>
                                     Username:{" "}
                                     <span className='ml-1'>
-                                        {profile.username}
+                                        {usernameChange ? (
+                                            <SmallChangeUsernameForm
+                                                setUsernameChange={
+                                                    setUsernameChange
+                                                }
+                                                setErrorMessage={
+                                                    setErrorMessage
+                                                }
+                                            />
+                                        ) : (
+                                            profile.username
+                                        )}
                                     </span>
                                 </span>
                                 <span className='ml-auto'>
-                                    <a
-                                        href='/'
-                                        style={{ cursor: "pointer" }}
-                                        className='text-muted'
-                                    >
-                                        Change
-                                    </a>
+                                    {!usernameChange ? (
+                                        <button
+                                            onClick={() =>
+                                                setUsernameChange(true)
+                                            }
+                                            className='ml-auto text-muted btn btn-link textLink'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Change
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() =>
+                                                setUsernameChange(false)
+                                            }
+                                            className='ml-auto text-muted btn btn-link textLink'
+                                            style={{
+                                                padding: "0",
+                                                border: "none",
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    )}
                                 </span>
                             </div>
                             <div className='d-flex textLink'>
@@ -138,7 +187,7 @@ const AccountBoard = () => {
                                         style={{ cursor: "pointer" }}
                                         className='text-muted'
                                     >
-                                        Change
+                                        Reset
                                     </a>
                                 </span>
                             </div>
