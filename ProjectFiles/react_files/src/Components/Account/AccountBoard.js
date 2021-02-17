@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -8,11 +8,27 @@ import Col from "react-bootstrap/Col";
 import { Redirect } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import { useFirebase } from "react-redux-firebase";
 
 const AccountBoard = () => {
+    const firebase = useFirebase();
+
     // Getting from store.
     const profile = useSelector((state) => state.firebase.profile);
     const auth = useSelector((state) => state.firebase.auth);
+
+    const [vEmailSent, setVEmailSent] = useState(false);
+    const verify = () => {
+        const user = firebase.auth().currentUser;
+        user.sendEmailVerification()
+            .then(() => {
+                console.log("Email Sent");
+                setVEmailSent(true);
+            })
+            .catch((err) => {
+                console.log("Error: " + err);
+            });
+    };
 
     if (profile.isLoaded && auth.isLoaded) {
         if (profile && !auth.isEmpty) {
@@ -59,15 +75,17 @@ const AccountBoard = () => {
                                     </span>
                                 </span>
                                 {!auth.emailVerified ? (
-                                    <span className='ml-auto'>
-                                        <a
-                                            href='/'
-                                            style={{ cursor: "pointer" }}
-                                            className='text-muted'
-                                        >
-                                            Verify
-                                        </a>
-                                    </span>
+                                    <button
+                                        onClick={() => verify()}
+                                        disabled={vEmailSent}
+                                        className='ml-auto text-muted btn btn-link textLink'
+                                        style={{
+                                            padding: "0",
+                                            border: "none",
+                                        }}
+                                    >
+                                        {vEmailSent ? "Email Sent" : "Verify"}
+                                    </button>
                                 ) : null}
                             </div>
                             <div className='d-flex textLink'>

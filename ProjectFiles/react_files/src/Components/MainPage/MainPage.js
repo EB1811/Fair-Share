@@ -24,7 +24,6 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 import { Link } from "react-router-dom";
 
 //// Question asking if user wants to input valuations locally or by adding users to sessions.
-//TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
 ////Rework router and whole info gathering process.
 //// Fix navbar and footer links to reflect new router rework.
 //// Change gather goods info to use react router rather than getting 'id' form url.
@@ -32,18 +31,20 @@ import { Link } from "react-router-dom";
 //// Set up local vs remote sharing pages. Either in route or in conditional rendering.
 //// Route guarding checking if all questions are answered, users exists, goods exists etc.
 //// Make sure results work for both local and remote groups.
-//TODO Account actions in /Account page.
-//TODO Results page ui improvements.
-//TODO Update to react 4.
-//TODO Build the learning page and add information about it into main page.
-//TODO Build the rent sharing algorithm in the API.
-
+//TODO- Account actions in /Account page.
+//TODO- Build the rent sharing algorithm in the API.
+//TODO- Results page ui improvements.
+//TODO- Update to react 4.
+//TODO- Build the learning page and add information about it into main page.
+////
+//TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
+////
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
 //? More username error types e.g., must be over 6 characters.
 //? Create a value matrix in input valuations component instead of results page.
 //? Wait for auth to load before rendering anything in App.js.
 //? Questionnaire 1 or 2 page components depends on if questions are same or different.
-
+////
 //// Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 
 const MainPage = () => {

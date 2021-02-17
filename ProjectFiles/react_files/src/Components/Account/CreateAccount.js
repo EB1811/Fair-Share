@@ -40,6 +40,17 @@ const CreateAccount = (props) => {
                         { email: email, password: pass },
                         { username: username, email: email }
                     )
+                    .then(async () => {
+                        const user = firebase.auth().currentUser;
+                        console.log(user);
+                        try {
+                            await user.updateProfile({
+                                displayName: username,
+                            });
+                        } catch (err) {
+                            errorMessage(err);
+                        }
+                    })
                     .then(() => {
                         props.history.push("/");
                     })
