@@ -42,11 +42,11 @@ const CreateAccount = (props) => {
                     )
                     .then(async () => {
                         const user = firebase.auth().currentUser;
-                        console.log(user);
                         try {
                             await user.updateProfile({
                                 displayName: username,
                             });
+                            await user.sendEmailVerification();
                         } catch (err) {
                             errorMessage(err);
                         }

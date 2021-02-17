@@ -10,6 +10,8 @@ import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useFirebase } from "react-redux-firebase";
 
+import SmallChangeEmailForm from "./AccountActions/SmallChangeEmailForm";
+
 const AccountBoard = () => {
     const firebase = useFirebase();
 
@@ -17,6 +19,11 @@ const AccountBoard = () => {
     const profile = useSelector((state) => state.firebase.profile);
     const auth = useSelector((state) => state.firebase.auth);
 
+    const [errorMessage, setErrorMessage] = useState("");
+
+    // Change email render.
+    const [emailChange, setEmailChange] = useState(false);
+    // Verify email.
     const [vEmailSent, setVEmailSent] = useState(false);
     const verify = () => {
         const user = firebase.auth().currentUser;
@@ -29,6 +36,8 @@ const AccountBoard = () => {
                 console.log("Error: " + err);
             });
     };
+    // Change username (+displayName).
+    // Change password.
 
     if (profile.isLoaded && auth.isLoaded) {
         if (profile && !auth.isEmpty) {
@@ -54,17 +63,30 @@ const AccountBoard = () => {
                                 <span className='text-muted'>
                                     Email:{" "}
                                     <span className='ml-1'>
-                                        {profile.email}
+                                        {emailChange ? (
+                                            <SmallChangeEmailForm
+                                                setEmailChange={setEmailChange}
+                                                setErrorMessage={
+                                                    setErrorMessage
+                                                }
+                                            />
+                                        ) : (
+                                            profile.email
+                                        )}
                                     </span>
                                 </span>
                                 <span className='ml-auto'>
-                                    <a
-                                        href='/'
-                                        style={{ cursor: "pointer" }}
-                                        className='text-muted'
+                                    <button
+                                        onClick={() => setEmailChange(true)}
+                                        disabled={emailChange}
+                                        className='ml-auto text-muted btn btn-link textLink'
+                                        style={{
+                                            padding: "0",
+                                            border: "none",
+                                        }}
                                     >
                                         Change
-                                    </a>
+                                    </button>
                                 </span>
                             </div>
                             <div className='d-flex textLink'>
@@ -161,6 +183,22 @@ const AccountBoard = () => {
                                     </span>
                                 </span>
                             </div>
+                            {errorMessage ? (
+                                <div
+                                    className='d-flex textLink mt-2'
+                                    style={{
+                                        fontStyle: "italic",
+                                    }}
+                                >
+                                    <span
+                                        style={{
+                                            color: "red",
+                                        }}
+                                    >
+                                        {errorMessage}
+                                    </span>
+                                </div>
+                            ) : null}
                             <hr />
                         </Col>
                     </Row>
