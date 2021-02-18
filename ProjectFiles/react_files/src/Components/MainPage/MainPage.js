@@ -33,12 +33,15 @@ import { Link } from "react-router-dom";
 //// Make sure results work for both local and remote groups.
 ////- Account actions in /Account page.
 ////- Build the rent sharing algorithm in the API.
-//TODO Connect rent process to api.
+//// Connect rent process to api.
+//TODO-- Firestore integration with user inputs for remote share functionality.
+////
 //TODO- Results page ui improvements.
 //TODO- Update to react 4.
 //TODO- Build the learning page and add information about it into main page.
 ////
 //TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
+//TODO Change any buttons to forms to allow for keyboard functionality.
 ////
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
 //? Questionnaire 1 or 2 page components depends on if questions are same or different.
@@ -47,6 +50,7 @@ import { Link } from "react-router-dom";
 //? More username error types e.g., must be over 6 characters.
 //? Maybe Re-authenticate a user rather than ask to login.
 ////
+//! BUG: [A301212-81] Set valuations page not accessing user's name correctly.
 //// Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 
 const MainPage = () => {

@@ -44,7 +44,7 @@ const SetValuationsPage = (props) => {
                         style={{ maxWidth: "800px" }}
                     >
                         <h4>
-                            {props.usersArr[currUser].name}, enter your
+                            {props.usersArr[currUser].username}: Enter your
                             valuation for each item:
                         </h4>
                         <InputValuationsForm
