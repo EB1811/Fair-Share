@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 //// Set up local vs remote sharing pages. Either in route or in conditional rendering.
 //// Route guarding checking if all questions are answered, users exists, goods exists etc.
 //// Make sure results work for both local and remote groups.
-//TODO- Account actions in /Account page.
+////- Account actions in /Account page.
 //TODO- Build the rent sharing algorithm in the API.
 //TODO- Results page ui improvements.
 //TODO- Update to react 4.
@@ -39,12 +39,12 @@ import { Link } from "react-router-dom";
 ////
 //TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
 ////
-//? Maybe Re-authenticate a user.
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
-//? More username error types e.g., must be over 6 characters.
+//? Questionnaire 1 or 2 page components depends on if questions are same or different.
 //? Create a value matrix in input valuations component instead of results page.
 //? Wait for auth to load before rendering anything in App.js.
-//? Questionnaire 1 or 2 page components depends on if questions are same or different.
+//? More username error types e.g., must be over 6 characters.
+//? Maybe Re-authenticate a user rather than ask to login.
 ////
 //// Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 

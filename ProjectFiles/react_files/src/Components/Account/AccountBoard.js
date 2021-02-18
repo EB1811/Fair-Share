@@ -304,6 +304,7 @@ const AccountBoard = () => {
                                             }
                                             className='ml-auto text-muted btn btn-link textLinkSmall'
                                             style={{
+                                                fontStyle: "italic",
                                                 padding: "0",
                                                 border: "none",
                                             }}
