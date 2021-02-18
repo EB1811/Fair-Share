@@ -23,25 +23,12 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 // React Router
 import { Link } from "react-router-dom";
 
-//// Question asking if user wants to input valuations locally or by adding users to sessions.
-////Rework router and whole info gathering process.
-//// Fix navbar and footer links to reflect new router rework.
-//// Change gather goods info to use react router rather than getting 'id' form url.
-//// Remove router push from input goods info component and add it to gather goods page.
-//// Set up local vs remote sharing pages. Either in route or in conditional rendering.
-//// Route guarding checking if all questions are answered, users exists, goods exists etc.
-//// Make sure results work for both local and remote groups.
-////- Account actions in /Account page.
-////- Build the rent sharing algorithm in the API.
-//// Connect rent process to api.
 //TODO-- Firestore integration with user inputs for remote share functionality.
+//TODO: [A301212-85] Dependencies outdated. Update to React 4.
+//TODO: [A301212-45] Build the learning page and add information about it into main page.
 ////
-//TODO- Results page ui improvements.
-//TODO- Update to react 4.
-//TODO- Build the learning page and add information about it into main page.
-////
-//TODO End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
-//TODO Change any buttons to forms to allow for keyboard functionality.
+//TODO: [A301212-84] End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
+//TODO: [A301212-83] Change any buttons to forms to allow for keyboard functionality.
 ////
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
 //? Questionnaire 1 or 2 page components depends on if questions are same or different.
@@ -50,7 +37,6 @@ import { Link } from "react-router-dom";
 //? More username error types e.g., must be over 6 characters.
 //? Maybe Re-authenticate a user rather than ask to login.
 ////
-//! BUG: [A301212-81] Set valuations page not accessing user's name correctly.
 //// Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 
 const MainPage = () => {
