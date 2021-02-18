@@ -24,10 +24,8 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 import { Link } from "react-router-dom";
 
 //TODO-- Firestore integration with user inputs for remote share functionality.
-//TODO: [A301212-85] Dependencies outdated. Update to React 4.
+//TODO: [A301212-85] Dependencies outdated. Update to React 17.
 //TODO: [A301212-45] Build the learning page and add information about it into main page.
-////
-//TODO: [A301212-84] End process from a method checking stage, instead of having a page with a CTA to leave page in questions page.
 //TODO: [A301212-83] Change any buttons to forms to allow for keyboard functionality.
 ////
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
