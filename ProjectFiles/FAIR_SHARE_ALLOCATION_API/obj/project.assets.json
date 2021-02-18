@@ -239,11 +239,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Emmanuils\\Documents\\WEBSITES\\FAIR_SHARE_ALLOCATION_API\\FAIR_SHARE_ALLOCATION_API.csproj",
+      "projectUniqueName": "D:\\Users\\Emmanuils\\Documents\\CE301\\ce301_borovikovs_emmanuils\\ProjectFiles\\FAIR_SHARE_ALLOCATION_API\\FAIR_SHARE_ALLOCATION_API.csproj",
       "projectName": "FAIR_SHARE_ALLOCATION_API",
-      "projectPath": "D:\\Users\\Emmanuils\\Documents\\WEBSITES\\FAIR_SHARE_ALLOCATION_API\\FAIR_SHARE_ALLOCATION_API.csproj",
+      "projectPath": "D:\\Users\\Emmanuils\\Documents\\CE301\\ce301_borovikovs_emmanuils\\ProjectFiles\\FAIR_SHARE_ALLOCATION_API\\FAIR_SHARE_ALLOCATION_API.csproj",
       "packagesPath": "C:\\Users\\Eman\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\Emmanuils\\Documents\\WEBSITES\\FAIR_SHARE_ALLOCATION_API\\obj\\",
+      "outputPath": "D:\\Users\\Emmanuils\\Documents\\CE301\\ce301_borovikovs_emmanuils\\ProjectFiles\\FAIR_SHARE_ALLOCATION_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Eman\\AppData\\Roaming\\NuGet\\NuGet.Config"

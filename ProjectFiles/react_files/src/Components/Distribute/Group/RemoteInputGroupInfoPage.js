@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 
 // React Router
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, useParams } from "react-router-dom";
 
 const RemoteInputGroupInfoPage = ({
     profile,
@@ -28,6 +28,7 @@ const RemoteInputGroupInfoPage = ({
     removeUser,
     history,
 }) => {
+    let { goodType } = useParams();
     // User ID.
     const [userEmail, setUserEmail] = useState("");
     // Failed bool for conditional rendering failure state.
@@ -63,7 +64,7 @@ const RemoteInputGroupInfoPage = ({
             setGroupCountFailed(true);
         } else {
             setGroupCountFailed(false);
-            history.push("/Distribute/Valuations");
+            history.push(`/Distribute/Valuations/Local/${goodType}`);
         }
     };
     const deleteUser = (userEmail) => {

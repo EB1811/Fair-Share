@@ -60,30 +60,29 @@ function App() {
                 />
                 <Route
                     exact
-                    path='/Distribute/Goods/GroupInfo/Local'
+                    path='/Distribute/GroupInfo/Local/:goodType'
                     component={LocalInputGroupInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Rent/GroupInfo/Local'
-                    component={LocalInputGroupInfoPage}
-                />
-                <Route
-                    exact
-                    path='/Distribute/Goods/GroupInfo/Remote'
+                    path='/Distribute/GroupInfo/Remote/:goodType'
                     component={RemoteInputGroupInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Rent/GroupInfo/Remote'
-                    component={RemoteInputGroupInfoPage}
-                />
-                <Route
-                    exact
-                    path='/Distribute/Valuations'
+                    path='/Distribute/Valuations/Local/:goodType'
                     component={SetValuationsPage}
                 />
-                <Route exact path='/Results' component={ResultsPage} />
+                <Route
+                    exact
+                    path='/Distribute/Valuations/Remote/:goodType'
+                    component={SetValuationsPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Results/:goodType'
+                    component={ResultsPage}
+                />
                 <Route exact path='/CreateAccount' component={CreateAccount} />
                 <Route exact path='/Login' component={Login} />
                 <Route exact path='/Account' component={AccountBoard} />

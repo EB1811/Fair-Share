@@ -32,7 +32,8 @@ import { Link } from "react-router-dom";
 //// Route guarding checking if all questions are answered, users exists, goods exists etc.
 //// Make sure results work for both local and remote groups.
 ////- Account actions in /Account page.
-//TODO- Build the rent sharing algorithm in the API.
+////- Build the rent sharing algorithm in the API.
+//TODO Connect rent process to api.
 //TODO- Results page ui improvements.
 //TODO- Update to react 4.
 //TODO- Build the learning page and add information about it into main page.

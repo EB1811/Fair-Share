@@ -13,7 +13,7 @@ import Alert from "react-bootstrap/Alert";
 import { connect } from "react-redux";
 
 // React Router
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, useParams } from "react-router-dom";
 
 const LocalInputGroupInfoPage = ({
     stateUserArray,
@@ -22,6 +22,7 @@ const LocalInputGroupInfoPage = ({
     removeUser,
     history,
 }) => {
+    let { goodType } = useParams();
     // User ID.
     const [username, setUsername] = useState("");
     // Failed bool for conditional rendering failure state.
@@ -48,7 +49,7 @@ const LocalInputGroupInfoPage = ({
             setGroupCountFailed(true);
         } else {
             setGroupCountFailed(false);
-            history.push("/Distribute/Valuations");
+            history.push(`/Distribute/Valuations/Local/${goodType}`);
         }
     };
 

@@ -17,7 +17,7 @@ const Goods_GatherInfoPage = (props) => {
     // Go to add users to group.
     const next = () => {
         console.log(props.shareMethod);
-        props.history.push(`/Distribute/Goods/GroupInfo/${props.shareMethod}`);
+        props.history.push(`/Distribute/GroupInfo/${props.shareMethod}/Goods`);
     };
 
     //? Maybe have a variable in questions showing if all questions completed.

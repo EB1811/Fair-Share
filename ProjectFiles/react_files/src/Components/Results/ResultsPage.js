@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 
 // React Router
-import { Link, Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
 const ResultsPage = ({
     userArray,
@@ -18,6 +18,7 @@ const ResultsPage = ({
     setStateAllocation,
     goodsArray,
 }) => {
+    let { goodType } = useParams();
     // Get results.
     useEffect(() => {
         if (userArray.length > 0 && goodsArray.length > 0) {
@@ -58,7 +59,14 @@ const ResultsPage = ({
                 }),
             };
             const tempAlloArray = [];
-            fetch("http://localhost:5000/api/getAllocation", requestOptions)
+            let fetchURL = "";
+            // Goods or Rooms route.
+            if (goodType === "Rent") {
+                fetchURL = "http://localhost:5000/api/getRoomsAllocation";
+            } else if (goodType === "Goods") {
+                fetchURL = "http://localhost:5000/api/getGoodsAllocation";
+            }
+            fetch(fetchURL, requestOptions)
                 .then((res) => res.json())
                 .then((data) => {
                     data.map((user) =>
@@ -77,7 +85,7 @@ const ResultsPage = ({
                     console.log(err);
                 });
         }
-    }, [setStateAllocation, userArray, goodsArray]);
+    }, [setStateAllocation, userArray, goodsArray, goodType]);
 
     if (userArray.length > 0) {
         if (stateAllocation.length > 0) {
@@ -118,7 +126,7 @@ const ResultsPage = ({
                                     </p>
                                 ))}
                             </Col>
-                            <Link style={{ textDecoration: "none" }} to='/'>
+                            <a href='/' style={{ textDecoration: "none" }}>
                                 <Button
                                     variant='primary'
                                     size='sm'
@@ -128,7 +136,7 @@ const ResultsPage = ({
                                         Share Again
                                     </span>
                                 </Button>
-                            </Link>
+                            </a>
                         </Col>
                     </Row>
                 </Container>

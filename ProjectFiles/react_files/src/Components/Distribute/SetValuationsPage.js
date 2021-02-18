@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // React Router
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, useParams } from "react-router-dom";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import InputValuationsForm from "./InputValuesComponents/InputValuations";
 
 const SetValuationsPage = (props) => {
+    let { goodType } = useParams();
     // Valuations.
     const [currUser, setCurrUser] = useState(0);
 
@@ -26,7 +27,7 @@ const SetValuationsPage = (props) => {
         } else {
             // Dispatch to get results and redirect to results page.
             props.getAllocation();
-            props.history.push("/Results");
+            props.history.push(`/Distribute/Results/${goodType}`);
         }
     };
 

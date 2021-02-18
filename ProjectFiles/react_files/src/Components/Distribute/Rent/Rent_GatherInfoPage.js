@@ -15,7 +15,7 @@ import { Redirect } from "react-router-dom";
 
 const Rent_GatherInfoPage = (props) => {
     const next = () => {
-        props.history.push(`/Distribute/Rent/GroupInfo/${props.shareMethod}`);
+        props.history.push(`/Distribute/GroupInfo/${props.shareMethod}/Rent`);
     };
 
     if (props.shareMethod) {
