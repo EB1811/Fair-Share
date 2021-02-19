@@ -44,9 +44,6 @@ const Rent_GatherInfoPage = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        goodsArr: state.distGoodsInfo.goodsArray,
-        goodsTotVal: state.distGoodsInfo.totalValue,
-        userArr: state.distGroupInfo.userArray,
         shareMethod: state.questionnaireAnswers.shareMethod,
     };
 };

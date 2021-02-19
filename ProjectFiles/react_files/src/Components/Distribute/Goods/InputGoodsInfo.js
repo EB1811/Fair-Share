@@ -23,7 +23,8 @@ const InputGoodsInfo = (props) => {
 
     //* Add good to state and store.
     //? Maybe make goods value and name not turn into a object for the state, i.e., simply pass goodName and goodValue.
-    const addGood = () => {
+    const addGood = (e) => {
+        e.preventDefault();
         if (
             props.stateGoodsArray.filter((good) => good.Good === goodName)
                 .length > 0
@@ -76,82 +77,92 @@ const InputGoodsInfo = (props) => {
                     borderBottom: "1px solid #999999",
                 }}
             >
-                <Row className='align-items-center'>
-                    <Col xs={12} sm={9}>
-                        {nameFailed ? (
-                            <Form.Control
-                                size='sm'
-                                placeholder={
-                                    nameFailedEmpty
-                                        ? "Name cannot be empty"
-                                        : "Good with name already exists"
-                                }
-                                value={goodName}
-                                type='text'
-                                onChange={(e) => setGoodName(e.target.value)}
-                                style={{
-                                    border: "1px solid red",
-                                    marginLeft: "auto",
-                                    marginRight: "auto",
-                                    display: "inline",
-                                }}
-                            />
-                        ) : (
-                            <Form.Control
-                                size='sm'
-                                placeholder='Name'
-                                value={goodName}
-                                type='text'
-                                onChange={(e) => setGoodName(e.target.value)}
-                                style={{
-                                    marginLeft: "auto",
-                                    marginRight: "auto",
-                                    display: "inline",
-                                }}
-                            />
-                        )}
-                        {valueFailed ? (
-                            <Form.Control
-                                size='sm'
-                                placeholder='Value cannot be less than 1'
-                                value={goodValue}
-                                type='number'
-                                onChange={(e) => setGoodValue(e.target.value)}
-                                style={{
-                                    border: "1px solid red",
-                                    marginLeft: "auto",
-                                    marginRight: "auto",
-                                    display: "inline",
-                                }}
-                                className='mt-1'
-                            />
-                        ) : (
-                            <Form.Control
-                                size='sm'
-                                placeholder='Estimated Value (Optional)'
-                                value={goodValue}
-                                type='number'
-                                onChange={(e) => setGoodValue(e.target.value)}
-                                style={{
-                                    marginLeft: "auto",
-                                    marginRight: "auto",
-                                    display: "inline",
-                                }}
-                                className='mt-1'
-                            />
-                        )}
-                    </Col>
-                    <Col xs={12} sm={3}>
-                        <Button
-                            variant='primary'
-                            size='md'
-                            onClick={() => addGood()}
-                            className='m-3'
-                        >
-                            <span>Add</span>
-                        </Button>
-                    </Col>
-                </Row>
+                <Form onSubmit={addGood}>
+                    <Row className='align-items-center'>
+                        <Col xs={12} sm={9}>
+                            {nameFailed ? (
+                                <Form.Control
+                                    size='sm'
+                                    placeholder={
+                                        nameFailedEmpty
+                                            ? "Name cannot be empty"
+                                            : "Good with name already exists"
+                                    }
+                                    value={goodName}
+                                    type='text'
+                                    onChange={(e) =>
+                                        setGoodName(e.target.value)
+                                    }
+                                    style={{
+                                        border: "1px solid red",
+                                        marginLeft: "auto",
+                                        marginRight: "auto",
+                                        display: "inline",
+                                    }}
+                                />
+                            ) : (
+                                <Form.Control
+                                    size='sm'
+                                    placeholder='Name'
+                                    value={goodName}
+                                    type='text'
+                                    onChange={(e) =>
+                                        setGoodName(e.target.value)
+                                    }
+                                    style={{
+                                        marginLeft: "auto",
+                                        marginRight: "auto",
+                                        display: "inline",
+                                    }}
+                                />
+                            )}
+                            {valueFailed ? (
+                                <Form.Control
+                                    size='sm'
+                                    placeholder='Value cannot be less than 1'
+                                    value={goodValue}
+                                    type='number'
+                                    onChange={(e) =>
+                                        setGoodValue(e.target.value)
+                                    }
+                                    style={{
+                                        border: "1px solid red",
+                                        marginLeft: "auto",
+                                        marginRight: "auto",
+                                        display: "inline",
+                                    }}
+                                    className='mt-1'
+                                />
+                            ) : (
+                                <Form.Control
+                                    size='sm'
+                                    placeholder='Estimated Value (Optional)'
+                                    value={goodValue}
+                                    type='number'
+                                    onChange={(e) =>
+                                        setGoodValue(e.target.value)
+                                    }
+                                    style={{
+                                        marginLeft: "auto",
+                                        marginRight: "auto",
+                                        display: "inline",
+                                    }}
+                                    className='mt-1'
+                                />
+                            )}
+                        </Col>
+                        <Col xs={12} sm={3}>
+                            <Button
+                                variant='primary'
+                                size='md'
+                                className='m-3'
+                                type='submit'
+                            >
+                                <span>Add</span>
+                            </Button>
+                        </Col>
+                    </Row>
+                </Form>
                 <hr />
                 <Row className='justify-content-center contentOverflow mt-3'>
                     <Col sm='10'>

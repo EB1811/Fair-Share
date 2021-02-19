@@ -16,7 +16,6 @@ import { Redirect } from "react-router-dom";
 const Goods_GatherInfoPage = (props) => {
     // Go to add users to group.
     const next = () => {
-        console.log(props.shareMethod);
         props.history.push(`/Distribute/GroupInfo/${props.shareMethod}/Goods`);
     };
 
@@ -47,9 +46,6 @@ const Goods_GatherInfoPage = (props) => {
 // To access and modify redux store.
 const mapStateToProps = (state) => {
     return {
-        goodsArr: state.distGoodsInfo.goodsArray,
-        goodsTotVal: state.distGoodsInfo.totalValue,
-        userArr: state.distGroupInfo.userArray,
         shareMethod: state.questionnaireAnswers.shareMethod,
     };
 };

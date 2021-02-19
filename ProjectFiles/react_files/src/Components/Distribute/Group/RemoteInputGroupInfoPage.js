@@ -43,8 +43,10 @@ const RemoteInputGroupInfoPage = ({
     }, [profile, stateGoodsArr, addInitUser]);
 
     // Update number of users on submit.
-    const addToGroup = () => {
+    const addToGroup = (e) => {
+        e.preventDefault();
         const user = firebaseUsers.filter((user) => user.email === userEmail);
+        // Input validation.
         if (
             firebaseUsers &&
             !stateUserArray.some((obj) => obj.userEmail === userEmail) &&
@@ -100,40 +102,42 @@ const RemoteInputGroupInfoPage = ({
                                     borderBottom: "1px solid #999999",
                                 }}
                             >
-                                <Row className='align-items-center'>
-                                    <Col xs={8} sm={9}>
-                                        <Form.Control
-                                            size='sm'
-                                            placeholder={
-                                                userIdFailed
-                                                    ? "Invalid User"
-                                                    : "Enter User email"
-                                            }
-                                            value={userEmail}
-                                            type='email'
-                                            onChange={(e) =>
-                                                setUserEmail(e.target.value)
-                                            }
-                                            style={
-                                                userIdFailed
-                                                    ? {
-                                                          border:
-                                                              "1px solid red",
-                                                      }
-                                                    : {}
-                                            }
-                                        />
-                                    </Col>
-                                    <Col xs={4} sm={3}>
-                                        <Button
-                                            variant='primary'
-                                            size='md'
-                                            onClick={() => addToGroup()}
-                                        >
-                                            <span>Add</span>
-                                        </Button>
-                                    </Col>
-                                </Row>
+                                <Form onSubmit={addToGroup}>
+                                    <Row className='align-items-center'>
+                                        <Col xs={8} sm={9}>
+                                            <Form.Control
+                                                size='sm'
+                                                placeholder={
+                                                    userIdFailed
+                                                        ? "Invalid User"
+                                                        : "Enter User email"
+                                                }
+                                                value={userEmail}
+                                                type='email'
+                                                onChange={(e) =>
+                                                    setUserEmail(e.target.value)
+                                                }
+                                                style={
+                                                    userIdFailed
+                                                        ? {
+                                                              border:
+                                                                  "1px solid red",
+                                                          }
+                                                        : {}
+                                                }
+                                            />
+                                        </Col>
+                                        <Col xs={4} sm={3}>
+                                            <Button
+                                                variant='primary'
+                                                size='md'
+                                                onClick={() => addToGroup()}
+                                            >
+                                                <span>Add</span>
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </Form>
                                 <Row className='justify-content-center contentOverflow mt-3'>
                                     <Col sm='10'>
                                         {stateUserArray.map((user) => (

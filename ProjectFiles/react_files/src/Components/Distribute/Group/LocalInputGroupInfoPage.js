@@ -30,7 +30,8 @@ const LocalInputGroupInfoPage = ({
     const [groupCountFailed, setGroupCountFailed] = useState(false);
 
     // Update number of users on submit.
-    const addToGroup = () => {
+    const addToGroup = (e) => {
+        e.preventDefault();
         if (
             username &&
             !stateUserArray.some((obj) => obj.username === username)
@@ -74,37 +75,42 @@ const LocalInputGroupInfoPage = ({
                                 borderBottom: "1px solid #999999",
                             }}
                         >
-                            <Row className='align-items-center'>
-                                <Col xs={8} sm={9}>
-                                    <Form.Control
-                                        size='sm'
-                                        placeholder={
-                                            userIdFailed
-                                                ? "Invalid Username"
-                                                : "Enter User's name"
-                                        }
-                                        value={username}
-                                        type='text'
-                                        onChange={(e) =>
-                                            setUsername(e.target.value)
-                                        }
-                                        style={
-                                            userIdFailed
-                                                ? { border: "1px solid red" }
-                                                : {}
-                                        }
-                                    />
-                                </Col>
-                                <Col xs={4} sm={3}>
-                                    <Button
-                                        variant='primary'
-                                        size='md'
-                                        onClick={() => addToGroup()}
-                                    >
-                                        <span>Add</span>
-                                    </Button>
-                                </Col>
-                            </Row>
+                            <Form onSubmit={addToGroup}>
+                                <Row className='align-items-center'>
+                                    <Col xs={8} sm={9}>
+                                        <Form.Control
+                                            size='sm'
+                                            placeholder={
+                                                userIdFailed
+                                                    ? "Invalid Username"
+                                                    : "Enter User's name"
+                                            }
+                                            value={username}
+                                            type='text'
+                                            onChange={(e) =>
+                                                setUsername(e.target.value)
+                                            }
+                                            style={
+                                                userIdFailed
+                                                    ? {
+                                                          border:
+                                                              "1px solid red",
+                                                      }
+                                                    : {}
+                                            }
+                                        />
+                                    </Col>
+                                    <Col xs={4} sm={3}>
+                                        <Button
+                                            variant='primary'
+                                            size='md'
+                                            type='submit'
+                                        >
+                                            <span>Add</span>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Form>
                             <Row className='justify-content-center contentOverflow mt-3'>
                                 <Col sm='10'>
                                     {stateUserArray.map((user) => (
