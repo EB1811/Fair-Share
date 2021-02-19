@@ -48,12 +48,13 @@ const AccountBoard = () => {
     const deleteAccount = () => {
         const uid = auth.uid;
         const user = firebase.auth().currentUser;
+        //! BUG: [A301212-88] If delete() fails, user info in firestore is still deleted. Can solve with a dedicated reauthenticate.
+        firestore.delete({
+            collection: "users",
+            doc: uid,
+        });
         user.delete()
             .then(() => {
-                firestore.delete({
-                    collection: "users",
-                    doc: uid,
-                });
                 console.log("Account Deleted");
             })
             .catch((err) => {
