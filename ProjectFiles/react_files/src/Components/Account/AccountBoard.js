@@ -21,14 +21,16 @@ const AccountBoard = () => {
     // Getting from store.
     const profile = useSelector((state) => state.firebase.profile);
     const auth = useSelector((state) => state.firebase.auth);
+
+    // Message could be set in input components.
     const [errorMessage, setErrorMessage] = useState("");
 
-    // Change render.
+    // Show input components when true.
     const [emailChange, setEmailChange] = useState(false);
     const [usernameChange, setUsernameChange] = useState(false);
     const [passChange, setPassChange] = useState(false);
 
-    // Verify email.
+    // Show 'email sent' display if true.
     const [vEmailSent, setVEmailSent] = useState(false);
     const verify = () => {
         const user = firebase.auth().currentUser;
@@ -43,7 +45,7 @@ const AccountBoard = () => {
             });
     };
 
-    // Delete account.
+    // Variable used for confirmation. Set true after 1 click -> display button to trigger function if true.
     const [delAccountSelected, setDelAccountSelected] = useState(false);
     const deleteAccount = () => {
         const uid = auth.uid;
@@ -340,6 +342,7 @@ const AccountBoard = () => {
             return <Redirect to='/' />;
         }
     } else {
+        // Loading screen.
         return (
             <div
                 style={{
