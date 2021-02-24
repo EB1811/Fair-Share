@@ -7,7 +7,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
     public class ImplementedRoomsRepo : IRoomsRepo
     {
 
-        public Allocation[] getRoomsAllocation(int[][] jagValueMatrix)
+        public Room_Allocation[] getRoomsAllocation(int[][] jagValueMatrix, int totalCost)
         {
             //* Convert jagged array into 2d array.
             int[,] valueMatrix = new int[jagValueMatrix.Length, jagValueMatrix[0].Length];
@@ -27,7 +27,10 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             //* Get Allocation Start.
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            Allocation[] result = FindMaxSum(valueMatrix);
+            // Get maxsum allocation then calculate envy free prices.
+            int[,] allocationMatrix = FindMaxSum(valueMatrix);
+            Room_Allocation[] result = FindEFPrices(totalCost, valueMatrix, allocationMatrix);
+
 
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
@@ -47,7 +50,19 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             return result;
         }
 
-        private static Allocation[] FindMaxSum(int[,] matrix) {
+        private static Room_Allocation[] FindEFPrices(int totalCost, int[,] costMatrix, int[,] allocationMatrix) {
+            //* Using the algorithm developed by Haake et al. https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.8883.
+            // 1. Assign bundles to players using the utilitarian assignment
+            // 2. Calulate the assessment matrix. If all players are non-envious, skip to step 5.
+            // 3. Perform a round of compensations.
+            // 4. Perform additional ompensation rounds until all envy is eliminated. At most n-1 rounds.
+            // 5. The sum of the compensations made in Steps 3 and 4 is minimal and will never exceed the surplus. Therefore distribubte remaining surplus in a non-envious way.
+
+            var result = new Room_Allocation[2];
+            return result;
+        }
+
+        private static int[,] FindMaxSum(int[,] matrix) {
             // Turn given maximiztion problem into minimization problem by substracting all the elements of the given matrix from the highest element.
             int[,] costMatrix = InverseMatrix(matrix);
 
@@ -97,27 +112,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                 }
             }
 
-            //* Create list of which values to choose.
-            Allocation[] result = new Allocation[rowCount];
-            for(int row = 0; row < rowCount; row++) {
-                List<int> goodsList = new List<int>();
-                result[row].who = row;
-                for(int col = 0; col < colCount; col++) {
-                    if(maskMatrix[row, col] == 1) {
-                        goodsList.Add(col);
-                    }
-                }
-                result[row].goodsList = goodsList ;
-            }
-            /*
-            for(int row = 0; row < rowCount; row++) {
-                for(int col = 0; col < colCount; col++) {
-                    Console.WriteLine(maskMatrix[row, col]);
-                }
-            }
-            */
-            
-            return result;
+            return maskMatrix;
         }
 
         //* Matrix inversion.

@@ -13,11 +13,11 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
     {
         private readonly ImplementedGoodsRepo _goodsRepository = new ImplementedGoodsRepo();
         [HttpPost]
-        public ActionResult <Allocation> postGetGoodsAllocation(Command givenValue)
+        public ActionResult <Goods_Allocation> postGetGoodsAllocation(Command givenValue)
         {
             Console.WriteLine("Goods Share Requested");
             int[][] valueMatrix = givenValue.valueMatrix;
-            Allocation[] result = _goodsRepository.getGoodsAllocation(valueMatrix);
+            Goods_Allocation[] result = _goodsRepository.getGoodsAllocation(valueMatrix);
 
             return Ok(JsonConvert.SerializeObject(result));
         }

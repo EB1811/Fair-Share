@@ -2,8 +2,8 @@ using FAIR_SHARE_ALLOCATION_API.Models;
 
 namespace FAIR_SHARE_ALLOCATION_API.Data
 {
-    public interface IAllocationRepo
+    public interface IGoodsRepo
     {
-        Allocation[] getGoodsAllocation(int[][] valueMatrix);
+        Goods_Allocation[] getGoodsAllocation(int[][] valueMatrix);
     }
 }

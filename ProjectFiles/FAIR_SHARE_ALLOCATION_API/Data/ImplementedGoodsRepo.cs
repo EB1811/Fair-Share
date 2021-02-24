@@ -4,9 +4,9 @@ using System;
 
 namespace FAIR_SHARE_ALLOCATION_API.Data
 {
-    public class ImplementedGoodsRepo : IAllocationRepo
+    public class ImplementedGoodsRepo : IGoodsRepo
     {
-        public Allocation[] getGoodsAllocation(int[][] jagValueMatrix)
+        public Goods_Allocation[] getGoodsAllocation(int[][] jagValueMatrix)
         {
             //* Convert jagged array into 2d array.
             int[,] valueMatrix = new int[jagValueMatrix.Length, jagValueMatrix[0].Length];
@@ -26,7 +26,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             //* Get Allocation Start.
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            Allocation[] result = RoundRobinAlg(valueMatrix);
+            Goods_Allocation[] result = RoundRobinAlg(valueMatrix);
 
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
@@ -46,7 +46,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             return result;
         }
 
-        private static Allocation[] RoundRobinAlg(int[,] matrix) {
+        private static Goods_Allocation[] RoundRobinAlg(int[,] matrix) {
             int[,] costMatrix = matrix;
             // Rows = players, columns = goods.
             int rowCount = costMatrix.GetLength(0);
@@ -94,7 +94,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             }
             */
 
-            Allocation[] result = new Allocation[rowCount];
+            Goods_Allocation[] result = new Goods_Allocation[rowCount];
             for(int row = 0; row < rowCount; row++) {
                 List<int> goodsList = new List<int>();
                 result[row].who = row;

@@ -4,6 +4,6 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
 {
     public interface IRoomsRepo
     {
-        Allocation[] getRoomsAllocation(int[][] valueMatrix);
+        Room_Allocation[] getRoomsAllocation(int[][] valueMatrix, int totalCost);
     }
 }

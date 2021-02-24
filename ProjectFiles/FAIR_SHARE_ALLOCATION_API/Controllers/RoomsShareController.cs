@@ -13,11 +13,12 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
     {
         private readonly ImplementedRoomsRepo _roomsRepository = new ImplementedRoomsRepo();
         [HttpPost]
-        public ActionResult <Allocation> postGetRoomsAllocation(Command givenValue)
+        public ActionResult <Room_Allocation> postGetRoomsAllocation(GetRoomCommand givenValue)
         {
             Console.WriteLine("Rooms Share Requested");
+            int totalCost = givenValue.totalCost;
             int[][] valueMatrix = givenValue.valueMatrix;
-            Allocation[] result = _roomsRepository.getRoomsAllocation(valueMatrix);
+            Room_Allocation[] result = _roomsRepository.getRoomsAllocation(valueMatrix, totalCost);
 
             return Ok(JsonConvert.SerializeObject(result));
         }
