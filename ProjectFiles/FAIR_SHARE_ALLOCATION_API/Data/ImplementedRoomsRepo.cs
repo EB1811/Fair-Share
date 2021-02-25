@@ -61,18 +61,24 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             // 5. The sum of the compensations made in Steps 3 and 4 is minimal and will never exceed the surplus. Therefore distribubte remaining surplus in a non-envious way.
 
             //* 1. Assign bundles.
-            // Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
-            // If allocationMatrix[i,j] = 1, player i pays into M valueMatrix[i,j].
+            //* Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
+
+            // Array holding the room price where roomPrice[i] is the price of room i. Used to allow the development of the assignment matrix.
+            int[] roomPrice = new int[allocationMatrix.GetLength(1)];
+            // Calculate M: If allocationMatrix[i,j] = 1, player i pays valueMatrix[i,j] for room j. Add price to roomPrice array.
             var M = 0;
             for(int r = 0; r < allocationMatrix.GetLength(0); r++) {
                 for(int c = 0; c < allocationMatrix.GetLength(1); c++) {
                     if(allocationMatrix[r,c] == 1) {
-                        M += valueMatrix[r,c];
+                        int priceForRoom = valueMatrix[r,c];
+                        M += priceForRoom;
+                        roomPrice[c] = priceForRoom;
                     }
                 }
             }
             M -= totalCost;
             // The remaining surplus M - C (if any) will be distributed among the players in the form of discounts to create envy-freeness.
+            //*
 
             //* 2. Create assessment matrix.
             // Create empty n*n matrix where n = number of players.
