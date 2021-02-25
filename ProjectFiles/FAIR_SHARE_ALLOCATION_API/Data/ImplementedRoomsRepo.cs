@@ -53,36 +53,57 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
         }
 
         private static Room_Allocation[] FindEFPrices_CompensationProcedure(int totalCost, int[,] valueMatrix, int[,] allocationMatrix) {
-            //* Using the algorithm developed by Haake et al. https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.8883.
+            //* Algorithm developed by Haake et al. https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.8883, implemented by Emmanuils Borovikovs.
             // 1. Assign bundles to players using the utilitarian assignment
             // 2. Calulate the assessment matrix. If all players are non-envious, skip to step 5.
             // 3. Perform a round of compensations.
             // 4. Perform additional compensation rounds until all envy is eliminated. At most n-1 rounds.
             // 5. The sum of the compensations made in Steps 3 and 4 is minimal and will never exceed the surplus. Therefore distribubte remaining surplus in a non-envious way.
 
-            //* 1. Assign bundles.
-            //* Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
+            int numOfPlayers = allocationMatrix.GetLength(0);
+            int numOfRooms = allocationMatrix.GetLength(1);
 
-            // Array holding the room price where roomPrice[i] is the price of room i. Used to allow the development of the assignment matrix.
-            int[] roomPrice = new int[allocationMatrix.GetLength(1)];
-            // Calculate M: If allocationMatrix[i,j] = 1, player i pays valueMatrix[i,j] for room j. Add price to roomPrice array.
+            //* 1. Assign bundles.
+            // Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
+            //
+            // Array holding the price payed where pricePayed[i] is the price player i payed for their room. Used to allow the development of the assignment matrix.
+            int[] pricePayed = new int[numOfPlayers];
+            // Calculate M: If allocationMatrix[i,j] = 1, player i pays valueMatrix[i,j] for room j. Add price to pricePayed array.
             var M = 0;
-            for(int r = 0; r < allocationMatrix.GetLength(0); r++) {
-                for(int c = 0; c < allocationMatrix.GetLength(1); c++) {
+            for(int r = 0; r < numOfPlayers; r++) {
+                for(int c = 0; c < numOfRooms; c++) {
                     if(allocationMatrix[r,c] == 1) {
                         int priceForRoom = valueMatrix[r,c];
                         M += priceForRoom;
-                        roomPrice[c] = priceForRoom;
+                        pricePayed[r] = priceForRoom;
                     }
                 }
             }
             M -= totalCost;
             // The remaining surplus M - C (if any) will be distributed among the players in the form of discounts to create envy-freeness.
+            //
             //*
 
-            //* 2. Create assessment matrix.
+            //* 2. Calculate the assessment matrix.
+            //
             // Create empty n*n matrix where n = number of players.
-            int[,] assesMatrix = new int[valueMatrix.GetLength(0), valueMatrix.GetLength(1)];
+            int[,] assesMatrix = new int[numOfPlayers, numOfPlayers];
+            // Create matrix where assesMatrix[i,j] denotes player i's assessment of the value of player j's room minus the price payed for that room.
+            // assesMatrix[i,j] = valueMatrix[i, f(j)] - pricePayed[j] where f(j) is the column of maskMatrix such that [j,c] == 1.
+            int playersRoom(int player) {
+                for(int room = 0; room < numOfRooms; room++) {
+                    if(allocationMatrix[player, room] == 1) {
+                        return room;
+                    }
+                }
+                return -1;
+            }
+            for(int i = 0; i < numOfPlayers; i++) {
+                for(int j = 0; j < numOfPlayers; j++) {
+                    assesMatrix[i,j] = valueMatrix[i, playersRoom(j)] - pricePayed[j];
+                    Console.WriteLine(assesMatrix[i,j]);
+                }
+            }            
 
             var result = new Room_Allocation[2];
             return result;
