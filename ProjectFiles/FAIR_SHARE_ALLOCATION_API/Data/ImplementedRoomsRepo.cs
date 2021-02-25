@@ -1,11 +1,13 @@
 using FAIR_SHARE_ALLOCATION_API.Models;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace FAIR_SHARE_ALLOCATION_API.Data
 {
     public class ImplementedRoomsRepo : IRoomsRepo
     {
+        //? Differentiate between algorithms with a third argument.
 
         public Room_Allocation[] getRoomsAllocation(int[][] jagValueMatrix, int totalCost)
         {
@@ -29,7 +31,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
 
             // Get maxsum allocation then calculate envy free prices.
             int[,] allocationMatrix = FindMaxSum(valueMatrix);
-            Room_Allocation[] result = FindEFPrices(totalCost, valueMatrix, allocationMatrix);
+            Room_Allocation[] result = FindEFPrices_CompensationProcedure(totalCost, valueMatrix, allocationMatrix);
 
 
             watch.Stop();
@@ -50,13 +52,31 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             return result;
         }
 
-        private static Room_Allocation[] FindEFPrices(int totalCost, int[,] costMatrix, int[,] allocationMatrix) {
+        private static Room_Allocation[] FindEFPrices_CompensationProcedure(int totalCost, int[,] valueMatrix, int[,] allocationMatrix) {
             //* Using the algorithm developed by Haake et al. https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.8883.
             // 1. Assign bundles to players using the utilitarian assignment
             // 2. Calulate the assessment matrix. If all players are non-envious, skip to step 5.
             // 3. Perform a round of compensations.
-            // 4. Perform additional ompensation rounds until all envy is eliminated. At most n-1 rounds.
+            // 4. Perform additional compensation rounds until all envy is eliminated. At most n-1 rounds.
             // 5. The sum of the compensations made in Steps 3 and 4 is minimal and will never exceed the surplus. Therefore distribubte remaining surplus in a non-envious way.
+
+            //* 1. Assign bundles.
+            // Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
+            // If allocationMatrix[i,j] = 1, player i pays into M valueMatrix[i,j].
+            var M = 0;
+            for(int r = 0; r < allocationMatrix.GetLength(0); r++) {
+                for(int c = 0; c < allocationMatrix.GetLength(1); c++) {
+                    if(allocationMatrix[r,c] == 1) {
+                        M += valueMatrix[r,c];
+                    }
+                }
+            }
+            M -= totalCost;
+            // The remaining surplus M - C (if any) will be distributed among the players in the form of discounts to create envy-freeness.
+
+            //* 2. Create assessment matrix.
+            // Create empty n*n matrix where n = number of players.
+            int[,] assesMatrix = new int[valueMatrix.GetLength(0), valueMatrix.GetLength(1)];
 
             var result = new Room_Allocation[2];
             return result;

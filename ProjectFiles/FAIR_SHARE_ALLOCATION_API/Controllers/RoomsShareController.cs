@@ -18,6 +18,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
             Console.WriteLine("Rooms Share Requested");
             int totalCost = givenValue.totalCost;
             int[][] valueMatrix = givenValue.valueMatrix;
+            //? Differentiate between algorithms with a third argument.
             Room_Allocation[] result = _roomsRepository.getRoomsAllocation(valueMatrix, totalCost);
 
             return Ok(JsonConvert.SerializeObject(result));
