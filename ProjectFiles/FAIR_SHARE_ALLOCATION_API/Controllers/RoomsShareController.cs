@@ -19,11 +19,11 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
             int totalCost = givenValue.totalCost;
             int[][] valueMatrix = givenValue.valueMatrix;
             //? Differentiate between algorithms with a third argument.
-            if(totalCost > 0 && valueMatrix.Length > 2 && valueMatrix[0].Length > 2) {
+            if(totalCost > 0 && valueMatrix.Length > 1 && valueMatrix[0].Length > 1) {
                 Room_Allocation[] result = _roomsRepository.getRoomsAllocation(valueMatrix, totalCost);
                 return Ok(JsonConvert.SerializeObject(result));
             } else {
-                Console.WriteLine("Incorrect Format Entered");
+                Console.WriteLine("Incorrect Format Entered\n");
                 Error e = new Error{Message = "Incorrect Format Entered"};
                 return Ok(JsonConvert.SerializeObject(e));
             }

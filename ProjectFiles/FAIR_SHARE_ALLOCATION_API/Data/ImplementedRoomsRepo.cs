@@ -11,6 +11,11 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
 
         public Room_Allocation[] getRoomsAllocation(int[][] jagValueMatrix, int totalCost)
         {
+            for (int i = 0, l = jagValueMatrix.Length; i < l; i++) {
+                if (jagValueMatrix[i].Length != l) {
+                    return new Room_Allocation[0];
+                }
+            }
             //* Convert jagged array into 2d array.
             int[,] valueMatrix = new int[jagValueMatrix.Length, jagValueMatrix[0].Length];
             for(int i = 0; i < valueMatrix.GetLength(0); i++) {
@@ -183,6 +188,15 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                 }
             }
             //
+            //! BUG: [A301212-91] The following doesn't work due to int rounding, consider using floats or change final share method.
+            //! {
+            //!     "valueMatrix": 
+            //!     [ 
+            //!         [101, 0], 
+            //!         [100, 0]
+            //!     ],
+            //!     "totalCost": 100
+            //! }
             //*
 
             return pricePayed;
