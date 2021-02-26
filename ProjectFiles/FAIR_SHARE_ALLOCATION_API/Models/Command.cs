@@ -18,4 +18,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Models
         public int[][] valueMatrix { get; set; }
         public int totalCost { get; set; }
     }
+    public struct Error {
+        public string Message;
+    }
 }

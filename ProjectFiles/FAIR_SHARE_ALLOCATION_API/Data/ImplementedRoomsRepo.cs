@@ -34,15 +34,20 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             int[] prices = FindEFPrices_CompensationProcedure(totalCost, valueMatrix, allocationMatrix);
 
             // Combine into a Room_Allocation array.
-            Room_Allocation[] result = new Room_Allocation[allocationMatrix.GetLength(0)];
-            for(int r = 0; r < allocationMatrix.GetLength(0); r++) {
-                result[r].who = r;
-                for(int c = 0; c < allocationMatrix.GetLength(1); c++) {
-                    if (allocationMatrix[r,c] == 1) { // Player r has room c.
-                        result[r].room = c;
-                        result[r].price = prices[r];
+            Room_Allocation[] result;
+            if (prices.Length > 0) {
+                result = new Room_Allocation[allocationMatrix.GetLength(0)];
+                for(int r = 0; r < allocationMatrix.GetLength(0); r++) {
+                    result[r].who = r;
+                    for(int c = 0; c < allocationMatrix.GetLength(1); c++) {
+                        if (allocationMatrix[r,c] == 1) { // Player r has room c.
+                            result[r].room = c;
+                            result[r].price = prices[r];
+                        }
                     }
                 }
+            } else {
+                result = new Room_Allocation[0];
             }
 
             watch.Stop();
@@ -74,8 +79,6 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             int numOfPlayers = allocationMatrix.GetLength(0);
             int numOfRooms = allocationMatrix.GetLength(1);
 
-            
-
             //* 1. Assign bundles.
             // Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
             //
@@ -93,8 +96,11 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                 }
             }
             M -= totalCost;
-            Console.WriteLine(M);
             // The remaining surplus M - C (if any) will be distributed among the players in the form of discounts to create envy-freeness.
+            // Extra check to make sure M > 0. Problem is unsolvable if maxsum prices cannot pay for the total cost.
+            if (M < 0) {
+                return new int[0];
+            }
             //
             //*
 
