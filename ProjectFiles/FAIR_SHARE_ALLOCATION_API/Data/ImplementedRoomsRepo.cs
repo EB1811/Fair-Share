@@ -31,8 +31,19 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
 
             // Get maxsum allocation then calculate envy free prices.
             int[,] allocationMatrix = FindMaxSum(valueMatrix);
-            Room_Allocation[] result = FindEFPrices_CompensationProcedure(totalCost, valueMatrix, allocationMatrix);
+            int[] prices = FindEFPrices_CompensationProcedure(totalCost, valueMatrix, allocationMatrix);
 
+            // Combine into a Room_Allocation array.
+            Room_Allocation[] result = new Room_Allocation[allocationMatrix.GetLength(0)];
+            for(int r = 0; r < allocationMatrix.GetLength(0); r++) {
+                result[r].who = r;
+                for(int c = 0; c < allocationMatrix.GetLength(1); c++) {
+                    if (allocationMatrix[r,c] == 1) { // Player r has room c.
+                        result[r].room = c;
+                        result[r].price = prices[r];
+                    }
+                }
+            }
 
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
@@ -52,7 +63,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             return result;
         }
 
-        private static Room_Allocation[] FindEFPrices_CompensationProcedure(int totalCost, int[,] valueMatrix, int[,] allocationMatrix) {
+        private static int[] FindEFPrices_CompensationProcedure(int totalCost, int[,] valueMatrix, int[,] allocationMatrix) {
             //* Algorithm developed by Haake et al. https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.8883, implemented by Emmanuils Borovikovs.
             // 1. Assign bundles to players using the utilitarian assignment
             // 2. Calulate the assessment matrix. If all players are non-envious, skip to step 5.
@@ -164,9 +175,10 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                     pricePayed[p] -= M / numOfPlayers;
                 }
             }
+            //
+            //*
 
-            var result = new Room_Allocation[2];
-            return result;
+            return pricePayed;
         }
 
         private static int[,] FindMaxSum(int[,] matrix) {
