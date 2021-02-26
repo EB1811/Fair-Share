@@ -156,7 +156,14 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             //
             //*
 
+            //* 5. Distribute any remaining surplus in an envy-free way.
             //
+            // Currently gives everyone the same, even amount. Possible other, better ways.
+            if (M > 0) {
+                for(int p = 0; p < numOfPlayers; p++) {
+                    pricePayed[p] -= M / numOfPlayers;
+                }
+            }
 
             var result = new Room_Allocation[2];
             return result;
