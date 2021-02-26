@@ -63,6 +63,8 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             int numOfPlayers = allocationMatrix.GetLength(0);
             int numOfRooms = allocationMatrix.GetLength(1);
 
+            
+
             //* 1. Assign bundles.
             // Each player pays the cost of their assignments, yielding a pool of size M. The cost C is subtracted from M.
             //
@@ -72,7 +74,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             var M = 0;
             for(int r = 0; r < numOfPlayers; r++) {
                 for(int c = 0; c < numOfRooms; c++) {
-                    if(allocationMatrix[r,c] == 1) {
+                    if (allocationMatrix[r,c] == 1) {
                         int priceForRoom = valueMatrix[r,c];
                         M += priceForRoom;
                         pricePayed[r] = priceForRoom;
@@ -86,24 +88,75 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
 
             //* 2. Calculate the assessment matrix.
             //
-            // Create empty n*n matrix where n = number of players.
-            int[,] assesMatrix = new int[numOfPlayers, numOfPlayers];
+            // Store in a inner method to avoid rewriting code.
+            int[,] createAssessmentMatrix(int[] pricePayed, int[,] valueMatrix, int[,] allocationMatrix) {
             // Create matrix where assesMatrix[i,j] denotes player i's assessment of the value of player j's room minus the price payed for that room.
             // assesMatrix[i,j] = valueMatrix[i, f(j)] - pricePayed[j] where f(j) is the column of maskMatrix such that [j,c] == 1.
-            int playersRoom(int player) {
-                for(int room = 0; room < numOfRooms; room++) {
-                    if(allocationMatrix[player, room] == 1) {
-                        return room;
+            // Create empty n*n matrix where n = number of players.
+                int[,] matrix = new int[numOfPlayers, numOfPlayers];
+
+                int playersRoom(int player) {
+                    for(int room = 0; room < numOfRooms; room++) {
+                        if (allocationMatrix[player, room] == 1) {
+                            return room;
+                        }
+                    }
+                    return -1;
+                }
+                for(int i = 0; i < numOfPlayers; i++) {
+                    for(int j = 0; j < numOfPlayers; j++) {
+                        matrix[i,j] = valueMatrix[i, playersRoom(j)] - pricePayed[j];
                     }
                 }
-                return -1;
+
+                return matrix;
             }
-            for(int i = 0; i < numOfPlayers; i++) {
-                for(int j = 0; j < numOfPlayers; j++) {
-                    assesMatrix[i,j] = valueMatrix[i, playersRoom(j)] - pricePayed[j];
-                    Console.WriteLine(assesMatrix[i,j]);
+            int[,] assesMatrix = createAssessmentMatrix(pricePayed, valueMatrix, allocationMatrix);
+            //
+            //*
+
+            //* 3 - 4. Perform compensation rounds until all envy is eliminated.
+            //
+            // Loop procedure until envy if eliminated.
+            var envyEliminated = false;
+            while (!envyEliminated) {
+                // First identify envious players and who they are envious of.
+                int[] playerMaxEnviousOf = new int[numOfPlayers]; // -1 if no one.
+                // Loop through all players, checking if their own value is less than their assessment of other player's value.
+                // Save the player they are maximally envious towards.
+                for(int p = 0; p < numOfPlayers; p++) {
+                    int maxEnvy = assesMatrix[p, p]; // Their own value.
+                    int maxEnvyTo = -1;
+                    for(int otherP = 0; otherP < numOfPlayers; otherP++) {
+                        if (maxEnvy < assesMatrix[p, otherP]) {
+                            maxEnvy = assesMatrix[p, otherP];
+                            maxEnvyTo = otherP;
+                        }
+                    }
+                    playerMaxEnviousOf[p] = maxEnvyTo;
                 }
-            }            
+                // If there is envy, i.e., at least 1 player p in playerMaxEnviousOf[] doesn't have a value of -1. 
+                if (playerMaxEnviousOf.Any(player => player != -1)) {
+                    // We now know who to give compensation to; the player to feels envy towards a player who is not envious. p in playerEnviousOf[p] where playerEnviousOf[p] != -1 and playerEnviousOf[playerEnviousOf[p]] == -1.
+                    // For these players p, subtract from pricePayed[p] their maxumim envy difference, i.e., assesMatrix[p, playerMaxEnviousOf[p]] - assesMatrix[p,p].
+                    for(int p = 0; p < numOfPlayers; p++) {
+                        if (playerMaxEnviousOf[p] != -1 && playerMaxEnviousOf[playerMaxEnviousOf[p]] == -1) { // Check if they are envious of a non-envious player.
+                            // Compensate.
+                            int cAmount = (assesMatrix[p, playerMaxEnviousOf[p]] - assesMatrix[p,p]);
+                            pricePayed[p] -= cAmount;
+                            M -= cAmount; // Compensation comes from surplus pool M.
+                        }
+                    }
+                    // Re-create the assessment matrix.
+                    assesMatrix = createAssessmentMatrix(pricePayed, valueMatrix, allocationMatrix);
+                } else {
+                    envyEliminated = true;
+                }
+            }
+            //
+            //*
+
+            //
 
             var result = new Room_Allocation[2];
             return result;
