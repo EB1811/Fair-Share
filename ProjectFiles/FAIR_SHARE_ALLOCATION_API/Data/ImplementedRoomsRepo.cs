@@ -93,6 +93,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                 }
             }
             M -= totalCost;
+            Console.WriteLine(M);
             // The remaining surplus M - C (if any) will be distributed among the players in the form of discounts to create envy-freeness.
             //
             //*
