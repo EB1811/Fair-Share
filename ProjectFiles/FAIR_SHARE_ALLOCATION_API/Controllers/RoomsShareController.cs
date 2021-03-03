@@ -15,7 +15,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
         [HttpPost]
         public ActionResult <Room_Allocation> postGetRoomsAllocation(GetRoomCommand givenValue)
         {
-            Console.WriteLine("Rooms Share Requested");
+            Console.WriteLine("\nRooms Share Requested");
             int totalCost = givenValue.totalCost;
             int[][] valueMatrix = givenValue.valueMatrix;
             //? Differentiate between algorithms with a third argument.

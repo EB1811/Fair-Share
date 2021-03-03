@@ -5,7 +5,7 @@ const initState = {
 
     //* Array holding the allocations.
     //? Hold userId in 'user' key?
-    // [{userEmail?, username, userGoodsArr}...]
+    // [{userEmail?, username, alloGoods?, room?, price?, }...]
     allocations: [],
 };
 
