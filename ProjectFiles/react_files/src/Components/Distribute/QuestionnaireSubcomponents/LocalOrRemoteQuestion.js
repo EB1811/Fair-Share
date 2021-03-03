@@ -40,8 +40,11 @@ const LocalOrRemoteQuestion = (props) => {
                         active: true,
                     }
                 )
-                .then((doc_id) => {
-                    props.history.push("");
+                .then((docSnapshot) => {
+                    console.log(docSnapshot.id);
+                    props.history.push(
+                        `/Distribute/${goodType}/Remote/Questions/${docSnapshot.id}/0`
+                    );
                 })
                 .catch((err) => {
                     console.log(err);
