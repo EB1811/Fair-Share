@@ -26,6 +26,7 @@ import GoodsQuestionnairePageShell from "./Components/Distribute/Local/Goods/Goo
 import RentQuestionnairePageShell from "./Components/Distribute/Local/Rent/RentQuestionnairePage";
 
 // Remote process components.
+import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Remote_RentQuestionnairePage";
 import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
 
@@ -52,12 +53,22 @@ function App() {
                 />
                 <Route
                     exact
-                    path='/Distribute/Goods/Questions/:stage'
+                    path='/Distribute/Rent/Remote/Questions/:sessionID/:stage'
+                    component={Remote_RentQuestionnairePage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Goods/Remote/Questions/:sessionID/:stage'
                     component={GoodsQuestionnairePageShell}
                 />
                 <Route
                     exact
-                    path='/Distribute/Rent/Questions/:stage'
+                    path='/Distribute/Goods/Local/Questions/:stage'
+                    component={GoodsQuestionnairePageShell}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Rent/Local/Questions/:stage'
                     component={RentQuestionnairePageShell}
                 />
                 <Route
