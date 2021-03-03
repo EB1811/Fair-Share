@@ -29,8 +29,8 @@ const LocalOrRemoteQuestion = (props) => {
         if (method === "remote" && auth.isEmpty) {
             props.history.push("/login");
         }
-        // Remote method needs to be setup with firebase.
         if (method === "remote") {
+            // Setup session info and add to firestore.
             firestore
                 .add(
                     { collection: "ShareSessions" },
@@ -40,8 +40,8 @@ const LocalOrRemoteQuestion = (props) => {
                         active: true,
                     }
                 )
-                .then(() => {
-                    console.log("Success");
+                .then((doc_id) => {
+                    props.history.push("");
                 })
                 .catch((err) => {
                     console.log(err);

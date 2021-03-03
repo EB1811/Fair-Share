@@ -16,14 +16,19 @@ import Login from "./Components/Account/Login";
 import AccountBoard from "./Components/Account/AccountBoard";
 import ScrollToTop from "./Components/Helpers/ScrollToTop";
 
-import Goods_GatherInfoPage from "./Components/Distribute/Goods/Goods_GatherInfoPage";
-import Rent_GatherInfoPage from "./Components/Distribute/Rent/Rent_GatherInfoPage";
-import Rent_Remote_GatherInfoPage from "./Components/Distribute/Rent/Rent_Remote_GatherInfoPage";
-import RemoteInputGroupInfoPage from "./Components/Distribute/Group/RemoteInputGroupInfoPage";
-import LocalInputGroupInfoPage from "./Components/Distribute/Group/LocalInputGroupInfoPage";
-import GoodsQuestionnairePageShell from "./Components/Distribute/Goods/GoodsQuestionnairePage";
-import RentQuestionnairePageShell from "./Components/Distribute/Rent/RentQuestionnairePage";
 import LocalOrRemoteQuestion from "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestion";
+
+// Local process components.
+import Goods_GatherInfoPage from "./Components/Distribute/Local/Goods/Goods_GatherInfoPage";
+import Rent_GatherInfoPage from "./Components/Distribute/Local/Rent/Rent_GatherInfoPage";
+import LocalInputGroupInfoPage from "./Components/Distribute/Local/Group/LocalInputGroupInfoPage";
+import GoodsQuestionnairePageShell from "./Components/Distribute/Local/Goods/GoodsQuestionnairePage";
+import RentQuestionnairePageShell from "./Components/Distribute/Local/Rent/RentQuestionnairePage";
+
+// Remote process components.
+import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
+import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
+
 import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
 import ResultsPage from "./Components/Results/ResultsPage";
 

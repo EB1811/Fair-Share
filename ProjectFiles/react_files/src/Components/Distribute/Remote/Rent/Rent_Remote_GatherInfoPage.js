@@ -1,7 +1,7 @@
 import React from "react";
 
 // React Components
-import InputRoomsInfo from "./InputRoomsInfo";
+import InputRoomsInfo from "../../Local/Rent/InputRoomsInfo";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";

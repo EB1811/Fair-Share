@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 
 // React Components
-import InputValuationsForm from "./InputValuesComponents/InputValuations";
+import InputValuationsForm from "./Local/InputValuesComponents/InputValuations";
 
 const SetValuationsPage = (props) => {
     let { goodType } = useParams();
