@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -6,21 +6,31 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import { useFirestore } from "react-redux-firebase";
+import { useFirestoreConnect, isLoaded } from "react-redux-firebase";
 
 // React Router
 import { useParams, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Answers saved to firestore doc with session id = parameter session id.
 const Remote_RentQuestionnairePage = (props) => {
-    const firestore = useFirestore();
-    // Stage = question. From URl.
-    let { sessionID, stage } = useParams();
+    useFirestoreConnect([
+        { collection: "ShareSessions", doc: props.match.params.sessionID },
+    ]);
+    const session = useSelector(
+        ({ firestore: { data } }) =>
+            data.ShareSessions &&
+            data.ShareSessions[props.match.params.sessionID]
+    );
 
+    // Stage = question. From URl.
+    let { stage } = useParams();
+
+    // Check if doc with id sessionID exists in the firestore ShareSessions table exists.
+    /*
     const [loading, setLoading] = useState(true);
     const [sessionExists, setSessionExists] = useState();
 
-    // Check if doc with id sessionID exists in the firestore ShareSessions table exists.
     useEffect(() => {
         firestore
             .get({ collection: "ShareSessions", doc: sessionID })
@@ -39,9 +49,11 @@ const Remote_RentQuestionnairePage = (props) => {
                 }
             });
     }, [sessionID, firestore]);
+    */
 
-    if (!loading) {
-        if (sessionExists) {
+    if (isLoaded(session)) {
+        if (session && session.active) {
+            console.log(session);
             if (stage === "0") {
                 return (
                     <Container
