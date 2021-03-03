@@ -1,8 +1,5 @@
 import React from "react";
 
-// Questions
-import LocalOrRemoteQuestion from "../QuestionnaireSubcomponents/LocalOrRemoteQuestion";
-
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -52,8 +49,6 @@ const RentQuestionnairePageShell = (props) => {
                 </Row>
             </Container>
         );
-    } else if (stage === "1") {
-        return <LocalOrRemoteQuestion goodType='Rent' />;
     } else if (stage > 1) {
         return <Redirect to='/Distribute/Rent/GoodInfo' />;
     } else {

@@ -18,10 +18,12 @@ import ScrollToTop from "./Components/Helpers/ScrollToTop";
 
 import Goods_GatherInfoPage from "./Components/Distribute/Goods/Goods_GatherInfoPage";
 import Rent_GatherInfoPage from "./Components/Distribute/Rent/Rent_GatherInfoPage";
+import Rent_Remote_GatherInfoPage from "./Components/Distribute/Rent/Rent_Remote_GatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Group/RemoteInputGroupInfoPage";
 import LocalInputGroupInfoPage from "./Components/Distribute/Group/LocalInputGroupInfoPage";
 import GoodsQuestionnairePageShell from "./Components/Distribute/Goods/GoodsQuestionnairePage";
 import RentQuestionnairePageShell from "./Components/Distribute/Rent/RentQuestionnairePage";
+import LocalOrRemoteQuestion from "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestion";
 import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
 import ResultsPage from "./Components/Results/ResultsPage";
 
@@ -40,6 +42,11 @@ function App() {
                 <Route exact path='/Learn' component={LearnMainPage} />
                 <Route
                     exact
+                    path='/Distribute/localremote/:goodType'
+                    component={LocalOrRemoteQuestion}
+                />
+                <Route
+                    exact
                     path='/Distribute/Goods/Questions/:stage'
                     component={GoodsQuestionnairePageShell}
                 />
@@ -47,6 +54,11 @@ function App() {
                     exact
                     path='/Distribute/Rent/Questions/:stage'
                     component={RentQuestionnairePageShell}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Rent/Remote/GoodInfo/:sessionID'
+                    component={Rent_Remote_GatherInfoPage}
                 />
                 <Route
                     exact

@@ -21,7 +21,6 @@ const ResultsPage = ({
 }) => {
     let { goodType } = useParams();
     // Get results.
-    //TODO: [A301212-92] Link with updated, rent sharing enabled, api.
     useEffect(() => {
         if (userArray.length > 0 && goodsArray.length > 0) {
             //* API accepts JSON format with a matrix representing each user as a row, and each good as a column. Row, Column = user valuation.

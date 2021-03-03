@@ -6,7 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 //import Button from "react-bootstrap/Button";
 
-import { withRouter } from "react-router";
+import { withRouter, useParams, Redirect } from "react-router";
+import { useFirestore } from "react-redux-firebase";
 
 import { useDispatch, useSelector } from "react-redux";
 import questionnaireActions from "../../../ReduxStore/Actions/questionnaireActions";
@@ -15,6 +16,9 @@ import shareLocal from "../../../Images/meeting-local-group_ICON.svg";
 import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
 
 const LocalOrRemoteQuestion = (props) => {
+    let { goodType } = useParams();
+    const firestore = useFirestore();
+
     const auth = useSelector((state) => state.firebase.auth);
     const dispatch = useDispatch();
 
@@ -24,59 +28,82 @@ const LocalOrRemoteQuestion = (props) => {
 
         if (method === "remote" && auth.isEmpty) {
             props.history.push("/login");
+        }
+        // Remote method needs to be setup with firebase.
+        if (method === "remote") {
+            firestore
+                .add(
+                    { collection: "ShareSessions" },
+                    {
+                        owner: firestore.doc(`/users/${auth.uid}`),
+                        type: goodType,
+                        active: true,
+                    }
+                )
+                .then(() => {
+                    console.log("Success");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         } else {
-            props.history.push(`/Distribute/${props.goodType}/Questions/2`);
+            props.history.push(`/Distribute/${goodType}/Questions/0`);
         }
     };
 
-    return (
-        <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-            <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col
-                    xs={11}
-                    sm={11}
-                    md={10}
-                    lg={7}
-                    xl={5}
-                    className='centerCard m-3'
-                    style={{ maxWidth: "800px" }}
-                >
-                    <Row>
-                        <Col xs={12} sm={6} className='my-2'>
-                            <img
-                                src={shareLocal}
-                                className='SVGButton'
-                                alt='meeting-local-group_ICON'
-                                onClick={() => setMethod("local")}
-                            />
-                            <p
-                                className='mt-3 text-muted'
-                                style={{ fontSize: "0.9rem" }}
-                            >
-                                Share locally, passing your device around to
-                                gather everyone's valuations. No login needed.
-                            </p>
-                        </Col>
-                        <Col xs={12} sm={6} className='my-2'>
-                            <img
-                                src={shareOnlineGroup}
-                                className='SVGButton'
-                                alt='share-online-group_ICON.svg'
-                                onClick={() => setMethod("remote")}
-                            />
-                            <p
-                                className='mt-3 text-muted'
-                                style={{ fontSize: "0.9rem" }}
-                            >
-                                Share using an online group, having members
-                                login and get invited to your party.
-                            </p>
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
-    );
+    if ((goodType === "Rent") | (goodType === "Goods")) {
+        return (
+            <Container fluid className='divBlockWithContentTertiary min-vh-100'>
+                <Row className='justify-content-center align-items-center min-vh-100'>
+                    <Col
+                        xs={11}
+                        sm={11}
+                        md={10}
+                        lg={7}
+                        xl={5}
+                        className='centerCard m-3'
+                        style={{ maxWidth: "800px" }}
+                    >
+                        <Row>
+                            <Col xs={12} sm={6} className='my-2'>
+                                <img
+                                    src={shareLocal}
+                                    className='SVGButton'
+                                    alt='meeting-local-group_ICON'
+                                    onClick={() => setMethod("local")}
+                                />
+                                <p
+                                    className='mt-3 text-muted'
+                                    style={{ fontSize: "0.9rem" }}
+                                >
+                                    Share locally, passing your device around to
+                                    gather everyone's valuations. No login
+                                    needed.
+                                </p>
+                            </Col>
+                            <Col xs={12} sm={6} className='my-2'>
+                                <img
+                                    src={shareOnlineGroup}
+                                    className='SVGButton'
+                                    alt='share-online-group_ICON.svg'
+                                    onClick={() => setMethod("remote")}
+                                />
+                                <p
+                                    className='mt-3 text-muted'
+                                    style={{ fontSize: "0.9rem" }}
+                                >
+                                    Share using an online group, having members
+                                    login and get invited to your party.
+                                </p>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    } else {
+        return <Redirect to='/' />;
+    }
 };
 
 export default withRouter(LocalOrRemoteQuestion);

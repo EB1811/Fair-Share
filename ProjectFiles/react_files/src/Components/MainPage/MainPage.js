@@ -171,7 +171,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/Rent/Questions/0'
+                                to='/Distribute/localremote/Rent'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>
@@ -203,7 +203,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/Goods/Questions/0'
+                                to='/Distribute/localremote/Goods'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>
@@ -235,7 +235,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/Goods/Questions/0'
+                                to='/Distribute/localremote/Goods'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>
