@@ -41,7 +41,7 @@ const Rent_Remote_GatherInfoPage = (props) => {
             firestore
                 .update(
                     { collection: "ShareSessions", doc: sessionID },
-                    { totalCost: totalCost, goods: goods }
+                    { totalCost: parseInt(totalCost), goods: goods }
                 )
                 .then(() => {
                     console.log(session);
