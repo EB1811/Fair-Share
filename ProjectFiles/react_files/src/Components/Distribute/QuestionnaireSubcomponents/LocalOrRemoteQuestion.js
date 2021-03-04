@@ -50,7 +50,7 @@ const LocalOrRemoteQuestion = (props) => {
                     console.log(err);
                 });
         } else {
-            props.history.push(`/Distribute/${goodType}/Questions/0`);
+            props.history.push(`/Distribute/Questions/Local/${goodType}/0`);
         }
     };
 

@@ -24,7 +24,7 @@ const Remote_RentQuestionnairePage = (props) => {
     );
 
     // Stage = question. From URl.
-    let { stage } = useParams();
+    let { sessionID, stage } = useParams();
 
     // Check if doc with id sessionID exists in the firestore ShareSessions table exists.
     /*
@@ -54,6 +54,7 @@ const Remote_RentQuestionnairePage = (props) => {
     if (isLoaded(session)) {
         if (session && session.active) {
             if (stage === "0") {
+                console.log(session);
                 return (
                     <Container
                         fluid
@@ -84,7 +85,7 @@ const Remote_RentQuestionnairePage = (props) => {
                                     className='mt-5'
                                     onClick={() =>
                                         props.history.push(
-                                            "/Distribute/Rent/Questions/1"
+                                            `/Distribute/Questions/Remote/Rent/${sessionID}/1`
                                         )
                                     }
                                 >
@@ -94,10 +95,18 @@ const Remote_RentQuestionnairePage = (props) => {
                         </Row>
                     </Container>
                 );
-            } else if (stage > 1) {
-                return <Redirect to='/Distribute/Rent/GoodInfo' />;
+            } else if (stage === "1") {
+                return (
+                    <Redirect
+                        to={`/Distribute/GoodInfo/Remote/Rent/${sessionID}`}
+                    />
+                );
             } else {
-                return <Redirect to='/Distribute/Rent/Questions/0' />;
+                return (
+                    <Redirect
+                        to={`/Distribute/Questions/Remote/Rent/${sessionID}/0`}
+                    />
+                );
             }
         } else {
             return <Redirect to='/Distribute/localremote/Rent' />;
