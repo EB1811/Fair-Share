@@ -8,12 +8,17 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useFirestoreConnect, isLoaded } from "react-redux-firebase";
+import {
+    useFirestoreConnect,
+    isLoaded,
+    useFirestore,
+} from "react-redux-firebase";
 import { useSelector } from "react-redux";
 
 import { Redirect, useParams } from "react-router-dom";
 
 const Rent_Remote_GatherInfoPage = (props) => {
+    const firestore = useFirestore();
     useFirestoreConnect([
         { collection: "ShareSessions", doc: props.match.params.sessionID },
     ]);
@@ -22,12 +27,34 @@ const Rent_Remote_GatherInfoPage = (props) => {
             data.ShareSessions &&
             data.ShareSessions[props.match.params.sessionID]
     );
-
     let { sessionID } = useParams();
 
-    // Input group info.
-    const next = () => {
-        props.history.push(`/Distribute/GroupInfo/Remote/Rent`);
+    // Input group info into firestore.
+    const next = (roomCount, totalCost) => {
+        var goods = [];
+        for (var i = 0; i < roomCount; i++) {
+            var room = { Good: "Room " + (parseInt(i) + 1), Value: 0 };
+            goods.push(room);
+        }
+
+        if (totalCost > 0 && roomCount > 0) {
+            firestore
+                .update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { totalCost: totalCost, goods: goods }
+                )
+                .then(() => {
+                    console.log(session);
+                    /*
+                    props.history.push(
+                        `/Distribute/GroupInfo/Remote/${sessionID}/Rent`
+                    );
+                    */
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     };
 
     if (isLoaded(session)) {
@@ -47,7 +74,7 @@ const Rent_Remote_GatherInfoPage = (props) => {
                             className='centerCardCompact m-3'
                             style={{ maxWidth: "510px" }}
                         >
-                            <InputRoomsInfo next={next} />
+                            <InputRoomsInfo next={next} session={session} />
                         </Col>
                     </Row>
                 </Container>

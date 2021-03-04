@@ -9,8 +9,20 @@ import { connect } from "react-redux";
 
 const InputRoomsInfo = (props) => {
     // Information about goods.
-    const [houseValue, setHouseValue] = useState(props.stateHouseValue);
-    const [roomCount, setRoomCount] = useState(props.stateRoomCount);
+    const [houseValue, setHouseValue] = useState(
+        props.session
+            ? props.session.totalCost
+                ? props.session.totalCost
+                : 0
+            : props.stateHouseValue
+    );
+    const [roomCount, setRoomCount] = useState(
+        props.session
+            ? props.session.goods
+                ? props.session.goods.length
+                : 0
+            : props.stateRoomCount
+    );
     // Failed bool used for conditional css.
     const [roomCountFailed, setRoomCountFailed] = useState(false);
     const [houseValueFailed, setHouseValueFailed] = useState(false);
@@ -36,9 +48,14 @@ const InputRoomsInfo = (props) => {
             setRoomCountFailed(false);
             setHouseValueFailed(false);
 
-            props.addGoodsAmount(roomCount);
-            props.updateTotalValue(houseValue);
-            props.next();
+            // Action based on if remote or local method. Remote needs to pass info to next function so it can be added to firestore.
+            if (props.session) {
+                props.next(roomCount, houseValue);
+            } else {
+                props.addGoodsAmount(roomCount);
+                props.updateTotalValue(houseValue);
+                props.next();
+            }
         }
     };
 

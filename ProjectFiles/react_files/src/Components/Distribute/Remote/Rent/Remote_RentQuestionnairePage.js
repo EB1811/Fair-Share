@@ -54,7 +54,6 @@ const Remote_RentQuestionnairePage = (props) => {
     if (isLoaded(session)) {
         if (session && session.active) {
             if (stage === "0") {
-                console.log(session);
                 return (
                     <Container
                         fluid
