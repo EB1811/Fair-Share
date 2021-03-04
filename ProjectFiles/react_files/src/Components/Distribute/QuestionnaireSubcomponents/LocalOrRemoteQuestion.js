@@ -41,7 +41,6 @@ const LocalOrRemoteQuestion = (props) => {
                     }
                 )
                 .then((docSnapshot) => {
-                    console.log(docSnapshot.id);
                     props.history.push(
                         `/Distribute/Questions/Remote/${goodType}/${docSnapshot.id}/0`
                     );

@@ -45,11 +45,9 @@ const Rent_Remote_GatherInfoPage = (props) => {
                 )
                 .then(() => {
                     console.log(session);
-                    /*
                     props.history.push(
                         `/Distribute/GroupInfo/Remote/${sessionID}/Rent`
                     );
-                    */
                 })
                 .catch((err) => {
                     console.log(err);
