@@ -13,7 +13,6 @@ import {
     useFirestoreConnect,
     isLoaded,
     useFirestore,
-    getVal,
 } from "react-redux-firebase";
 import { useSelector } from "react-redux";
 
@@ -141,22 +140,28 @@ const RemoteInputGroupInfoPage = (props) => {
             setGroupCountFailed(true);
         } else {
             setGroupCountFailed(false);
-            props.history.push(`/Distribute/Valuations/Local/${goodType}`);
+            props.history.push(
+                `/Distribute/Valuations/Remote/${sessionID}/${goodType}`
+            );
         }
     };
     const deleteUser = (userEmail) => {
         if (userEmail !== profile.email) {
             const newGroup = [...session.group].filter((user) => {
-                console.log(user);
-                return 1 === 1;
-                /*
-                if (getVal(firestore, user)) {
-                    return user.userEmail !== action.userEmail;
-                } else {
-                    return user.username !== action.username;
-                }
-                */
+                return user.userEmail !== userEmail;
             });
+            // Updates firestore.
+            firestore
+                .update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { group: newGroup }
+                )
+                .then(() => {
+                    console.log("User Successfully Deleted.");
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
         }
     };
 
@@ -227,7 +232,35 @@ const RemoteInputGroupInfoPage = (props) => {
                                         </Row>
                                     </Form>
                                     <Row className='justify-content-center contentOverflow mt-3'>
-                                        <Col sm='10'></Col>
+                                        <Col sm='10'>
+                                            {session.group.map((user) => (
+                                                <Card
+                                                    style={{
+                                                        color: "#000",
+                                                        textAlign: "left",
+                                                    }}
+                                                    key={user.userEmail}
+                                                    body
+                                                >
+                                                    {user.username}
+                                                    {user.userEmail !==
+                                                    profile.email ? (
+                                                        <button
+                                                            className='close'
+                                                            onClick={() =>
+                                                                deleteUser(
+                                                                    user.userEmail
+                                                                )
+                                                            }
+                                                        >
+                                                            ×
+                                                        </button>
+                                                    ) : (
+                                                        <button className='close'></button>
+                                                    )}
+                                                </Card>
+                                            ))}
+                                        </Col>
                                     </Row>
                                 </div>
                                 <div className='mt-4'>
@@ -274,33 +307,3 @@ const RemoteInputGroupInfoPage = (props) => {
 };
 
 export default withRouter(RemoteInputGroupInfoPage);
-
-/*
-{session.group.map((user) => (
-                                                <Card
-                                                    style={{
-                                                        color: "#000",
-                                                        textAlign: "left",
-                                                    }}
-                                                    key={user.userEmail}
-                                                    body
-                                                >
-                                                    {user.username}
-                                                    {user.userEmail !==
-                                                    profile.email ? (
-                                                        <button
-                                                            className='close'
-                                                            onClick={() =>
-                                                                deleteUser(
-                                                                    user.userEmail
-                                                                )
-                                                            }
-                                                        >
-                                                            ×
-                                                        </button>
-                                                    ) : (
-                                                        <button className='close'></button>
-                                                    )}
-                                                </Card>
-                                            ))}
-*/
