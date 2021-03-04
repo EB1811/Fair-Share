@@ -44,13 +44,48 @@ const RemoteInputGroupInfoPage = (props) => {
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
+    const [thisUserAdded, setThisUserAdded] = useState(false);
 
     // Add the user who is on the page on page load.
     useEffect(() => {
-        if (profile.isLoaded && isUsersLoaded && isSessionLoaded) {
-            addToFireStoreGroup(profile.email, profile.username);
+        //console.log("here");
+        if (!thisUserAdded) {
+            if (profile.isLoaded && isUsersLoaded && isSessionLoaded) {
+                const group = session.group ? [...session.group] : [];
+                // Make sure this user isn't already in the group.
+                if (!group.some((obj) => obj.userEmail === profile.email)) {
+                    console.log("Adding User");
+                    group.push({
+                        userEmail: profile.email,
+                        username: profile.username,
+                    });
+                    // Updates firestore.
+                    firestore
+                        .update(
+                            { collection: "ShareSessions", doc: sessionID },
+                            { group: group }
+                        )
+                        .then(() => {
+                            console.log("Success");
+                            setThisUserAdded(true);
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
+                } else {
+                    setThisUserAdded(true);
+                }
+            }
         }
-    }, [profile, isSessionLoaded, isUsersLoaded, addToFireStoreGroup]);
+    }, [
+        profile,
+        isSessionLoaded,
+        isUsersLoaded,
+        thisUserAdded,
+        sessionID,
+        session,
+        firestore,
+    ]);
 
     // Firestore interaction.
     const addToFireStoreGroup = async (email, username) => {
@@ -82,7 +117,6 @@ const RemoteInputGroupInfoPage = (props) => {
     const addToGroup = async (e) => {
         e.preventDefault();
         const user = firebaseUsers.filter((user) => user.email === userEmail);
-        console.log(user);
         // Input validation.
         if (
             firebaseUsers &&
