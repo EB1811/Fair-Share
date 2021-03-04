@@ -46,6 +46,7 @@ function App() {
                 <Route exact path='/' component={MainPage} />
                 <Route exact path='/About' component={About} />
                 <Route exact path='/Learn' component={LearnMainPage} />
+
                 <Route
                     exact
                     path='/Distribute/localremote/:goodType'
@@ -53,37 +54,58 @@ function App() {
                 />
                 <Route
                     exact
-                    path='/Distribute/Rent/Remote/Questions/:sessionID/:stage'
+                    path='/Distribute/Questions/Remote/Rent/:sessionID/:stage'
                     component={Remote_RentQuestionnairePage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Goods/Remote/Questions/:sessionID/:stage'
+                    path='/Distribute/Questions/Remote/Goods/:sessionID/:stage'
                     component={GoodsQuestionnairePageShell}
                 />
                 <Route
                     exact
-                    path='/Distribute/Goods/Local/Questions/:stage'
-                    component={GoodsQuestionnairePageShell}
-                />
-                <Route
-                    exact
-                    path='/Distribute/Rent/Local/Questions/:stage'
-                    component={RentQuestionnairePageShell}
-                />
-                <Route
-                    exact
-                    path='/Distribute/Rent/Remote/GoodInfo/:sessionID'
+                    path='/Distribute/GoodInfo/Remote/Rent/:sessionID'
                     component={Rent_Remote_GatherInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Goods/GoodInfo'
+                    path='/Distribute/GoodInfo/Remote/Goods/:sessionID'
+                    component={Rent_Remote_GatherInfoPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/GroupInfo/Remote/:sessionID/:goodType'
+                    component={RemoteInputGroupInfoPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Valuations/Remote/:sessionID/:goodType'
+                    component={SetValuationsPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Results/Remote/:sessionID/:goodType'
+                    component={ResultsPage}
+                />
+
+                <Route
+                    exact
+                    path='/Distribute/Questions/Local/Goods/:stage'
+                    component={GoodsQuestionnairePageShell}
+                />
+                <Route
+                    exact
+                    path='/Distribute/Questions/Local/Rent/:stage'
+                    component={RentQuestionnairePageShell}
+                />
+                <Route
+                    exact
+                    path='/Distribute/GoodInfo/Local/Goods'
                     component={Goods_GatherInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Rent/GoodInfo'
+                    path='/Distribute/GoodInfo/Local/Rent'
                     component={Rent_GatherInfoPage}
                 />
                 <Route
@@ -93,24 +115,15 @@ function App() {
                 />
                 <Route
                     exact
-                    path='/Distribute/GroupInfo/Remote/:goodType'
-                    component={RemoteInputGroupInfoPage}
-                />
-                <Route
-                    exact
                     path='/Distribute/Valuations/Local/:goodType'
                     component={SetValuationsPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Valuations/Remote/:goodType'
-                    component={SetValuationsPage}
-                />
-                <Route
-                    exact
-                    path='/Distribute/Results/:goodType'
+                    path='/Distribute/Results/Local/:goodType'
                     component={ResultsPage}
                 />
+
                 <Route exact path='/CreateAccount' component={CreateAccount} />
                 <Route exact path='/Login' component={Login} />
                 <Route exact path='/Account' component={AccountBoard} />

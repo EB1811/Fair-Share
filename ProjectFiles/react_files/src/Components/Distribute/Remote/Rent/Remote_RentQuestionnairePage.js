@@ -53,7 +53,6 @@ const Remote_RentQuestionnairePage = (props) => {
 
     if (isLoaded(session)) {
         if (session && session.active) {
-            console.log(session);
             if (stage === "0") {
                 return (
                     <Container
