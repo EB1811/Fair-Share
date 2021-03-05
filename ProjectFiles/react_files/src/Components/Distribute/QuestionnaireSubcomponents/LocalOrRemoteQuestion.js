@@ -35,7 +35,7 @@ const LocalOrRemoteQuestion = (props) => {
                 .add(
                     { collection: "ShareSessions" },
                     {
-                        owner: firestore.doc(`/users/${auth.uid}`),
+                        owner: auth.uid,
                         type: goodType,
                         active: true,
                     }

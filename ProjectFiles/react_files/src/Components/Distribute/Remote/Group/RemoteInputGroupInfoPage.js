@@ -32,6 +32,7 @@ const RemoteInputGroupInfoPage = (props) => {
     );
     const firebaseUsers = useSelector((state) => state.firestore.ordered.users);
     const profile = useSelector((state) => state.firebase.profile);
+    const uid = useSelector((state) => state.firebase.auth.uid);
     const isSessionLoaded = isLoaded(session);
     const isUsersLoaded = isLoaded(firebaseUsers);
 
@@ -47,7 +48,6 @@ const RemoteInputGroupInfoPage = (props) => {
 
     // Add the user who is on the page on page load.
     useEffect(() => {
-        //console.log("here");
         if (!thisUserAdded) {
             if (profile.isLoaded && isUsersLoaded && isSessionLoaded) {
                 const group = session.group ? [...session.group] : [];
@@ -134,7 +134,7 @@ const RemoteInputGroupInfoPage = (props) => {
             setUserEmail("");
         }
     };
-    // Validate group then continue to next page.
+    // Validate group size then continue to next page.
     const checkGroup = () => {
         if (session.group.length < 2) {
             setGroupCountFailed(true);
@@ -146,28 +146,31 @@ const RemoteInputGroupInfoPage = (props) => {
         }
     };
     const deleteUser = (userEmail) => {
-        if (userEmail !== profile.email) {
-            const newGroup = [...session.group].filter((user) => {
-                return user.userEmail !== userEmail;
-            });
-            // Updates firestore.
-            firestore
-                .update(
-                    { collection: "ShareSessions", doc: sessionID },
-                    { group: newGroup }
-                )
-                .then(() => {
-                    console.log("User Successfully Deleted.");
-                })
-                .catch((err) => {
-                    console.log(err.message);
+        if (session.owner === uid) {
+            if (userEmail !== profile.email) {
+                // Return group without user with userEmail.
+                const newGroup = [...session.group].filter((user) => {
+                    return user.userEmail !== userEmail;
                 });
+                firestore
+                    .update(
+                        { collection: "ShareSessions", doc: sessionID },
+                        { group: newGroup }
+                    )
+                    .then(() => {
+                        console.log("User Successfully Deleted.");
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    });
+            }
         }
     };
 
-    if (isLoaded(session)) {
-        if (session && session.active) {
-            if (profile) {
+    //TODO: [A301212-96] Different renders based on if the person is owner or not.
+    if (isLoaded(session) && profile.isLoaded) {
+        if (!profile.isEmpty) {
+            if (session && session.active) {
                 return (
                     <Container
                         fluid
@@ -233,6 +236,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                     </Form>
                                     <Row className='justify-content-center contentOverflow mt-3'>
                                         <Col sm='10'>
+                                            {/* The following displays a card for each user with a delete button if user is not owner. */}
                                             {session.group.map((user) => (
                                                 <Card
                                                     style={{
@@ -244,7 +248,8 @@ const RemoteInputGroupInfoPage = (props) => {
                                                 >
                                                     {user.username}
                                                     {user.userEmail !==
-                                                    profile.email ? (
+                                                        profile.email &&
+                                                    session.owner === uid ? (
                                                         <button
                                                             className='close'
                                                             onClick={() =>
@@ -284,10 +289,10 @@ const RemoteInputGroupInfoPage = (props) => {
                     </Container>
                 );
             } else {
-                return <Redirect to='/Login' />;
+                return <Redirect to='/Distribute/localremote/Rent' />;
             }
         } else {
-            return <Redirect to='/Distribute/localremote/Rent' />;
+            return <Redirect to='/Login' />;
         }
     } else {
         return (
