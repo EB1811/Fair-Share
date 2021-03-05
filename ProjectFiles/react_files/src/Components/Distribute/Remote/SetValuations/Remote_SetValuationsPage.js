@@ -17,11 +17,14 @@ import { useSelector } from "react-redux";
 
 // React Components
 import RemoteInputValuations from "./RemoteInputValuations";
+import Button from "react-bootstrap/esm/Button";
 
 const Remote_SetValuationsPage = (props) => {
     // True if user in session group.
     const [userInSession, setUserInSession] = useState(false);
     const [userInSessionDetermined, setUserInSessionDetermined] = useState();
+    // For rendering 'waiting' page.
+    const [editValues, setEditValues] = useState(false);
 
     const firestore = useFirestore();
     useFirestoreConnect([
@@ -95,6 +98,8 @@ const Remote_SetValuationsPage = (props) => {
                 )
                 .then(() => {
                     console.log("Successfully added your values");
+
+                    setEditValues(false);
                 })
                 .catch((err) => {
                     console.log(err.message);
@@ -105,33 +110,64 @@ const Remote_SetValuationsPage = (props) => {
     if (isSessionLoaded && profile.isLoaded) {
         if (!profile.isEmpty) {
             if (session && session.active) {
-                return (
-                    <Container
-                        fluid
-                        className='divBlockWithContentTertiary min-vh-100'
-                    >
-                        <Row className='justify-content-center align-items-center min-vh-100'>
-                            <Col
-                                xs={10}
-                                sm={8}
-                                md={7}
-                                lg={6}
-                                className='centerCardCompact m-3'
-                                style={{ maxWidth: "800px" }}
-                            >
-                                <h4>
-                                    {profile.username}: Enter your valuation for
-                                    each item:
-                                </h4>
-                                <RemoteInputValuations
-                                    goods={[...session.values[uid].goods]}
-                                    totalCost={session.totalCost}
-                                    storeValuations={storeValuations}
-                                />
-                            </Col>
-                        </Row>
-                    </Container>
-                );
+                if (session.values && session.values[uid] && !editValues) {
+                    return (
+                        <Container
+                            fluid
+                            className='divBlockWithContentTertiary min-vh-100'
+                        >
+                            <Row className='justify-content-center align-items-center min-vh-100'>
+                                <Col
+                                    xs={10}
+                                    sm={8}
+                                    md={7}
+                                    lg={6}
+                                    className='centerCardCompact m-3'
+                                    style={{ maxWidth: "800px" }}
+                                >
+                                    <h4>
+                                        Waiting for other players to submit
+                                        their valuations.
+                                    </h4>
+                                    <Button
+                                        variant='primary'
+                                        size='md'
+                                        onClick={() => setEditValues(true)}
+                                    >
+                                        <span>Edit</span>
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Container>
+                    );
+                } else
+                    return (
+                        <Container
+                            fluid
+                            className='divBlockWithContentTertiary min-vh-100'
+                        >
+                            <Row className='justify-content-center align-items-center min-vh-100'>
+                                <Col
+                                    xs={10}
+                                    sm={8}
+                                    md={7}
+                                    lg={6}
+                                    className='centerCardCompact m-3'
+                                    style={{ maxWidth: "800px" }}
+                                >
+                                    <h4>
+                                        {profile.username}: Enter your valuation
+                                        for each item:
+                                    </h4>
+                                    <RemoteInputValuations
+                                        goods={[...session.values[uid].goods]}
+                                        totalCost={session.totalCost}
+                                        storeValuations={storeValuations}
+                                    />
+                                </Col>
+                            </Row>
+                        </Container>
+                    );
             } else {
                 return <Redirect to={`/Distribute/localremote/${goodType}`} />;
             }

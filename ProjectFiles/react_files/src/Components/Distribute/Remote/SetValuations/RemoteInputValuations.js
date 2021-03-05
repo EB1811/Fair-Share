@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 const InputValuationsForGood = ({ good, changeGoodValue, totalCost }) => {
     const handleChange = (e) => {
-        changeGoodValue(good, e.target.value);
+        changeGoodValue(good, parseInt(e.target.value));
     };
 
     return (
