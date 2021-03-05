@@ -40,8 +40,8 @@ const Remote_SetValuationsPage = (props) => {
 
     let { sessionID, goodType } = useParams();
 
+    // Determine the value of userInSession variable.
     useEffect(() => {
-        // Determine the value of userInSession variable.
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
             if (!profile.isEmpty) {
                 if (
@@ -114,7 +114,11 @@ const Remote_SetValuationsPage = (props) => {
                         Object.keys(session.values).length ===
                         session.group.length
                     ) {
-                        return <Redirect to='/' />;
+                        return (
+                            <Redirect
+                                to={`/Distribute/Results/Remote/${sessionID}/${goodType}`}
+                            />
+                        );
                     } else {
                         return (
                             <Container

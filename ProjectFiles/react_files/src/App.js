@@ -32,7 +32,7 @@ import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Re
 import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
-//import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
+import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
 
 function App() {
     // Contains info about route.
@@ -86,7 +86,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Results/Remote/:sessionID/:goodType'
-                    component={LocalResultsPage}
+                    component={RemoteResultsPage}
                 />
 
                 <Route

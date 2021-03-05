@@ -25,12 +25,7 @@ export const getRentResults = async (valueMatrix, totalCost) => {
         }),
     };
 
-    fetch(fetchURL, requestOptions)
-        .then((res) => res.json())
-        .then((data) => {
-            return Promise.resolve(data);
-        })
-        .catch((err) => {
-            Promise.reject(err);
-        });
+    const data = await fetch(fetchURL, requestOptions);
+    const result = await data.json();
+    return result;
 };

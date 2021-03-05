@@ -42,16 +42,20 @@ const LocalResultsPage = ({
             const allocationsArr = [];
             //TODO: [A301212-93] Have two different result routes instead of doing it like this.
             if (goodType === "Rent") {
-                getRentResults(valueMatrix, totalCost).then((allocation) => {
-                    allocation.map((user) =>
-                        allocationsArr.push({
-                            username: userArray[user.who].username,
-                            room: user.room,
-                            price: user.price,
-                        })
-                    );
-                    setStateAllocation(allocation);
-                });
+                getRentResults(valueMatrix, totalCost)
+                    .then((allocation) => {
+                        allocation.map((user) =>
+                            allocationsArr.push({
+                                username: userArray[user.who].username,
+                                room: user.room,
+                                price: user.price,
+                            })
+                        );
+                        setStateAllocation(allocation);
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    });
             } else if (goodType === "Goods") {
                 const fetchURL = "http://localhost:5000/api/getGoodsAllocation";
                 const requestOptions = {
