@@ -17,7 +17,6 @@ import { useSelector } from "react-redux";
 
 // React Components
 import RemoteInputValuations from "./RemoteInputValuations";
-import Button from "react-bootstrap/esm/Button";
 
 const Remote_SetValuationsPage = (props) => {
     // True if user in session group.
@@ -111,35 +110,46 @@ const Remote_SetValuationsPage = (props) => {
         if (!profile.isEmpty) {
             if (session && session.active) {
                 if (session.values && session.values[uid] && !editValues) {
-                    return (
-                        <Container
-                            fluid
-                            className='divBlockWithContentTertiary min-vh-100'
-                        >
-                            <Row className='justify-content-center align-items-center min-vh-100'>
-                                <Col
-                                    xs={10}
-                                    sm={8}
-                                    md={7}
-                                    lg={6}
-                                    className='centerCardCompact m-3'
-                                    style={{ maxWidth: "800px" }}
-                                >
-                                    <h4>
-                                        Waiting for other players to submit
-                                        their valuations.
-                                    </h4>
-                                    <Button
-                                        variant='primary'
-                                        size='md'
-                                        onClick={() => setEditValues(true)}
+                    if (
+                        Object.keys(session.values).length ===
+                        session.group.length
+                    ) {
+                        return <Redirect to='/' />;
+                    } else {
+                        return (
+                            <Container
+                                fluid
+                                className='divBlockWithContentTertiary min-vh-100'
+                            >
+                                <Row className='justify-content-center align-items-center min-vh-100'>
+                                    <Col
+                                        xs={10}
+                                        sm={8}
+                                        md={7}
+                                        lg={6}
+                                        className='centerCardCompact m-3'
+                                        style={{ maxWidth: "800px" }}
                                     >
-                                        <span>Edit</span>
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Container>
-                    );
+                                        <h4>
+                                            Waiting for other players to submit
+                                            their valuations.
+                                        </h4>
+                                        {/*  
+                                        //! Not shown if someone is editing. User could be redirected while editing.
+                                        //TODO Add the following when fixed.
+                                        <Button
+                                            variant='primary'
+                                            size='md'
+                                            onClick={() => setEditValues(true)}
+                                        >
+                                            <span>Edit</span>
+                                        </Button>
+                                        */}
+                                    </Col>
+                                </Row>
+                            </Container>
+                        );
+                    }
                 } else
                     return (
                         <Container
@@ -160,7 +170,12 @@ const Remote_SetValuationsPage = (props) => {
                                         for each item:
                                     </h4>
                                     <RemoteInputValuations
-                                        goods={[...session.values[uid].goods]}
+                                        goods={
+                                            session.values &&
+                                            session.values[uid]
+                                                ? [...session.values[uid].goods]
+                                                : session.goods
+                                        }
                                         totalCost={session.totalCost}
                                         storeValuations={storeValuations}
                                     />
