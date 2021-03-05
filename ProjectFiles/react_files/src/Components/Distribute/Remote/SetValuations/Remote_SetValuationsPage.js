@@ -67,7 +67,36 @@ const Remote_SetValuationsPage = (props) => {
         setUserInSessionDetermined,
     ]);
 
-    const storeValuations = (userGoodsArray) => {};
+    // Create {userEmail?, username, userGoodsArr} and add to firestore valuations array.
+    const storeValuations = (userGoodsArray, total) => {
+        // Algorithms expect valuations total value > total cost.
+        if (total >= session.totalCost) {
+            const values = session.values
+                ? JSON.parse(JSON.stringify(session.values))
+                : {};
+            const userValues = {
+                username: profile.username,
+                email: profile.email,
+            };
+            // Add or replace for each good.
+            userGoodsArray.forEach((good) => {
+                userValues[good.Good] = parseInt(good.Value);
+            });
+            values[uid] = userValues;
+
+            firestore
+                .update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { values: values }
+                )
+                .then(() => {
+                    console.log("Successfully added your values");
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        }
+    };
 
     if (isSessionLoaded && profile.isLoaded) {
         if (!profile.isEmpty) {

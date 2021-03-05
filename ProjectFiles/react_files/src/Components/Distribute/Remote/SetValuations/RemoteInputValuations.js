@@ -41,7 +41,7 @@ const RemoteInputValuations = (props) => {
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.storeValuations(userGoodsArr);
+        props.storeValuations(userGoodsArr, total);
     };
 
     const changeGoodValue = (good, newValue) => {
