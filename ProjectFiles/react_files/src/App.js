@@ -24,15 +24,15 @@ import Rent_GatherInfoPage from "./Components/Distribute/Local/Rent/Rent_GatherI
 import LocalInputGroupInfoPage from "./Components/Distribute/Local/Group/LocalInputGroupInfoPage";
 import GoodsQuestionnairePageShell from "./Components/Distribute/Local/Goods/GoodsQuestionnairePage";
 import RentQuestionnairePageShell from "./Components/Distribute/Local/Rent/RentQuestionnairePage";
+import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
+import LocalResultsPage from "./Components/Distribute/Local/Results/LocalResultsPage";
 
 // Remote process components.
 import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Remote_RentQuestionnairePage";
 import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
-
-import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
-import ResultsPage from "./Components/Results/ResultsPage";
+//import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
 
 function App() {
     // Contains info about route.
@@ -86,7 +86,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Results/Remote/:sessionID/:goodType'
-                    component={ResultsPage}
+                    component={LocalResultsPage}
                 />
 
                 <Route
@@ -122,7 +122,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Results/Local/:goodType'
-                    component={ResultsPage}
+                    component={LocalResultsPage}
                 />
 
                 <Route exact path='/CreateAccount' component={CreateAccount} />

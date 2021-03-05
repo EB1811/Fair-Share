@@ -41,7 +41,7 @@ const Remote_SetValuationsPage = (props) => {
     let { sessionID, goodType } = useParams();
 
     useEffect(() => {
-        // Determine the value of userInSession.
+        // Determine the value of userInSession variable.
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
             if (!profile.isEmpty) {
                 if (

@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 // React Router
 import { Redirect, useParams } from "react-router-dom";
 
-const ResultsPage = ({
+const LocalResultsPage = ({
     userArray,
     stateAllocation,
     setStateAllocation,
@@ -223,4 +223,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LocalResultsPage);
