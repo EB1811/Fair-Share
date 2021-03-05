@@ -70,6 +70,7 @@ const Remote_SetValuationsPage = (props) => {
     // Create {userEmail?, username, userGoodsArr} and add to firestore valuations array.
     const storeValuations = (userGoodsArray, total) => {
         // Algorithms expect valuations total value > total cost.
+        //TODO: [A301212-97] Render error message when total value > total cost is false.
         if (total >= session.totalCost) {
             const values = session.values
                 ? JSON.parse(JSON.stringify(session.values))
@@ -77,11 +78,14 @@ const Remote_SetValuationsPage = (props) => {
             const userValues = {
                 username: profile.username,
                 email: profile.email,
+                goods: userGoodsArray,
             };
             // Add or replace for each good.
+            /*
             userGoodsArray.forEach((good) => {
                 userValues[good.Good] = parseInt(good.Value);
             });
+            */
             values[uid] = userValues;
 
             firestore
@@ -120,7 +124,7 @@ const Remote_SetValuationsPage = (props) => {
                                     each item:
                                 </h4>
                                 <RemoteInputValuations
-                                    goods={[...session.goods]}
+                                    goods={[...session.values[uid].goods]}
                                     totalCost={session.totalCost}
                                     storeValuations={storeValuations}
                                 />
