@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 // React Router
 import { Redirect, useParams } from "react-router-dom";
 
+import { getRentResults } from "../../../../ApiFunctions/getRentResults";
+
 const LocalResultsPage = ({
     userArray,
     stateAllocation,
@@ -23,20 +25,7 @@ const LocalResultsPage = ({
     // Get results.
     useEffect(() => {
         if (userArray.length > 0 && goodsArray.length > 0) {
-            //* API accepts JSON format with a matrix representing each user as a row, and each good as a column. Row, Column = user valuation.
-            /*
-            e.g.,
-            {
-                "valueMatrix": 
-                [ 
-                    [500, 100, 700, 1], 
-                    [1000, 200, 800, 5], 
-                    [100, 500, 1000, 100]
-                ]
-            }
-            */
-
-            // First convert valuations in user array into a format compatible with API (see above).
+            // First convert valuations in user array into a format compatible with API (see value matrix in /ApiFunctions).
             const userCount = userArray.length;
             const goodsCount = userArray[0].userGoodsArr.length;
             var valueMatrix = Array.from(
@@ -49,43 +38,20 @@ const LocalResultsPage = ({
                 }
             }
 
-            // Connect to API.
-            const tempAlloArray = [];
             // Goods or Rooms route.
+            const allocationsArr = [];
             //TODO: [A301212-93] Have two different result routes instead of doing it like this.
             if (goodType === "Rent") {
-                const fetchURL = "http://localhost:5000/api/getRoomsAllocation";
-                const requestOptions = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Origin: "http://localhost:3000",
-                    },
-                    body: JSON.stringify({
-                        valueMatrix: valueMatrix,
-                        totalCost: totalCost,
-                    }),
-                };
-
-                fetch(fetchURL, requestOptions)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        data.map((user) =>
-                            tempAlloArray.push({
-                                userEmail: userArray[user.who].userEmail
-                                    ? userArray[user.who].userEmail
-                                    : null,
-                                username: userArray[user.who].username,
-                                room: user.room,
-                                price: user.price,
-                            })
-                        );
-
-                        setStateAllocation(tempAlloArray);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
+                getRentResults(valueMatrix, totalCost).then((allocation) => {
+                    allocation.map((user) =>
+                        allocationsArr.push({
+                            username: userArray[user.who].username,
+                            room: user.room,
+                            price: user.price,
+                        })
+                    );
+                    setStateAllocation(allocation);
+                });
             } else if (goodType === "Goods") {
                 const fetchURL = "http://localhost:5000/api/getGoodsAllocation";
                 const requestOptions = {
@@ -103,7 +69,7 @@ const LocalResultsPage = ({
                     .then((res) => res.json())
                     .then((data) => {
                         data.map((user) =>
-                            tempAlloArray.push({
+                            allocationsArr.push({
                                 userEmail: userArray[user.who].userEmail
                                     ? userArray[user.who].userEmail
                                     : null,
@@ -112,7 +78,7 @@ const LocalResultsPage = ({
                             })
                         );
 
-                        setStateAllocation(tempAlloArray);
+                        setStateAllocation(allocationsArr);
                     })
                     .catch((err) => {
                         console.log(err);
