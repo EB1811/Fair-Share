@@ -29,6 +29,7 @@ import RentQuestionnairePageShell from "./Components/Distribute/Local/Rent/RentQ
 import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Remote_RentQuestionnairePage";
 import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
+import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
 
 import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
 import ResultsPage from "./Components/Results/ResultsPage";
@@ -80,7 +81,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Valuations/Remote/:sessionID/:goodType'
-                    component={SetValuationsPage}
+                    component={Remote_SetValuationsPage}
                 />
                 <Route
                     exact

@@ -168,7 +168,7 @@ const RemoteInputGroupInfoPage = (props) => {
     };
 
     //TODO: [A301212-96] Different renders based on if the person is owner or not.
-    if (isLoaded(session) && profile.isLoaded) {
+    if (isSessionLoaded && profile.isLoaded) {
         if (!profile.isEmpty) {
             if (session && session.active) {
                 return (
@@ -236,6 +236,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                     </Form>
                                     <Row className='justify-content-center contentOverflow mt-3'>
                                         <Col sm='10'>
+                                            {/*//? Maybe split into own component.*/}
                                             {/* The following displays a card for each user with a delete button if user is not owner. */}
                                             {session.group.map((user) => (
                                                 <Card
@@ -289,7 +290,11 @@ const RemoteInputGroupInfoPage = (props) => {
                     </Container>
                 );
             } else {
-                return <Redirect to='/Distribute/localremote/Rent' />;
+                return (
+                    <Redirect
+                        to={`/Distribute/Valuations/Remote/${sessionID}/${goodType}`}
+                    />
+                );
             }
         } else {
             return <Redirect to='/Login' />;
