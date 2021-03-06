@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 
 import { getRentResults } from "../../../../ApiFunctions/getRentResults";
+import { getGoodsResults } from "../../../../ApiFunctions/getGoodsResults";
 
 const LocalResultsPage = ({
     userArray,
@@ -57,26 +58,10 @@ const LocalResultsPage = ({
                         console.log(err.message);
                     });
             } else if (goodType === "Goods") {
-                const fetchURL = "http://localhost:5000/api/getGoodsAllocation";
-                const requestOptions = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Origin: "http://localhost:3000",
-                    },
-                    body: JSON.stringify({
-                        valueMatrix: valueMatrix,
-                    }),
-                };
-
-                fetch(fetchURL, requestOptions)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        data.map((user) =>
+                getGoodsResults(valueMatrix)
+                    .then((allocation) => {
+                        allocation.map((user) =>
                             allocationsArr.push({
-                                userEmail: userArray[user.who].userEmail
-                                    ? userArray[user.who].userEmail
-                                    : null,
                                 username: userArray[user.who].username,
                                 alloGoods: user.goodsList,
                             })
@@ -85,7 +70,7 @@ const LocalResultsPage = ({
                         setStateAllocation(allocationsArr);
                     })
                     .catch((err) => {
-                        console.log(err);
+                        console.log(err.message);
                     });
             }
         }

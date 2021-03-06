@@ -108,7 +108,7 @@ const Remote_SetValuationsPage = (props) => {
 
     if (isSessionLoaded && profile.isLoaded) {
         if (!profile.isEmpty) {
-            if (session && session.active) {
+            if (session && session.active && userInSession) {
                 if (session.values && session.values[uid] && !editValues) {
                     if (
                         Object.keys(session.values).length ===

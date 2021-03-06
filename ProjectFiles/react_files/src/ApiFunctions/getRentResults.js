@@ -9,9 +9,9 @@ e.g.,
         [100, 500, 1000, 100]
     ]
 }
+//* Returns list of objects - [{who: number, room: number, price: number, }...]
 */
 export const getRentResults = async (valueMatrix, totalCost) => {
-    // [{who: number, room: number, price: number, }...]
     const fetchURL = "http://localhost:5000/api/getRoomsAllocation";
     const requestOptions = {
         method: "POST",

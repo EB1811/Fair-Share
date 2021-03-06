@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 
 import { getRentResults } from "../../../../ApiFunctions/getRentResults";
+import { getGoodsResults } from "../../../../ApiFunctions/getGoodsResults";
 
 const RemoteResultsPage = (props) => {
     // True if user in session group.
@@ -70,12 +71,18 @@ const RemoteResultsPage = (props) => {
     // Session owner fetches data and updates firestore. Everyone else waits for results to update,
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded) {
-            if (!profile.isEmpty && session.owner === uid && !session.results) {
-                console.log("here");
+            console.log("here");
+            if (
+                session.active &&
+                !profile.isEmpty &&
+                session.owner === uid &&
+                !session.results
+            ) {
                 // Get results.
                 // First convert valuations in user array into a format compatible with API (see value matrix in /ApiFunctions).
                 // Need to first convert to array to store order.
-                const fsValuesArray = Object.values(session.values);
+                // fsValuesArray[user][0] = uid, fsValuesArray[user][1] = details.
+                const fsValuesArray = Object.entries(session.values);
                 const userCount = session.group.length;
                 const goodsCount = session.goods.length;
                 var valueMatrix = Array.from(
@@ -84,112 +91,172 @@ const RemoteResultsPage = (props) => {
                 );
                 for (var i = 0; i < userCount; i++) {
                     for (var j = 0; j < goodsCount; j++) {
-                        valueMatrix[i][j] = fsValuesArray[i].goods[j].Value;
+                        valueMatrix[i][j] = fsValuesArray[i][1].goods[j].Value;
                     }
                 }
 
                 // Goods or Rooms route.
-                const allocationsArr = [];
+                const allocations = {};
                 if (goodType === "Rent") {
                     getRentResults(valueMatrix, session.totalCost)
                         .then((allocation) => {
                             console.log(allocation);
-                            allocation.map((user) =>
-                                allocationsArr.push({
-                                    email: fsValuesArray[user.who].email,
-                                    username: fsValuesArray[user.who].username,
-                                    room:
-                                        fsValuesArray[user.who].goods[user.room]
-                                            .Good,
-                                    price: user.price,
-                                })
+                            allocation.map(
+                                (user) =>
+                                    (allocations[fsValuesArray[user.who][0]] = {
+                                        email: fsValuesArray[user.who][1].email,
+                                        username:
+                                            fsValuesArray[user.who][1].username,
+                                        room:
+                                            fsValuesArray[user.who][1].goods[
+                                                user.room
+                                            ].Good,
+                                        price: user.price,
+                                    })
                             );
-                            console.log(allocationsArr);
+                            firestore
+                                .update(
+                                    {
+                                        collection: "ShareSessions",
+                                        doc: sessionID,
+                                    },
+                                    { allocations: allocations, active: false }
+                                )
+                                .then(() => {
+                                    console.log("Results Saved");
+                                })
+                                .catch((err) => {
+                                    console.log(err.message);
+                                });
                         })
                         .catch((err) => {
                             console.log(err.message);
                         });
                 } else if (goodType === "Goods") {
+                    getGoodsResults(valueMatrix)
+                        .then((allocation) => {
+                            allocation.map(
+                                (user) =>
+                                    (allocations[fsValuesArray[user.who][0]] = {
+                                        email: fsValuesArray[user.who][1].email,
+                                        username:
+                                            fsValuesArray[user.who][1].username,
+                                        goods: user.goodsList,
+                                    })
+                            );
+                            firestore
+                                .update(
+                                    {
+                                        collection: "ShareSessions",
+                                        doc: sessionID,
+                                    },
+                                    { allocations: allocations, active: false }
+                                )
+                                .then(() => {
+                                    console.log("Results Saved");
+                                })
+                                .catch((err) => {
+                                    console.log(err.message);
+                                });
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
                 }
             }
         }
-    }, [isSessionLoaded, profile, session, uid, goodType]);
+    }, [
+        firestore,
+        isSessionLoaded,
+        profile,
+        session,
+        sessionID,
+        uid,
+        goodType,
+    ]);
 
     //console.log(stateAllocation);
-    return (
-        <Container fluid className='divBlockWithContentTertiary min-vh-100'>
-            <Row className='justify-content-center align-items-center min-vh-100'>
-                <Col
-                    xs={10}
-                    sm={8}
-                    md={7}
-                    lg={6}
-                    className='centerCardCompact m-3'
-                    style={{ maxWidth: "700px" }}
-                ></Col>
-            </Row>
-        </Container>
-    );
+    if (isSessionLoaded && profile.isLoaded && userInSessionDetermined) {
+        // Load.
+        if (!profile.isEmpty) {
+            // User must be logged in.
+            if (session && userInSession) {
+                // Session must exist and user must be in session group.
+                return (
+                    <Container
+                        fluid
+                        className='divBlockWithContentTertiary min-vh-100'
+                    >
+                        <Row className='justify-content-center align-items-center min-vh-100'>
+                            <Col
+                                xs={10}
+                                sm={8}
+                                md={7}
+                                lg={6}
+                                className='centerCardCompact m-3'
+                                style={{ maxWidth: "700px" }}
+                            >
+                                {!session.allocations ? (
+                                    <h1>Loading Results</h1>
+                                ) : (
+                                    <div>
+                                        <h6>
+                                            {session.allocations[uid].username},
+                                            your envy-free allocation is:
+                                        </h6>
+                                        <Col sm='12 mt-5'>
+                                            <h5>
+                                                {session.type === "Rent"
+                                                    ? session.allocations[uid]
+                                                          .room +
+                                                      " at $" +
+                                                      session.allocations[uid]
+                                                          .price
+                                                    : session.allocations[uid]
+                                                          .goods}
+                                            </h5>
+                                        </Col>
+                                        <a
+                                            href='/'
+                                            style={{ textDecoration: "none" }}
+                                        >
+                                            <Button
+                                                variant='primary'
+                                                size='sm'
+                                                className='mt-5'
+                                            >
+                                                <span className='smButtonText'>
+                                                    Share Again
+                                                </span>
+                                            </Button>
+                                        </a>
+                                    </div>
+                                )}
+                            </Col>
+                        </Row>
+                    </Container>
+                );
+            } else {
+                return <Redirect to={`/Distribute/localremote/${goodType}`} />;
+            }
+        } else {
+            return <Redirect to='/Login' />;
+        }
+    } else {
+        return (
+            <div
+                style={{
+                    height: "1000vh",
+                    width: "1000vh",
+                    position: "fixed",
+                    top: "0",
+                    left: "0",
+                    zIndex: "100",
+                    backgroundColor: "#fff",
+                }}
+            ></div>
+        );
+    }
 };
 
 export default RemoteResultsPage;
-
-/*
-
-                            <h4>Results</h4>
-                            <Col sm='12 mt-5'>
-                                {stateAllocation.map((allocationObject) => (
-                                    <p
-                                        key={
-                                            allocationObject.userEmail
-                                                ? allocationObject.userEmail
-                                                : allocationObject.username
-                                        }
-                                    >
-                                        {allocationObject.username}:&nbsp;
-                                        {allocationObject.alloGoods ? (
-                                            allocationObject.alloGoods.map(
-                                                (goodIndex) => (
-                                                    <span
-                                                        key={
-                                                            goodsArray[
-                                                                goodIndex
-                                                            ].Good
-                                                        }
-                                                    >
-                                                        {
-                                                            goodsArray[
-                                                                goodIndex
-                                                            ].Good
-                                                        }
-                                                        &nbsp;
-                                                    </span>
-                                                )
-                                            )
-                                        ) : (
-                                            <span>
-                                                {
-                                                    goodsArray[
-                                                        allocationObject.room
-                                                    ].Good
-                                                }
-                                                &nbsp;at $
-                                                {allocationObject.price}
-                                                &nbsp;
-                                            </span>
-                                        )}
-                                    </p>
-                                ))}
-                            </Col>
-                            <a href='/' style={{ textDecoration: "none" }}>
-                                <Button
-                                    variant='primary'
-                                    size='sm'
-                                    className='mt-5'
-                                >
-                                    <span className='smButtonText'>
-                                        Share Again
-                                    </span>
-                                </Button>
-                            </a>
-*/
