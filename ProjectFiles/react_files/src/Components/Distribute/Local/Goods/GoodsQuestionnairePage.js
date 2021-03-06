@@ -6,6 +6,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+// Redux
+import { connect } from "react-redux";
+
 // React Router
 import { useParams, Redirect } from "react-router-dom";
 
@@ -13,7 +16,7 @@ const GoodsQuestionnairePageShell = (props) => {
     // Stage = question.
     let { stage } = useParams();
 
-    if (stage === "0") {
+    if (props.shareMethod && stage === "0") {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
@@ -39,7 +42,7 @@ const GoodsQuestionnairePageShell = (props) => {
                             className='mt-5'
                             onClick={() =>
                                 props.history.push(
-                                    "/Distribute/Goods/Questions/1"
+                                    "/Distribute/Questions/Local/Goods/1"
                                 )
                             }
                         >
@@ -49,11 +52,20 @@ const GoodsQuestionnairePageShell = (props) => {
                 </Row>
             </Container>
         );
-    } else if (stage > 1) {
-        return <Redirect to='/Distribute/Goods/GoodInfo' />;
+    } else if (props.shareMethod && stage === "1") {
+        return <Redirect to='/Distribute/GoodInfo/Local/Goods' />;
+    } else if (props.shareMethod) {
+        return <Redirect to='/Distribute/Questions/Local/Goods/0' />;
     } else {
-        return <Redirect to='/Distribute/Goods/Questions/0' />;
+        return <Redirect to='/Distribute/localremote/Goods' />;
     }
 };
 
-export default GoodsQuestionnairePageShell;
+// To access and modify redux store.
+const mapStateToProps = (state) => {
+    return {
+        shareMethod: state.questionnaireAnswers.shareMethod,
+    };
+};
+
+export default connect(mapStateToProps)(GoodsQuestionnairePageShell);

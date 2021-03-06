@@ -28,8 +28,7 @@ const LocalOrRemoteQuestion = (props) => {
 
         if (method === "remote" && auth.isEmpty) {
             props.history.push("/login");
-        }
-        if (method === "remote") {
+        } else if (method === "remote") {
             // Setup session info and add to firestore.
             firestore
                 .add(

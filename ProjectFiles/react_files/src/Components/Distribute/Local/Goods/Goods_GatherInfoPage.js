@@ -16,7 +16,7 @@ import { Redirect } from "react-router-dom";
 const Goods_GatherInfoPage = (props) => {
     // Go to add users to group.
     const next = () => {
-        props.history.push(`/Distribute/GroupInfo/${props.shareMethod}/Goods`);
+        props.history.push("/Distribute/GroupInfo/Local/Goods");
     };
 
     //? Maybe have a variable in questions showing if all questions completed.
@@ -39,7 +39,7 @@ const Goods_GatherInfoPage = (props) => {
             </Container>
         );
     } else {
-        return <Redirect to='/Distribute/Goods/Questions/0' />;
+        return <Redirect to='/Distribute/Questions/Local/Goods/0' />;
     }
 };
 

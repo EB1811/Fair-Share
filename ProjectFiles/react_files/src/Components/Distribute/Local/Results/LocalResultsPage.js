@@ -41,7 +41,6 @@ const LocalResultsPage = ({
 
             // Goods or Rooms route.
             const allocationsArr = [];
-            //TODO: [A301212-93] Have two different result routes instead of doing it like this.
             if (goodType === "Rent") {
                 getRentResults(valueMatrix, totalCost)
                     .then((allocation) => {
@@ -52,7 +51,7 @@ const LocalResultsPage = ({
                                 price: user.price,
                             })
                         );
-                        setStateAllocation(allocation);
+                        setStateAllocation(allocationsArr);
                     })
                     .catch((err) => {
                         console.log(err.message);
@@ -78,7 +77,6 @@ const LocalResultsPage = ({
 
     if (userArray.length > 0) {
         if (stateAllocation.length > 0) {
-            //console.log(stateAllocation);
             return (
                 <Container
                     fluid
@@ -96,13 +94,7 @@ const LocalResultsPage = ({
                             <h4>Results</h4>
                             <Col sm='12 mt-5'>
                                 {stateAllocation.map((allocationObject) => (
-                                    <p
-                                        key={
-                                            allocationObject.userEmail
-                                                ? allocationObject.userEmail
-                                                : allocationObject.username
-                                        }
-                                    >
+                                    <p key={allocationObject.username}>
                                         {allocationObject.username}:&nbsp;
                                         {allocationObject.alloGoods ? (
                                             allocationObject.alloGoods.map(
@@ -157,7 +149,7 @@ const LocalResultsPage = ({
             return <div>Loading</div>;
         }
     } else {
-        return <Redirect to='/' />;
+        return <Redirect to={`/Distribute/localremote/${goodType}`} />;
     }
 };
 

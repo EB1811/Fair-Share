@@ -15,7 +15,7 @@ import { Redirect } from "react-router-dom";
 
 const Rent_GatherInfoPage = (props) => {
     const next = () => {
-        props.history.push(`/Distribute/GroupInfo/${props.shareMethod}/Rent`);
+        props.history.push("/Distribute/GroupInfo/Local/Rent");
     };
 
     if (props.shareMethod) {
@@ -37,7 +37,7 @@ const Rent_GatherInfoPage = (props) => {
             </Container>
         );
     } else {
-        return <Redirect to='/Distribute/Goods/Questions/0' />;
+        return <Redirect to='/Distribute/Questions/Local/Rent/0' />;
     }
 };
 

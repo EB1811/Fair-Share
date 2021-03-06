@@ -1,12 +1,13 @@
 //* API accepts JSON format with a matrix representing each user as a row, and each good as a column. Row, Column = user valuation.
+//* Rent must be a square matrix.
 /*
 e.g.,
 {
     "valueMatrix": 
     [ 
-        [500, 100, 700, 1], 
-        [1000, 200, 800, 5], 
-        [100, 500, 1000, 100]
+        [500, 100, 700], 
+        [1000, 200, 800], 
+        [100, 500, 1000]
     ]
 }
 //* Returns list of objects - [{who: number, room: number, price: number, }...]

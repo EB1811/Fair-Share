@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 
 // React Components
-import InputValuationsForm from "./Local/InputValuesComponents/InputValuations";
+import InputValuationsForm from "../InputValuesComponents/InputValuations";
 
 const SetValuationsPage = (props) => {
     let { goodType } = useParams();
@@ -27,7 +27,7 @@ const SetValuationsPage = (props) => {
         } else {
             // Dispatch to get results and redirect to results page.
             props.getAllocation();
-            props.history.push(`/Distribute/Results/${goodType}`);
+            props.history.push(`/Distribute/Results/Local/${goodType}`);
         }
     };
 

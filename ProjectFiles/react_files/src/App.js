@@ -24,7 +24,7 @@ import Rent_GatherInfoPage from "./Components/Distribute/Local/Rent/Rent_GatherI
 import LocalInputGroupInfoPage from "./Components/Distribute/Local/Group/LocalInputGroupInfoPage";
 import GoodsQuestionnairePageShell from "./Components/Distribute/Local/Goods/GoodsQuestionnairePage";
 import RentQuestionnairePageShell from "./Components/Distribute/Local/Rent/RentQuestionnairePage";
-import SetValuationsPage from "./Components/Distribute/SetValuationsPage";
+import SetValuationsPage from "./Components/Distribute/Local/SetValuations/SetValuationsPage";
 import LocalResultsPage from "./Components/Distribute/Local/Results/LocalResultsPage";
 
 // Remote process components.

@@ -21,19 +21,19 @@ const Footer = () => {
                     </a>
                     <a
                         style={{ textDecoration: "none" }}
-                        href='/Distribute/Rent/Questions/0'
+                        href='/Distribute/localremote/Rent'
                     >
                         <h2 className='footerLink'>Distribute Rent</h2>
                     </a>
                     <a
                         style={{ textDecoration: "none" }}
-                        href='/Distribute/Goods/Questions/0'
+                        href='/Distribute/localremote/Goods'
                     >
                         <h2 className='footerLink'>Distribute Goods</h2>
                     </a>
                     <a
                         style={{ textDecoration: "none" }}
-                        href='/Distribute/Goods/Questions/0'
+                        href='/Distribute/localremote/Goods'
                     >
                         <h2 className='footerLink'>Separate Finances</h2>
                     </a>

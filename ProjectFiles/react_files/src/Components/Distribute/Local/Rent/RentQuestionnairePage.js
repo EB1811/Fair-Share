@@ -6,6 +6,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+// Redux
+import { connect } from "react-redux";
+
 // React Router
 import { useParams, Redirect } from "react-router-dom";
 
@@ -13,7 +16,8 @@ const RentQuestionnairePageShell = (props) => {
     // Stage = question.
     let { stage } = useParams();
 
-    if (stage === "0") {
+    console.log(stage);
+    if (props.shareMethod && stage === "0") {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>
@@ -39,7 +43,7 @@ const RentQuestionnairePageShell = (props) => {
                             className='mt-5'
                             onClick={() =>
                                 props.history.push(
-                                    "/Distribute/Rent/Questions/1"
+                                    "/Distribute/Questions/Local/Rent/1"
                                 )
                             }
                         >
@@ -49,11 +53,20 @@ const RentQuestionnairePageShell = (props) => {
                 </Row>
             </Container>
         );
-    } else if (stage > 1) {
-        return <Redirect to='/Distribute/Rent/GoodInfo' />;
+    } else if (props.shareMethod && stage === "1") {
+        return <Redirect to='/Distribute/GoodInfo/Local/Rent' />;
+    } else if (props.shareMethod) {
+        return <Redirect to='/Distribute/Questions/Local/Rent/0' />;
     } else {
-        return <Redirect to='/Distribute/Rent/Questions/0' />;
+        return <Redirect to='/Distribute/localremote/Rent' />;
     }
 };
 
-export default RentQuestionnairePageShell;
+// To access and modify redux store.
+const mapStateToProps = (state) => {
+    return {
+        shareMethod: state.questionnaireAnswers.shareMethod,
+    };
+};
+
+export default connect(mapStateToProps)(RentQuestionnairePageShell);
