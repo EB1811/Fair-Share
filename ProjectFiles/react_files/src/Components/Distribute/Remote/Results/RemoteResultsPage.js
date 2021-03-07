@@ -103,7 +103,6 @@ const RemoteResultsPage = (props) => {
                 if (goodType === "Rent") {
                     getRentResults(valueMatrix, session.totalCost)
                         .then((allocation) => {
-                            console.log(allocation);
                             allocation.map(
                                 (user) =>
                                     (allocations[fsValuesArray[user.who][0]] = {
@@ -138,13 +137,19 @@ const RemoteResultsPage = (props) => {
                 } else if (goodType === "Goods") {
                     getGoodsResults(valueMatrix)
                         .then((allocation) => {
+                            console.log(allocation);
+                            // Create goodsList using good names instead of indexes.
                             allocation.map(
                                 (user) =>
                                     (allocations[fsValuesArray[user.who][0]] = {
                                         email: fsValuesArray[user.who][1].email,
                                         username:
                                             fsValuesArray[user.who][1].username,
-                                        goods: user.goodsList,
+                                        goods: [...user.goodsList].map(
+                                            (index) =>
+                                                fsValuesArray[user.who][1]
+                                                    .goods[index].Good
+                                        ),
                                     })
                             );
                             firestore

@@ -169,7 +169,7 @@ const RemoteInputGroupInfoPage = (props) => {
     };
 
     //TODO: [A301212-96] Different renders based on if the person is owner or not.
-    if (isSessionLoaded && profile.isLoaded) {
+    if (isSessionLoaded && profile.isLoaded && thisUserAdded) {
         if (!profile.isEmpty) {
             if (session && session.active) {
                 return (
