@@ -27,6 +27,7 @@ const Rent_Remote_GatherInfoPage = (props) => {
             data.ShareSessions &&
             data.ShareSessions[props.match.params.sessionID]
     );
+    const auth = useSelector((state) => state.firebase.auth);
     let { sessionID } = useParams();
 
     // Input group info into firestore.
@@ -55,30 +56,34 @@ const Rent_Remote_GatherInfoPage = (props) => {
         }
     };
 
-    if (isLoaded(session)) {
-        if (session && session.active) {
-            return (
-                <Container
-                    fluid
-                    className='divBlockWithContentTertiary min-vh-100'
-                >
-                    <Row className='justify-content-center align-items-center min-vh-100'>
-                        <Col
-                            xs={10}
-                            sm={8}
-                            md={6}
-                            lg={5}
-                            xl={3}
-                            className='centerCardCompact m-3'
-                            style={{ maxWidth: "510px" }}
-                        >
-                            <InputRoomsInfo next={next} session={session} />
-                        </Col>
-                    </Row>
-                </Container>
-            );
+    if (isLoaded(session) && auth.isLoaded) {
+        if (!auth.isEmpty) {
+            if (session && session.active && session.owner === auth.uid) {
+                return (
+                    <Container
+                        fluid
+                        className='divBlockWithContentTertiary min-vh-100'
+                    >
+                        <Row className='justify-content-center align-items-center min-vh-100'>
+                            <Col
+                                xs={10}
+                                sm={8}
+                                md={6}
+                                lg={5}
+                                xl={3}
+                                className='centerCardCompact m-3'
+                                style={{ maxWidth: "510px" }}
+                            >
+                                <InputRoomsInfo next={next} session={session} />
+                            </Col>
+                        </Row>
+                    </Container>
+                );
+            } else {
+                return <Redirect to='/Distribute/localremote/Rent' />;
+            }
         } else {
-            return <Redirect to='/Distribute/localremote/Rent' />;
+            return <Redirect to='/Login' />;
         }
     } else {
         return (

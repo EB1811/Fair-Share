@@ -16,8 +16,7 @@ import Navbar from "react-bootstrap/NavBar";
 // Redux
 import { connect } from "react-redux";
 
-//TODO: Add conditional formatting once server is made.
-
+//TODO: [A301212-104] Set up active location matching using https://reactrouter.com/web/api/NavLink/isactive-func or remove active rendering.
 const NavCom = (props) => {
     return (
         <NavBar expand='md' style={{ backgroundColor: "#fff" }} variant='light'>
@@ -52,21 +51,18 @@ const NavCom = (props) => {
                         </span>
                         <NavLink
                             className='nav-link'
-                            exact
                             to='/Distribute/localremote/Rent'
                         >
                             Rent
                         </NavLink>
                         <NavLink
                             className='nav-link'
-                            exact
                             to='/Distribute/localremote/Goods'
                         >
                             Goods
                         </NavLink>
                         <NavLink
                             className='nav-link'
-                            exact
                             to='/Distribute/localremote/Goods'
                         >
                             Finances

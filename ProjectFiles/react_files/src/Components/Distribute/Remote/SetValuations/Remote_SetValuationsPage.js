@@ -43,7 +43,7 @@ const Remote_SetValuationsPage = (props) => {
     // Determine the value of userInSession variable.
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
-            if (!profile.isEmpty) {
+            if (session && !profile.isEmpty) {
                 if (
                     session.group.some(
                         (user) =>
@@ -57,6 +57,9 @@ const Remote_SetValuationsPage = (props) => {
                     setUserInSession(false);
                     setUserInSessionDetermined(true);
                 }
+            } else {
+                setUserInSession(false);
+                setUserInSessionDetermined(true);
             }
         }
     }, [
@@ -106,7 +109,7 @@ const Remote_SetValuationsPage = (props) => {
         }
     };
 
-    if (isSessionLoaded && profile.isLoaded) {
+    if (isSessionLoaded && profile.isLoaded && userInSessionDetermined) {
         if (!profile.isEmpty) {
             if (session && session.active && userInSession) {
                 if (session.values && session.values[uid] && !editValues) {

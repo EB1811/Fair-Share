@@ -29,6 +29,7 @@ import LocalResultsPage from "./Components/Distribute/Local/Results/LocalResults
 
 // Remote process components.
 import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Remote_RentQuestionnairePage";
+import RemoteGoodsQuestionnairePage from "./Components/Distribute/Remote/Goods/RemoteGoodsQuestionnairePage";
 import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
@@ -61,7 +62,7 @@ function App() {
                 <Route
                     exact
                     path='/Distribute/Questions/Remote/Goods/:sessionID/:stage'
-                    component={GoodsQuestionnairePageShell}
+                    component={RemoteGoodsQuestionnairePage}
                 />
                 <Route
                     exact

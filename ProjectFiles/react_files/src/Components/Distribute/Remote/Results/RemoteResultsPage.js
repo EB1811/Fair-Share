@@ -42,7 +42,7 @@ const RemoteResultsPage = (props) => {
     // Determine the value of userInSession variable.
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
-            if (!profile.isEmpty) {
+            if (session && !profile.isEmpty) {
                 if (
                     session.group.some(
                         (user) =>
@@ -56,6 +56,9 @@ const RemoteResultsPage = (props) => {
                     setUserInSession(false);
                     setUserInSessionDetermined(true);
                 }
+            } else {
+                setUserInSession(false);
+                setUserInSessionDetermined(true);
             }
         }
     }, [
@@ -71,8 +74,8 @@ const RemoteResultsPage = (props) => {
     // Session owner fetches data and updates firestore. Everyone else waits for results to update,
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded) {
-            console.log("here");
             if (
+                session &&
                 session.active &&
                 !profile.isEmpty &&
                 session.owner === uid &&
