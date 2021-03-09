@@ -79,7 +79,7 @@ const RemoteResultsPage = (props) => {
                 session.active &&
                 !profile.isEmpty &&
                 session.owner === uid &&
-                !session.results
+                !session.allocations
             ) {
                 // Get results.
                 // First convert valuations in user array into a format compatible with API (see value matrix in /ApiFunctions).

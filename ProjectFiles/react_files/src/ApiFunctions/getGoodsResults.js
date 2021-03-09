@@ -9,7 +9,7 @@ e.g.,
         [100, 500, 1000, 100]
     ]
 }
-//* Returns list of objects - [{who: indexOfValueMatrix, goodsArray: [indexOfValueMatrix]}...]
+//* Returns list of objects - [{who: Row-Of-Value-Matrix, goodsArray: [Column-Of-Value-Matrix]}...]
 */
 export const getGoodsResults = async (valueMatrix) => {
     const fetchURL = "http://localhost:5000/api/getGoodsAllocation";

@@ -1,5 +1,5 @@
 //* API accepts JSON format with a matrix representing each user as a row, and each good as a column. Row, Column = user valuation.
-//* Rent must be a square matrix.
+//* Must be a square matrix.
 /*
 e.g.,
 {
@@ -10,7 +10,7 @@ e.g.,
         [100, 500, 1000]
     ]
 }
-//* Returns list of objects - [{who: number, room: number, price: number, }...]
+//* Returns list of objects - [{who: Row-Of-Value-Matrix, room: Column-Of-Value-Matrix, price: number, }...]
 */
 export const getRentResults = async (valueMatrix, totalCost) => {
     const fetchURL = "http://localhost:5000/api/getRoomsAllocation";

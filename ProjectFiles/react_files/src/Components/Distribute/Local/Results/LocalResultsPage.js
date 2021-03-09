@@ -146,7 +146,19 @@ const LocalResultsPage = ({
                 </Container>
             );
         } else {
-            return <div>Loading</div>;
+            return (
+                <div
+                    style={{
+                        height: "1000vh",
+                        width: "1000vh",
+                        position: "fixed",
+                        top: "0",
+                        left: "0",
+                        zIndex: "100",
+                        backgroundColor: "#fff",
+                    }}
+                ></div>
+            );
         }
     } else {
         return <Redirect to={`/Distribute/localremote/${goodType}`} />;
