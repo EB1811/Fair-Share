@@ -34,6 +34,8 @@ const RemoteInputGroupInfoPage = (props) => {
     const firebaseUsers = useSelector((state) => state.firestore.ordered.users);
     const profile = useSelector((state) => state.firebase.profile);
     const uid = useSelector((state) => state.firebase.auth.uid);
+
+    // To avoid many calls.
     const isSessionLoaded = isLoaded(session);
     const isUsersLoaded = isLoaded(firebaseUsers);
 
@@ -45,35 +47,89 @@ const RemoteInputGroupInfoPage = (props) => {
     // Failed bool for conditional rendering failure state.
     const [userIdFailed, setUserIdFailed] = useState(false);
     const [groupCountFailed, setGroupCountFailed] = useState(false);
-    const [thisUserAdded, setThisUserAdded] = useState(false);
+    // Is the user on this page in the session group?
+    const [thisUserInvited, setThisUserInvited] = useState(true);
+    const [userAllowedDetermined, setUserAllowedDetermined] = useState(false);
 
-    // Add the user who is on the page on page load.
+    //* Add the user who is on the page on page load if they are in 'invitedUsers' collection or owner.
+    //? Maybe user gets added to the group when they click 'accept' on the push notification?
     useEffect(() => {
-        if (!thisUserAdded) {
+        if (!userAllowedDetermined) {
             if (profile.isLoaded && isUsersLoaded && isSessionLoaded) {
-                const group = session.group ? [...session.group] : [];
-                // Make sure this user isn't already in the group.
-                if (!group.some((obj) => obj.userEmail === profile.email)) {
-                    console.log("Adding User");
-                    group.push({
-                        userEmail: profile.email,
-                        username: profile.username,
-                    });
-                    // Updates firestore.
-                    firestore
-                        .update(
-                            { collection: "ShareSessions", doc: sessionID },
-                            { group: group }
-                        )
-                        .then(() => {
-                            console.log("Success");
-                            setThisUserAdded(true);
-                        })
-                        .catch((err) => {
-                            console.log(err.message);
-                        });
+                if (session && session.active) {
+                    if (session.owner === uid) {
+                        // Add owner if they are not yet in the group.
+                        // Group doesn't exist if owner isn't in the group yet.
+                        if (!session.group) {
+                            const group = [];
+                            group.push({
+                                userEmail: profile.email,
+                                username: profile.username,
+                            });
+
+                            firestore
+                                .update(
+                                    {
+                                        collection: "ShareSessions",
+                                        doc: sessionID,
+                                    },
+                                    { group: group }
+                                )
+                                .then(() => {
+                                    console.log("Success");
+                                    setUserAllowedDetermined(true);
+                                })
+                                .catch((err) => {
+                                    console.log(err.message);
+                                });
+                        } else {
+                            setUserAllowedDetermined(true);
+                        }
+                    } else if (session.invitedUsers) {
+                        if (
+                            session.invitedUsers.some(
+                                (user) => user.userEmail === profile.email
+                            )
+                        ) {
+                            // User is invited, proceed to add to group.
+                            const group = [...session.group];
+                            // Make sure this user isn't already in the group.
+                            if (
+                                !group.some(
+                                    (obj) => obj.userEmail === profile.email
+                                )
+                            ) {
+                                console.log("Adding User");
+                                group.push({
+                                    userEmail: profile.email,
+                                    username: profile.username,
+                                });
+                                // Updates firestore.
+                                firestore
+                                    .update(
+                                        {
+                                            collection: "ShareSessions",
+                                            doc: sessionID,
+                                        },
+                                        { group: group }
+                                    )
+                                    .then(() => {
+                                        console.log("Success");
+                                        setUserAllowedDetermined(true);
+                                    })
+                                    .catch((err) => {
+                                        console.log(err.message);
+                                    });
+                            } else {
+                                setUserAllowedDetermined(true);
+                            }
+                        }
+                    } else {
+                        // No one is invited, don't check if user exist in invited users array.
+                        setUserAllowedDetermined(true);
+                    }
                 } else {
-                    setThisUserAdded(true);
+                    setUserAllowedDetermined(true);
                 }
             }
         }
@@ -81,55 +137,68 @@ const RemoteInputGroupInfoPage = (props) => {
         profile,
         isSessionLoaded,
         isUsersLoaded,
-        thisUserAdded,
+        userAllowedDetermined,
+        thisUserInvited,
         sessionID,
         session,
+        uid,
         firestore,
     ]);
 
-    // Firestore interaction.
-    const addToFireStoreGroup = async (email, username) => {
-        if (isLoaded(session)) {
-            // Copies group and pushes new user object.
-            const group = session.group ? [...session.group] : [];
-            if (!group.some((obj) => obj.userEmail === email)) {
-                console.log("Adding User");
-                group.push({
-                    userEmail: email,
-                    username: username,
+    //* Check if user is invited.
+    useEffect(() => {
+        if (profile.isLoaded && isSessionLoaded) {
+            if (session.owner !== uid) {
+                console.log("Checking Invitation");
+                if (session.invitedUsers) {
+                    if (
+                        session.invitedUsers.some(
+                            (user) => user.userEmail === profile.email
+                        )
+                    ) {
+                        // User is invited.
+                        setThisUserInvited(true);
+                    } else {
+                        setThisUserInvited(false);
+                    }
+                } else {
+                    // No one is invited, don't check if user exist in invited users array.
+                    setThisUserInvited(false);
+                }
+            }
+        }
+    }, [session, isSessionLoaded, profile, uid]);
+
+    // Invite, i.e., add to 'invitedUsers'. Users who are on this session's page must be in invited users array.
+    const inviteToGroup = async (e) => {
+        e.preventDefault();
+        // Find user in 'users' collection.
+        const user = firebaseUsers.filter((user) => user.email === userEmail);
+        if (user.length > 0) {
+            const invitedUsers = session.invitedUsers
+                ? [...session.invitedUsers]
+                : [];
+            // Make sure user isn't already invited.
+            if (invitedUsers.some((obj) => obj.userEmail === userEmail)) {
+                setUserIdFailed(true);
+                setUserEmail("");
+            } else {
+                invitedUsers.push({
+                    userEmail: userEmail,
                 });
-                // Updates firestore.
+
                 firestore
                     .update(
                         { collection: "ShareSessions", doc: sessionID },
-                        { group: group }
+                        { invitedUsers: invitedUsers }
                     )
                     .then(() => {
-                        return Promise.resolve();
+                        console.log("User invited.");
+                        setUserEmail("");
+                        setUserIdFailed(false);
                     })
-                    .catch((err) => {
-                        return Promise.reject();
-                    });
+                    .catch((err) => console.log(err.message));
             }
-        }
-    };
-    // Update number of users on submit.
-    const addToGroup = async (e) => {
-        e.preventDefault();
-        const user = firebaseUsers.filter((user) => user.email === userEmail);
-        // Input validation.
-        if (
-            firebaseUsers &&
-            !session.group.some((obj) => obj.userEmail === userEmail) &&
-            user.length > 0
-        ) {
-            await addToFireStoreGroup(
-                user[0].email,
-                user[0].username
-            ).catch((err) => console.log(err.message));
-
-            setUserEmail("");
-            setUserIdFailed(false);
         } else {
             setUserIdFailed(true);
             setUserEmail("");
@@ -153,10 +222,16 @@ const RemoteInputGroupInfoPage = (props) => {
                 const newGroup = [...session.group].filter((user) => {
                     return user.userEmail !== userEmail;
                 });
+                // Also update 'invitedUsers'
+                const newInvitedUsers = [...session.invitedUsers].filter(
+                    (user) => {
+                        return user.userEmail !== userEmail;
+                    }
+                );
                 firestore
                     .update(
                         { collection: "ShareSessions", doc: sessionID },
-                        { group: newGroup }
+                        { group: newGroup, invitedUsers: newInvitedUsers }
                     )
                     .then(() => {
                         console.log("User Successfully Deleted.");
@@ -169,9 +244,14 @@ const RemoteInputGroupInfoPage = (props) => {
     };
 
     //TODO: [A301212-96] Different renders based on if the person is owner or not.
-    if (isSessionLoaded && profile.isLoaded && thisUserAdded) {
+    //TODO: [A301212-105] Alert when invite sent. Involves having alert linked to a 'message' state variable.
+    if (isSessionLoaded && profile.isLoaded && userAllowedDetermined) {
         if (!profile.isEmpty) {
-            if (session && session.active) {
+            if (
+                session &&
+                session.active &&
+                (thisUserInvited || session.owner === uid)
+            ) {
                 return (
                     <Container
                         fluid
@@ -197,7 +277,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                         borderBottom: "1px solid #999999",
                                     }}
                                 >
-                                    <Form onSubmit={addToGroup}>
+                                    <Form onSubmit={inviteToGroup}>
                                         <Row className='align-items-center'>
                                             <Col xs={8} sm={9}>
                                                 <Form.Control
