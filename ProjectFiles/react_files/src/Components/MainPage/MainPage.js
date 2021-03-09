@@ -27,9 +27,6 @@ import { Link } from "react-router-dom";
 //TODO: [A301212-45] Build the learning page and add information about it into main page.
 //TODO: [A301212-86] Build loading screen for all pages.
 //TODO: [A301212-87] Ability to reset password in login screen.
-//TODO: [A301212-101] Fixed links in all pages to reflect new routes.
-//TODO: [A301212-102] Check if user exists in sesison in RemoteInputGroupInfoPage.
-//TODO: [A301212-103] Complete remote goods process.
 ////
 //? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
 //? Questionnaire 1 or 2 page components depends on if questions are same or different.

@@ -85,7 +85,7 @@ const RemoteInputGroupInfoPage = (props) => {
                         } else {
                             setUserAllowedDetermined(true);
                         }
-                    } else if (session.invitedUsers) {
+                    } else if (session.invitedUsers.length > 0) {
                         if (
                             session.invitedUsers.some(
                                 (user) => user.userEmail === profile.email
@@ -150,7 +150,7 @@ const RemoteInputGroupInfoPage = (props) => {
         if (profile.isLoaded && isSessionLoaded) {
             if (session.owner !== uid) {
                 console.log("Checking Invitation");
-                if (session.invitedUsers) {
+                if (session.invitedUsers.length > 0) {
                     if (
                         session.invitedUsers.some(
                             (user) => user.userEmail === profile.email
