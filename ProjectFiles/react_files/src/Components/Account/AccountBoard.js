@@ -10,9 +10,9 @@ import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useFirebase, useFirestore } from "react-redux-firebase";
 
-import SmallChangeEmailForm from "./AccountActions/SmallChangeEmailForm";
-import SmallChangeUsernameForm from "./AccountActions/SmallChangeUsernameForm";
-import SmallChangePasswordForm from "./AccountActions/SmallChangePasswordForm";
+import ChangeEmailForm from "./AccountActions/ChangeEmailForm";
+import ChangeUsernameForm from "./AccountActions/ChangeUsernameForm";
+import ChangePasswordForm from "./AccountActions/ChangePasswordForm";
 
 const AccountBoard = () => {
     const firebase = useFirebase();
@@ -90,7 +90,7 @@ const AccountBoard = () => {
                                     Email:{" "}
                                     <span className='ml-1'>
                                         {emailChange ? (
-                                            <SmallChangeEmailForm
+                                            <ChangeEmailForm
                                                 setEmailChange={setEmailChange}
                                                 setErrorMessage={
                                                     setErrorMessage
@@ -156,7 +156,7 @@ const AccountBoard = () => {
                                     Username:{" "}
                                     <span className='ml-1'>
                                         {usernameChange ? (
-                                            <SmallChangeUsernameForm
+                                            <ChangeUsernameForm
                                                 setUsernameChange={
                                                     setUsernameChange
                                                 }
@@ -204,7 +204,7 @@ const AccountBoard = () => {
                                     Password:{" "}
                                     <span className='ml-1'>
                                         {passChange ? (
-                                            <SmallChangePasswordForm
+                                            <ChangePasswordForm
                                                 setPassChange={setPassChange}
                                                 setErrorMessage={
                                                     setErrorMessage

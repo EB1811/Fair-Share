@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import { useFirebase } from "react-redux-firebase";
 
-const SmallChangePasswordForm = (props) => {
+const ChangePasswordForm = (props) => {
     const firebase = useFirebase();
 
     // Change email.
@@ -40,4 +40,4 @@ const SmallChangePasswordForm = (props) => {
     );
 };
 
-export default SmallChangePasswordForm;
+export default ChangePasswordForm;
