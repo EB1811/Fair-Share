@@ -32,7 +32,7 @@ const AccountBoardPastSessionDisplay = ({ session, uid }) => {
                 </div>
             </Card.Body>
             <Card.Footer>
-                <strong className='text-muted'>
+                <strong className='text-muted blueText'>
                     Your allocation was:{" "}
                     {session.type === "Rent"
                         ? session.allocations[uid].room +

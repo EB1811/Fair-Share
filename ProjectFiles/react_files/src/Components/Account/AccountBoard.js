@@ -99,10 +99,11 @@ const AccountBoard = () => {
             });
     };
 
-    if (profile.isLoaded && auth.isLoaded) {
+    //? Maybe split past sessions into seperate page.
+    if (profile.isLoaded && auth.isLoaded && pastSessions) {
         if (profile && !auth.isEmpty) {
             return (
-                <Container fluid style={{ height: "100vh" }}>
+                <Container fluid className='min-vh-100'>
                     <Row className='align-items-center min-vh-100 justify-content-center divBlockWithContentTertiary'>
                         <Col
                             xs={10}
@@ -110,7 +111,7 @@ const AccountBoard = () => {
                             md={5}
                             lg={4}
                             xl={3}
-                            className='centerCardCompact'
+                            className='centerCardCompact my-3'
                             style={{ maxWidth: "510px" }}
                         >
                             <Row>
