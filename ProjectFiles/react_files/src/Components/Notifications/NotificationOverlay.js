@@ -41,9 +41,7 @@ const NotificationOverlay = ({ auth, history }) => {
                 { invites: newInvites }
             )
             .then(() => {
-                history.push(
-                    `/Distribute/GroupInfo/Remote/${sessionID}/${goodType}`
-                );
+                window.location.href = `/Distribute/GroupInfo/Remote/${sessionID}/${goodType}`;
             })
             .catch((err) => {
                 console.log(err.message);
