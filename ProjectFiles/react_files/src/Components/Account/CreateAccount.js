@@ -33,6 +33,7 @@ const CreateAccount = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        //! add email to sessionInvations
         if (email && pass) {
             if (username) {
                 firebase

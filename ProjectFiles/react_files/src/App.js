@@ -15,6 +15,7 @@ import CreateAccount from "./Components/Account/CreateAccount";
 import Login from "./Components/Account/Login";
 import AccountBoard from "./Components/Account/AccountBoard";
 import ScrollToTop from "./Components/Helpers/ScrollToTop";
+import NotificationOverlay from "./Components/Notifications/NotificationOverlay";
 
 import LocalOrRemoteQuestion from "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestion";
 
@@ -36,7 +37,12 @@ import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/Remot
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
 import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
 
+import { useSelector } from "react-redux";
+
 function App() {
+    // Get auth objects from firestore.
+    const auth = useSelector((state) => state.firebase.auth);
+
     // Contains info about route.
     const location = useLocation();
 
@@ -45,6 +51,9 @@ function App() {
         <div className='App'>
             <NavCom />
             <ScrollToTop />
+            {auth.isLoaded && !auth.isEmpty ? (
+                <NotificationOverlay auth={auth} />
+            ) : null}
             <Switch location={location} key={location.pathname}>
                 <Route exact path='/' component={MainPage} />
                 <Route exact path='/About' component={About} />

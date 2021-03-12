@@ -25,6 +25,7 @@ const RemoteInputGroupInfoPage = (props) => {
     useFirestoreConnect([
         { collection: "ShareSessions", doc: props.match.params.sessionID },
         { collection: "users" },
+        { collection: "SessionInvitations" },
     ]);
     const session = useSelector(
         ({ firestore: { data } }) =>
@@ -32,6 +33,9 @@ const RemoteInputGroupInfoPage = (props) => {
             data.ShareSessions[props.match.params.sessionID]
     );
     const firebaseUsers = useSelector((state) => state.firestore.ordered.users);
+    const invitations = useSelector(
+        (state) => state.firestore.ordered.SessionInvitations
+    );
     const profile = useSelector((state) => state.firebase.profile);
     const uid = useSelector((state) => state.firebase.auth.uid);
 
@@ -148,8 +152,9 @@ const RemoteInputGroupInfoPage = (props) => {
     //* Check if user is invited.
     useEffect(() => {
         if (profile.isLoaded && isSessionLoaded) {
-            if (session.owner !== uid) {
+            if (session && session.owner !== uid) {
                 console.log("Checking Invitation");
+                console.log(session.invitedUsers);
                 if (session.invitedUsers.length > 0) {
                     if (
                         session.invitedUsers.some(
@@ -186,16 +191,48 @@ const RemoteInputGroupInfoPage = (props) => {
                 invitedUsers.push({
                     userEmail: userEmail,
                 });
+                // First add to SessionInvitations collection. This allows user to get a notification.
+                const inviteInfo = {
+                    active: true,
+                    ownerUsername: profile.username,
+                    type: goodType,
+                };
+                const userCurInvitations = invitations.find(
+                    (element) => element.id === userEmail
+                )
+                    ? JSON.parse(
+                          JSON.stringify(
+                              invitations.find(
+                                  (element) => element.id === userEmail
+                              ).invites
+                          )
+                      )
+                    : {};
+                console.log(userCurInvitations);
+                userCurInvitations[sessionID] = inviteInfo;
 
                 firestore
-                    .update(
-                        { collection: "ShareSessions", doc: sessionID },
-                        { invitedUsers: invitedUsers }
+                    .set(
+                        {
+                            collection: "SessionInvitations",
+                            doc: userEmail,
+                        },
+                        {
+                            invites: userCurInvitations,
+                        }
                     )
                     .then(() => {
-                        console.log("User invited.");
-                        setUserEmail("");
-                        setUserIdFailed(false);
+                        firestore
+                            .update(
+                                { collection: "ShareSessions", doc: sessionID },
+                                { invitedUsers: invitedUsers }
+                            )
+                            .then(() => {
+                                console.log("User invited.");
+                                setUserEmail("");
+                                setUserIdFailed(false);
+                            })
+                            .catch((err) => console.log(err.message));
                     })
                     .catch((err) => console.log(err.message));
             }

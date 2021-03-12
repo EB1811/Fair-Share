@@ -53,7 +53,7 @@ const MainPage = () => {
                     <h1 className='Title w-100'>Fair / Share</h1>
                     <h5 className='descText mt-2'>
                         Our service helps you solve day-to-day sharing problems
-                        using mathmatical algorithms that are tailored to you.
+                        using mathematical algorithms that are tailored to you.
                         <br />
                         Sharing a house with friends? Need to divide financial
                         assets fairly?
