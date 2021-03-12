@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -13,6 +13,7 @@ import { useFirebase, useFirestore } from "react-redux-firebase";
 import ChangeEmailForm from "./AccountActions/ChangeEmailForm";
 import ChangeUsernameForm from "./AccountActions/ChangeUsernameForm";
 import ChangePasswordForm from "./AccountActions/ChangePasswordForm";
+import AccountBoardPastSessionDisplay from "./AccountBoardPastSessionDisplay";
 
 const AccountBoard = () => {
     const firebase = useFirebase();
@@ -29,6 +30,39 @@ const AccountBoard = () => {
     const [emailChange, setEmailChange] = useState(false);
     const [usernameChange, setUsernameChange] = useState(false);
     const [passChange, setPassChange] = useState(false);
+
+    // List of session where this user was in.
+    const [pastSessions, setPastSessions] = useState();
+
+    // Get past share sessions this user was in.
+    useEffect(() => {
+        if (profile.isLoaded && !pastSessions) {
+            const userInfo = {
+                userEmail: profile.email,
+                username: profile.username,
+            };
+            firestore
+                .get({
+                    collection: "ShareSessions",
+                    where: [
+                        ["active", "==", false],
+                        ["group", "array-contains", userInfo],
+                    ],
+                })
+                .then((docSnap) => {
+                    // Convert results to array containing the session objects.
+                    const tempArr = [];
+                    docSnap.docs.forEach((result) => {
+                        tempArr.push({ id: result.id, data: result.data() });
+                    });
+                    setPastSessions(tempArr);
+                    console.log("Successfully retrieved past share sessions");
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        }
+    }, [firestore, pastSessions, profile]);
 
     // Show 'email sent' display if true.
     const [vEmailSent, setVEmailSent] = useState(false);
@@ -334,6 +368,22 @@ const AccountBoard = () => {
                                 </div>
                             ) : null}
                             <hr />
+                            {!pastSessions ? (
+                                <h5>No Past Share Sessions</h5>
+                            ) : (
+                                <div>
+                                    <h5 className='mb-4'>
+                                        Past Share Sessions
+                                    </h5>
+                                    {pastSessions.map((session) => (
+                                        <AccountBoardPastSessionDisplay
+                                            key={session.id}
+                                            session={session.data}
+                                            uid={auth.uid}
+                                        />
+                                    ))}
+                                </div>
+                            )}
                         </Col>
                     </Row>
                 </Container>

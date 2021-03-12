@@ -19,7 +19,6 @@ import { useSelector } from "react-redux";
 // React Router firebaseUsers: state.firestore.ordered.users
 import { withRouter, Redirect, useParams } from "react-router-dom";
 
-//TODO: [A301212-100] Currently user joins by going in the url. Implement a push notification when user is invited.
 const RemoteInputGroupInfoPage = (props) => {
     const firestore = useFirestore();
     useFirestoreConnect([
