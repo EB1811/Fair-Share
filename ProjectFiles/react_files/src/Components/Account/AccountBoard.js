@@ -80,6 +80,7 @@ const AccountBoard = () => {
     };
 
     // Variable used for confirmation. Set true after 1 click -> display button to trigger function if true.
+    //TODO: [A301212-114] Delete user in 'ShareInvatations'.
     const [delAccountSelected, setDelAccountSelected] = useState(false);
     const deleteAccount = () => {
         const uid = auth.uid;

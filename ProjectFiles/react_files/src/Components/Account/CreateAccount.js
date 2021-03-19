@@ -9,7 +9,7 @@ import Alert from "react-bootstrap/Alert";
 
 import { Redirect } from "react-router-dom";
 
-import { useFirebase } from "react-redux-firebase";
+import { useFirebase, useFirestore } from "react-redux-firebase";
 
 import { useSelector } from "react-redux";
 
@@ -20,6 +20,7 @@ const CreateAccount = (props) => {
     const [pass, setPass] = useState("");
     const [error, setError] = useState();
     const firebase = useFirebase();
+    const firestore = useFirestore();
     // Getting from store.
     const authLoaded = useSelector((state) => state.firebase.auth.isLoaded);
     const authId = useSelector((state) => state.firebase.auth.uid);
@@ -32,8 +33,6 @@ const CreateAccount = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        //! add email to sessionInvations
         if (email && pass) {
             if (username) {
                 firebase
@@ -48,6 +47,13 @@ const CreateAccount = (props) => {
                                 displayName: username,
                             });
                             await user.sendEmailVerification();
+                            await firestore.set(
+                                {
+                                    collection: "SessionInvitations",
+                                    doc: email,
+                                },
+                                { invites: {} }
+                            );
                         } catch (err) {
                             errorMessage(err);
                         }

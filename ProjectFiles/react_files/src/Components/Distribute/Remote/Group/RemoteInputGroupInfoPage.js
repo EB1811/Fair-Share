@@ -281,7 +281,12 @@ const RemoteInputGroupInfoPage = (props) => {
 
     //TODO: [A301212-96] Different renders based on if the person is owner or not.
     //TODO: [A301212-105] Alert when invite sent. Involves having alert linked to a 'message' state variable.
-    if (isSessionLoaded && profile.isLoaded && userAllowedDetermined) {
+    if (
+        isSessionLoaded &&
+        profile.isLoaded &&
+        userAllowedDetermined &&
+        session.group
+    ) {
         if (!profile.isEmpty) {
             if (
                 session &&
@@ -355,34 +360,37 @@ const RemoteInputGroupInfoPage = (props) => {
                                         <Col sm='10'>
                                             {/*//? Maybe split into own component.*/}
                                             {/* The following displays a card for each user with a delete button if user is not owner. */}
-                                            {session.group.map((user) => (
-                                                <Card
-                                                    style={{
-                                                        color: "#000",
-                                                        textAlign: "left",
-                                                    }}
-                                                    key={user.userEmail}
-                                                    body
-                                                >
-                                                    {user.username}
-                                                    {user.userEmail !==
-                                                        profile.email &&
-                                                    session.owner === uid ? (
-                                                        <button
-                                                            className='close'
-                                                            onClick={() =>
-                                                                deleteUser(
-                                                                    user.userEmail
-                                                                )
-                                                            }
-                                                        >
-                                                            ×
-                                                        </button>
-                                                    ) : (
-                                                        <button className='close'></button>
-                                                    )}
-                                                </Card>
-                                            ))}
+                                            {session.group
+                                                ? session.group.map((user) => (
+                                                      <Card
+                                                          style={{
+                                                              color: "#000",
+                                                              textAlign: "left",
+                                                          }}
+                                                          key={user.userEmail}
+                                                          body
+                                                      >
+                                                          {user.username}
+                                                          {user.userEmail !==
+                                                              profile.email &&
+                                                          session.owner ===
+                                                              uid ? (
+                                                              <button
+                                                                  className='close'
+                                                                  onClick={() =>
+                                                                      deleteUser(
+                                                                          user.userEmail
+                                                                      )
+                                                                  }
+                                                              >
+                                                                  ×
+                                                              </button>
+                                                          ) : (
+                                                              <button className='close'></button>
+                                                          )}
+                                                      </Card>
+                                                  ))
+                                                : null}
                                         </Col>
                                     </Row>
                                 </div>

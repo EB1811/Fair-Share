@@ -15,7 +15,7 @@ import Navbar from "react-bootstrap/NavBar";
 
 // Redux
 import { connect } from "react-redux";
-
+//TODO [A301212-113] Collapse navbar when link is selected.
 //TODO: [A301212-104] Set up active location matching using https://reactrouter.com/web/api/NavLink/isactive-func or remove active rendering.
 const NavCom = (props) => {
     return (
