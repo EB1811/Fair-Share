@@ -46,7 +46,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             return result;
         }
 
-        private static Goods_Allocation[] RoundRobinAlg(int[,] matrix) {
+        public static Goods_Allocation[] RoundRobinAlg(int[,] matrix) {
             int[,] costMatrix = matrix;
             // Rows = players, columns = goods.
             int rowCount = costMatrix.GetLength(0);
