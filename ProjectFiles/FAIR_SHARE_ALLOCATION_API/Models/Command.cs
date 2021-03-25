@@ -21,7 +21,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Models
     }
     public class GetGoodsAndMoneyCommand {
         public int[][] valueMatrix { get; set; }
-        public int moneyAmount;
+        public int moneyAmount { get; set; }
     }
     public class GetRoomCommand {
         public int[][] valueMatrix { get; set; }
