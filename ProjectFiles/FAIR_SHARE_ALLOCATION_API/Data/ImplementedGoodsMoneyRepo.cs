@@ -67,14 +67,15 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             //* 1. Get envy free up to 1 good (EF1) allocation for the set of goods.
             Goods_Allocation[] goodsAllo = ImplementedGoodsRepo.RoundRobinAlg(valueMatrix);
             // Update result.
-            foreach(Goods_Allocation allo in goodsAllo) {
+            for(int i = 0; i < numOfAgents; i++) {
+                Goods_Allocation allo = goodsAllo[i];
                 GoodsAndMoney_Allocation newAllo = new GoodsAndMoney_Allocation();
                 newAllo.who = allo.who;
                 newAllo.goodsList = allo.goodsList;
                 newAllo.money = 0;
 
-                result.Append(newAllo);
-            } 
+                result[i] = newAllo;
+            }
 
             //* 2. Create an envy assessment matrix where [i,j] is player i's assessment of the value of player j's bundle.
             // With the simplified use case, the matrix will be [[V1(A1), V1(A2)], [V2(A1), V2(A2)]] where Vx(Ay) denotes agent x's value of agent y's bundle.
@@ -147,7 +148,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                         } else {
                             // Swap the bundles.
                             int enviousIndex = Array.FindIndex(result, allo => allo.who == evniousA);
-                            int nonEnviousIndex = Array.FindIndex(result, allo => allo.who == evniousA);
+                            int nonEnviousIndex = Array.FindIndex(result, allo => allo.who == nonEvniousA);
                             List<int> tempGoods = result[enviousIndex].goodsList;
                             float tempMoney = result[enviousIndex].money;
 
@@ -167,16 +168,17 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                 //* 7. Repeat the process.
             }
 
+            /* DEBUG
             for(int i = 0; i < numOfAgents; i++) {
-                /*
+                Console.WriteLine("Who: " + result[i].who + ", money: " + result[i].money);
                 for(int j = 0; j < numOfAgents; j++) {
                     Console.WriteLine("V" + (i+1) + "(A" + (j+1) + ") = " + assessmentMatrix[i, j]);
                 }
                 Console.WriteLine("Value difference of agent " + (i+1) + " is " + valDiff[i]);
-                */
             }
+            */
             
-            return new GoodsAndMoney_Allocation[1];
+            return result;
         }
     }
 }
