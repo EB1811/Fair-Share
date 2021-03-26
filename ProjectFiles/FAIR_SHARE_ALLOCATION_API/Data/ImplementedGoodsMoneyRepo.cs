@@ -48,7 +48,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
 
         private static GoodsAndMoney_Allocation[] EFM_Alg(int[,] valueMatrix, int moneyAmount) {
             //* Algorithm developed by Bei et al. https://arxiv.org/abs/1911.07048, implemented by Emmanuils Borovikovs.
-            //* Simplified use case as number of agents is always 2.
+            //* Simplified use case where number of agents is always 2 and the value of the divisible good is the same for both agents.
             // 1. Find an envy free up to 1 good (EF1) allocation.
             // 2. Assess whether any agent is envious of the other agent. To do this, create an envy assessment matrix where [i,j] is player i's assessment of the value of player j's bundle.
             // 3. If there is no envy, just split the money in two.
