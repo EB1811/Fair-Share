@@ -9,7 +9,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Models
     public struct GoodsAndMoney_Allocation {
         public int who;
         public List<int> goodsList;
-        public int money;
+        public float money;
     }
     public struct Room_Allocation {
         public int who;

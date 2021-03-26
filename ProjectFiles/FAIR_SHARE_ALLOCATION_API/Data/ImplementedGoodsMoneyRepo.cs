@@ -55,13 +55,14 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             // 4. If j is envious of i, give money to agent j until i is indifferent between the two bundles. If we run out of money during this step, we are done.
             // 5. If at the point that agent i is indifferent between the two bundles, j is also not envious of i, then split the remaining money in two we are done.
             // 6. Otherwise, j is envious of i, but since i is indifferent between the two bundles, swap the bundles; i gets j's bundle, and j gets i bundle.
+            // Worth noting that in this simplified case (where N = 2), there will be at most 1 swap.
             // 7. Repeat the process having swapped the bundles, and with a reduced money amount.
             // 8. When we run out of money we are done and the final allocation is EFM; this means, envy-free up to 1 good with respect to an agent that gets only goods, and envy-free with respect to an agent that also gets money.
 
             //TODO: [A301212-115] Develop EMF algorith.
             
             int numOfAgents = 2;
-            int money = moneyAmount;
+            float money = moneyAmount;
             GoodsAndMoney_Allocation[] result = new GoodsAndMoney_Allocation[numOfAgents];
             //* 1. Get envy free up to 1 good (EF1) allocation for the set of goods.
             Goods_Allocation[] goodsAllo = ImplementedGoodsRepo.RoundRobinAlg(valueMatrix);
@@ -93,7 +94,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
                     assessmentMatrix[i, j] = bundleValue;
                 }
             }
-            // Store difference in values. Can use a simple array where [i] is agent's i valuation of the other agent's bundle minus his own bundle.
+            // Store difference in values. Can use a simple array where [i] is agent's i valuation of his own bundle minus the other agent's bundle.
             int[] valDiff = new int[numOfAgents]; // Envious if negative.
             for(int i = 0; i < numOfAgents; i++) {
                 for(int j = 0; j < numOfAgents; j++) {
@@ -102,35 +103,77 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             }
             // This valDiff array can also show how much money can be given to the envious agent to make the non-envious agent indifferent between the two values.
 
-            // Determining how to proceed.
-            //* 3. If there is no envy, split the money in two.
-            if (!valDiff.Any(value => value < 0)) {
-                // Split remaining money in two.
-            } else {
-                //* 4. If j is envious of i, give money to agent j until i is indifferent between the two bundles. If we run out of money during this step, we are done.
-                // First we need the indexes of the envious and non-envious agents.
-                int nonEvniousA = Array.FindIndex(valDiff, value => value >= 0);
-                int evniousA = Array.FindIndex(valDiff, value => value < 0);
-
-                // If there is not enough money left to make the non-envious agent indifferent, give all of the money to the envious agent.
-                int indifferenceAmount = valDiff[nonEvniousA]; // Money given to the other agent to make the non-envious agent indifferent between the two bundles.
-                if (money - indifferenceAmount < 0) {
-                    // Give money to envious agent.
+            // Loop until there is no money left.
+            while(money > 0) {
+                // Determining how to proceed.
+                //* 3. If there is no envy, split the money in two.
+                if (!valDiff.Any(value => value < 0)) {
+                    // Split remaining money equally.
+                    float moneySlice = money / numOfAgents;
+                    for(int i = 0; i < numOfAgents; i++) {
+                        result[i].money += moneySlice;
+                    }
+                    money -= money;
                 } else {
-                    // Give the amount of money that will make the non-envious agent indifferent.
-                    money -=  indifferenceAmount;
-                    result[Array.FindIndex(result, allo => allo.who == evniousA)].money += indifferenceAmount;
-                    // We can update the vallDiff array instead of recalculating it.
-                    valDiff[nonEvniousA] -= indifferenceAmount;
-                    valDiff[evniousA] += indifferenceAmount;
+                    //* 4. If j is envious of i, give money to agent j until i is indifferent between the two bundles. If we run out of money during this step, we are done.
+                    // First we need the indexes of the envious and non-envious agents.
+                    int nonEvniousA = Array.FindIndex(valDiff, value => value >= 0);
+                    int evniousA = Array.FindIndex(valDiff, value => value < 0);
+
+                    // If there is not enough money left to make the non-envious agent indifferent, give all of the money to the envious agent.
+                    int indifferenceAmount = valDiff[nonEvniousA]; // Money given to the other agent to make the non-envious agent indifferent between the two bundles.
+                    if (money - indifferenceAmount < 0) {
+                        // Give all the money to envious agent.
+                        result[Array.FindIndex(result, allo => allo.who == evniousA)].money += money;
+                        money -= money;
+                    } else {
+                        // Give the amount of money that will make the non-envious agent indifferent.
+                        money -=  indifferenceAmount;
+                        result[Array.FindIndex(result, allo => allo.who == evniousA)].money += indifferenceAmount;
+                        // We can update the vallDiff array instead of recalculating it and the assessment matrix.
+                        valDiff[nonEvniousA] -= indifferenceAmount;
+                        valDiff[evniousA] += indifferenceAmount;
+
+                        //* 5. and 6.
+                        // If the envious agent is now not envious, split the remaining money (if any) and finish.
+                        // Otherwise, the evnious agent is still envious, but since the non-envious agent is indifferent, swap the bundles.
+                        if (valDiff[evniousA] >= 0) {
+                            // Split remaining money equally.
+                            float moneySlice = money / numOfAgents;
+                            for(int i = 0; i < numOfAgents; i++) {
+                                result[i].money += moneySlice;
+                            }
+                            money -= money;
+                        } else {
+                            // Swap the bundles.
+                            int enviousIndex = Array.FindIndex(result, allo => allo.who == evniousA);
+                            int nonEnviousIndex = Array.FindIndex(result, allo => allo.who == evniousA);
+                            List<int> tempGoods = result[enviousIndex].goodsList;
+                            float tempMoney = result[enviousIndex].money;
+
+                            result[enviousIndex].goodsList = result[nonEnviousIndex].goodsList;
+                            result[enviousIndex].money = result[nonEnviousIndex].money;
+                            result[nonEnviousIndex].goodsList = tempGoods;
+                            result[nonEnviousIndex].money = tempMoney;
+
+                            // We can update the vallDiff array instead of recalculating it and the assessment matrix.
+                            // Can get the new valDiff's by negating valDiff (swap of V1(A1) - V1(A2) is V1(A2) - V1(A1)).
+                            for(int i = 0; i < numOfAgents; i++) {
+                                valDiff[i] = -valDiff[i];
+                            }
+                        }
+                    }
                 }
+                //* 7. Repeat the process.
             }
 
             for(int i = 0; i < numOfAgents; i++) {
+                /*
                 for(int j = 0; j < numOfAgents; j++) {
                     Console.WriteLine("V" + (i+1) + "(A" + (j+1) + ") = " + assessmentMatrix[i, j]);
                 }
                 Console.WriteLine("Value difference of agent " + (i+1) + " is " + valDiff[i]);
+                */
             }
             
             return new GoodsAndMoney_Allocation[1];
