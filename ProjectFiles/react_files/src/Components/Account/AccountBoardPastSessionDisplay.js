@@ -4,6 +4,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 
 const AccountBoardPastSessionDisplay = ({ session, uid }) => {
+    //? Can refractor this to make adding new share types easier.
     return (
         <Card
             style={{
@@ -13,10 +14,14 @@ const AccountBoardPastSessionDisplay = ({ session, uid }) => {
             className='mt-2'
         >
             <Card.Body>
-                <div className='text-muted'>
-                    Group: {session.group.map((user) => user.username + ", ")}
+                <div>
+                    Type:{" "}
+                    {session.type === "Divorce" ? "Finances" : session.type}
                 </div>
                 <hr />
+                <div className='text-muted mb-2'>
+                    Group: {session.group.map((user) => user.username + ", ")}
+                </div>
                 <div className='text-muted'>
                     {session.type === "Rent" ? (
                         <div>
@@ -30,6 +35,11 @@ const AccountBoardPastSessionDisplay = ({ session, uid }) => {
                         </span>
                     )}
                 </div>
+                <div className='text-muted'>
+                    {session.type === "Divorce" ? (
+                        <div>Money: ${session.moneyAmount}</div>
+                    ) : null}
+                </div>
             </Card.Body>
             <Card.Footer>
                 <strong className='text-muted blueText'>
@@ -39,6 +49,9 @@ const AccountBoardPastSessionDisplay = ({ session, uid }) => {
                           " at $" +
                           session.allocations[uid].price
                         : session.allocations[uid].goods}
+                    {session.type === "Divorce" ? (
+                        <div>+ ${session.allocations[uid].money}</div>
+                    ) : null}
                 </strong>
             </Card.Footer>
         </Card>
