@@ -109,10 +109,15 @@ const Remote_SetValuationsPage = (props) => {
         }
     };
 
+    // Wait for load.
     if (isSessionLoaded && profile.isLoaded && userInSessionDetermined) {
+        // Must be logged in.
         if (!profile.isEmpty) {
+            // Session must exist and be active, and userInSession must be true.
             if (session && session.active && userInSession) {
+                // If user has submitted their values.
                 if (session.values && session.values[uid] && !editValues) {
+                    // If everyone is finished.
                     if (
                         Object.keys(session.values).length ===
                         session.group.length

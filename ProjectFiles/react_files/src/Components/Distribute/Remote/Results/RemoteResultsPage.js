@@ -18,6 +18,7 @@ import { Redirect, useParams } from "react-router-dom";
 
 import { getRentResults } from "../../../../ApiFunctions/getRentResults";
 import { getGoodsResults } from "../../../../ApiFunctions/getGoodsResults";
+import { getDivorceResults } from "../../../../ApiFunctions/getDivorceResults";
 
 const RemoteResultsPage = (props) => {
     // True if user in session group.
@@ -170,6 +171,42 @@ const RemoteResultsPage = (props) => {
                         .catch((err) => {
                             console.log(err.message);
                         });
+                } else if (goodType === "Divorce") {
+                    getDivorceResults(valueMatrix, session.moneyAmount)
+                        .then((allocation) => {
+                            allocation.map(
+                                (user) =>
+                                    (allocations[fsValuesArray[user.who][0]] = {
+                                        email: fsValuesArray[user.who][1].email,
+                                        username:
+                                            fsValuesArray[user.who][1].username,
+                                        goods: [...user.goodsList].map(
+                                            (index) =>
+                                                fsValuesArray[user.who][1]
+                                                    .goods[index].Good
+                                        ),
+                                        money: user.money,
+                                    })
+                            );
+
+                            firestore
+                                .update(
+                                    {
+                                        collection: "ShareSessions",
+                                        doc: sessionID,
+                                    },
+                                    { allocations: allocations, active: false }
+                                )
+                                .then(() => {
+                                    console.log("Results Saved");
+                                })
+                                .catch((err) => {
+                                    console.log(err.message);
+                                });
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
                 }
             }
         }
@@ -223,6 +260,15 @@ const RemoteResultsPage = (props) => {
                                                     : session.allocations[uid]
                                                           .goods}
                                             </h5>
+                                            {session.type === "Divorce" ? (
+                                                <h5>
+                                                    + $
+                                                    {
+                                                        session.allocations[uid]
+                                                            .money
+                                                    }
+                                                </h5>
+                                            ) : null}
                                         </Col>
                                         <a
                                             href='/'
