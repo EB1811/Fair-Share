@@ -1,6 +1,7 @@
 const initState = {
     goodsArray: [],
     totalValue: 0,
+    moneyAmount: 0,
 };
 
 const distGoodsInfoReducer = (state = initState, action) => {
@@ -61,6 +62,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 ...state,
                 goodsArray: newGoodsArr,
             };
+        // Adding the total value of the house in case of sharing rent method.
         case "UPDATE_TOTAL_VALUE":
             console.log("Success ", action.type);
             var newTotal = action.i;
@@ -68,6 +70,15 @@ const distGoodsInfoReducer = (state = initState, action) => {
             return {
                 ...state,
                 totalValue: newTotal,
+            };
+        // For adding money to share in case of divorce method.
+        case "UPDATE_MONEY_TO_SHARE":
+            console.log("Success ", action.type);
+            var newMoneyAmount = action.moneyAmount;
+
+            return {
+                ...state,
+                moneyAmount: newMoneyAmount,
             };
         case "UPDATE_VALUATIONS":
             console.log("Success", action.type);

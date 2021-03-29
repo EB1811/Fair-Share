@@ -234,7 +234,7 @@ const MainPage = () => {
                             <Link
                                 className='m-2'
                                 style={{ textDecoration: "none" }}
-                                to='/Distribute/localremote/Goods'
+                                to='/Distribute/localremote/Divorce'
                             >
                                 <Button variant='secondary' size='sm'>
                                     <span className='smButtonText'>Start</span>

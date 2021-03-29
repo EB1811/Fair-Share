@@ -14,6 +14,7 @@ import { Redirect, useParams } from "react-router-dom";
 
 import { getRentResults } from "../../../../ApiFunctions/getRentResults";
 import { getGoodsResults } from "../../../../ApiFunctions/getGoodsResults";
+import { getDivorceResults } from "../../../../ApiFunctions/getDivorceResults";
 
 const LocalResultsPage = ({
     userArray,
@@ -21,9 +22,10 @@ const LocalResultsPage = ({
     setStateAllocation,
     goodsArray,
     totalCost,
+    moneyAmount,
 }) => {
     let { goodType } = useParams();
-    // Get results.
+    // Get results from API.
     useEffect(() => {
         if (userArray.length > 0 && goodsArray.length > 0) {
             // First convert valuations in user array into a format compatible with API (see value matrix in /ApiFunctions).
@@ -71,9 +73,32 @@ const LocalResultsPage = ({
                     .catch((err) => {
                         console.log(err.message);
                     });
+            } else if (goodType === "Divorce") {
+                getDivorceResults(valueMatrix, moneyAmount)
+                    .then((allocation) => {
+                        allocation.map((user) =>
+                            allocationsArr.push({
+                                username: userArray[user.who].username,
+                                alloGoods: user.goodsList,
+                                money: user.money,
+                            })
+                        );
+
+                        setStateAllocation(allocationsArr);
+                    })
+                    .catch((err) => {
+                        console.log(err.message);
+                    });
             }
         }
-    }, [setStateAllocation, userArray, goodsArray, goodType, totalCost]);
+    }, [
+        setStateAllocation,
+        userArray,
+        goodsArray,
+        goodType,
+        totalCost,
+        moneyAmount,
+    ]);
 
     if (userArray.length > 0) {
         if (stateAllocation.length > 0) {
@@ -111,7 +136,7 @@ const LocalResultsPage = ({
                                                                 goodIndex
                                                             ].Good
                                                         }
-                                                        &nbsp;
+                                                        ,&nbsp;
                                                     </span>
                                                 )
                                             )
@@ -127,6 +152,11 @@ const LocalResultsPage = ({
                                                 &nbsp;
                                             </span>
                                         )}
+                                        {goodType === "Divorce" ? (
+                                            <span>
+                                                + ${allocationObject.money}
+                                            </span>
+                                        ) : null}
                                     </p>
                                 ))}
                             </Col>
@@ -172,6 +202,7 @@ const mapStateToProps = (state) => {
         userArray: state.distGroupInfo.userArray,
         goodsArray: state.distGoodsInfo.goodsArray,
         totalCost: state.distGoodsInfo.totalValue,
+        moneyAmount: state.distGoodsInfo.moneyAmount,
     };
 };
 const mapDispatchToProps = (dispatch) => {

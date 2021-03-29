@@ -48,11 +48,15 @@ const LocalOrRemoteQuestion = (props) => {
                     console.log(err);
                 });
         } else {
-            props.history.push(`/Distribute/Questions/Local/${goodType}/0`);
+            props.history.push(`/Distribute/GoodInfo/Local/${goodType}`);
         }
     };
 
-    if ((goodType === "Rent") | (goodType === "Goods")) {
+    if (
+        (goodType === "Rent") |
+        (goodType === "Goods") |
+        (goodType === "Divorce")
+    ) {
         return (
             <Container fluid className='divBlockWithContentTertiary min-vh-100'>
                 <Row className='justify-content-center align-items-center min-vh-100'>

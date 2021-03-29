@@ -192,9 +192,11 @@ const InputGoodsInfo = (props) => {
                     </Alert>
                 ) : null}
 
-                <Button variant='primary' size='sm' onClick={nextPage}>
-                    <span className='smButtonText'>Next</span>
-                </Button>
+                {props.next ? (
+                    <Button variant='primary' size='sm' onClick={nextPage}>
+                        <span className='smButtonText'>Next</span>
+                    </Button>
+                ) : null}
             </div>
         </div>
     );

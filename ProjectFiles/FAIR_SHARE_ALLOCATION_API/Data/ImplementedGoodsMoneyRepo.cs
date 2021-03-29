@@ -58,8 +58,6 @@ namespace FAIR_SHARE_ALLOCATION_API.Data
             // Worth noting that in this simplified case (where N = 2), there will be at most 1 swap.
             // 7. Repeat the process having swapped the bundles, and with a reduced money amount.
             // 8. When we run out of money we are done and the final allocation is EFM; this means, envy-free up to 1 good with respect to an agent that gets only goods, and envy-free with respect to an agent that also gets money.
-
-            //TODO: [A301212-115] Develop EMF algorith.
             
             int numOfAgents = 2;
             float money = moneyAmount;

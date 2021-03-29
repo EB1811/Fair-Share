@@ -45,7 +45,7 @@ const InputValuationsForGood = (props) => {
 };
 
 const InputValuationsForm = (props) => {
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState(props.tValue);
 
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {

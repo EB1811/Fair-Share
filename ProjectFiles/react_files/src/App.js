@@ -22,6 +22,8 @@ import LocalOrRemoteQuestion from "./Components/Distribute/QuestionnaireSubcompo
 // Local process components.
 import Goods_GatherInfoPage from "./Components/Distribute/Local/Goods/Goods_GatherInfoPage";
 import Rent_GatherInfoPage from "./Components/Distribute/Local/Rent/Rent_GatherInfoPage";
+import Divorce_GatherGoodsInfoPage from "./Components/Distribute/Local/Divorce/Divorce_GatherGoodsInfoPage";
+import Divorce_GatherMoneyInfoPage from "./Components/Distribute/Local/Divorce/Divorce_GatherMoneyInfoPage";
 import LocalInputGroupInfoPage from "./Components/Distribute/Local/Group/LocalInputGroupInfoPage";
 import GoodsQuestionnairePageShell from "./Components/Distribute/Local/Goods/GoodsQuestionnairePage";
 import RentQuestionnairePageShell from "./Components/Distribute/Local/Rent/RentQuestionnairePage";
@@ -119,6 +121,16 @@ function App() {
                     exact
                     path='/Distribute/GoodInfo/Local/Rent'
                     component={Rent_GatherInfoPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/GoodInfo/Local/Divorce'
+                    component={Divorce_GatherGoodsInfoPage}
+                />
+                <Route
+                    exact
+                    path='/Distribute/GoodInfo/Local/Divorce2'
+                    component={Divorce_GatherMoneyInfoPage}
                 />
                 <Route
                     exact
