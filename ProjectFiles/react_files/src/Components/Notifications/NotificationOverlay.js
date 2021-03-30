@@ -64,7 +64,6 @@ const NotificationOverlay = ({ auth, history }) => {
     };
 
     //TODO: [A301212-107] Notification styling.
-
     if (sessionInvites && auth.isLoaded) {
         if (Object.entries(sessionInvites.invites).length > 0) {
             return (

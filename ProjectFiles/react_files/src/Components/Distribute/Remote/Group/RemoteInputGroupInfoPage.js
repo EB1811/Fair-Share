@@ -91,7 +91,7 @@ const RemoteInputGroupInfoPage = (props) => {
                     } else if (session.invitedUsers.length > 0) {
                         if (
                             session.invitedUsers.some(
-                                (user) => user.userEmail === profile.email
+                                (email) => email === profile.email
                             )
                         ) {
                             // User is invited, proceed to add to group.
@@ -157,7 +157,7 @@ const RemoteInputGroupInfoPage = (props) => {
                 if (session.invitedUsers.length > 0) {
                     if (
                         session.invitedUsers.some(
-                            (user) => user.userEmail === profile.email
+                            (email) => email === profile.email
                         )
                     ) {
                         // User is invited.
@@ -183,13 +183,11 @@ const RemoteInputGroupInfoPage = (props) => {
                 ? [...session.invitedUsers]
                 : [];
             // Make sure user isn't already invited.
-            if (invitedUsers.some((obj) => obj.userEmail === userEmail)) {
+            if (invitedUsers.some((email) => email === userEmail)) {
                 setUserIdFailed(true);
                 setUserEmail("");
             } else {
-                invitedUsers.push({
-                    userEmail: userEmail,
-                });
+                invitedUsers.push(userEmail);
                 // First add to SessionInvitations collection. This allows user to get a notification.
                 const inviteInfo = {
                     active: true,
@@ -260,8 +258,8 @@ const RemoteInputGroupInfoPage = (props) => {
                 });
                 // Also update 'invitedUsers'
                 const newInvitedUsers = [...session.invitedUsers].filter(
-                    (user) => {
-                        return user.userEmail !== userEmail;
+                    (email) => {
+                        return email !== userEmail;
                     }
                 );
                 firestore
@@ -415,11 +413,7 @@ const RemoteInputGroupInfoPage = (props) => {
                     </Container>
                 );
             } else {
-                return (
-                    <Redirect
-                        to={`/Distribute/Valuations/Remote/${sessionID}/${goodType}`}
-                    />
-                );
+                return <Redirect to={`/Distribute/localremote/${goodType}`} />;
             }
         } else {
             return <Redirect to='/Login' />;
