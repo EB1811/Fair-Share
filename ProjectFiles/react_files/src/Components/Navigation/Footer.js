@@ -33,7 +33,7 @@ const Footer = () => {
                     </a>
                     <a
                         style={{ textDecoration: "none" }}
-                        href='/Distribute/localremote/Goods'
+                        href='/Distribute/localremote/Divorce'
                     >
                         <h2 className='footerLink'>Separate Finances</h2>
                     </a>

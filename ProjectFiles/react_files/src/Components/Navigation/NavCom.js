@@ -63,7 +63,7 @@ const NavCom = (props) => {
                         </NavLink>
                         <NavLink
                             className='nav-link'
-                            to='/Distribute/localremote/Goods'
+                            to='/Distribute/localremote/Divorce'
                         >
                             Finances
                         </NavLink>
