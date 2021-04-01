@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
 
@@ -33,6 +34,8 @@ const RemoteInputGroupInfoPage = (props) => {
     // Is the user on this page in the session group?
     const [thisUserInvited, setThisUserInvited] = useState(true);
     const [userAllowedDetermined, setUserAllowedDetermined] = useState(false);
+    // When invitation sent.
+    const [inviteSent, setInviteSent] = useState(false);
     // Store error message.
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -190,6 +193,7 @@ const RemoteInputGroupInfoPage = (props) => {
             // Make sure user isn't already invited.
             if (invitedUsers.some((email) => email === userEmail)) {
                 setErrorMessage("Error! Invalid username.");
+                setInviteSent(false);
                 setUserEmail("");
             } else {
                 invitedUsers.push(userEmail);
@@ -230,7 +234,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                 { invitedUsers: invitedUsers }
                             )
                             .then(() => {
-                                console.log("User invited.");
+                                setInviteSent(true);
                                 setUserEmail("");
                                 setErrorMessage("");
                             })
@@ -240,6 +244,7 @@ const RemoteInputGroupInfoPage = (props) => {
             }
         } else {
             setErrorMessage("Error! Invalid username.");
+            setInviteSent(false);
         }
     };
     // Validate group size then continue to next page.
@@ -387,6 +392,11 @@ const RemoteInputGroupInfoPage = (props) => {
                                     <ErrorAlertModal
                                         errorMessage={errorMessage}
                                     />
+                                    {inviteSent ? (
+                                        <Alert variant={"success"}>
+                                            Invitation Sent
+                                        </Alert>
+                                    ) : null}
                                     <Button
                                         variant='primary'
                                         size='sm'
