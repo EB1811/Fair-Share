@@ -7,7 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
 
 // Redux
 import { connect } from "react-redux";
@@ -25,9 +26,8 @@ const LocalInputGroupInfoPage = ({
     let { goodType } = useParams();
     // User ID.
     const [username, setUsername] = useState("");
-    // Failed bool for conditional rendering failure state.
-    const [userIdFailed, setUserIdFailed] = useState(false);
-    const [groupCountFailed, setGroupCountFailed] = useState(false);
+    // Store error message.
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Update number of users on submit.
     const addToGroup = (e) => {
@@ -38,18 +38,18 @@ const LocalInputGroupInfoPage = ({
         ) {
             addUser(username, stateGoodsArr);
             setUsername("");
-            setUserIdFailed(false);
+            setErrorMessage("");
         } else {
-            setUserIdFailed(true);
+            setErrorMessage("Error! Invalid username.");
             setUsername("");
         }
     };
     // Validate group then continue to next page.
     const checkGroup = () => {
         if (stateUserArray.length < 2) {
-            setGroupCountFailed(true);
+            setErrorMessage("Error! Must have at least 2 users.");
         } else {
-            setGroupCountFailed(false);
+            setErrorMessage("");
             history.push(`/Distribute/Valuations/Local/${goodType}`);
         }
     };
@@ -80,23 +80,11 @@ const LocalInputGroupInfoPage = ({
                                     <Col xs={8} sm={9}>
                                         <Form.Control
                                             size='sm'
-                                            placeholder={
-                                                userIdFailed
-                                                    ? "Invalid Username"
-                                                    : "Enter User's name"
-                                            }
+                                            placeholder={"Enter User's name"}
                                             value={username}
                                             type='text'
                                             onChange={(e) =>
                                                 setUsername(e.target.value)
-                                            }
-                                            style={
-                                                userIdFailed
-                                                    ? {
-                                                          border:
-                                                              "1px solid red",
-                                                      }
-                                                    : {}
                                             }
                                         />
                                     </Col>
@@ -137,11 +125,7 @@ const LocalInputGroupInfoPage = ({
                             </Row>
                         </div>
                         <div className='mt-4'>
-                            {groupCountFailed ? (
-                                <Alert variant={"danger"}>
-                                    Error! Must have at least 2 users.
-                                </Alert>
-                            ) : null}
+                            <ErrorAlertModal errorMessage={errorMessage} />
                             <Button
                                 variant='primary'
                                 size='sm'

@@ -15,7 +15,7 @@ import CreateAccount from "./Components/Account/CreateAccount";
 import Login from "./Components/Account/Login";
 import AccountBoard from "./Components/Account/AccountBoard";
 import ScrollToTop from "./Components/Helpers/ScrollToTop";
-import NotificationOverlay from "./Components/Notifications/NotificationOverlay";
+import SessionNotificationOverlay from "./Components/Notifications/SessionNotificationOverlay";
 
 import LocalOrRemoteQuestion from "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestion";
 
@@ -56,7 +56,7 @@ function App() {
             <NavCom />
             <ScrollToTop />
             {auth.isLoaded && !auth.isEmpty ? (
-                <NotificationOverlay auth={auth} />
+                <SessionNotificationOverlay auth={auth} />
             ) : null}
             <Switch location={location} key={location.pathname}>
                 <Route exact path='/' component={MainPage} />
