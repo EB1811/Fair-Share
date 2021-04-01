@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
+
 // Redux
 import { connect } from "react-redux";
 
@@ -16,16 +18,16 @@ const InputMoneyInfo = (props) => {
                 : 0
             : props.stateMoneyAmount
     );
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Conditional styling
         if (moneyAmount < 0) {
-            console.log("Cannot be negative");
+            setErrorMessage("Error: Amount cannot be negative.");
         } else {
-            // Remove any error messages.
-
+            setErrorMessage("");
             // Action based on if remote or local method. Remote needs to pass info to next function so it can be added to firestore.
             if (props.session) {
                 props.next(moneyAmount);
@@ -47,9 +49,13 @@ const InputMoneyInfo = (props) => {
                     onChange={(e) => setMoneyAmount(e.target.value)}
                 />
             </Form.Group>
-            <Button variant='primary' type='submit' size='sm' className='mt-5'>
-                <span className='smButtonText'>Next</span>
-            </Button>
+            <div className='mt-4'>
+                <ErrorAlertModal errorMessage={errorMessage} />
+
+                <Button variant='primary' type='submit' size='sm'>
+                    <span className='smButtonText'>Next</span>
+                </Button>
+            </div>
         </Form>
     );
 };

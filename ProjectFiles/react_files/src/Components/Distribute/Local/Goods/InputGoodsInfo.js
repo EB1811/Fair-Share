@@ -16,7 +16,6 @@ const InputGoodsInfo = (props) => {
     // Goods Name.
     const [goodName, setGoodName] = useState("");
     const [goodValue, setGoodValue] = useState("");
-    // Failed bool used for conditional css.
     // Store error message.
     const [errorMessage, setErrorMessage] = useState("");
 

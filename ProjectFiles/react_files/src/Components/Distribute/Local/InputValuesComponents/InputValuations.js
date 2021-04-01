@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
+
 // Redux
 import { connect } from "react-redux";
 
@@ -45,14 +47,23 @@ const InputValuationsForGood = (props) => {
 };
 
 const InputValuationsForm = (props) => {
-    const [total, setTotal] = useState(props.tValue);
+    const [total, setTotal] = useState(0);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
-        ////console.log(props.usersArr);
-        setTotal(0);
-        props.nextUser();
+        console.log(props.goodType === "Rent");
+        if (props.goodType === "Rent" && total < props.tValue) {
+            setErrorMessage(
+                "Error! Total must be greater or equal to " + props.tValue
+            );
+        } else {
+            ////console.log(props.usersArr);
+            setErrorMessage("");
+            setTotal(0);
+            props.nextUser();
+        }
     };
 
     return (
@@ -70,13 +81,17 @@ const InputValuationsForm = (props) => {
             <div className='mt-3'>
                 <h5 className='lowWeight'>Total Value: {total}</h5>
             </div>
-            <Button variant='primary' size='sm' className='mt-5' type='submit'>
-                <span className='smButtonText'>
-                    {props.currUser >= props.usersArr.length - 1
-                        ? "Finish"
-                        : "Next User"}
-                </span>
-            </Button>
+
+            <div className='mt-4'>
+                <ErrorAlertModal errorMessage={errorMessage} />
+                <Button variant='primary' size='sm' type='submit'>
+                    <span className='smButtonText'>
+                        {props.currUser >= props.usersArr.length - 1
+                            ? "Finish"
+                            : "Next User"}
+                    </span>
+                </Button>
+            </div>
         </Form>
     );
 };
@@ -86,6 +101,7 @@ const mapStateToProps = (state) => {
     return {
         tValue: state.distGoodsInfo.totalValue,
         usersArr: state.distGroupInfo.userArray,
+        goodType: state.distGoodsInfo.goodType,
     };
 };
 

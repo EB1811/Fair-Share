@@ -2,6 +2,7 @@ const initState = {
     goodsArray: [],
     totalValue: 0,
     moneyAmount: 0,
+    goodType: "",
 };
 
 const distGoodsInfoReducer = (state = initState, action) => {
@@ -15,10 +16,12 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 var room = { Good: "Room " + (parseInt(i) + 1), Value: 0 };
                 tempRoomsArr.push(room);
             }
+            var r = "Rent";
 
             return {
                 ...state,
                 goodsArray: tempRoomsArr,
+                goodType: r,
             };
         case "ADD_GOODS":
             console.log("Success", action.type);
@@ -43,6 +46,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
             } else {
                 goodsTotalVal = 1000;
             }
+            var g = "Goods";
 
             console.log(goodsTotalVal);
 
@@ -50,6 +54,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 ...state,
                 totalValue: goodsTotalVal,
                 goodsArray: tempGoodsArr,
+                goodType: g,
             };
         case "DELETE_GOOD":
             console.log("Success", action.type);

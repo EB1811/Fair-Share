@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
+
 // Redux
 import { connect } from "react-redux";
 
@@ -23,30 +25,19 @@ const InputRoomsInfo = (props) => {
                 : 0
             : props.stateRoomCount
     );
-    // Failed bool used for conditional css.
-    const [roomCountFailed, setRoomCountFailed] = useState(false);
-    const [houseValueFailed, setHouseValueFailed] = useState(false);
+    // Store error message.
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Conditional styling
         if (roomCount < 2) {
-            setRoomCountFailed(true);
-            setRoomCount("");
-        } else {
-            setRoomCountFailed(false);
-        }
-        if (houseValue < 1) {
-            setHouseValueFailed(true);
-            setHouseValue("");
-        } else {
-            setHouseValueFailed(false);
-        }
-
-        if (roomCount > 1 && houseValue > 0) {
-            setRoomCountFailed(false);
-            setHouseValueFailed(false);
+            setErrorMessage("Error! Must have at least 2 rooms.");
+        } else if (houseValue < 1) {
+            setErrorMessage("Error! Total house cost must be greater than 0.");
+        } else if (roomCount > 1 && houseValue > 0) {
+            setErrorMessage("");
 
             // Action based on if remote or local method. Remote needs to pass info to next function so it can be added to firestore.
             if (props.session) {
@@ -67,10 +58,6 @@ const InputRoomsInfo = (props) => {
                     size='sm'
                     type='number'
                     value={roomCount}
-                    placeholder={
-                        roomCountFailed ? "Must have at least 2 rooms." : ""
-                    }
-                    style={roomCountFailed ? { border: "1px solid red" } : {}}
                     onChange={(e) => setRoomCount(e.target.value)}
                 />
             </Form.Group>
@@ -80,18 +67,15 @@ const InputRoomsInfo = (props) => {
                     size='sm'
                     type='number'
                     value={houseValue}
-                    placeholder={
-                        houseValueFailed
-                            ? "Total cost must be greater than 0."
-                            : ""
-                    }
-                    style={houseValueFailed ? { border: "1px solid red" } : {}}
                     onChange={(e) => setHouseValue(e.target.value)}
                 />
             </Form.Group>
-            <Button variant='primary' type='submit' size='sm' className='mt-5'>
-                <span className='smButtonText'>Next</span>
-            </Button>
+            <div className='mt-5'>
+                <ErrorAlertModal errorMessage={errorMessage} />
+                <Button variant='primary' type='submit' size='sm'>
+                    <span className='smButtonText'>Next</span>
+                </Button>
+            </div>
         </Form>
     );
 };
