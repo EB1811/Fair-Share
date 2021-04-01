@@ -7,7 +7,7 @@ import { useFirestoreConnect, useFirestore } from "react-redux-firebase";
 
 import { useSelector } from "react-redux";
 
-const NotificationOverlay = ({ auth, history }) => {
+const SessionNotificationOverlay = ({ auth, history }) => {
     const firestore = useFirestore();
     useFirestoreConnect([
         { collection: "SessionInvitations", doc: auth.email },
@@ -93,4 +93,4 @@ const NotificationOverlay = ({ auth, history }) => {
     }
 };
 
-export default withRouter(NotificationOverlay);
+export default withRouter(SessionNotificationOverlay);
