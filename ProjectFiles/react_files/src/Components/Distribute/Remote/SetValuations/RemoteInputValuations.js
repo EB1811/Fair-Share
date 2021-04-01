@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
+
 const InputValuationsForGood = ({ good, changeGoodValue, totalCost }) => {
     const handleChange = (e) => {
         changeGoodValue(good, parseInt(e.target.value));
@@ -37,13 +39,20 @@ const InputValuationsForGood = ({ good, changeGoodValue, totalCost }) => {
 const RemoteInputValuations = (props) => {
     const [total, setTotal] = useState(0);
     const [userGoodsArr, setUserGoodsArr] = useState(props.goods);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.storeValuations(userGoodsArr, total);
+        if (props.goodType === "Rent" && total < props.totalCost) {
+            setErrorMessage(
+                "Error! Total must be greater or equal to " + props.totalCost
+            );
+        } else {
+            props.storeValuations(userGoodsArr, total);
+        }
     };
 
+    // Sets value of the specific good in userGoodsArr to new value.
     const changeGoodValue = (good, newValue) => {
         const newUserGoodsArr = [...userGoodsArr].map((object) => {
             if (object.Good === good.Good) {
@@ -54,7 +63,6 @@ const RemoteInputValuations = (props) => {
             } else return object;
         });
 
-        // Sets value of the specific good in userGoodsArr to new value.
         setUserGoodsArr(newUserGoodsArr);
 
         setTotal(
@@ -77,9 +85,12 @@ const RemoteInputValuations = (props) => {
             <div className='mt-3'>
                 <h5 className='lowWeight'>Total Value: {total}</h5>
             </div>
-            <Button variant='primary' size='sm' className='mt-5' type='submit'>
-                <span className='smButtonText'>Finish</span>
-            </Button>
+            <div className='mt-5'>
+                <ErrorAlertModal errorMessage={errorMessage} />
+                <Button variant='primary' size='sm' type='submit'>
+                    <span className='smButtonText'>Finish</span>
+                </Button>
+            </div>
         </Form>
     );
 };

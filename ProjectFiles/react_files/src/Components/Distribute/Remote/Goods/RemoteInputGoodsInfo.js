@@ -6,7 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
 
 import { useFirestore } from "react-redux-firebase";
 
@@ -17,20 +18,17 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
     const [goodValue, setGoodValue] = useState("");
     // Failed bool used for conditional css.
     //? Maybe turn this into alert.
-    const [nameFailed, setNameFailed] = useState(false);
-    const [nameFailedEmpty, setNameFailedEmpty] = useState(false);
-    const [valueFailed, setValueFailed] = useState(false);
-    const [goodsCountFailed, setGoodsCountFailed] = useState(false);
+    // Store error message.
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Add 'good' to firestore.
     const addGood = (e) => {
         e.preventDefault();
 
         if (goodName === "") {
-            setNameFailed(true);
-            setNameFailedEmpty(true);
+            setErrorMessage("Error! Good name cannot be empty.");
         } else if (goodValue && goodValue < 1) {
-            setValueFailed(true);
+            setErrorMessage("Error! Good value cannot be less than 1.");
             setGoodValue("");
         } else {
             // Add if no goods already in firestore array.
@@ -65,26 +63,21 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
 
                         setGoodName("");
                         setGoodValue("");
-                        setNameFailed(false);
-                        setNameFailedEmpty(false);
-                        setValueFailed(false);
+                        setErrorMessage("");
                     })
                     .catch((err) => {
                         console.log(err.message);
 
                         setGoodName("");
                         setGoodValue("");
-                        setNameFailed(false);
-                        setNameFailedEmpty(false);
-                        setValueFailed(false);
+                        setErrorMessage("");
                     });
             } else if (
                 session.goods.filter((good) => good.Good === goodName).length >
                 0
             ) {
                 // Check if good name is unique.
-                setNameFailed(true);
-                setNameFailedEmpty(false);
+                setErrorMessage("Error! Good with name already exists.");
                 setGoodName("");
             } else {
                 let good = {
@@ -116,18 +109,14 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
 
                         setGoodName("");
                         setGoodValue("");
-                        setNameFailed(false);
-                        setNameFailedEmpty(false);
-                        setValueFailed(false);
+                        setErrorMessage("");
                     })
                     .catch((err) => {
                         console.log(err.message);
 
                         setGoodName("");
                         setGoodValue("");
-                        setNameFailed(false);
-                        setNameFailedEmpty(false);
-                        setValueFailed(false);
+                        setErrorMessage("");
                     });
             }
         }
@@ -152,11 +141,11 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
     };
     // Next state.
     const nextPage = () => {
-        if (session.goods && session.goods.length < 2) {
-            setGoodsCountFailed(true);
-        } else {
-            setGoodsCountFailed(false);
+        if (session.goods && session.goods.length > 0) {
+            setErrorMessage("");
             next();
+        } else {
+            setErrorMessage("Error! Must have at least 1 item.");
         }
     };
 
@@ -173,76 +162,31 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
                 <Form onSubmit={addGood}>
                     <Row className='align-items-center'>
                         <Col xs={12} sm={9}>
-                            {nameFailed ? (
-                                <Form.Control
-                                    size='sm'
-                                    placeholder={
-                                        nameFailedEmpty
-                                            ? "Name cannot be empty"
-                                            : "Good with name already exists"
-                                    }
-                                    value={goodName}
-                                    type='text'
-                                    onChange={(e) =>
-                                        setGoodName(e.target.value)
-                                    }
-                                    style={{
-                                        border: "1px solid red",
-                                        marginLeft: "auto",
-                                        marginRight: "auto",
-                                        display: "inline",
-                                    }}
-                                />
-                            ) : (
-                                <Form.Control
-                                    size='sm'
-                                    placeholder='Name'
-                                    value={goodName}
-                                    type='text'
-                                    onChange={(e) =>
-                                        setGoodName(e.target.value)
-                                    }
-                                    style={{
-                                        marginLeft: "auto",
-                                        marginRight: "auto",
-                                        display: "inline",
-                                    }}
-                                />
-                            )}
-                            {valueFailed ? (
-                                <Form.Control
-                                    size='sm'
-                                    placeholder='Value cannot be less than 1'
-                                    value={goodValue}
-                                    type='number'
-                                    onChange={(e) =>
-                                        setGoodValue(e.target.value)
-                                    }
-                                    style={{
-                                        border: "1px solid red",
-                                        marginLeft: "auto",
-                                        marginRight: "auto",
-                                        display: "inline",
-                                    }}
-                                    className='mt-1'
-                                />
-                            ) : (
-                                <Form.Control
-                                    size='sm'
-                                    placeholder='Estimated Value (Optional)'
-                                    value={goodValue}
-                                    type='number'
-                                    onChange={(e) =>
-                                        setGoodValue(e.target.value)
-                                    }
-                                    style={{
-                                        marginLeft: "auto",
-                                        marginRight: "auto",
-                                        display: "inline",
-                                    }}
-                                    className='mt-1'
-                                />
-                            )}
+                            <Form.Control
+                                size='sm'
+                                placeholder='Name'
+                                value={goodName}
+                                type='text'
+                                onChange={(e) => setGoodName(e.target.value)}
+                                style={{
+                                    marginLeft: "auto",
+                                    marginRight: "auto",
+                                    display: "inline",
+                                }}
+                            />
+                            <Form.Control
+                                size='sm'
+                                placeholder='Estimated Value (Optional)'
+                                value={goodValue}
+                                type='number'
+                                onChange={(e) => setGoodValue(e.target.value)}
+                                style={{
+                                    marginLeft: "auto",
+                                    marginRight: "auto",
+                                    display: "inline",
+                                }}
+                                className='mt-1'
+                            />
                         </Col>
                         <Col xs={12} sm={3}>
                             <Button
@@ -281,11 +225,7 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
             </div>
 
             <div className='mt-4'>
-                {goodsCountFailed ? (
-                    <Alert variant={"danger"}>
-                        Error! Must have at least 2 items.
-                    </Alert>
-                ) : null}
+                <ErrorAlertModal errorMessage={errorMessage} />
 
                 <Button variant='primary' size='sm' onClick={nextPage}>
                     <span className='smButtonText'>Next</span>

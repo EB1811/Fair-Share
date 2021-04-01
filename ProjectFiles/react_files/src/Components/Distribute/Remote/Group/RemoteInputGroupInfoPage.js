@@ -7,7 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
+
+import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
 
 import {
     useFirestoreConnect,
@@ -26,6 +27,15 @@ const RemoteInputGroupInfoPage = (props) => {
         { collection: "users" },
         { collection: "SessionInvitations" },
     ]);
+
+    // Form user email.
+    const [userEmail, setUserEmail] = useState("");
+    // Is the user on this page in the session group?
+    const [thisUserInvited, setThisUserInvited] = useState(true);
+    const [userAllowedDetermined, setUserAllowedDetermined] = useState(false);
+    // Store error message.
+    const [errorMessage, setErrorMessage] = useState("");
+
     const session = useSelector(
         ({ firestore: { data } }) =>
             data.ShareSessions &&
@@ -44,15 +54,6 @@ const RemoteInputGroupInfoPage = (props) => {
 
     // For routing to next section.
     let { sessionID, goodType } = useParams();
-
-    // Form user email.
-    const [userEmail, setUserEmail] = useState("");
-    // Failed bool for conditional rendering failure state.
-    const [userIdFailed, setUserIdFailed] = useState(false);
-    const [groupCountFailed, setGroupCountFailed] = useState(false);
-    // Is the user on this page in the session group?
-    const [thisUserInvited, setThisUserInvited] = useState(true);
-    const [userAllowedDetermined, setUserAllowedDetermined] = useState(false);
 
     //* Add the user who is on the page on page load if they are in 'invitedUsers' collection or owner.
     //? Maybe user gets added to the group when they click 'accept' on the push notification?
@@ -178,13 +179,17 @@ const RemoteInputGroupInfoPage = (props) => {
         e.preventDefault();
         // Find user in 'users' collection.
         const user = firebaseUsers.filter((user) => user.email === userEmail);
-        if (user.length > 0) {
+        console.log(profile.email);
+        console.log(user.email);
+        console.log(userEmail);
+        // Make sure user is not self and user exists.
+        if (profile.email !== userEmail && user.length > 0) {
             const invitedUsers = session.invitedUsers
                 ? [...session.invitedUsers]
                 : [];
             // Make sure user isn't already invited.
             if (invitedUsers.some((email) => email === userEmail)) {
-                setUserIdFailed(true);
+                setErrorMessage("Error! Invalid username.");
                 setUserEmail("");
             } else {
                 invitedUsers.push(userEmail);
@@ -205,7 +210,7 @@ const RemoteInputGroupInfoPage = (props) => {
                           )
                       )
                     : {};
-                console.log(userCurInvitations);
+                //console.log(userCurInvitations);
                 userCurInvitations[sessionID] = inviteInfo;
 
                 firestore
@@ -227,23 +232,22 @@ const RemoteInputGroupInfoPage = (props) => {
                             .then(() => {
                                 console.log("User invited.");
                                 setUserEmail("");
-                                setUserIdFailed(false);
+                                setErrorMessage("");
                             })
                             .catch((err) => console.log(err.message));
                     })
                     .catch((err) => console.log(err.message));
             }
         } else {
-            setUserIdFailed(true);
-            setUserEmail("");
+            setErrorMessage("Error! Invalid username.");
         }
     };
     // Validate group size then continue to next page.
     const checkGroup = () => {
         if (session.group.length < 2) {
-            setGroupCountFailed(true);
+            setErrorMessage("Error! Must have at least 2 users.");
         } else {
-            setGroupCountFailed(false);
+            setErrorMessage("");
             props.history.push(
                 `/Distribute/Valuations/Remote/${sessionID}/${goodType}`
             );
@@ -279,13 +283,10 @@ const RemoteInputGroupInfoPage = (props) => {
 
     //TODO: [A301212-96] Different renders based on if the person is owner or not.
     //TODO: [A301212-105] Alert when invite sent. Involves having alert linked to a 'message' state variable.
-    if (
-        isSessionLoaded &&
-        profile.isLoaded &&
-        userAllowedDetermined &&
-        session.group
-    ) {
+    // Wait for load.
+    if (isSessionLoaded && profile.isLoaded && userAllowedDetermined) {
         if (!profile.isEmpty) {
+            // Redirect if session doesn't exist.
             if (
                 session &&
                 session.active &&
@@ -322,9 +323,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                                 <Form.Control
                                                     size='sm'
                                                     placeholder={
-                                                        userIdFailed
-                                                            ? "Invalid User"
-                                                            : "Enter User email"
+                                                        "Enter User email"
                                                     }
                                                     value={userEmail}
                                                     type='email'
@@ -332,14 +331,6 @@ const RemoteInputGroupInfoPage = (props) => {
                                                         setUserEmail(
                                                             e.target.value
                                                         )
-                                                    }
-                                                    style={
-                                                        userIdFailed
-                                                            ? {
-                                                                  border:
-                                                                      "1px solid red",
-                                                              }
-                                                            : {}
                                                     }
                                                 />
                                             </Col>
@@ -393,11 +384,9 @@ const RemoteInputGroupInfoPage = (props) => {
                                     </Row>
                                 </div>
                                 <div className='mt-4'>
-                                    {groupCountFailed ? (
-                                        <Alert variant={"danger"}>
-                                            Error! Must have at least 2 users.
-                                        </Alert>
-                                    ) : null}
+                                    <ErrorAlertModal
+                                        errorMessage={errorMessage}
+                                    />
                                     <Button
                                         variant='primary'
                                         size='sm'

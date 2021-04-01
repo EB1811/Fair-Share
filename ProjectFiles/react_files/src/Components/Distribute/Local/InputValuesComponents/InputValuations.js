@@ -53,7 +53,6 @@ const InputValuationsForm = (props) => {
     // Update redux valuations store on submit.
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(props.goodType === "Rent");
         if (props.goodType === "Rent" && total < props.tValue) {
             setErrorMessage(
                 "Error! Total must be greater or equal to " + props.tValue

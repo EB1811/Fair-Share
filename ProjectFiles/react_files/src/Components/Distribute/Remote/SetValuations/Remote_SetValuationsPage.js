@@ -190,6 +190,7 @@ const Remote_SetValuationsPage = (props) => {
                                         }
                                         totalCost={session.totalCost}
                                         storeValuations={storeValuations}
+                                        goodType={session.type}
                                     />
                                 </Col>
                             </Row>
