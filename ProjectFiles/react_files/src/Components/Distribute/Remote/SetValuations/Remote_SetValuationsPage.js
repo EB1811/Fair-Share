@@ -75,38 +75,35 @@ const Remote_SetValuationsPage = (props) => {
     // Create {userEmail?, username, userGoodsArr} and add to firestore valuations array.
     const storeValuations = (userGoodsArray, total) => {
         // Algorithms expect valuations total value > total cost.
-        //TODO: [A301212-97] Render error message when total value > total cost is false.
-        if (total >= session.totalCost) {
-            const values = session.values
-                ? JSON.parse(JSON.stringify(session.values))
-                : {};
-            const userValues = {
-                username: profile.username,
-                email: profile.email,
-                goods: userGoodsArray,
-            };
-            // Add or replace for each good.
-            /*
+        const values = session.values
+            ? JSON.parse(JSON.stringify(session.values))
+            : {};
+        const userValues = {
+            username: profile.username,
+            email: profile.email,
+            goods: userGoodsArray,
+        };
+        // Add or replace for each good.
+        /*
             userGoodsArray.forEach((good) => {
                 userValues[good.Good] = parseInt(good.Value);
             });
             */
-            values[uid] = userValues;
+        values[uid] = userValues;
 
-            firestore
-                .update(
-                    { collection: "ShareSessions", doc: sessionID },
-                    { values: values }
-                )
-                .then(() => {
-                    console.log("Successfully added your values");
+        firestore
+            .update(
+                { collection: "ShareSessions", doc: sessionID },
+                { values: values }
+            )
+            .then(() => {
+                console.log("Successfully added your values");
 
-                    setEditValues(false);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
-        }
+                setEditValues(false);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
     };
 
     // Wait for load.
