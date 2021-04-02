@@ -248,6 +248,7 @@ const RemoteInputGroupInfoPage = (props) => {
         }
     };
     // Validate group size then continue to next page.
+    //? Maybe make user able to go to next page if owner clicks next. Prevents users staying in valuations page while getting removed form group.
     const checkGroup = () => {
         if (session.group.length < 2) {
             setErrorMessage("Error! Must have at least 2 users.");
@@ -292,16 +293,16 @@ const RemoteInputGroupInfoPage = (props) => {
         }
     };
 
-    //TODO: [A301212-96] Different renders based on if the person is owner or not.
     // Wait for load.
     if (isSessionLoaded && profile.isLoaded && userAllowedDetermined) {
         if (!profile.isEmpty) {
-            // Redirect if session doesn't exist.
+            // Session must exist and be active. User must be the session owner or invited.
             if (
                 session &&
                 session.active &&
                 (thisUserInvited || session.owner === uid)
             ) {
+                //? Maybe seperate into smaller components?
                 return (
                     <Container
                         fluid
@@ -317,9 +318,14 @@ const RemoteInputGroupInfoPage = (props) => {
                                 className='centerCardCompact m-3'
                                 style={{ maxWidth: "650px" }}
                             >
-                                <h5>
-                                    Enter a user email to add them to the group.
-                                </h5>
+                                {session.owner === uid ? (
+                                    <h5>
+                                        Enter a user email to add them to the
+                                        group.
+                                    </h5>
+                                ) : (
+                                    <h5>Current Group</h5>
+                                )}
                                 <div
                                     className='mt-4 py-2'
                                     style={{
@@ -327,37 +333,38 @@ const RemoteInputGroupInfoPage = (props) => {
                                         borderBottom: "1px solid #999999",
                                     }}
                                 >
-                                    <Form onSubmit={inviteToGroup}>
-                                        <Row className='align-items-center'>
-                                            <Col xs={8} sm={9}>
-                                                <Form.Control
-                                                    size='sm'
-                                                    placeholder={
-                                                        "Enter User email"
-                                                    }
-                                                    value={userEmail}
-                                                    type='email'
-                                                    onChange={(e) =>
-                                                        setUserEmail(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-                                            </Col>
-                                            <Col xs={4} sm={3}>
-                                                <Button
-                                                    variant='primary'
-                                                    size='md'
-                                                    type='submit'
-                                                >
-                                                    <span>Add</span>
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                    </Form>
+                                    {session.owner === uid ? (
+                                        <Form onSubmit={inviteToGroup}>
+                                            <Row className='align-items-center'>
+                                                <Col xs={8} sm={9}>
+                                                    <Form.Control
+                                                        size='sm'
+                                                        placeholder={
+                                                            "Enter User email"
+                                                        }
+                                                        value={userEmail}
+                                                        type='email'
+                                                        onChange={(e) =>
+                                                            setUserEmail(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                    />
+                                                </Col>
+                                                <Col xs={4} sm={3}>
+                                                    <Button
+                                                        variant='primary'
+                                                        size='md'
+                                                        type='submit'
+                                                    >
+                                                        <span>Add</span>
+                                                    </Button>
+                                                </Col>
+                                            </Row>
+                                        </Form>
+                                    ) : null}
                                     <Row className='justify-content-center contentOverflow mt-3'>
                                         <Col sm='10'>
-                                            {/*//? Maybe split into own component.*/}
                                             {/* The following displays a card for each user with a delete button if user is not owner. */}
                                             {session.group
                                                 ? session.group.map((user) => (
