@@ -31,12 +31,10 @@ import SetValuationsPage from "./Components/Distribute/Local/SetValuations/SetVa
 import LocalResultsPage from "./Components/Distribute/Local/Results/LocalResultsPage";
 
 // Remote process components.
+import RemoteGatherGoodsPage from "./Components/Distribute/Remote/GatherInfo/Goods/RemoteGatherGoodsPage";
 import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Remote_RentQuestionnairePage";
 import RemoteGoodsQuestionnairePage from "./Components/Distribute/Remote/Goods/RemoteGoodsQuestionnairePage";
-import Rent_Remote_GatherInfoPage from "./Components/Distribute/Remote/Rent/Rent_Remote_GatherInfoPage";
-import RemoteDivorce_GatherGoodsInfoPage from "./Components/Distribute/Remote/Divorce/RemoteDivorce_GatherGoodsInfoPage";
 import RemoteDivorce_GatherMoneyInfoPage from "./Components/Distribute/Remote/Divorce/RemoteDivorce_GatherMoneyInfoPage";
-import RemoteGoodsGatherInfoPage from "./Components/Distribute/Remote/Goods/RemoteGoodsGatherInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
 import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
@@ -68,6 +66,7 @@ function App() {
                     path='/Distribute/localremote/:goodType'
                     component={LocalOrRemoteQuestion}
                 />
+                {/*//! Redundant. */}
                 <Route
                     exact
                     path='/Distribute/Questions/Remote/Rent/:sessionID/:stage'
@@ -78,39 +77,30 @@ function App() {
                     path='/Distribute/Questions/Remote/Goods/:sessionID/:stage'
                     component={RemoteGoodsQuestionnairePage}
                 />
+                {/*//! */}
                 <Route
                     exact
-                    path='/Distribute/GoodInfo/Remote/Rent/:sessionID'
-                    component={Rent_Remote_GatherInfoPage}
+                    path='/Distribute/GoodInfo/Remote/:sessionID'
+                    component={RemoteGatherGoodsPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/GoodInfo/Remote/Divorce/:sessionID'
-                    component={RemoteDivorce_GatherGoodsInfoPage}
-                />
-                <Route
-                    exact
-                    path='/Distribute/GoodInfo/Remote/Divorce2/:sessionID'
+                    path='/Distribute/GoodInfo/Remote/:sessionID/2'
                     component={RemoteDivorce_GatherMoneyInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/GoodInfo/Remote/Goods/:sessionID'
-                    component={RemoteGoodsGatherInfoPage}
-                />
-                <Route
-                    exact
-                    path='/Distribute/GroupInfo/Remote/:sessionID/:goodType'
+                    path='/Distribute/GroupInfo/Remote/:sessionID'
                     component={RemoteInputGroupInfoPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Valuations/Remote/:sessionID/:goodType'
+                    path='/Distribute/Valuations/Remote/:sessionID'
                     component={Remote_SetValuationsPage}
                 />
                 <Route
                     exact
-                    path='/Distribute/Results/Remote/:sessionID/:goodType'
+                    path='/Distribute/Results/Remote/:sessionID'
                     component={RemoteResultsPage}
                 />
 

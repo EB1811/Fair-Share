@@ -38,7 +38,7 @@ const RemoteResultsPage = (props) => {
     const uid = useSelector((state) => state.firebase.auth.uid);
     const isSessionLoaded = isLoaded(session);
 
-    let { sessionID, goodType } = useParams();
+    let { sessionID } = useParams();
 
     // Determine the value of userInSession variable.
     useEffect(() => {
@@ -101,7 +101,7 @@ const RemoteResultsPage = (props) => {
 
                 // Goods or Rooms route.
                 const allocations = {};
-                if (goodType === "Rent") {
+                if (session.type === "Rent") {
                     getRentResults(valueMatrix, session.totalCost)
                         .then((allocation) => {
                             allocation.map(
@@ -135,7 +135,7 @@ const RemoteResultsPage = (props) => {
                         .catch((err) => {
                             console.log(err.message);
                         });
-                } else if (goodType === "Goods") {
+                } else if (session.type === "Goods") {
                     getGoodsResults(valueMatrix)
                         .then((allocation) => {
                             console.log(allocation);
@@ -171,7 +171,7 @@ const RemoteResultsPage = (props) => {
                         .catch((err) => {
                             console.log(err.message);
                         });
-                } else if (goodType === "Divorce") {
+                } else if (session.type === "Divorce") {
                     getDivorceResults(valueMatrix, session.moneyAmount)
                         .then((allocation) => {
                             allocation.map(
@@ -210,15 +210,7 @@ const RemoteResultsPage = (props) => {
                 }
             }
         }
-    }, [
-        firestore,
-        isSessionLoaded,
-        profile,
-        session,
-        sessionID,
-        uid,
-        goodType,
-    ]);
+    }, [firestore, isSessionLoaded, profile, session, sessionID, uid]);
 
     //console.log(stateAllocation);
     if (isSessionLoaded && profile.isLoaded && userInSessionDetermined) {
@@ -291,7 +283,9 @@ const RemoteResultsPage = (props) => {
                     </Container>
                 );
             } else {
-                return <Redirect to={`/Distribute/localremote/${goodType}`} />;
+                return (
+                    <Redirect to={`/Distribute/localremote/${session.type}`} />
+                );
             }
         } else {
             return <Redirect to='/Login' />;

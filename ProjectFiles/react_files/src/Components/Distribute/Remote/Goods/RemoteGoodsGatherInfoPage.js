@@ -25,7 +25,6 @@ const RemoteGoodsGatherInfoPage = (props) => {
     const auth = useSelector((state) => state.firebase.auth);
     let { sessionID } = useParams();
 
-    // Input group info into firestore.
     const next = () => {
         props.history.push(`/Distribute/GroupInfo/Remote/${sessionID}/Goods`);
     };

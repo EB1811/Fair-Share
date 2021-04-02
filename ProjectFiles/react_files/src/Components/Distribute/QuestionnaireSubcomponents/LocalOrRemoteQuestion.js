@@ -42,7 +42,7 @@ const LocalOrRemoteQuestion = (props) => {
                 )
                 .then((docSnapshot) => {
                     props.history.push(
-                        `/Distribute/GoodInfo/Remote/${goodType}/${docSnapshot.id}`
+                        `/Distribute/GoodInfo/Remote/${docSnapshot.id}`
                     );
                 })
                 .catch((err) => {

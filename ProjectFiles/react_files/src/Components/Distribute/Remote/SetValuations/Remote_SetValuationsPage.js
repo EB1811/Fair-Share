@@ -38,7 +38,7 @@ const Remote_SetValuationsPage = (props) => {
     const uid = useSelector((state) => state.firebase.auth.uid);
     const isSessionLoaded = isLoaded(session);
 
-    let { sessionID, goodType } = useParams();
+    let { sessionID } = useParams();
 
     // Determine the value of userInSession variable.
     useEffect(() => {
@@ -121,7 +121,7 @@ const Remote_SetValuationsPage = (props) => {
                     ) {
                         return (
                             <Redirect
-                                to={`/Distribute/Results/Remote/${sessionID}/${goodType}`}
+                                to={`/Distribute/Results/Remote/${sessionID}/${session.type}`}
                             />
                         );
                     } else {
@@ -194,7 +194,9 @@ const Remote_SetValuationsPage = (props) => {
                         </Container>
                     );
             } else {
-                return <Redirect to={`/Distribute/localremote/${goodType}`} />;
+                return (
+                    <Redirect to={`/Distribute/localremote/${session.type}`} />
+                );
             }
         } else {
             return <Redirect to='/Login' />;

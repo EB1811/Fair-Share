@@ -56,7 +56,7 @@ const RemoteInputGroupInfoPage = (props) => {
     const isUsersLoaded = isLoaded(firebaseUsers);
 
     // For routing to next section.
-    let { sessionID, goodType } = useParams();
+    let { sessionID } = useParams();
 
     //* Add the user who is on the page on page load if they are in 'invitedUsers' collection or owner.
     //? Maybe user gets added to the group when they click 'accept' on the push notification?
@@ -201,7 +201,7 @@ const RemoteInputGroupInfoPage = (props) => {
                 const inviteInfo = {
                     active: true,
                     ownerUsername: profile.username,
-                    type: goodType,
+                    type: session.type,
                 };
                 const userCurInvitations = invitations.find(
                     (element) => element.id === userEmail
@@ -243,7 +243,7 @@ const RemoteInputGroupInfoPage = (props) => {
                     .catch((err) => console.log(err.message));
             }
         } else {
-            setErrorMessage("Error! Invalid username.");
+            setErrorMessage("Error! Invalid user.");
             setInviteSent(false);
         }
     };
@@ -254,7 +254,7 @@ const RemoteInputGroupInfoPage = (props) => {
         } else {
             setErrorMessage("");
             props.history.push(
-                `/Distribute/Valuations/Remote/${sessionID}/${goodType}`
+                `/Distribute/Valuations/Remote/${sessionID}/${session.type}`
             );
         }
     };
@@ -287,7 +287,6 @@ const RemoteInputGroupInfoPage = (props) => {
     };
 
     //TODO: [A301212-96] Different renders based on if the person is owner or not.
-    //TODO: [A301212-105] Alert when invite sent. Involves having alert linked to a 'message' state variable.
     // Wait for load.
     if (isSessionLoaded && profile.isLoaded && userAllowedDetermined) {
         if (!profile.isEmpty) {
@@ -412,7 +411,9 @@ const RemoteInputGroupInfoPage = (props) => {
                     </Container>
                 );
             } else {
-                return <Redirect to={`/Distribute/localremote/${goodType}`} />;
+                return (
+                    <Redirect to={`/Distribute/localremote/${session.type}`} />
+                );
             }
         } else {
             return <Redirect to='/Login' />;
