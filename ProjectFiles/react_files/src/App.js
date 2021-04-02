@@ -32,9 +32,7 @@ import LocalResultsPage from "./Components/Distribute/Local/Results/LocalResults
 
 // Remote process components.
 import RemoteGatherGoodsPage from "./Components/Distribute/Remote/GatherInfo/Goods/RemoteGatherGoodsPage";
-import Remote_RentQuestionnairePage from "./Components/Distribute/Remote/Rent/Remote_RentQuestionnairePage";
-import RemoteGoodsQuestionnairePage from "./Components/Distribute/Remote/Goods/RemoteGoodsQuestionnairePage";
-import RemoteDivorce_GatherMoneyInfoPage from "./Components/Distribute/Remote/Divorce/RemoteDivorce_GatherMoneyInfoPage";
+import RemoteDivorce_GatherMoneyInfoPage from "./Components/Distribute/Remote/GatherInfo/Goods/RemoteDivorce_GatherMoneyInfoPage";
 import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
 import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
@@ -67,18 +65,6 @@ function App() {
                     path='/Distribute/localremote/:goodType'
                     component={LocalOrRemoteQuestion}
                 />
-                {/*//! Redundant. */}
-                <Route
-                    exact
-                    path='/Distribute/Questions/Remote/Rent/:sessionID/:stage'
-                    component={Remote_RentQuestionnairePage}
-                />
-                <Route
-                    exact
-                    path='/Distribute/Questions/Remote/Goods/:sessionID/:stage'
-                    component={RemoteGoodsQuestionnairePage}
-                />
-                {/*//! */}
                 <Route
                     exact
                     path='/Distribute/GoodInfo/Remote/:sessionID'

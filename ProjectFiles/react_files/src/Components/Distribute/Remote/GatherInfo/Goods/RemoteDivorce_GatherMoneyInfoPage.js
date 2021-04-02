@@ -1,19 +1,24 @@
 import React from "react";
 
 // React Components
-import RemoteInputGoodsInfo from "./RemoteInputGoodsInfo";
+import InputMoneyInfo from "../../../Local/Divorce/InputMoneyInfo";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useFirestoreConnect, isLoaded } from "react-redux-firebase";
+import {
+    useFirestoreConnect,
+    isLoaded,
+    useFirestore,
+} from "react-redux-firebase";
 import { useSelector } from "react-redux";
 
 import { Redirect, useParams } from "react-router-dom";
 
-const RemoteGoodsGatherInfoPage = (props) => {
+const RemoteDivorce_GatherMoneyInfoPage = (props) => {
+    const firestore = useFirestore();
     useFirestoreConnect([
         { collection: "ShareSessions", doc: props.match.params.sessionID },
     ]);
@@ -25,8 +30,22 @@ const RemoteGoodsGatherInfoPage = (props) => {
     const auth = useSelector((state) => state.firebase.auth);
     let { sessionID } = useParams();
 
-    const next = () => {
-        props.history.push(`/Distribute/GroupInfo/Remote/${sessionID}/Goods`);
+    const next = (moneyAmount) => {
+        if (moneyAmount >= 0) {
+            firestore
+                .update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { moneyAmount: parseInt(moneyAmount) }
+                )
+                .then(() => {
+                    props.history.push(
+                        `/Distribute/GroupInfo/Remote/${sessionID}/Divorce`
+                    );
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     };
 
     if (isLoaded(session) && auth.isLoaded) {
@@ -47,17 +66,13 @@ const RemoteGoodsGatherInfoPage = (props) => {
                                 className='centerCardCompact m-3'
                                 style={{ maxWidth: "510px" }}
                             >
-                                <RemoteInputGoodsInfo
-                                    next={next}
-                                    session={session}
-                                    sessionID={sessionID}
-                                />
+                                <InputMoneyInfo next={next} session={session} />
                             </Col>
                         </Row>
                     </Container>
                 );
             } else {
-                return <Redirect to='/Distribute/localremote/Rent' />;
+                return <Redirect to='/Distribute/localremote/Divorce' />;
             }
         } else {
             return <Redirect to='/Login' />;
@@ -78,4 +93,5 @@ const RemoteGoodsGatherInfoPage = (props) => {
         );
     }
 };
-export default RemoteGoodsGatherInfoPage;
+
+export default RemoteDivorce_GatherMoneyInfoPage;

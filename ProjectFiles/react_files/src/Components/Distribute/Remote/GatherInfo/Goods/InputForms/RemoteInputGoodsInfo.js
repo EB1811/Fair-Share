@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
+import ErrorAlertModal from "../../../../../Notifications/ErrorAlertModal";
 
 import { useFirestore } from "react-redux-firebase";
 

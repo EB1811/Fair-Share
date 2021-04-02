@@ -1,7 +1,7 @@
 import React from "react";
 
 // React Components
-import RemoteInputGoodsInfo from "../../Goods/RemoteInputGoodsInfo";
+import RemoteInputGoodsInfo from "./InputForms/RemoteInputGoodsInfo";
 import InputRoomsInfo from "../../../Local/Rent/InputRoomsInfo";
 
 // Bootstrap Components
