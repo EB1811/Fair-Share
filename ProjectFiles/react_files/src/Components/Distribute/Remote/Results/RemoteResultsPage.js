@@ -212,13 +212,12 @@ const RemoteResultsPage = (props) => {
         }
     }, [firestore, isSessionLoaded, profile, session, sessionID, uid]);
 
-    //console.log(stateAllocation);
+    // Load.
     if (isSessionLoaded && profile.isLoaded && userInSessionDetermined) {
-        // Load.
+        // User must be logged in.
         if (!profile.isEmpty) {
-            // User must be logged in.
+            // Session must exist and user must be in session group.
             if (session && userInSession) {
-                // Session must exist and user must be in session group.
                 return (
                     <Container
                         fluid

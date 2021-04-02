@@ -9,12 +9,17 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useFirestoreConnect, isLoaded } from "react-redux-firebase";
+import {
+    useFirestoreConnect,
+    isLoaded,
+    useFirestore,
+} from "react-redux-firebase";
 import { useSelector } from "react-redux";
 
 import { Redirect, useParams } from "react-router-dom";
 
 const RemoteGatherGoodsPage = (props) => {
+    const firestore = useFirestore();
     useFirestoreConnect([
         { collection: "ShareSessions", doc: props.match.params.sessionID },
     ]);
@@ -27,11 +32,37 @@ const RemoteGatherGoodsPage = (props) => {
     let { sessionID } = useParams();
 
     // Continue to input group info or in the case of divorce type, money info.
-    const next = () => {
+    const nextG = () => {
         if (session.type === "Divorce") {
             props.history.push(`/Distribute/GoodInfo/Remote/${sessionID}/2`);
         } else {
             props.history.push(`/Distribute/GroupInfo/Remote/${sessionID}`);
+        }
+    };
+
+    // In case of rent process, goods needs to be added into firestore.
+    const nextR = (roomCount, totalCost) => {
+        var goods = [];
+        for (var i = 0; i < roomCount; i++) {
+            var room = { Good: "Room " + (parseInt(i) + 1), Value: 0 };
+            goods.push(room);
+        }
+
+        if (totalCost > 0 && roomCount > 0) {
+            firestore
+                .update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { totalCost: parseInt(totalCost), goods: goods }
+                )
+                .then(() => {
+                    console.log(session);
+                    props.history.push(
+                        `/Distribute/GroupInfo/Remote/${sessionID}`
+                    );
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     };
 
@@ -62,7 +93,7 @@ const RemoteGatherGoodsPage = (props) => {
                                         style={{ maxWidth: "510px" }}
                                     >
                                         <RemoteInputGoodsInfo
-                                            next={next}
+                                            next={nextG}
                                             session={session}
                                             sessionID={sessionID}
                                         />
@@ -87,7 +118,7 @@ const RemoteGatherGoodsPage = (props) => {
                                         style={{ maxWidth: "510px" }}
                                     >
                                         <InputRoomsInfo
-                                            next={next}
+                                            next={nextR}
                                             session={session}
                                         />
                                     </Col>
