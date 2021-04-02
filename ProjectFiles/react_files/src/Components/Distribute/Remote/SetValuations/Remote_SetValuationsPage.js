@@ -121,7 +121,7 @@ const Remote_SetValuationsPage = (props) => {
                     ) {
                         return (
                             <Redirect
-                                to={`/Distribute/Results/Remote/${sessionID}/${session.type}`}
+                                to={`/Distribute/Results/Remote/${sessionID}`}
                             />
                         );
                     } else {

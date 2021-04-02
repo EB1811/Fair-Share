@@ -23,7 +23,7 @@ const InviteToSessionNotificationModal = ({
                 <Button
                     variant='success'
                     size='sm'
-                    onClick={() => joinSession(sessionID, info.type)}
+                    onClick={() => joinSession(sessionID)}
                 >
                     Accept
                 </Button>
@@ -31,7 +31,7 @@ const InviteToSessionNotificationModal = ({
                     variant='danger'
                     size='sm'
                     className='ml-2'
-                    onClick={() => declineSession(sessionID, info.type)}
+                    onClick={() => declineSession(sessionID)}
                 >
                     Decline
                 </Button>

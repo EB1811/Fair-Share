@@ -32,7 +32,7 @@ const SessionNotificationOverlay = ({ auth, history }) => {
     */
 
     // Remove invitation from firestore and redirect to session page.
-    const joinSession = (sessionID, goodType) => {
+    const joinSession = (sessionID) => {
         const newInvites = JSON.parse(JSON.stringify(sessionInvites.invites));
         delete newInvites[sessionID];
         firestore
@@ -41,13 +41,13 @@ const SessionNotificationOverlay = ({ auth, history }) => {
                 { invites: newInvites }
             )
             .then(() => {
-                window.location.href = `/Distribute/GroupInfo/Remote/${sessionID}/${goodType}`;
+                window.location.href = `/Distribute/GroupInfo/Remote/${sessionID}`;
             })
             .catch((err) => {
                 console.log(err.message);
             });
     };
-    const declineSession = (sessionID, goodType) => {
+    const declineSession = (sessionID) => {
         const newInvites = JSON.parse(JSON.stringify(sessionInvites.invites));
         delete newInvites[sessionID];
         firestore

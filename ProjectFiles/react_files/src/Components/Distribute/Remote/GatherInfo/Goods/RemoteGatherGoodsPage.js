@@ -31,9 +31,7 @@ const RemoteGatherGoodsPage = (props) => {
         if (session.type === "Divorce") {
             props.history.push(`/Distribute/GoodInfo/Remote/${sessionID}/2`);
         } else {
-            props.history.push(
-                `/Distribute/GroupInfo/Remote/${sessionID}/${session.type}`
-            );
+            props.history.push(`/Distribute/GroupInfo/Remote/${sessionID}`);
         }
     };
 

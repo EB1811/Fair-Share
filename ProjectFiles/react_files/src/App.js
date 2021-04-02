@@ -61,6 +61,7 @@ function App() {
                 <Route exact path='/About' component={About} />
                 <Route exact path='/Learn' component={LearnMainPage} />
 
+                {/*//* Remote */}
                 <Route
                     exact
                     path='/Distribute/localremote/:goodType'
@@ -104,6 +105,7 @@ function App() {
                     component={RemoteResultsPage}
                 />
 
+                {/*//* Local */}
                 <Route
                     exact
                     path='/Distribute/Questions/Local/Goods/:stage'

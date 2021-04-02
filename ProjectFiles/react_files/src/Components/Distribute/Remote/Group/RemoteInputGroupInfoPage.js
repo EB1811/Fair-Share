@@ -253,9 +253,7 @@ const RemoteInputGroupInfoPage = (props) => {
             setErrorMessage("Error! Must have at least 2 users.");
         } else {
             setErrorMessage("");
-            props.history.push(
-                `/Distribute/Valuations/Remote/${sessionID}/${session.type}`
-            );
+            props.history.push(`/Distribute/Valuations/Remote/${sessionID}`);
         }
     };
     const deleteUser = (userEmail) => {
