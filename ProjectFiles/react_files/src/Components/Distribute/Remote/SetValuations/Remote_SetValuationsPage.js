@@ -194,9 +194,7 @@ const Remote_SetValuationsPage = (props) => {
                         </Container>
                     );
             } else {
-                return (
-                    <Redirect to={`/Distribute/localremote/${session.type}`} />
-                );
+                return <Redirect to={`/`} />;
             }
         } else {
             return <Redirect to='/Login' />;

@@ -126,10 +126,10 @@ const RemoteGatherGoodsPage = (props) => {
                             </Container>
                         );
                     default:
-                        return <Redirect to='/Distribute/localremote/Rent' />;
+                        return <Redirect to='/' />;
                 }
             } else {
-                return <Redirect to='/Distribute/localremote/Rent' />;
+                return <Redirect to='/' />;
             }
         } else {
             return <Redirect to='/Login' />;

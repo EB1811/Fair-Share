@@ -251,6 +251,14 @@ const RemoteInputGroupInfoPage = (props) => {
     const checkGroup = () => {
         if (session.group.length < 2) {
             setErrorMessage("Error! Must have at least 2 users.");
+            setInviteSent(false);
+        } else if (
+            // In rent sharing, the number of users and rooms must be equal.
+            session.type === "Rent" &&
+            session.group.length !== session.goods.length
+        ) {
+            setErrorMessage("Error! Number of rooms and users must be equal.");
+            setInviteSent(false);
         } else {
             setErrorMessage("");
             props.history.push(`/Distribute/Valuations/Remote/${sessionID}`);
@@ -409,9 +417,7 @@ const RemoteInputGroupInfoPage = (props) => {
                     </Container>
                 );
             } else {
-                return (
-                    <Redirect to={`/Distribute/localremote/${session.type}`} />
-                );
+                return <Redirect to={`/`} />;
             }
         } else {
             return <Redirect to='/Login' />;

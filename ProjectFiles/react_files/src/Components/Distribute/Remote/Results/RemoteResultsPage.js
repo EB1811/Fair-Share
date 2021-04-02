@@ -99,9 +99,10 @@ const RemoteResultsPage = (props) => {
                     }
                 }
 
-                // Goods or Rooms route.
+                // Rent, goods or divorce route.
                 const allocations = {};
-                if (session.type === "Rent") {
+                if (session.type === "Rent" && goodsCount === userCount) {
+                    // Extra check to make sure rent's matrix is square.
                     getRentResults(valueMatrix, session.totalCost)
                         .then((allocation) => {
                             allocation.map(
@@ -129,11 +130,11 @@ const RemoteResultsPage = (props) => {
                                     console.log("Results Saved");
                                 })
                                 .catch((err) => {
-                                    console.log(err.message);
+                                    console.log(err);
                                 });
                         })
                         .catch((err) => {
-                            console.log(err.message);
+                            console.log(err);
                         });
                 } else if (session.type === "Goods") {
                     getGoodsResults(valueMatrix)
@@ -165,11 +166,11 @@ const RemoteResultsPage = (props) => {
                                     console.log("Results Saved");
                                 })
                                 .catch((err) => {
-                                    console.log(err.message);
+                                    console.log(err);
                                 });
                         })
                         .catch((err) => {
-                            console.log(err.message);
+                            console.log(err);
                         });
                 } else if (session.type === "Divorce") {
                     getDivorceResults(valueMatrix, session.moneyAmount)
@@ -201,11 +202,11 @@ const RemoteResultsPage = (props) => {
                                     console.log("Results Saved");
                                 })
                                 .catch((err) => {
-                                    console.log(err.message);
+                                    console.log(err);
                                 });
                         })
                         .catch((err) => {
-                            console.log(err.message);
+                            console.log(err);
                         });
                 }
             }
@@ -282,9 +283,7 @@ const RemoteResultsPage = (props) => {
                     </Container>
                 );
             } else {
-                return (
-                    <Redirect to={`/Distribute/localremote/${session.type}`} />
-                );
+                return <Redirect to={``} />;
             }
         } else {
             return <Redirect to='/Login' />;

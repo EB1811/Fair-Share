@@ -48,6 +48,12 @@ const LocalInputGroupInfoPage = ({
     const checkGroup = () => {
         if (stateUserArray.length < 2) {
             setErrorMessage("Error! Must have at least 2 users.");
+        } else if (
+            // In rent sharing, the number of users and rooms must be equal.
+            goodType === "Rent" &&
+            stateUserArray.length !== stateGoodsArr.length
+        ) {
+            setErrorMessage("Error! Number of rooms and users must be equal.");
         } else {
             setErrorMessage("");
             history.push(`/Distribute/Valuations/Local/${goodType}`);
