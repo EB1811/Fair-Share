@@ -2,6 +2,7 @@ import React from "react";
 
 // React Components
 import InputMoneyInfo from "../../../Local/Divorce/InputMoneyInfo";
+import LoadingScreen from "../../../../LoadingScreen/LoadingScreen";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -78,19 +79,7 @@ const RemoteDivorce_GatherMoneyInfoPage = (props) => {
             return <Redirect to='/Login' />;
         }
     } else {
-        return (
-            <div
-                style={{
-                    height: "1000vh",
-                    width: "1000vh",
-                    position: "fixed",
-                    top: "0",
-                    left: "0",
-                    zIndex: "100",
-                    backgroundColor: "#fff",
-                }}
-            ></div>
-        );
+        return <LoadingScreen />;
     }
 };
 

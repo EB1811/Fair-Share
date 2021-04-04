@@ -3,6 +3,7 @@ import React from "react";
 // React Components
 import RemoteInputGoodsInfo from "./InputForms/RemoteInputGoodsInfo";
 import InputRoomsInfo from "../../../Local/Rent/InputRoomsInfo";
+import LoadingScreen from "../../../../LoadingScreen/LoadingScreen";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -136,19 +137,7 @@ const RemoteGatherGoodsPage = (props) => {
         }
     } else {
         // Loading.
-        return (
-            <div
-                style={{
-                    height: "1000vh",
-                    width: "1000vh",
-                    position: "fixed",
-                    top: "0",
-                    left: "0",
-                    zIndex: "100",
-                    backgroundColor: "#fff",
-                }}
-            ></div>
-        );
+        return <LoadingScreen />;
     }
 };
 export default RemoteGatherGoodsPage;

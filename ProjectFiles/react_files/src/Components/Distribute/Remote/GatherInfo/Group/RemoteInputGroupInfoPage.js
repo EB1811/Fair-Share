@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
 import ErrorAlertModal from "../../../../Notifications/ErrorAlertModal";
+import LoadingScreen from "../../../../LoadingScreen/LoadingScreen";
 
 import {
     useFirestoreConnect,
@@ -430,19 +431,7 @@ const RemoteInputGroupInfoPage = (props) => {
             return <Redirect to='/Login' />;
         }
     } else {
-        return (
-            <div
-                style={{
-                    height: "1000vh",
-                    width: "1000vh",
-                    position: "fixed",
-                    top: "0",
-                    left: "0",
-                    zIndex: "100",
-                    backgroundColor: "#fff",
-                }}
-            ></div>
-        );
+        return <LoadingScreen />;
     }
 };
 

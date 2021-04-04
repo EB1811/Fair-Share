@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+import LoadingScreen from "../../../LoadingScreen/LoadingScreen";
+
 import {
     useFirestoreConnect,
     isLoaded,
@@ -289,19 +291,7 @@ const RemoteResultsPage = (props) => {
             return <Redirect to='/Login' />;
         }
     } else {
-        return (
-            <div
-                style={{
-                    height: "1000vh",
-                    width: "1000vh",
-                    position: "fixed",
-                    top: "0",
-                    left: "0",
-                    zIndex: "100",
-                    backgroundColor: "#fff",
-                }}
-            ></div>
-        );
+        return <LoadingScreen />;
     }
 };
 
