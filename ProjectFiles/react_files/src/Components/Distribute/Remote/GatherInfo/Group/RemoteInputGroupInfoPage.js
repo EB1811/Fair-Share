@@ -9,7 +9,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
-import ErrorAlertModal from "../../../Notifications/ErrorAlertModal";
+import ErrorAlertModal from "../../../../Notifications/ErrorAlertModal";
 
 import {
     useFirestoreConnect,

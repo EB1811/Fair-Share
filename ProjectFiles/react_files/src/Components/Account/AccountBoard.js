@@ -14,6 +14,7 @@ import ChangeEmailForm from "./AccountActions/ChangeEmailForm";
 import ChangeUsernameForm from "./AccountActions/ChangeUsernameForm";
 import ChangePasswordForm from "./AccountActions/ChangePasswordForm";
 import AccountBoardPastSessionDisplay from "./AccountBoardPastSessionDisplay";
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
 
 const AccountBoard = () => {
     const firebase = useFirebase();
@@ -395,19 +396,7 @@ const AccountBoard = () => {
         }
     } else {
         // Loading screen.
-        return (
-            <div
-                style={{
-                    height: "1000vh",
-                    width: "1000vh",
-                    position: "fixed",
-                    top: "0",
-                    left: "0",
-                    zIndex: "100",
-                    backgroundColor: "#fff",
-                }}
-            ></div>
-        );
+        return <LoadingScreen />;
     }
 };
 export default AccountBoard;

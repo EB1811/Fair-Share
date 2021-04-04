@@ -33,7 +33,7 @@ import LocalResultsPage from "./Components/Distribute/Local/Results/LocalResults
 // Remote process components.
 import RemoteGatherGoodsPage from "./Components/Distribute/Remote/GatherInfo/Goods/RemoteGatherGoodsPage";
 import RemoteDivorce_GatherMoneyInfoPage from "./Components/Distribute/Remote/GatherInfo/Goods/RemoteDivorce_GatherMoneyInfoPage";
-import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/Group/RemoteInputGroupInfoPage";
+import RemoteInputGroupInfoPage from "./Components/Distribute/Remote/GatherInfo/Group/RemoteInputGroupInfoPage";
 import Remote_SetValuationsPage from "./Components/Distribute/Remote/SetValuations/Remote_SetValuationsPage";
 import RemoteResultsPage from "./Components/Distribute/Remote/Results/RemoteResultsPage";
 

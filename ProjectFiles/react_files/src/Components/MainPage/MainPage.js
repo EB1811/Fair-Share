@@ -25,11 +25,8 @@ import { Link } from "react-router-dom";
 
 //TODO: [A301212-85] Dependencies outdated. Update to React 17.
 //TODO: [A301212-45] Build the learning page and add information about it into main page.
-//TODO: [A301212-86] Build loading screen for all pages.
 //TODO: [A301212-87] Ability to reset password in login screen.
 ////
-//? Check if 'seperate finances' need its own distribution component (probably for add users (since only 2 users)).
-//? Questionnaire 1 or 2 page components depends on if questions are same or different.
 //? Create a value matrix in input valuations component instead of results page.
 //? Wait for auth to load before rendering anything in App.js.
 //? More username error types e.g., must be over 6 characters.

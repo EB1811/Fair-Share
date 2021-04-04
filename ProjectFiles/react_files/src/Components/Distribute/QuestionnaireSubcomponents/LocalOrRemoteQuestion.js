@@ -15,7 +15,6 @@ import questionnaireActions from "../../../ReduxStore/Actions/questionnaireActio
 import shareLocal from "../../../Images/meeting-local-group_ICON.svg";
 import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
 
-//TODO: [A301212-124] Reset redux store variables when entering this page.
 const LocalOrRemoteQuestion = (props) => {
     let { goodType } = useParams();
     const firestore = useFirestore();
