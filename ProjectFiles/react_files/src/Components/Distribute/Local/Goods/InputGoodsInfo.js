@@ -121,7 +121,8 @@ const InputGoodsInfo = (props) => {
                                 key={good.Good}
                                 body
                             >
-                                {good.Good} | {good.estValue}
+                                {good.Good} {good.estValue ? "| " : " "}
+                                {good.estValue}
                                 <button
                                     className='close'
                                     onClick={() => deleteGood(good.Good)}

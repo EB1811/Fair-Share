@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 
 const InputRoomsInfo = (props) => {
     // Information about goods.
+    // Uses session info if it exists (remote sharing).
     const [houseValue, setHouseValue] = useState(
         props.session
             ? props.session.totalCost

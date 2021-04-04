@@ -32,7 +32,6 @@ import { Link } from "react-router-dom";
 //? More username error types e.g., must be over 6 characters.
 //? Maybe Re-authenticate a user rather than ask to login.
 ////
-//// Going back into group email page adds another to the group. Probably just missing store check to see if userId exists before adding user.
 
 const MainPage = () => {
     // Scrolling.

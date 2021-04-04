@@ -64,6 +64,14 @@ const GroupValuesReducer = (state = initState, action) => {
                 ...state,
                 allocations: newAllocationsArr,
             };
+        case "RESET":
+            console.log("Success", action.type);
+
+            return {
+                ...state,
+                allocations: [],
+                userArray: [],
+            };
         default:
             return state;
     }

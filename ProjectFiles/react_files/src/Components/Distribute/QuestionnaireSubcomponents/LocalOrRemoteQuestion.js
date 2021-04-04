@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -11,6 +11,7 @@ import { useFirestore } from "react-redux-firebase";
 
 import { useDispatch, useSelector } from "react-redux";
 import questionnaireActions from "../../../ReduxStore/Actions/questionnaireActions";
+import resetDistributeAction from "../../../ReduxStore/Actions/resetDistributeAction";
 
 import shareLocal from "../../../Images/meeting-local-group_ICON.svg";
 import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
@@ -21,6 +22,13 @@ const LocalOrRemoteQuestion = (props) => {
 
     const auth = useSelector((state) => state.firebase.auth);
     const dispatch = useDispatch();
+
+    // Reset goods info upon entering.
+    useEffect(() => {
+        dispatch(resetDistributeAction.resetInfo());
+        // Only execute once.
+        // eslint-disable-next-line
+    }, []);
 
     // Set the group info gathering method (local or remote) then go to next question page. User must be logged in to use the remote option.
     const setMethod = (method) => {
