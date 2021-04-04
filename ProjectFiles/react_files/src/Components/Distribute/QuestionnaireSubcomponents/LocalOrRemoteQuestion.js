@@ -26,7 +26,7 @@ const LocalOrRemoteQuestion = (props) => {
     // Reset goods info upon entering.
     useEffect(() => {
         dispatch(resetDistributeAction.resetInfo());
-        // Only execute once.
+        // Only execute once so
         // eslint-disable-next-line
     }, []);
 

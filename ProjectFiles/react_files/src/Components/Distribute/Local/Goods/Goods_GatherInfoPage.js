@@ -39,7 +39,7 @@ const Goods_GatherInfoPage = (props) => {
             </Container>
         );
     } else {
-        return <Redirect to='/Distribute/Questions/Local/Goods/0' />;
+        return <Redirect to='/Distribute/localremote/Goods' />;
     }
 };
 

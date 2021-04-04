@@ -56,7 +56,7 @@ const SetValuationsPage = (props) => {
             </Container>
         );
     } else {
-        return <Redirect to='/' />;
+        return <Redirect to={`/Distribute/localremote/${goodType}`} />;
     }
 };
 

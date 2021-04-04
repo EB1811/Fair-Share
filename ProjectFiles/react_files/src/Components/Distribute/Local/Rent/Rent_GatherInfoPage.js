@@ -37,7 +37,7 @@ const Rent_GatherInfoPage = (props) => {
             </Container>
         );
     } else {
-        return <Redirect to='/Distribute/Questions/Local/Rent/0' />;
+        return <Redirect to='/Distribute/localremote/Rent' />;
     }
 };
 

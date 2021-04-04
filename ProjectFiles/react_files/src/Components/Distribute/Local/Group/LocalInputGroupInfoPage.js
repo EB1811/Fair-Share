@@ -145,7 +145,7 @@ const LocalInputGroupInfoPage = ({
             </Container>
         );
     } else {
-        return <Redirect to='/' />;
+        return <Redirect to={`/Distribute/localremote/${goodType}`} />;
     }
 };
 

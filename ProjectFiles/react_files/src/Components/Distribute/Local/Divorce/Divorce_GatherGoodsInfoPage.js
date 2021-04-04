@@ -39,7 +39,7 @@ const Divorce_GatherGoodsInfoPage = (props) => {
             </Container>
         );
     } else {
-        return <Redirect to='/Distribute/Questions/Local/Goods/0' />;
+        return <Redirect to='/Distribute/localremote/Divorce' />;
     }
 };
 
