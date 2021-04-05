@@ -67,22 +67,20 @@ const SessionNotificationOverlay = ({ auth, history }) => {
     if (sessionInvites && auth.isLoaded) {
         if (Object.entries(sessionInvites.invites).length > 0) {
             return (
-                <div
-                    style={{
-                        position: "absolute",
-                        right: "10px",
-                        zIndex: "10",
-                    }}
-                >
-                    {Object.entries(sessionInvites.invites).map((invite) => (
-                        <InviteToSessionNotificationModal
-                            key={invite[0]}
-                            sessionID={invite[0]}
-                            info={invite[1]}
-                            joinSession={joinSession}
-                            declineSession={declineSession}
-                        />
-                    ))}
+                <div className='notificationOverlay'>
+                    <div className='stickynot'>
+                        {Object.entries(sessionInvites.invites).map(
+                            (invite) => (
+                                <InviteToSessionNotificationModal
+                                    key={invite[0]}
+                                    sessionID={invite[0]}
+                                    info={invite[1]}
+                                    joinSession={joinSession}
+                                    declineSession={declineSession}
+                                />
+                            )
+                        )}
+                    </div>
                 </div>
             );
         } else {

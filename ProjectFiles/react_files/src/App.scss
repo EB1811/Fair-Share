@@ -340,3 +340,32 @@ a:visited {
 .dropdown-item {
     color: #777777 !important;
 }
+
+/* Notification */
+.notificationOverlay {
+    position: absolute;
+    right: 10px;
+    height: 100%;
+    z-index: 10;
+}
+.stickynot {
+    position: sticky;
+    top: 5px;
+}
+@media only screen and (max-width: 774px) {
+    .notificationOverlay {
+        max-width: 250px;
+    }
+}
+/* Toasts */
+.toast {
+    background-color: rgba(250, 250, 250, 0.99);
+    border-radius: 0;
+    margin: 5px 0;
+}
+.close {
+    display: none;
+}
+.toast-header {
+    padding: 7.5px 0;
+}

@@ -13,22 +13,24 @@ const InviteToSessionNotificationModal = ({
     return (
         <Toast>
             <Toast.Header>
-                <strong className='mr-auto'>Invitation</strong>
+                <strong className='mx-auto'>Share Invitation</strong>
             </Toast.Header>
             <Toast.Body>
-                <p className='text-muted' style={{ fontSize: "0.9rem" }}>
+                <p
+                    className='text-muted mx-auto'
+                    style={{ fontSize: "0.9rem" }}
+                >
                     {info.ownerUsername} has invited you to a share session.
                 </p>
-                <hr />
                 <Button
-                    variant='success'
+                    variant='outline-success'
                     size='sm'
                     onClick={() => joinSession(sessionID)}
                 >
                     Accept
                 </Button>
                 <Button
-                    variant='danger'
+                    variant='outline-danger'
                     size='sm'
                     className='ml-2'
                     onClick={() => declineSession(sessionID)}

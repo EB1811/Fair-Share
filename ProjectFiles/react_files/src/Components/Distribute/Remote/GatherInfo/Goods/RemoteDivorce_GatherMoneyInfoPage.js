@@ -40,7 +40,7 @@ const RemoteDivorce_GatherMoneyInfoPage = (props) => {
                 )
                 .then(() => {
                     props.history.push(
-                        `/Distribute/GroupInfo/Remote/${sessionID}/Divorce`
+                        `/Distribute/GroupInfo/Remote/${sessionID}`
                     );
                 })
                 .catch((err) => {
