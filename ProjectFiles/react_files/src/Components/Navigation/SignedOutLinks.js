@@ -17,6 +17,11 @@ const SignedOutLinks = (props) => {
                     className='nav-link'
                     style={{ textDecoration: "none" }}
                     to='/Login'
+                    onClick={() =>
+                        setTimeout(() => {
+                            props.setExpanded(false);
+                        }, 50)
+                    }
                 >
                     Login
                 </NavLink>
@@ -26,6 +31,11 @@ const SignedOutLinks = (props) => {
                     className='nav-link'
                     style={{ textDecoration: "none", cursor: "pointer" }}
                     to='/CreateAccount'
+                    onClick={() =>
+                        setTimeout(() => {
+                            props.setExpanded(false);
+                        }, 50)
+                    }
                 >
                     Create Account
                 </NavLink>

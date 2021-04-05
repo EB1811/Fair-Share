@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // React Components
 import SignedInLinks from "./SignedInLinks";
@@ -19,21 +19,49 @@ import { connect } from "react-redux";
 //TODO: [A301212-113] Collapse navbar when link is selected.
 
 const NavCom = (props) => {
+    const [expanded, setExpanded] = useState(false);
+
     return (
-        <NavBar expand='md' style={{ backgroundColor: "#fff" }} variant='light'>
+        <NavBar
+            expanded={expanded}
+            expand='md'
+            style={{ backgroundColor: "#fff" }}
+            variant='light'
+        >
             <Container fluid>
                 <Navbar.Brand>
                     <Link style={{ textDecoration: "none" }} to='/'>
                         <span className='brandName'>Fair / Share</span>
                     </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Toggle
+                    aria-controls='basic-navbar-nav'
+                    onClick={() => setExpanded(expanded ? false : "expanded")}
+                />
                 <Navbar.Collapse id='basic-navbar-nav' className='ml-3'>
                     <Nav className='mr-auto'>
-                        <NavLink className='nav-link' exact to='/'>
+                        <NavLink
+                            className='nav-link'
+                            exact
+                            to='/'
+                            onClick={() =>
+                                setTimeout(() => {
+                                    setExpanded(false);
+                                }, 50)
+                            }
+                        >
                             Home
                         </NavLink>
-                        <NavLink className='nav-link' exact to='/Learn'>
+                        <NavLink
+                            className='nav-link'
+                            exact
+                            to='/Learn'
+                            onClick={() =>
+                                setTimeout(() => {
+                                    setExpanded(false);
+                                }, 50)
+                            }
+                        >
                             Learn
                         </NavLink>
                         <span style={{ padding: "0.5rem", color: "#777777" }}>
@@ -53,27 +81,45 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             to='/Distribute/localremote/Rent'
+                            onClick={() =>
+                                setTimeout(() => {
+                                    setExpanded(false);
+                                }, 50)
+                            }
                         >
                             Rent
                         </NavLink>
                         <NavLink
                             className='nav-link'
                             to='/Distribute/localremote/Goods'
+                            onClick={() =>
+                                setTimeout(() => {
+                                    setExpanded(false);
+                                }, 50)
+                            }
                         >
                             Goods
                         </NavLink>
                         <NavLink
                             className='nav-link'
                             to='/Distribute/localremote/Divorce'
+                            onClick={() =>
+                                setTimeout(() => {
+                                    setExpanded(false);
+                                }, 50)
+                            }
                         >
                             Finances
                         </NavLink>
                     </Nav>
                     {props.authStatus.isLoaded &&
                         (props.authStatus.uid ? (
-                            <SignedInLinks profile={props.profile} />
+                            <SignedInLinks
+                                profile={props.profile}
+                                setExpanded={setExpanded}
+                            />
                         ) : (
-                            <SignedOutLinks />
+                            <SignedOutLinks setExpanded={setExpanded} />
                         ))}
                 </Navbar.Collapse>
             </Container>

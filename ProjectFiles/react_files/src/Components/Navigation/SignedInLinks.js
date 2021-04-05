@@ -16,6 +16,9 @@ const SignedInLinks = (props) => {
     const userLetter = props.profile.username ? props.profile.username : "";
 
     const logout = () => {
+        setTimeout(() => {
+            props.setExpanded(false);
+        }, 50);
         firebase.logout().then(() => {
             props.logoutSuccess();
         });
@@ -31,6 +34,11 @@ const SignedInLinks = (props) => {
                         className='nav-link'
                         style={{ textDecoration: "none" }}
                         to='/Account'
+                        onClick={() =>
+                            setTimeout(() => {
+                                props.setExpanded(false);
+                            }, 50)
+                        }
                     >
                         {userLetter}
                     </NavLink>
