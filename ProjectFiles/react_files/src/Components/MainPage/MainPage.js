@@ -24,7 +24,6 @@ import titleImage from "../../Images/group-selfie-happy-fair.svg";
 import { Link } from "react-router-dom";
 
 //TODO: [A301212-85] Dependencies outdated. Update to React 17.
-//TODO: [A301212-45] Build the learning page and add information about it into main page.
 //TODO: [A301212-87] Ability to reset password in login screen.
 ////
 //? Create a value matrix in input valuations component instead of results page.

@@ -8,7 +8,7 @@ import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 // Import all react components.
 import MainPage from "./Components/MainPage/MainPage";
 import About from "./Components/MainPage/About";
-import LearnMainPage from "./Components/Learn/LearnMainPage";
+import LearnMainPage from "./Components/LearningPage/LearnMainPage";
 import NavCom from "./Components/Navigation/NavCom";
 import Footer from "./Components/Navigation/Footer";
 import CreateAccount from "./Components/Account/CreateAccount";
