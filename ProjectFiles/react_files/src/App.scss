@@ -209,7 +209,14 @@ h6 {
     color: #fff;
 }
 .footerLink:hover {
-    color: #5eeb78;
+    color: #7ef17e;
+}
+.bigTextLink {
+    font-weight: 700;
+    color: #333;
+}
+.bigTextLink:hover {
+    text-decoration: underline;
 }
 a:active,
 a:visited {
@@ -233,7 +240,10 @@ a:visited {
     background-color: #eeeeee;
     color: #000000;
 }
-
+.divBlockWithContentGreen {
+    background-color: #7ef17e;
+    color: #333;
+}
 .centerCard {
     background-color: #fff;
     padding: 100px 50px;

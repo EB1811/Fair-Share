@@ -37,9 +37,6 @@ const Footer = () => {
                     >
                         <h2 className='footerLink'>Separate Finances</h2>
                     </a>
-                    <a style={{ textDecoration: "none" }} href='/About'>
-                        <h2 className='footerLink'>About</h2>
-                    </a>
                     <br />
                     <a style={{ textDecoration: "none" }} href='/Login'>
                         <h2 className='footerLink'>Login</h2>

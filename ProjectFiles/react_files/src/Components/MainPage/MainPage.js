@@ -82,7 +82,6 @@ const MainPage = () => {
                     />
                 </Col>
             </Row>
-
             <Row
                 className='justify-content-center align-items-center p-4'
                 style={{ minHeight: "55vh", backgroundColor: "#fff" }}
@@ -258,7 +257,7 @@ const MainPage = () => {
                                 style={{ width: "125px", height: "125px" }}
                             />
                             <h5 className='descText'>
-                                1. Enter info about your items and group.
+                                1. Enter info about your items.
                             </h5>
                         </Col>
                         <Col sm='6' md='3' className='my-2'>
@@ -268,7 +267,7 @@ const MainPage = () => {
                                 style={{ width: "125px", height: "125px" }}
                             />
                             <h5 className='descText'>
-                                2. Complete a short questionnaire.
+                                2. Invite others to your group.
                             </h5>
                         </Col>
                         <Col sm='6' md='3' className='my-2'>
@@ -291,6 +290,19 @@ const MainPage = () => {
                         </Col>
                     </Row>
                 </Container>
+            </Row>
+            <Row
+                className='justify-content-center divBlockWithContentGreen align-items-center p-4'
+                style={{ minHeight: "20vh" }}
+            >
+                <Col>
+                    <h5>Want to learn more about the underlying algorithms?</h5>
+                    <a href='/Learn' style={{ textDecoration: "none" }}>
+                        <h4 className='bigTextLink'>
+                            Go to our learning page.
+                        </h4>
+                    </a>
+                </Col>
             </Row>
         </Container>
     );
