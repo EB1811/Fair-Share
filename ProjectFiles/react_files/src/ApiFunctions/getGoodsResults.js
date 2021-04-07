@@ -12,7 +12,8 @@ e.g.,
 //* Returns list of objects - [{who: Row-Of-Value-Matrix, goodsArray: [Column-Of-Value-Matrix]}...]
 */
 export const getGoodsResults = async (valueMatrix) => {
-    const fetchURL = "http://localhost:5000/api/getGoodsAllocation";
+    const fetchURL =
+        "https://fair-share-allocation-api.herokuapp.com/api/getGoodsAllocation";
     const requestOptions = {
         method: "POST",
         headers: {

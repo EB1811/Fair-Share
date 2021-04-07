@@ -13,7 +13,8 @@ The divorce request also needs to pass in the total amount of money there is to 
 //* Returns list of objects - [{who: Row-Of-Value-Matrix, goodsArray: [Column-Of-Value-Matrix], money: Amount}...]
 */
 export const getDivorceResults = async (valueMatrix, moneyAmount) => {
-    const fetchURL = "http://localhost:5000/api/getGoodsAndMoneyAllocation";
+    const fetchURL =
+        "https://fair-share-allocation-api.herokuapp.com/api/getGoodsAndMoneyAllocation";
     const requestOptions = {
         method: "POST",
         headers: {

@@ -13,7 +13,8 @@ e.g.,
 //* Returns list of objects - [{who: Row-Of-Value-Matrix, room: Column-Of-Value-Matrix, price: number, }...]
 */
 export const getRentResults = async (valueMatrix, totalCost) => {
-    const fetchURL = "http://localhost:5000/api/getRoomsAllocation";
+    const fetchURL =
+        "https://fair-share-allocation-api.herokuapp.com/api/getRoomsAllocation";
     const requestOptions = {
         method: "POST",
         headers: {
