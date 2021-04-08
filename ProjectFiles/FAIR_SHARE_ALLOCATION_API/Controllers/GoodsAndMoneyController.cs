@@ -15,7 +15,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
         [HttpPost]
         public ActionResult <GoodsAndMoney_Allocation> postGetGoodsAndMoneyAllocation(GetGoodsAndMoneyCommand givenValue)
         {
-            Console.WriteLine("Goods & Money Share Requested");
+            Console.WriteLine("Goods & Money Share Requested at " + DateTime.Now.ToString("h:mm:ss tt"));
             int[][] valueMatrix = givenValue.valueMatrix;
             int moneyAmount = givenValue.moneyAmount;
             if(moneyAmount > 0 && valueMatrix.Length == 2 && valueMatrix[0].Length > 0) {

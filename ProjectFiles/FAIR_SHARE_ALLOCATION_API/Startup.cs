@@ -29,7 +29,7 @@ namespace FAIR_SHARE_ALLOCATION_API
         {
             services.AddCors(options => {
                 options.AddPolicy(name: MyAllowSpecificOrigins, builder => {
-                    builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                    builder.WithOrigins("https://fairshare-48f9f.web.app", "https://fairshare-48f9f.firebaseapp.com").AllowAnyHeader().AllowAnyMethod();
                 });
             });
             services.AddControllers();

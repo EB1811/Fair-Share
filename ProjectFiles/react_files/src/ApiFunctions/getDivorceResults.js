@@ -19,7 +19,7 @@ export const getDivorceResults = async (valueMatrix, moneyAmount) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Origin: "http://localhost:3000",
+            Origin: "https://fairshare-48f9f.web.app",
         },
         body: JSON.stringify({
             valueMatrix: valueMatrix,

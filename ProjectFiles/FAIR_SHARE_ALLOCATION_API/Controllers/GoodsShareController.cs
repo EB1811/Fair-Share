@@ -15,7 +15,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
         [HttpPost]
         public ActionResult <Goods_Allocation> postGetGoodsAllocation(GetGoodsCommand givenValue)
         {
-            Console.WriteLine("Goods Share Requested");
+            Console.WriteLine("Goods Share Requested " + DateTime.Now.ToString("h:mm:ss tt"));
             int[][] valueMatrix = givenValue.valueMatrix;
             Goods_Allocation[] result = _goodsRepository.getGoodsAllocation(valueMatrix);
 
