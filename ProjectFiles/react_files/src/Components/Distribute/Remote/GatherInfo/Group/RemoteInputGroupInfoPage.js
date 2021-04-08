@@ -183,9 +183,6 @@ const RemoteInputGroupInfoPage = (props) => {
         e.preventDefault();
         // Find user in 'users' collection.
         const user = firebaseUsers.filter((user) => user.email === userEmail);
-        console.log(profile.email);
-        console.log(user.email);
-        console.log(userEmail);
         // Make sure user is not self and user exists.
         if (profile.email !== userEmail && user.length > 0) {
             const invitedUsers = session.invitedUsers

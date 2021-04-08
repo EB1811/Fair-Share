@@ -8,7 +8,7 @@ const initState = {
 const distGoodsInfoReducer = (state = initState, action) => {
     switch (action.type) {
         case "ADD_ROOMS":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             // Create array of rooms based on how many goods there are.
             var tempRoomsArr = [];
@@ -24,7 +24,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 goodType: r,
             };
         case "ADD_GOODS":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             // Add good name to goods array by first turning it into a good object.
             var tempGoodsArr = [...state.goodsArray];
@@ -57,7 +57,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 goodType: g,
             };
         case "DELETE_GOOD":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             const newGoodsArr = [...state.goodsArray].filter((good) => {
                 return good.Good !== action.goodName;
@@ -69,7 +69,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
             };
         // Adding the total value of the house in case of sharing rent method.
         case "UPDATE_TOTAL_VALUE":
-            console.log("Success ", action.type);
+            //console.log("Success ", action.type);
             var newTotal = action.i;
 
             return {
@@ -78,7 +78,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
             };
         // For adding money to share in case of divorce method.
         case "UPDATE_MONEY_TO_SHARE":
-            console.log("Success ", action.type);
+            //console.log("Success ", action.type);
             var newMoneyAmount = action.moneyAmount;
 
             return {
@@ -86,7 +86,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 moneyAmount: newMoneyAmount,
             };
         case "UPDATE_VALUATIONS":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             // Create array of objects based on how many goods there are.
             var tempUpdatedArr = action.updatedArr;
@@ -96,7 +96,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 goodsArray: tempUpdatedArr,
             };
         case "RESET":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             return {
                 ...state,

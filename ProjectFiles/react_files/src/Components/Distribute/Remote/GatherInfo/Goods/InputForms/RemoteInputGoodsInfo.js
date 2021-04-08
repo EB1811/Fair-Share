@@ -59,7 +59,7 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
                         { goods: newGoodsArr, totalCost: newGoodsTotalVal }
                     )
                     .then(() => {
-                        console.log(session);
+                        //console.log(session);
 
                         setGoodName("");
                         setGoodValue("");
@@ -105,14 +105,14 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
                         { goods: goodsArr, totalCost: goodsTotalVal }
                     )
                     .then(() => {
-                        console.log(session);
+                        //console.log(session);
 
                         setGoodName("");
                         setGoodValue("");
                         setErrorMessage("");
                     })
                     .catch((err) => {
-                        console.log(err.message);
+                        //console.log(err.message);
 
                         setGoodName("");
                         setGoodValue("");

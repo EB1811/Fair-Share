@@ -56,7 +56,7 @@ const RemoteGatherGoodsPage = (props) => {
                     { totalCost: parseInt(totalCost), goods: goods }
                 )
                 .then(() => {
-                    console.log(session);
+                    //console.log(session);
                     props.history.push(
                         `/Distribute/GroupInfo/Remote/${sessionID}`
                     );

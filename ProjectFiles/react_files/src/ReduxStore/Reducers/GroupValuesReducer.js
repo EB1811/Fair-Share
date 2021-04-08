@@ -12,7 +12,7 @@ const initState = {
 const GroupValuesReducer = (state = initState, action) => {
     switch (action.type) {
         case "ADD_USER":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             const tempUserArr = [...state.userArray];
             tempUserArr.push({
@@ -28,7 +28,7 @@ const GroupValuesReducer = (state = initState, action) => {
         case "ADD_INIT_USER":
             const tempInitUserArr = [...state.userArray];
             if (tempInitUserArr.length < 1) {
-                console.log("Success", action.type);
+                //console.log("Success", action.type);
                 tempInitUserArr.push({
                     userEmail: String(action.email),
                     username: String(action.username),
@@ -41,7 +41,7 @@ const GroupValuesReducer = (state = initState, action) => {
                 userArray: tempInitUserArr,
             };
         case "DELETE_USER":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             const newUserArr = [...state.userArray].filter((user) => {
                 if (user.userEmail) {
@@ -56,7 +56,7 @@ const GroupValuesReducer = (state = initState, action) => {
                 userArray: newUserArr,
             };
         case "SET_ALLOCATIONS":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             const newAllocationsArr = [...action.allocationArr];
 
@@ -65,7 +65,7 @@ const GroupValuesReducer = (state = initState, action) => {
                 allocations: newAllocationsArr,
             };
         case "RESET":
-            console.log("Success", action.type);
+            //console.log("Success", action.type);
 
             return {
                 ...state,
