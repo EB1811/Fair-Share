@@ -1,5 +1,0 @@
-//! BUG: [A301212-88] If delete() fails, user info in firestore is still deleted. Can solve with a dedicated reauthenticate.
-
-//! If the user clicks the email link asking to revert email change, profile and auth emails are out of sync, i.e., profile email is not reverted.
-
-//! Known issue with react-redux-firebase: https://github.com/prescottprue/react-redux-firebase/issues/859

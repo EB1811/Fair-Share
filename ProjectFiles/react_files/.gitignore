@@ -10,7 +10,7 @@
 
 # production
 /build
-/public
+/firebaseHost
 
 # misc
 .DS_Store

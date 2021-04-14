@@ -96,8 +96,6 @@ const distGoodsInfoReducer = (state = initState, action) => {
                 goodsArray: tempUpdatedArr,
             };
         case "RESET":
-            //console.log("Success", action.type);
-
             return {
                 ...state,
                 goodsArray: [],
