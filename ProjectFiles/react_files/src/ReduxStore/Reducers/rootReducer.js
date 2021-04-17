@@ -4,7 +4,6 @@ import { combineReducers } from "redux";
 // Reducers.
 import distGoodsInfoReducer from "./distGoodsInfoReducer";
 import GroupValuesReducer from "./GroupValuesReducer";
-import distQuestionsReducer from "./distQuestionsReducer";
 
 // Firebase Reducer.
 import { firestoreReducer } from "redux-firestore";
@@ -13,7 +12,6 @@ import { firebaseReducer } from "react-redux-firebase";
 const rootReducer = combineReducers({
     distGoodsInfo: distGoodsInfoReducer,
     distGroupInfo: GroupValuesReducer,
-    questionnaireAnswers: distQuestionsReducer,
     // Firebase
     firebase: firebaseReducer,
     firestore: firestoreReducer,
