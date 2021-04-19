@@ -12,17 +12,17 @@ import ScrollToTop from "./Components/Helpers/ScrollToTop";
 
 // Loading Page fallback.
 import LoadingScreen from "./Components/LoadingScreen/LoadingScreen";
+// Navigation bar.
 import NavCom from "./Components/Navigation/NavCom";
 
-// Import all react components. Lazy.
+//* Import all react components. Lazy.
 const MainPage = lazy(() => import("./Components/MainPage/MainPage"));
 const About = lazy(() => import("./Components/MainPage/About"));
 const LearnMainPage = lazy(() =>
     import("./Components/LearningPage/LearnMainPage")
 );
-
 const Footer = lazy(() => import("./Components/Navigation/Footer"));
-
+// Account.
 const CreateAccountPage = lazy(() =>
     import("./Components/Account/CreateAccountPage")
 );
@@ -30,18 +30,15 @@ const LoginPage = lazy(() => import("./Components/Account/LoginPage"));
 const AccountBoardPage = lazy(() =>
     import("./Components/Account/AccountBoardPage")
 );
-
 const SessionNotificationOverlay = lazy(() =>
     import("./Components/Notifications/SessionNotificationOverlay")
 );
-
 // Distribute
 const LocalOrRemoteQuestionPage = lazy(() =>
     import(
         "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestionPage"
     )
 );
-
 // Local..
 const Goods_GatherInfoPage = lazy(() =>
     import("./Components/Distribute/Local/Goods/Goods_GatherInfoPage")
@@ -64,7 +61,6 @@ const SetValuationsPage = lazy(() =>
 const LocalResultsPage = lazy(() =>
     import("./Components/Distribute/Local/Results/LocalResultsPage")
 );
-
 // Remote.
 const RemoteGatherGoodsPage = lazy(() =>
     import(

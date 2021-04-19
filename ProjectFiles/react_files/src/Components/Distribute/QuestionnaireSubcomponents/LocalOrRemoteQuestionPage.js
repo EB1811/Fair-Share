@@ -84,6 +84,7 @@ const LocalOrRemoteQuestion = (props) => {
                                     className='SVGButton'
                                     alt='meeting-local-group_ICON'
                                     onClick={() => setMethod("local")}
+                                    data-testid='start_local'
                                 />
                                 <p
                                     className='mt-3 text-muted'
@@ -100,6 +101,7 @@ const LocalOrRemoteQuestion = (props) => {
                                     className='SVGButton'
                                     alt='share-online-group_ICON.svg'
                                     onClick={() => setMethod("remote")}
+                                    data-testid='start_remote'
                                 />
                                 <p
                                     className='mt-3 text-muted'

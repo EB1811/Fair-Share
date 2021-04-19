@@ -285,7 +285,7 @@ const RemoteResultsPage = (props) => {
                     </Container>
                 );
             } else {
-                return <Redirect to={``} />;
+                return <Redirect to={"/"} />;
             }
         } else {
             return <Redirect to='/Login' />;
