@@ -23,18 +23,22 @@ const LearnMainPage = lazy(() =>
 
 const Footer = lazy(() => import("./Components/Navigation/Footer"));
 
-const CreateAccount = lazy(() => import("./Components/Account/CreateAccount"));
-const Login = lazy(() => import("./Components/Account/Login"));
-const AccountBoard = lazy(() => import("./Components/Account/AccountBoard"));
+const CreateAccountPage = lazy(() =>
+    import("./Components/Account/CreateAccountPage")
+);
+const LoginPage = lazy(() => import("./Components/Account/LoginPage"));
+const AccountBoardPage = lazy(() =>
+    import("./Components/Account/AccountBoardPage")
+);
 
 const SessionNotificationOverlay = lazy(() =>
     import("./Components/Notifications/SessionNotificationOverlay")
 );
 
 // Distribute
-const LocalOrRemoteQuestion = lazy(() =>
+const LocalOrRemoteQuestionPage = lazy(() =>
     import(
-        "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestion"
+        "./Components/Distribute/QuestionnaireSubcomponents/LocalOrRemoteQuestionPage"
     )
 );
 
@@ -113,7 +117,7 @@ function App() {
                     <Route
                         exact
                         path='/Distribute/localremote/:goodType'
-                        component={LocalOrRemoteQuestion}
+                        component={LocalOrRemoteQuestionPage}
                     />
                     <Route
                         exact
@@ -181,10 +185,10 @@ function App() {
                     <Route
                         exact
                         path='/CreateAccount'
-                        component={CreateAccount}
+                        component={CreateAccountPage}
                     />
-                    <Route exact path='/Login' component={Login} />
-                    <Route exact path='/Account' component={AccountBoard} />
+                    <Route exact path='/Login' component={LoginPage} />
+                    <Route exact path='/Account' component={AccountBoardPage} />
                     <Route render={() => <Redirect to='/' />} />
                 </Switch>
             </Suspense>
