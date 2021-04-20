@@ -14,12 +14,17 @@ e.g.,
 */
 export const getRentResults = async (valueMatrix, totalCost) => {
     const fetchURL =
-        "https://fair-share-allocation-api.herokuapp.com/api/getRoomsAllocation";
+        process.env.NODE_ENV === "production"
+            ? "https://fair-share-allocation-api.herokuapp.com/api/getRoomsAllocation"
+            : "http://localhost:5000/api/getRoomsAllocation";
     const requestOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Origin: "https://fairshare-48f9f.web.app",
+            Origin:
+                process.env.NODE_ENV === "production"
+                    ? "https://fairshare-48f9f.web.app"
+                    : "http://localhost:3000",
         },
         body: JSON.stringify({
             valueMatrix: valueMatrix,

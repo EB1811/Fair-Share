@@ -13,12 +13,17 @@ e.g.,
 */
 export const getGoodsResults = async (valueMatrix) => {
     const fetchURL =
-        "https://fair-share-allocation-api.herokuapp.com/api/getGoodsAllocation";
+        process.env.NODE_ENV === "production"
+            ? "https://fair-share-allocation-api.herokuapp.com/api/getGoodsAllocation"
+            : "http://localhost:5000/api/getGoodsAllocation";
     const requestOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Origin: "https://fairshare-48f9f.web.app",
+            Origin:
+                process.env.NODE_ENV === "production"
+                    ? "https://fairshare-48f9f.web.app"
+                    : "http://localhost:3000",
         },
         body: JSON.stringify({
             valueMatrix: valueMatrix,

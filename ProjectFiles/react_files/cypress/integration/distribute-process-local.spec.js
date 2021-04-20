@@ -7,23 +7,6 @@ describe("Local sharing process", () => {
     });
     */
 
-    // Error message on empty group.
-    /*
-    it("gives an error when group is empty", () => {
-        cy.window().its("store").invoke("dispatch", {
-            type: "UPDATE_MONEY_TO_SHARE",
-            moneyAmount: 100,
-        });
-
-        cy.window()
-            .its("store")
-            .invoke("getState")
-            .its("distGoodsInfo")
-            .its("moneyAmount")
-            .should("equal", 100);
-    });
-    */
-
     // Local rent process up to interacting with api.
     it("Input house and group info, and their everybody's valuations correctly", () => {
         cy.visit("/Distribute/localremote/Rent");
@@ -34,7 +17,7 @@ describe("Local sharing process", () => {
         cy.get("[data-testid=input_rooms_amount]").clear().type("2");
         // Enter house cost.
         cy.get("[data-testid=input_house_cost]").clear().type("1000");
-        // Continue to group info page.
+        // Continue to group info page and check store has updated.
         cy.get("[data-testid=submit").click().should("not.exist");
         cy.window()
             .its("store")
@@ -57,7 +40,7 @@ describe("Local sharing process", () => {
         cy.get("[data-testid=input_group_member]").type("user 2");
         cy.get("[data-testid=add_group_member]").click();
         cy.contains("user 2").should("exist");
-        // Continue to valuations page.
+        // Continue to valuations page and check store has updated.
         cy.get("[data-testid=submit]").click().should("not.exist");
         cy.window()
             .its("store")
@@ -79,7 +62,7 @@ describe("Local sharing process", () => {
             .invoke("val", 250)
             .trigger("input"); //!
         cy.get("[data-testid=submit]").click();
-        // Set valuations for member 2 and check state.
+        // Set valuations for member 2 and check store is correctly set, then continue.
         cy.contains("user 2").should("exist");
         cy.contains("Room 1")
             .next()
@@ -91,7 +74,6 @@ describe("Local sharing process", () => {
             .as("range")
             .invoke("val", 700)
             .trigger("input"); //!
-        // Shoule be true to pass to api.
         cy.window()
             .its("store")
             .invoke("getState")
@@ -115,5 +97,16 @@ describe("Local sharing process", () => {
                     username: "user 2",
                 },
             ]);
+        cy.get("[data-testid=submit]").click();
+
+        // Results should be correct.
+        cy.contains("user 1")
+            .find("span")
+            .should("contain", "Room 1")
+            .and("contain", "$525");
+        cy.contains("user 2")
+            .find("span")
+            .should("contain", "Room 2")
+            .and("contain", "$475");
     });
 });
