@@ -60,6 +60,7 @@ ReactDOM.render(
 serviceWorker.unregister();
 
 // expose store when run in Cypress
-if (window.Cypress) {
+const testing = true;
+if (window.Cypress && testing === true) {
     window.store = reduxStore;
 }

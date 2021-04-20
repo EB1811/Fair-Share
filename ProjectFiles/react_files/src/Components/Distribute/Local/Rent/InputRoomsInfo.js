@@ -60,6 +60,7 @@ const InputRoomsInfo = (props) => {
                     type='number'
                     value={roomCount}
                     onChange={(e) => setRoomCount(e.target.value)}
+                    data-testid='input_rooms_amount'
                 />
             </Form.Group>
             <Form.Group controlId='addGoodsTValue'>
@@ -69,11 +70,17 @@ const InputRoomsInfo = (props) => {
                     type='number'
                     value={houseValue}
                     onChange={(e) => setHouseValue(e.target.value)}
+                    data-testid='input_house_cost'
                 />
             </Form.Group>
             <div className='mt-5'>
                 <ErrorAlertModal errorMessage={errorMessage} />
-                <Button variant='primary' type='submit' size='sm'>
+                <Button
+                    variant='primary'
+                    type='submit'
+                    size='sm'
+                    data-testid='submit'
+                >
                     <span className='smButtonText'>Next</span>
                 </Button>
             </div>

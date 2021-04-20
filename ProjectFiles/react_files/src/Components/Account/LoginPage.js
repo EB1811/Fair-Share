@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// React Bootstrap.
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -7,10 +8,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 
+// Router.
 import { Redirect } from "react-router-dom";
-
+// react-redux-firebase.
 import { useFirebase } from "react-redux-firebase";
-
+// react-redux.
 import { useSelector } from "react-redux";
 
 const Login = (props) => {

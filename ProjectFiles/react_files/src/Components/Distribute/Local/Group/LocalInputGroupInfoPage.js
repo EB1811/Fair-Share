@@ -92,6 +92,7 @@ const LocalInputGroupInfoPage = ({
                                             onChange={(e) =>
                                                 setUsername(e.target.value)
                                             }
+                                            data-testid='input_group_member'
                                         />
                                     </Col>
                                     <Col xs={4} sm={3}>
@@ -99,6 +100,7 @@ const LocalInputGroupInfoPage = ({
                                             variant='primary'
                                             size='md'
                                             type='submit'
+                                            data-testid='add_group_member'
                                         >
                                             <span>Add</span>
                                         </Button>
@@ -136,6 +138,7 @@ const LocalInputGroupInfoPage = ({
                                 variant='primary'
                                 size='sm'
                                 onClick={checkGroup}
+                                data-testid='submit'
                             >
                                 <span className='smButtonText'>Next</span>
                             </Button>
