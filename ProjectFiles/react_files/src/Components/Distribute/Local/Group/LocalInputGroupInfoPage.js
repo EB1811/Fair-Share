@@ -121,6 +121,7 @@ const LocalInputGroupInfoPage = ({
                                             {user.username}
                                             <button
                                                 className='close'
+                                                style={{ display: "block" }}
                                                 onClick={() =>
                                                     removeUser(user.username)
                                                 }

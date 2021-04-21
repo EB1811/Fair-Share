@@ -61,6 +61,10 @@ serviceWorker.unregister();
 
 // expose store when run in Cypress
 const testing = true;
-if (window.Cypress && testing === true) {
+if (
+    window.Cypress &&
+    process.env.NODE_ENV === "development" &&
+    testing === true
+) {
     window.store = reduxStore;
 }

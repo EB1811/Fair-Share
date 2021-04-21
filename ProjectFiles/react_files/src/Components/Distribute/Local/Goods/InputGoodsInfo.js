@@ -37,7 +37,7 @@ const InputGoodsInfo = (props) => {
         } else {
             let good = {
                 Good: String(goodName),
-                estValue: goodValue,
+                estValue: goodValue > 0 ? goodValue : "0",
                 Value: 0,
             };
             // State
@@ -80,6 +80,7 @@ const InputGoodsInfo = (props) => {
                                 value={goodName}
                                 type='text'
                                 onChange={(e) => setGoodName(e.target.value)}
+                                data-testid='input_custom_good_name'
                                 style={{
                                     marginLeft: "auto",
                                     marginRight: "auto",
@@ -92,6 +93,7 @@ const InputGoodsInfo = (props) => {
                                 value={goodValue}
                                 type='number'
                                 onChange={(e) => setGoodValue(e.target.value)}
+                                data-testid='input_custom_good_estValue'
                                 style={{
                                     marginLeft: "auto",
                                     marginRight: "auto",
@@ -106,6 +108,7 @@ const InputGoodsInfo = (props) => {
                                 size='md'
                                 className='m-3'
                                 type='submit'
+                                data-testid='add_custom_good'
                             >
                                 <span>Add</span>
                             </Button>
@@ -121,10 +124,11 @@ const InputGoodsInfo = (props) => {
                                 key={good.Good}
                                 body
                             >
-                                {good.Good} {good.estValue ? "| " : " "}
+                                {good.Good} {good.estValue ? "| $" : " "}
                                 {good.estValue}
                                 <button
                                     className='close'
+                                    style={{ display: "block" }}
                                     onClick={() => deleteGood(good.Good)}
                                 >
                                     ×
@@ -139,7 +143,12 @@ const InputGoodsInfo = (props) => {
                 <ErrorAlertModal errorMessage={errorMessage} />
 
                 {props.next ? (
-                    <Button variant='primary' size='sm' onClick={nextPage}>
+                    <Button
+                        variant='primary'
+                        size='sm'
+                        onClick={nextPage}
+                        data-testid='submit'
+                    >
                         <span className='smButtonText'>Next</span>
                     </Button>
                 ) : null}

@@ -77,7 +77,7 @@ const distGoodsInfoReducer = (state = initState, action) => {
             };
         case "UPDATE_MONEY_TO_SHARE":
             //console.log("Success ", action.type);
-            var newMoneyAmount = action.moneyAmount;
+            var newMoneyAmount = parseInt(action.moneyAmount);
 
             return {
                 ...state,

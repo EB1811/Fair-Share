@@ -1,19 +1,5 @@
 const initState = {
     shareMethod: null,
-    userValues: [
-        {
-            question: "Question 1",
-            answer: "",
-        },
-        {
-            question: "Question 2",
-            answer: "",
-        },
-        {
-            question: "Question 3",
-            answer: "",
-        },
-    ],
 };
 
 const distQuestionsReducer = (state = initState, action) => {

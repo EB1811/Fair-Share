@@ -47,6 +47,7 @@ const SessionNotificationOverlay = ({ auth, history }) => {
                 console.log(err.message);
             });
     };
+    // Remove invitation from firestore.
     const declineSession = (sessionID) => {
         const newInvites = JSON.parse(JSON.stringify(sessionInvites.invites));
         delete newInvites[sessionID];

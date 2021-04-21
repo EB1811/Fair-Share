@@ -47,12 +47,18 @@ const InputMoneyInfo = (props) => {
                     type='number'
                     value={moneyAmount}
                     onChange={(e) => setMoneyAmount(e.target.value)}
+                    data-testid='input_money_to_share'
                 />
             </Form.Group>
             <div className='mt-4'>
                 <ErrorAlertModal errorMessage={errorMessage} />
 
-                <Button variant='primary' type='submit' size='sm'>
+                <Button
+                    variant='primary'
+                    type='submit'
+                    size='sm'
+                    data-testid='submit'
+                >
                     <span className='smButtonText'>Next</span>
                 </Button>
             </div>

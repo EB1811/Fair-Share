@@ -16,7 +16,6 @@ const GroupValuesReducer = (state = initState, action) => {
 
             const tempUserArr = [...state.userArray];
             tempUserArr.push({
-                userEmail: action.email ? String(action.email) : null,
                 username: String(action.username),
                 userGoodsArr: JSON.parse(JSON.stringify(action.goods)), // Deep clone goods array.
             });
@@ -44,11 +43,7 @@ const GroupValuesReducer = (state = initState, action) => {
             //console.log("Success", action.type);
 
             const newUserArr = [...state.userArray].filter((user) => {
-                if (user.userEmail) {
-                    return user.userEmail !== action.userEmail;
-                } else {
-                    return user.username !== action.username;
-                }
+                return user.username !== action.username;
             });
 
             return {
