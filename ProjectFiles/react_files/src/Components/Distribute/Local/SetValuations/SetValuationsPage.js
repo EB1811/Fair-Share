@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 
 // React Components
-import InputValuationsForm from "../InputValuesComponents/InputValuations";
+import LocalInputValuationsForm from "./LocalInputValuations";
 
 const SetValuationsPage = (props) => {
     let { goodType } = useParams();
@@ -47,7 +47,7 @@ const SetValuationsPage = (props) => {
                             {props.usersArr[currUser].username}: Enter your
                             valuation for each item:
                         </h4>
-                        <InputValuationsForm
+                        <LocalInputValuationsForm
                             currUser={currUser}
                             nextUser={nextUser}
                         />

@@ -42,7 +42,7 @@ const InputValuationsForGood = (props) => {
     );
 };
 
-const InputValuationsForm = (props) => {
+const LocalInputValuationsForm = (props) => {
     const [total, setTotal] = useState(0);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -116,4 +116,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(InputValuationsForm);
+)(LocalInputValuationsForm);
