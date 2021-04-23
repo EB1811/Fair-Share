@@ -25,8 +25,7 @@ const SetValuationsPage = (props) => {
         if (currUser < props.usersArr.length - 1) {
             setCurrUser(currUser + 1);
         } else {
-            // Dispatch to get results and redirect to results page.
-            props.getAllocation();
+            // Redirect to results page.
             props.history.push(`/Distribute/Results/Local/${goodType}`);
         }
     };
@@ -67,14 +66,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getAllocation: () => {
-            dispatch({ type: "GET_ALLOCATIONS" });
-        },
-    };
-};
-
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(SetValuationsPage)
-);
+export default withRouter(connect(mapStateToProps)(SetValuationsPage));

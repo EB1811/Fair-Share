@@ -73,7 +73,7 @@ const LocalInputGroupInfoPage = ({
                         className='centerCardCompact m-3'
                         style={{ maxWidth: "650px" }}
                     >
-                        <h5>Enter a user's name to add them to the group.</h5>
+                        <h5>Enter a name to add a user to the group.</h5>
                         <div
                             className='mt-4 py-2'
                             style={{
@@ -86,7 +86,7 @@ const LocalInputGroupInfoPage = ({
                                     <Col xs={8} sm={9}>
                                         <Form.Control
                                             size='sm'
-                                            placeholder={"Enter User's name"}
+                                            placeholder={"Name"}
                                             value={username}
                                             type='text'
                                             onChange={(e) =>

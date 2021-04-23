@@ -45,7 +45,12 @@ const Remote_SetValuationsPage = (props) => {
     // Determine the value of userInSession variable.
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
-            if (session && !profile.isEmpty) {
+            if (
+                session &&
+                !profile.isEmpty &&
+                session.group &&
+                session.group.length > 1
+            ) {
                 if (
                     session.group.some(
                         (user) =>
@@ -114,19 +119,70 @@ const Remote_SetValuationsPage = (props) => {
         if (!profile.isEmpty) {
             // Session must exist and be active, and userInSession must be true.
             if (session && session.active && userInSession) {
-                // If user has submitted their values.
-                if (session.values && session.values[uid] && !editValues) {
-                    // If everyone is finished.
-                    if (
-                        Object.keys(session.values).length ===
-                        session.group.length
-                    ) {
-                        return (
-                            <Redirect
-                                to={`/Distribute/Results/Remote/${sessionID}`}
-                            />
-                        );
-                    } else {
+                // Check if session contains goods to share.
+                if (!session.goods) {
+                    return (
+                        <Redirect
+                            to={`/Distribute/GoodInfo/Remote/${sessionID}`}
+                        />
+                    );
+                }
+                // Check if session contains a correctly sized group.
+                else if (!session.group || session.group.length < 2) {
+                    return (
+                        <Redirect
+                            to={`/Distribute/GroupInfo/Remote/${sessionID}`}
+                        />
+                    );
+                } else {
+                    // If user has submitted their values.
+                    if (session.values && session.values[uid] && !editValues) {
+                        // If everyone is finished.
+                        if (
+                            Object.keys(session.values).length ===
+                            session.group.length
+                        ) {
+                            return (
+                                <Redirect
+                                    to={`/Distribute/Results/Remote/${sessionID}`}
+                                />
+                            );
+                        } else {
+                            return (
+                                <Container
+                                    fluid
+                                    className='divBlockWithContentTertiary min-vh-100'
+                                >
+                                    <Row className='justify-content-center align-items-center min-vh-100'>
+                                        <Col
+                                            xs={10}
+                                            sm={8}
+                                            md={7}
+                                            lg={6}
+                                            className='centerCardCompact m-3'
+                                            style={{ maxWidth: "800px" }}
+                                        >
+                                            <h4>
+                                                Waiting for other players to
+                                                submit their valuations.
+                                            </h4>
+                                            {/*  
+                                        //! Not shown if someone is editing. User could be redirected while editing.
+                                        //TODO Add the following when fixed.
+                                        <Button
+                                            variant='primary'
+                                            size='md'
+                                            onClick={() => setEditValues(true)}
+                                        >
+                                            <span>Edit</span>
+                                        </Button>
+                                        */}
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            );
+                        }
+                    } else
                         return (
                             <Container
                                 fluid
@@ -142,59 +198,28 @@ const Remote_SetValuationsPage = (props) => {
                                         style={{ maxWidth: "800px" }}
                                     >
                                         <h4>
-                                            Waiting for other players to submit
-                                            their valuations.
+                                            {profile.username}: Enter your
+                                            valuation for each item:
                                         </h4>
-                                        {/*  
-                                        //! Not shown if someone is editing. User could be redirected while editing.
-                                        //TODO Add the following when fixed.
-                                        <Button
-                                            variant='primary'
-                                            size='md'
-                                            onClick={() => setEditValues(true)}
-                                        >
-                                            <span>Edit</span>
-                                        </Button>
-                                        */}
+                                        <RemoteInputValuations
+                                            goods={
+                                                session.values &&
+                                                session.values[uid]
+                                                    ? [
+                                                          ...session.values[uid]
+                                                              .goods,
+                                                      ]
+                                                    : session.goods
+                                            }
+                                            totalCost={session.totalCost}
+                                            storeValuations={storeValuations}
+                                            goodType={session.type}
+                                        />
                                     </Col>
                                 </Row>
                             </Container>
                         );
-                    }
-                } else
-                    return (
-                        <Container
-                            fluid
-                            className='divBlockWithContentTertiary min-vh-100'
-                        >
-                            <Row className='justify-content-center align-items-center min-vh-100'>
-                                <Col
-                                    xs={10}
-                                    sm={8}
-                                    md={7}
-                                    lg={6}
-                                    className='centerCardCompact m-3'
-                                    style={{ maxWidth: "800px" }}
-                                >
-                                    <h4>
-                                        {profile.username}: Enter your valuation
-                                        for each item:
-                                    </h4>
-                                    <RemoteInputValuations
-                                        goods={
-                                            session.values &&
-                                            session.values[uid]
-                                                ? [...session.values[uid].goods]
-                                                : session.goods
-                                        }
-                                        totalCost={session.totalCost}
-                                        storeValuations={storeValuations}
-                                        goodType={session.type}
-                                    />
-                                </Col>
-                            </Row>
-                        </Container>
-                    );
+                }
             } else {
                 return <Redirect to={`/`} />;
             }

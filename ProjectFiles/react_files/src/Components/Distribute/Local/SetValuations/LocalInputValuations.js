@@ -105,6 +105,7 @@ const mapStateToProps = (state) => {
     };
 };
 
+/*
 const mapDispatchToProps = (dispatch) => {
     return {
         updateGoodsValuations: (arr) => {
@@ -112,8 +113,6 @@ const mapDispatchToProps = (dispatch) => {
         },
     };
 };
+*/
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LocalInputValuationsForm);
+export default connect(mapStateToProps)(LocalInputValuationsForm);

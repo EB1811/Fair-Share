@@ -1,12 +1,6 @@
 /// <reference types="cypress" />
 
 describe("Local sharing process", () => {
-    /*
-    beforeEach(() => {
-        cy.visit("/Distribute/localremote/Rent");
-    });
-    */
-
     //* Local rent process.
     it("complete local rent process", () => {
         cy.visit("/Distribute/localremote/Rent");

@@ -300,127 +300,145 @@ const RemoteInputGroupInfoPage = (props) => {
                 session.active &&
                 (thisUserInvited || session.owner === uid)
             ) {
-                //? Maybe seperate into smaller components?
-                return (
-                    <Container
-                        fluid
-                        className='divBlockWithContentTertiary min-vh-100'
-                    >
-                        <Row className='justify-content-center align-items-center min-vh-100'>
-                            <Col
-                                xs={10}
-                                sm={8}
-                                md={6}
-                                lg={5}
-                                xl={3}
-                                className='centerCardCompact m-3'
-                                style={{ maxWidth: "650px" }}
-                            >
-                                {session.owner === uid ? (
-                                    <h5>
-                                        Enter a user email to add them to the
-                                        group.
-                                    </h5>
-                                ) : (
-                                    <h5>Current Group</h5>
-                                )}
-                                <div
-                                    className='mt-4 py-2'
-                                    style={{
-                                        borderTop: "1px solid #999999",
-                                        borderBottom: "1px solid #999999",
-                                    }}
+                // Check if session contains goods to share.
+                if (!session.goods) {
+                    return (
+                        <Redirect
+                            to={`/Distribute/GoodInfo/Remote/${sessionID}`}
+                        />
+                    );
+                } else {
+                    //? Maybe seperate into smaller components?
+                    return (
+                        <Container
+                            fluid
+                            className='divBlockWithContentTertiary min-vh-100'
+                        >
+                            <Row className='justify-content-center align-items-center min-vh-100'>
+                                <Col
+                                    xs={10}
+                                    sm={8}
+                                    md={6}
+                                    lg={5}
+                                    xl={3}
+                                    className='centerCardCompact m-3'
+                                    style={{ maxWidth: "650px" }}
                                 >
                                     {session.owner === uid ? (
-                                        <Form onSubmit={inviteToGroup}>
-                                            <Row className='align-items-center'>
-                                                <Col xs={8} sm={9}>
-                                                    <Form.Control
-                                                        size='sm'
-                                                        placeholder={
-                                                            "Enter User email"
-                                                        }
-                                                        value={userEmail}
-                                                        type='email'
-                                                        onChange={(e) =>
-                                                            setUserEmail(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </Col>
-                                                <Col xs={4} sm={3}>
-                                                    <Button
-                                                        variant='primary'
-                                                        size='md'
-                                                        type='submit'
-                                                    >
-                                                        <span>Add</span>
-                                                    </Button>
-                                                </Col>
-                                            </Row>
-                                        </Form>
-                                    ) : null}
-                                    <Row className='justify-content-center contentOverflow mt-3'>
-                                        <Col sm='10'>
-                                            {/* The following displays a card for each user with a delete button if user is not owner. */}
-                                            {session.group
-                                                ? session.group.map((user) => (
-                                                      <Card
-                                                          style={{
-                                                              color: "#000",
-                                                              textAlign: "left",
-                                                          }}
-                                                          key={user.userEmail}
-                                                          body
-                                                      >
-                                                          {user.username}
-                                                          {user.userEmail !==
-                                                              profile.email &&
-                                                          session.owner ===
-                                                              uid ? (
-                                                              <button
-                                                                  className='close'
-                                                                  onClick={() =>
-                                                                      deleteUser(
-                                                                          user.userEmail
-                                                                      )
-                                                                  }
-                                                              >
-                                                                  ×
-                                                              </button>
-                                                          ) : (
-                                                              <button className='close'></button>
-                                                          )}
-                                                      </Card>
-                                                  ))
-                                                : null}
-                                        </Col>
-                                    </Row>
-                                </div>
-                                <div className='mt-4'>
-                                    <ErrorAlertModal
-                                        errorMessage={errorMessage}
-                                    />
-                                    {inviteSent ? (
-                                        <Alert variant={"success"}>
-                                            Invitation Sent
-                                        </Alert>
-                                    ) : null}
-                                    <Button
-                                        variant='primary'
-                                        size='sm'
-                                        onClick={checkGroup}
+                                        <h5>
+                                            Enter a user email to add them to
+                                            the group.
+                                        </h5>
+                                    ) : (
+                                        <h5>Current Group</h5>
+                                    )}
+                                    <div
+                                        className='mt-4 py-2'
+                                        style={{
+                                            borderTop: "1px solid #999999",
+                                            borderBottom: "1px solid #999999",
+                                        }}
                                     >
-                                        <span className='smButtonText'>
-                                            Next
-                                        </span>
-                                    </Button>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                );
+                                        {session.owner === uid ? (
+                                            <Form onSubmit={inviteToGroup}>
+                                                <Row className='align-items-center'>
+                                                    <Col xs={8} sm={9}>
+                                                        <Form.Control
+                                                            size='sm'
+                                                            placeholder={
+                                                                "Enter User email"
+                                                            }
+                                                            value={userEmail}
+                                                            type='email'
+                                                            onChange={(e) =>
+                                                                setUserEmail(
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                        />
+                                                    </Col>
+                                                    <Col xs={4} sm={3}>
+                                                        <Button
+                                                            variant='primary'
+                                                            size='md'
+                                                            type='submit'
+                                                        >
+                                                            <span>Add</span>
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
+                                            </Form>
+                                        ) : null}
+                                        <Row className='justify-content-center contentOverflow mt-3'>
+                                            <Col sm='10'>
+                                                {/* The following displays a card for each user with a delete button if user is not owner. */}
+                                                {session.group
+                                                    ? session.group.map(
+                                                          (user) => (
+                                                              <Card
+                                                                  style={{
+                                                                      color:
+                                                                          "#000",
+                                                                      textAlign:
+                                                                          "left",
+                                                                  }}
+                                                                  key={
+                                                                      user.userEmail
+                                                                  }
+                                                                  body
+                                                              >
+                                                                  {
+                                                                      user.username
+                                                                  }
+                                                                  {user.userEmail !==
+                                                                      profile.email &&
+                                                                  session.owner ===
+                                                                      uid ? (
+                                                                      <button
+                                                                          className='close'
+                                                                          onClick={() =>
+                                                                              deleteUser(
+                                                                                  user.userEmail
+                                                                              )
+                                                                          }
+                                                                      >
+                                                                          ×
+                                                                      </button>
+                                                                  ) : (
+                                                                      <button className='close'></button>
+                                                                  )}
+                                                              </Card>
+                                                          )
+                                                      )
+                                                    : null}
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                    <div className='mt-4'>
+                                        <ErrorAlertModal
+                                            errorMessage={errorMessage}
+                                        />
+                                        {inviteSent ? (
+                                            <Alert variant={"success"}>
+                                                Invitation Sent
+                                            </Alert>
+                                        ) : null}
+                                        <Button
+                                            variant='primary'
+                                            size='sm'
+                                            onClick={checkGroup}
+                                        >
+                                            <span className='smButtonText'>
+                                                Next
+                                            </span>
+                                        </Button>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Container>
+                    );
+                }
             } else {
                 return <Redirect to={`/`} />;
             }

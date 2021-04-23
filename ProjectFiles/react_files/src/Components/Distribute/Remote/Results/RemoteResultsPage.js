@@ -43,9 +43,25 @@ const RemoteResultsPage = (props) => {
     let { sessionID } = useParams();
 
     // Determine the value of userInSession variable.
+    /*
+    session.goods &&
+    session.group &&
+    session.group.length > 1 &&
+    session.values &&
+    Object.keys(session.values).length !== session.group.length
+    Because the previous process must be completed. 
+    */
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
-            if (session && !profile.isEmpty) {
+            if (
+                session &&
+                !profile.isEmpty &&
+                session.goods &&
+                session.group &&
+                session.group.length > 1 &&
+                session.values &&
+                Object.keys(session.values).length === session.group.length
+            ) {
                 if (
                     session.group.some(
                         (user) =>
@@ -80,6 +96,11 @@ const RemoteResultsPage = (props) => {
             if (
                 session &&
                 session.active &&
+                session.goods &&
+                session.group &&
+                session.group.length > 1 &&
+                session.values &&
+                Object.keys(session.values).length === session.group.length &&
                 !profile.isEmpty &&
                 session.owner === uid &&
                 !session.allocations
@@ -221,69 +242,106 @@ const RemoteResultsPage = (props) => {
         if (!profile.isEmpty) {
             // Session must exist and user must be in session group.
             if (session && userInSession) {
-                return (
-                    <Container
-                        fluid
-                        className='divBlockWithContentTertiary min-vh-100'
-                    >
-                        <Row className='justify-content-center align-items-center min-vh-100'>
-                            <Col
-                                xs={10}
-                                sm={8}
-                                md={7}
-                                lg={6}
-                                className='centerCardCompact m-3'
-                                style={{ maxWidth: "700px" }}
-                            >
-                                {!session.allocations ? (
-                                    <h1>Loading Results</h1>
-                                ) : (
-                                    <div>
-                                        <h6>
-                                            {session.allocations[uid].username},
-                                            your envy-free allocation is:
-                                        </h6>
-                                        <Col sm='12 mt-5'>
-                                            <h5>
-                                                {session.type === "Rent"
-                                                    ? session.allocations[uid]
-                                                          .room +
-                                                      " at $" +
-                                                      session.allocations[uid]
-                                                          .price
-                                                    : session.allocations[uid]
-                                                          .goods}
-                                            </h5>
-                                            {session.type === "Divorce" ? (
+                // Check if session contains goods to share.
+                if (!session.goods) {
+                    return (
+                        <Redirect
+                            to={`/Distribute/GoodInfo/Remote/${sessionID}`}
+                        />
+                    );
+                }
+                // Check if session contains a correctly sized group.
+                else if (!session.group || session.group.length < 2) {
+                    return (
+                        <Redirect
+                            to={`/Distribute/GroupInfo/Remote/${sessionID}`}
+                        />
+                    );
+                }
+                // Check if session contains valuations.
+                else if (
+                    !session.values ||
+                    Object.keys(session.values).length !== session.group.length
+                ) {
+                    return (
+                        <Redirect
+                            to={`/Distribute/Valuations/Remote/${sessionID}`}
+                        />
+                    );
+                } else {
+                    return (
+                        <Container
+                            fluid
+                            className='divBlockWithContentTertiary min-vh-100'
+                        >
+                            <Row className='justify-content-center align-items-center min-vh-100'>
+                                <Col
+                                    xs={10}
+                                    sm={8}
+                                    md={7}
+                                    lg={6}
+                                    className='centerCardCompact m-3'
+                                    style={{ maxWidth: "700px" }}
+                                >
+                                    {!session.allocations ? (
+                                        <h1>Loading Results</h1>
+                                    ) : (
+                                        <div>
+                                            <h6>
+                                                {
+                                                    session.allocations[uid]
+                                                        .username
+                                                }
+                                                , your envy-free allocation is:
+                                            </h6>
+                                            <Col sm='12 mt-5'>
                                                 <h5>
-                                                    + $
-                                                    {
-                                                        session.allocations[uid]
-                                                            .money
-                                                    }
+                                                    {session.type === "Rent"
+                                                        ? session.allocations[
+                                                              uid
+                                                          ].room +
+                                                          " at $" +
+                                                          session.allocations[
+                                                              uid
+                                                          ].price
+                                                        : session.allocations[
+                                                              uid
+                                                          ].goods}
                                                 </h5>
-                                            ) : null}
-                                        </Col>
-                                        <a
-                                            href='/'
-                                            style={{ textDecoration: "none" }}
-                                        >
-                                            <Button
-                                                variant='primary'
-                                                size='sm'
-                                                className='mt-5'
+                                                {session.type === "Divorce" ? (
+                                                    <h5>
+                                                        + $
+                                                        {
+                                                            session.allocations[
+                                                                uid
+                                                            ].money
+                                                        }
+                                                    </h5>
+                                                ) : null}
+                                            </Col>
+                                            <a
+                                                href='/'
+                                                style={{
+                                                    textDecoration: "none",
+                                                }}
                                             >
-                                                <span className='smButtonText'>
-                                                    Share Again
-                                                </span>
-                                            </Button>
-                                        </a>
-                                    </div>
-                                )}
-                            </Col>
-                        </Row>
-                    </Container>
-                );
+                                                <Button
+                                                    variant='primary'
+                                                    size='sm'
+                                                    className='mt-5'
+                                                >
+                                                    <span className='smButtonText'>
+                                                        Share Again
+                                                    </span>
+                                                </Button>
+                                            </a>
+                                        </div>
+                                    )}
+                                </Col>
+                            </Row>
+                        </Container>
+                    );
+                }
             } else {
                 return <Redirect to={"/"} />;
             }

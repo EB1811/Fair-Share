@@ -59,7 +59,7 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-// expose store when run in Cypress
+// Expose store when run in Cypress
 const testing = true;
 if (
     window.Cypress &&

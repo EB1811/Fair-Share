@@ -27,6 +27,7 @@ const InputGoodsInfo = (props) => {
             props.stateGoodsArray.filter((good) => good.Good === goodName)
                 .length > 0
         ) {
+            // Good already exists.
             setErrorMessage("Error! Good with name already exists.");
             setGoodName("");
         } else if (goodName === "") {
@@ -63,7 +64,7 @@ const InputGoodsInfo = (props) => {
 
     return (
         <div>
-            <h5>Enter a item's name and price.</h5>
+            <h5>Add your custom goods.</h5>
             <div
                 className='mt-4 py-2'
                 style={{
