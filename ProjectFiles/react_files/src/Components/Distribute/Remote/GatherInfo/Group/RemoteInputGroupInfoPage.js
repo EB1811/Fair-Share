@@ -356,6 +356,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                                                         .value
                                                                 )
                                                             }
+                                                            data-testid='input_user_invite'
                                                         />
                                                     </Col>
                                                     <Col xs={4} sm={3}>
@@ -363,6 +364,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                                             variant='primary'
                                                             size='md'
                                                             type='submit'
+                                                            data-testid='add_group_member'
                                                         >
                                                             <span>Add</span>
                                                         </Button>
@@ -397,6 +399,10 @@ const RemoteInputGroupInfoPage = (props) => {
                                                                       uid ? (
                                                                       <button
                                                                           className='close'
+                                                                          style={{
+                                                                              display:
+                                                                                  "block",
+                                                                          }}
                                                                           onClick={() =>
                                                                               deleteUser(
                                                                                   user.userEmail
@@ -428,6 +434,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                             variant='primary'
                                             size='sm'
                                             onClick={checkGroup}
+                                            data-testid='submit'
                                         >
                                             <span className='smButtonText'>
                                                 Next
