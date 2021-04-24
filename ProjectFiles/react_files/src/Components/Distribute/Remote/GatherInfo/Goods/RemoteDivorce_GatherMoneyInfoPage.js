@@ -31,6 +31,7 @@ const RemoteDivorce_GatherMoneyInfoPage = (props) => {
     const auth = useSelector((state) => state.firebase.auth);
     let { sessionID } = useParams();
 
+    // Add moneyAmount firestore
     const next = (moneyAmount) => {
         if (moneyAmount >= 0) {
             firestore
@@ -49,8 +50,11 @@ const RemoteDivorce_GatherMoneyInfoPage = (props) => {
         }
     };
 
+    // Wait for load.
     if (isLoaded(session) && auth.isLoaded) {
+        // Must be logged in.
         if (!auth.isEmpty) {
+            // Session must exist and be active. Only the owner can be on the page.
             if (session && session.active && session.owner === auth.uid) {
                 return (
                     <Container

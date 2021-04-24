@@ -56,10 +56,6 @@ const RemoteResultsPage = (props) => {
             if (
                 session &&
                 !profile.isEmpty &&
-                session.goods &&
-                session.group &&
-                session.group.length > 1 &&
-                session.values &&
                 Object.keys(session.values).length === session.group.length
             ) {
                 if (
@@ -282,6 +278,7 @@ const RemoteResultsPage = (props) => {
                                     lg={6}
                                     className='centerCardCompact m-3'
                                     style={{ maxWidth: "700px" }}
+                                    data-testid='result_card'
                                 >
                                     {!session.allocations ? (
                                         <h1>Loading Results</h1>

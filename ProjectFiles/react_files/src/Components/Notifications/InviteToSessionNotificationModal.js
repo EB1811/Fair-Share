@@ -26,6 +26,7 @@ const InviteToSessionNotificationModal = ({
                     variant='outline-success'
                     size='sm'
                     onClick={() => joinSession(sessionID)}
+                    data-testid='accept_invitation'
                 >
                     Accept
                 </Button>
@@ -34,6 +35,7 @@ const InviteToSessionNotificationModal = ({
                     size='sm'
                     className='ml-2'
                     onClick={() => declineSession(sessionID)}
+                    data-testid='decline_invitation'
                 >
                     Decline
                 </Button>

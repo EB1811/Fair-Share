@@ -7,14 +7,14 @@ import { useFirestoreConnect, useFirestore } from "react-redux-firebase";
 
 import { useSelector } from "react-redux";
 
-const SessionNotificationOverlay = ({ auth, history }) => {
+const SessionNotificationOverlay = ({ profile }) => {
     const firestore = useFirestore();
     useFirestoreConnect([
-        { collection: "SessionInvitations", doc: auth.email },
+        { collection: "SessionInvitations", doc: profile.email },
     ]);
     const sessionInvites = useSelector(
         ({ firestore: { data } }) =>
-            data.SessionInvitations && data.SessionInvitations[auth.email]
+            data.SessionInvitations && data.SessionInvitations[profile.email]
     );
 
     /*
@@ -37,7 +37,7 @@ const SessionNotificationOverlay = ({ auth, history }) => {
         delete newInvites[sessionID];
         firestore
             .update(
-                { collection: "SessionInvitations", doc: auth.email },
+                { collection: "SessionInvitations", doc: profile.email },
                 { invites: newInvites }
             )
             .then(() => {
@@ -53,7 +53,7 @@ const SessionNotificationOverlay = ({ auth, history }) => {
         delete newInvites[sessionID];
         firestore
             .update(
-                { collection: "SessionInvitations", doc: auth.email },
+                { collection: "SessionInvitations", doc: profile.email },
                 { invites: newInvites }
             )
             .then(() => {
@@ -64,7 +64,7 @@ const SessionNotificationOverlay = ({ auth, history }) => {
             });
     };
 
-    if (sessionInvites && auth.isLoaded) {
+    if (sessionInvites && profile.isLoaded) {
         if (Object.entries(sessionInvites.invites).length > 0) {
             return (
                 <div className='notificationOverlay'>

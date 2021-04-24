@@ -88,7 +88,7 @@ const RemoteResultsPage = lazy(() =>
 
 function App() {
     // Get auth objects from firestore.
-    const auth = useSelector((state) => state.firebase.auth);
+    const profile = useSelector((state) => state.firebase.profile);
 
     // Contains info about route.
     const location = useLocation();
@@ -98,9 +98,9 @@ function App() {
         <div className='App'>
             <NavCom />
             <ScrollToTop />
-            {auth.isLoaded && !auth.isEmpty ? (
+            {profile.isLoaded && !profile.isEmpty ? (
                 <Suspense fallback={<div></div>}>
-                    <SessionNotificationOverlay auth={auth} />
+                    <SessionNotificationOverlay profile={profile} />
                 </Suspense>
             ) : null}
             <Suspense fallback={<LoadingScreen />}>

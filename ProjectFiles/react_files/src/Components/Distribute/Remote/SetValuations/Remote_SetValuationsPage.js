@@ -45,12 +45,7 @@ const Remote_SetValuationsPage = (props) => {
     // Determine the value of userInSession variable.
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
-            if (
-                session &&
-                !profile.isEmpty &&
-                session.group &&
-                session.group.length > 1
-            ) {
+            if (session && !profile.isEmpty) {
                 if (
                     session.group.some(
                         (user) =>
@@ -221,6 +216,9 @@ const Remote_SetValuationsPage = (props) => {
                         );
                 }
             } else {
+                console.log(userInSession);
+                console.log(session);
+                console.log(userInSessionDetermined);
                 return <Redirect to={`/`} />;
             }
         } else {

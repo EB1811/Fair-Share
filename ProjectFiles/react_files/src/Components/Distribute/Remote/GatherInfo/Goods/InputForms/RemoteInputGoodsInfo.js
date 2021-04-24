@@ -13,11 +13,10 @@ import { useFirestore } from "react-redux-firebase";
 
 const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
     const firestore = useFirestore();
+
     // Goods Name.
     const [goodName, setGoodName] = useState("");
     const [goodValue, setGoodValue] = useState("");
-    // Failed bool used for conditional css.
-    //? Maybe turn this into alert.
     // Store error message.
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -139,6 +138,7 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
                 console.log(err.message);
             });
     };
+
     // Next state.
     const nextPage = () => {
         if (session.goods && session.goods.length > 0) {
@@ -151,7 +151,7 @@ const RemoteInputGoodsInfo = ({ next, session, sessionID }) => {
 
     return (
         <div>
-            <h5>Enter a item's name and price.</h5>
+            <h5>Add your custom goods.</h5>
             <div
                 className='mt-4 py-2'
                 style={{

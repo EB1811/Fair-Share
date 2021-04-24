@@ -112,7 +112,7 @@ describe("Local sharing process", () => {
     it("complete local goods process", () => {
         cy.visit("/Distribute/localremote/Goods");
         // Enter input room data page.
-        cy.get("[data-testid=start_local").click().should("not.exist");
+        cy.get("[data-testid=start_local]").click().should("not.exist");
 
         // Enter custom good 1.
         cy.get("[data-testid=input_custom_good_name]").type("custom good 1");

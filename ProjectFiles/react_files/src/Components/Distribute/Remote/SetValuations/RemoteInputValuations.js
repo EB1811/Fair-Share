@@ -13,25 +13,21 @@ const InputValuationsForGood = ({ good, changeGoodValue, totalCost }) => {
 
     return (
         <Form.Group controlId='valuation' style={{ margin: "0px" }}>
-            <div>
-                <h5 className='lowWeight'>{good.Good} Value</h5>
-            </div>
+            <h5 className='lowWeight'>{good.Good} Value</h5>
 
-            <div>
-                <Form.Control
-                    type='range'
-                    value={good.Value}
-                    min={0}
-                    max={totalCost}
-                    step={1}
-                    onInput={handleChange}
-                    onChange={handleChange}
-                    style={{ width: "90%", display: "inline-block" }}
-                />
-                <Form.Label style={{ width: "10%", margin: "5 0px" }}>
-                    {good.Value}
-                </Form.Label>
-            </div>
+            <Form.Control
+                type='range'
+                value={good.Value}
+                min={0}
+                max={totalCost}
+                step={1}
+                onInput={handleChange}
+                onChange={handleChange}
+                style={{ width: "90%", display: "inline-block" }}
+            />
+            <Form.Label style={{ width: "10%", margin: "5 0px" }}>
+                {good.Value}
+            </Form.Label>
         </Form.Group>
     );
 };
@@ -87,7 +83,12 @@ const RemoteInputValuations = (props) => {
             </div>
             <div className='mt-5'>
                 <ErrorAlertModal errorMessage={errorMessage} />
-                <Button variant='primary' size='sm' type='submit'>
+                <Button
+                    variant='primary'
+                    size='sm'
+                    type='submit'
+                    data-testid='submit'
+                >
                     <span className='smButtonText'>Finish</span>
                 </Button>
             </div>

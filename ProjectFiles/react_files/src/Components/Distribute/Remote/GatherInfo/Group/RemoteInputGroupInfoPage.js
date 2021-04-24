@@ -96,7 +96,7 @@ const RemoteInputGroupInfoPage = (props) => {
                     } else if (session.invitedUsers.length > 0) {
                         if (
                             session.invitedUsers.some(
-                                (email) => email === profile.email
+                                (email) => email === profile.email.toLowerCase()
                             )
                         ) {
                             // User is invited, proceed to add to group.
@@ -158,11 +158,10 @@ const RemoteInputGroupInfoPage = (props) => {
         if (profile.isLoaded && isSessionLoaded) {
             if (session && session.owner !== uid) {
                 console.log("Checking Invitation");
-                console.log(session.invitedUsers);
                 if (session.invitedUsers.length > 0) {
                     if (
                         session.invitedUsers.some(
-                            (email) => email === profile.email
+                            (email) => email === profile.email.toLowerCase()
                         )
                     ) {
                         // User is invited.
@@ -194,7 +193,7 @@ const RemoteInputGroupInfoPage = (props) => {
                 setInviteSent(false);
                 setUserEmail("");
             } else {
-                invitedUsers.push(userEmail);
+                invitedUsers.push(userEmail.toLowerCase());
                 // First add to SessionInvitations collection. This allows user to get a notification.
                 const inviteInfo = {
                     active: true,
@@ -273,7 +272,7 @@ const RemoteInputGroupInfoPage = (props) => {
                 // Also update 'invitedUsers'
                 const newInvitedUsers = [...session.invitedUsers].filter(
                     (email) => {
-                        return email !== userEmail;
+                        return email !== userEmail.toLowerCase();
                     }
                 );
                 firestore
@@ -356,7 +355,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                                                         .value
                                                                 )
                                                             }
-                                                            data-testid='input_user_invite'
+                                                            data-testid='input_user_email'
                                                         />
                                                     </Col>
                                                     <Col xs={4} sm={3}>

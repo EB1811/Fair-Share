@@ -40,7 +40,7 @@ const fbConfig = {
     appId: "1:1097496332317:web:7c6de0506d954ddf961ef4",
     measurementId: "G-EQK1GXWT16",
 };
-
 firebase.initializeApp(fbConfig);
+firebase.firestore().settings({ experimentalAutoDetectLongPolling: true });
 
 attachCustomCommands({ Cypress, cy, firebase });
