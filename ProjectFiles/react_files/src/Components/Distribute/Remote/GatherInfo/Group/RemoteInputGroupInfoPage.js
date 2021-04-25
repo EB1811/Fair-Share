@@ -188,8 +188,10 @@ const RemoteInputGroupInfoPage = (props) => {
                 ? [...session.invitedUsers]
                 : [];
             // Make sure user isn't already invited.
-            if (invitedUsers.some((email) => email === userEmail)) {
-                setErrorMessage("Error! Invalid username.");
+            if (
+                invitedUsers.some((email) => email === userEmail.toLowerCase())
+            ) {
+                setErrorMessage("Error! User is already invited.");
                 setInviteSent(false);
                 setUserEmail("");
             } else {
@@ -239,6 +241,9 @@ const RemoteInputGroupInfoPage = (props) => {
                     })
                     .catch((err) => console.log(err.message));
             }
+        } else if (!user.length > 0) {
+            setErrorMessage("Error! User with that email does not exist.");
+            setInviteSent(false);
         } else {
             setErrorMessage("Error! Invalid user.");
             setInviteSent(false);
@@ -321,6 +326,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                     lg={5}
                                     xl={3}
                                     className='centerCardCompact m-3'
+                                    data-testid='group_input_card'
                                     style={{ maxWidth: "650px" }}
                                 >
                                     {session.owner === uid ? (

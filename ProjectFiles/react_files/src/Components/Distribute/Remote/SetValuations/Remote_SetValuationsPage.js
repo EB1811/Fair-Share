@@ -86,11 +86,6 @@ const Remote_SetValuationsPage = (props) => {
             goods: userGoodsArray,
         };
         // Add or replace for each good.
-        /*
-            userGoodsArray.forEach((good) => {
-                userValues[good.Good] = parseInt(good.Value);
-            });
-            */
         values[uid] = userValues;
 
         firestore

@@ -26,6 +26,8 @@ const RemoteResultsPage = (props) => {
     // True if user in session group.
     const [userInSession, setUserInSession] = useState(false);
     const [userInSessionDetermined, setUserInSessionDetermined] = useState();
+    // If results have been fetched.
+    const [resultsFetched, setResultsFetched] = useState();
 
     const firestore = useFirestore();
     useFirestoreConnect([
@@ -43,14 +45,6 @@ const RemoteResultsPage = (props) => {
     let { sessionID } = useParams();
 
     // Determine the value of userInSession variable.
-    /*
-    session.goods &&
-    session.group &&
-    session.group.length > 1 &&
-    session.values &&
-    Object.keys(session.values).length !== session.group.length
-    Because the previous process must be completed. 
-    */
     useEffect(() => {
         if (isSessionLoaded && profile.isLoaded && !userInSessionDetermined) {
             if (
@@ -88,7 +82,7 @@ const RemoteResultsPage = (props) => {
 
     // Session owner fetches data and updates firestore. Everyone else waits for results to update,
     useEffect(() => {
-        if (isSessionLoaded && profile.isLoaded) {
+        if (isSessionLoaded && profile.isLoaded && !resultsFetched) {
             if (
                 session &&
                 session.active &&
@@ -228,9 +222,18 @@ const RemoteResultsPage = (props) => {
                             console.log(err);
                         });
                 }
+                setResultsFetched(true);
             }
         }
-    }, [firestore, isSessionLoaded, profile, session, sessionID, uid]);
+    }, [
+        firestore,
+        isSessionLoaded,
+        resultsFetched,
+        profile,
+        session,
+        sessionID,
+        uid,
+    ]);
 
     // Load.
     if (isSessionLoaded && profile.isLoaded && userInSessionDetermined) {
@@ -303,7 +306,7 @@ const RemoteResultsPage = (props) => {
                                                           ].price
                                                         : session.allocations[
                                                               uid
-                                                          ].goods}
+                                                          ].goods.toString()}
                                                 </h5>
                                                 {session.type === "Divorce" ? (
                                                     <h5>
