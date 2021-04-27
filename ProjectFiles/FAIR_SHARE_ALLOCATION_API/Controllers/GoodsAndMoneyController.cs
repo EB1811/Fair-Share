@@ -21,7 +21,7 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
                 int moneyAmount = givenValue.moneyAmount;
 
                 // Money available to share must be greater than 0, need 2 players and at least 1 good.
-                if(moneyAmount > 0 && valueMatrix.Length == 2 && valueMatrix[0].Length > 0) {
+                if(moneyAmount > -1 && valueMatrix.Length == 2 && valueMatrix[0].Length > 0) {
                     GoodsAndMoney_Allocation[] result = _goodsAndMoneyRepository.GetGoodsAndMoneyAllocation(valueMatrix, moneyAmount);
                     return Ok(JsonConvert.SerializeObject(result));
                 } else {
