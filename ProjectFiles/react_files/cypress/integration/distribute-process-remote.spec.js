@@ -104,7 +104,7 @@ describe("Remote sharing process", () => {
         });
     });
 
-    it.only("complete remote custom goods process", () => {
+    it("complete remote custom goods process", () => {
         cy.visit("/Distribute/localremote/Goods");
         // Select remote and check if we are on the good info page. Store session's id.
         cy.get("[data-testid=start_remote]").click().should("not.exist");

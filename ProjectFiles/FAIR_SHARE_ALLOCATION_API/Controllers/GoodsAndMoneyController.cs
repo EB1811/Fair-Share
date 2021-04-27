@@ -15,16 +15,25 @@ namespace FAIR_SHARE_ALLOCATION_API.Controllers
         [HttpPost]
         public ActionResult <GoodsAndMoney_Allocation> postGetGoodsAndMoneyAllocation(GetGoodsAndMoneyCommand givenValue)
         {
-            Console.WriteLine("Goods & Money Share Requested at " + DateTime.Now.ToString("h:mm:ss tt"));
-            int[][] valueMatrix = givenValue.valueMatrix;
-            int moneyAmount = givenValue.moneyAmount;
-            if(moneyAmount > 0 && valueMatrix.Length == 2 && valueMatrix[0].Length > 0) {
-                GoodsAndMoney_Allocation[] result = _goodsAndMoneyRepository.GetGoodsAndMoneyAllocation(valueMatrix, moneyAmount);
-                return Ok(JsonConvert.SerializeObject(result));
-            } else {
-                Console.WriteLine("Incorrect Format Entered\n");
-                Error e = new Error{Message = "Incorrect Format Entered"};
-                return Ok(JsonConvert.SerializeObject(e));
+            Console.WriteLine("\nGoods & Money Share Requested at " + DateTime.Now.ToString("h:mm:ss tt"));
+            try {
+                int[][] valueMatrix = givenValue.valueMatrix;
+                int moneyAmount = givenValue.moneyAmount;
+
+                // Money available to share must be greater than 0, need 2 players and at least 1 good.
+                if(moneyAmount > 0 && valueMatrix.Length == 2 && valueMatrix[0].Length > 0) {
+                    GoodsAndMoney_Allocation[] result = _goodsAndMoneyRepository.GetGoodsAndMoneyAllocation(valueMatrix, moneyAmount);
+                    return Ok(JsonConvert.SerializeObject(result));
+                } else {
+                    Console.WriteLine("Incorrect Format Entered\n");
+                    Error e = new Error{Message = "Incorrect Format Entered"};
+                    return Ok(JsonConvert.SerializeObject(e));
+                }
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.Message);
+                Error err = new Error{Message = "Error!"};
+                return Ok(JsonConvert.SerializeObject(err));
             }
         }
 
