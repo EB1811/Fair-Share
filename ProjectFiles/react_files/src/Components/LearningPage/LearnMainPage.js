@@ -41,274 +41,113 @@ const LearnMainPage = () => {
                             >
                                 Section 3
                             </Nav.Link>
-                            <Nav.Link
-                                href='#section4'
-                                active={false}
-                                style={{ padding: "4px" }}
-                            >
-                                Section 4
-                            </Nav.Link>
-                            <Nav.Link
-                                href='#section4'
-                                active={false}
-                                style={{ padding: "4px" }}
-                            >
-                                Section 5
-                            </Nav.Link>
                         </Nav>
                     </Navbar>
                 </Col>
                 {/* Right */}
                 <Col sm={8} md={9} lg={7} xl={8} className='p-5'>
-                    <h3 id='section1'>Section 1</h3>
+                    <h3 id='section1'>Fair Division</h3>
                     <hr />
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus interdum nisi sapien. Nulla lobortis gravida
-                        auctor. Aliquam ac ipsum viverra arcu ullamcorper
-                        malesuada. Pellentesque varius egestas nibh, a eleifend
-                        nisi cursus sit amet. Proin dictum posuere erat non
-                        facilisis. Vivamus id interdum sapien. Proin imperdiet
-                        risus id odio condimentum aliquam. Curabitur sagittis
-                        tempor scelerisque. Vestibulum non neque dictum, porta
-                        mi ut, dignissim elit. Nam sit amet lacinia sapien.
-                        Maecenas mollis nisl nec mollis aliquam. Pellentesque
-                        dictum laoreet metus, a condimentum elit rhoncus tempor.
-                        Curabitur vehicula sit amet sem at pulvinar. Nunc
-                        bibendum odio sapien, sed ullamcorper leo commodo vitae.
-                        Fusce sit amet ullamcorper leo. Vivamus venenatis augue
-                        ut lectus euismod, sed hendrerit nulla imperdiet. <br />
-                        Praesent luctus nunc ut eleifend tempor. Etiam a
-                        venenatis diam. Morbi in lobortis arcu, ut fermentum
-                        sem. Suspendisse nibh lacus, mattis nec ex sodales,
-                        elementum pharetra nisl. Donec condimentum laoreet nisi
-                        sed luctus. Morbi malesuada eu magna vel vulputate. Cras
-                        quis purus urna. Donec odio nulla, vehicula sed laoreet
-                        ut, malesuada semper nibh. Mauris in maximus odio, ac
-                        fermentum dolor. Aliquam sed libero et mauris euismod
-                        mollis commodo vitae felis. Aenean eget justo cursus,
-                        consectetur magna in, aliquam lectus. Maecenas nisi
-                        quam, tincidunt quis tristique a, vestibulum at purus.
-                        Integer urna ligula, scelerisque sit amet velit ut,
-                        porta tincidunt elit. Suspendisse ac nibh et diam auctor
-                        gravida. Etiam faucibus feugiat eros, sed faucibus arcu
-                        accumsan quis. Pellentesque at urna tempor, aliquet
-                        risus ac, tincidunt libero. Aenean hendrerit ipsum
-                        tempus, semper nulla id, volutpat dui. Fusce euismod
-                        vitae augue non vehicula. Donec commodo porta rutrum.
-                        Mauris imperdiet gravida ligula sit amet semper. Donec
-                        dolor est, feugiat at tortor viverra, imperdiet finibus
-                        metus. Praesent tincidunt laoreet enim vitae vestibulum.
-                        Maecenas purus ipsum, dictum quis ex ac, suscipit
-                        efficitur neque. Fusce malesuada augue urna, nec dictum
-                        massa porta maximus. Suspendisse potenti. <br />
-                        Curabitur placerat in ex sed convallis. Nam rhoncus
-                        lorem nec neque sollicitudin posuere. Duis sem nibh,
-                        dignissim suscipit ante vitae, consectetur luctus ex.
-                        Sed at nunc quis lacus consectetur eleifend. Sed vitae
-                        luctus mauris. Curabitur semper id eros quis vulputate.
+                        Sharing items is a very common occurrence. Goods such as
+                        rent, tasks, or financial assets commonly need to be
+                        split among a group. <br />
+                        However, splitting things in a way that doesn’t leave at
+                        least someone upset is very difficult. Fair division
+                        algorithms are made to try to solve this problem; split
+                        goods between people in a way that doesn’t cause
+                        resentment.
                     </p>
                     <p>
-                        Maecenas enim mauris, vehicula et erat hendrerit,
-                        vulputate suscipit ipsum. Maecenas quis arcu eget tellus
-                        imperdiet vulputate vel et quam. Suspendisse a dolor
-                        erat. Vivamus dapibus tempus risus, ut egestas arcu
-                        dignissim eu. Suspendisse rutrum lacus ipsum, sed
-                        placerat turpis aliquam vitae. Aliquam pulvinar, quam in
-                        ornare vulputate, nisl sapien molestie neque, sed
-                        bibendum mi nibh a sapien. Pellentesque sagittis feugiat
-                        aliquet. Aliquam erat volutpat. Nulla luctus porta
-                        velit, in fermentum tellus accumsan non. In nec
-                        condimentum urna. Cras porta nisl id velit volutpat
-                        sollicitudin. Nullam gravida leo at lorem hendrerit, vel
-                        ultricies erat tempor. Duis sit amet sapien lectus.
-                        Integer eleifend pretium laoreet. Nullam lacus sapien,
-                        luctus ut varius eu, ultricies nec erat. Suspendisse
-                        efficitur elementum ligula ut tincidunt. Morbi fringilla
-                        leo non maximus luctus. Aenean nec sapien magna. Sed
-                        lobortis tincidunt leo, consequat aliquam lorem varius
-                        id. Quisque tellus elit, condimentum in mauris et,
-                        fermentum ullamcorper nibh. Nulla at tortor sem. Nam eu
-                        auctor enim. Sed ante orci, tincidunt a tristique vel,
-                        lacinia non enim.
+                        A division is considered fair if it is envy-free.
+                        Envy-Free: In a division that is envy-free, every person
+                        feels that their share is at least as good as the share
+                        of any other person. In such a division, no user feels
+                        envy. <br />
+                        Another desirable property is pareto-efficiency.
+                        Pareto-efficiency: A situation where no one can be
+                        better off without making at least one other person
+                        worse off. Envy-freeness implies Pareto-efficiency.
                     </p>
                     <h3 id='section2' className='mt-5'>
-                        Section 2
+                        Sharing Goods
                     </h3>
                     <hr />
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus interdum nisi sapien. Nulla lobortis gravida
-                        auctor. Aliquam ac ipsum viverra arcu ullamcorper
-                        malesuada. Pellentesque varius egestas nibh, a eleifend
-                        nisi cursus sit amet. Proin dictum posuere erat non
-                        facilisis. Vivamus id interdum sapien. Proin imperdiet
-                        risus id odio condimentum aliquam. Curabitur sagittis
-                        tempor scelerisque. Vestibulum non neque dictum, porta
-                        mi ut, dignissim elit. Nam sit amet lacinia sapien.
-                        Maecenas mollis nisl nec mollis aliquam. Pellentesque
-                        dictum laoreet metus, a condimentum elit rhoncus tempor.
-                        Curabitur vehicula sit amet sem at pulvinar. Nunc
-                        bibendum odio sapien, sed ullamcorper leo commodo vitae.
-                        Fusce sit amet ullamcorper leo. Vivamus venenatis augue
-                        ut lectus euismod, sed hendrerit nulla imperdiet. <br />
-                        tempus, semper nulla id, volutpat dui. Fusce euismod
-                        vitae augue non vehicula. Donec commodo porta rutrum.
-                        Mauris imperdiet gravida ligula sit amet semper. Donec
-                        dolor est, feugiat at tortor viverra, imperdiet finibus
-                        metus. Praesent tincidunt laoreet enim vitae vestibulum.
-                        Maecenas purus ipsum, dictum quis ex ac, suscipit
-                        efficitur neque. Fusce malesuada augue urna, nec dictum
-                        massa porta maximus. Suspendisse potenti. <br />
-                        Curabitur placerat in ex sed convallis. Nam rhoncus
-                        lorem nec neque sollicitudin posuere. Duis sem nibh,
-                        dignissim suscipit ante vitae, consectetur luctus ex.
-                        Sed at nunc quis lacus consectetur eleifend. Sed vitae
-                        luctus mauris. Curabitur semper id eros quis vulputate.
+                        To share indivisible goods, we need a weaker notion of
+                        envy-freeness. This is envy-free up to at most one good
+                        (EF1). This means that, for every pair of players A and
+                        B, if at most one object is removed from the bundle of
+                        B, then A does not envy B. <br /> There are many
+                        algorithms that can achieve this. This website employs
+                        the Round-robin item allocation procedure. This
+                        algorithm procedurally goes through each player, and
+                        gives them their most valued good.
                     </p>
                     <h3 id='section3' className='mt-5'>
-                        Section 3
+                        Sharing Finances
                     </h3>
                     <hr />
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus interdum nisi sapien. Nulla lobortis gravida
-                        auctor. Aliquam ac ipsum viverra arcu ullamcorper
-                        malesuada. Pellentesque varius egestas nibh, a eleifend
-                        nisi cursus sit amet. Proin dictum posuere erat non
-                        facilisis. Vivamus id interdum sapien. Proin imperdiet
-                        risus id odio condimentum aliquam. Curabitur sagittis
-                        tempor scelerisque. Vestibulum non neque dictum, porta
-                        mi ut, dignissim elit. Nam sit amet lacinia sapien.
-                        Maecenas mollis nisl nec mollis aliquam. Pellentesque
-                        dictum laoreet metus, a condimentum elit rhoncus tempor.
-                        Curabitur vehicula sit amet sem at pulvinar. Nunc
-                        bibendum odio sapien, sed ullamcorper leo commodo vitae.
-                        Fusce sit amet ullamcorper leo. Vivamus venenatis augue
-                        ut lectus euismod, sed hendrerit nulla imperdiet. <br />
-                        tempus, semper nulla id, volutpat dui. Fusce euismod
-                        vitae augue non vehicula. Donec commodo porta rutrum.
-                        Mauris imperdiet gravida ligula sit amet semper. Donec
-                        dolor est, feugiat at tortor viverra, imperdiet finibus
-                        metus. Praesent tincidunt laoreet enim vitae vestibulum.
-                        Maecenas purus ipsum, dictum quis ex ac, suscipit
-                        efficitur neque. Fusce malesuada augue urna, nec dictum
-                        massa porta maximus. Suspendisse potenti. <br />
-                        Curabitur placerat in ex sed convallis. Nam rhoncus
-                        lorem nec neque sollicitudin posuere. Duis sem nibh,
-                        dignissim suscipit ante vitae, consectetur luctus ex.
-                        Sed at nunc quis lacus consectetur eleifend. Sed vitae
-                        luctus mauris. Curabitur semper id eros quis vulputate.
+                        Finances included both divisible goods, in this case
+                        money, and indivisible goods, such as assets. <br />
+                        For this case, we can formulate another relaxation of
+                        envy-freeness. One notion is envy-freeness for mixed
+                        goods (EFM), which means envy-free up to 1 good with
+                        respect to an agent that gets only goods, and envy-free
+                        with respect to an agent that also gets money. This
+                        concept was introduced in a paper by Bei et al. that
+                        first appeared in the 34th AAAI Conference on Artificial
+                        Intelligence (AAAI), 2020. The paper describes an
+                        algorithm to achieve an EFM allocation.
+                        <br />
+                        For the setting used in this website, there are only two
+                        agents, and the value of the divisible good (money) is
+                        equal for these agents. The algorithm used to share
+                        finances in the case of divorce is an implementation of
+                        the one described.
                     </p>
-                    <p>
-                        Maecenas enim mauris, vehicula et erat hendrerit,
-                        vulputate suscipit ipsum. Maecenas quis arcu eget tellus
-                        imperdiet vulputate vel et quam. Suspendisse a dolor
-                        erat. Vivamus dapibus tempus risus, ut egestas arcu
-                        sollicitudin. Nullam gravida leo at lorem hendrerit, vel
-                        ultricies erat tempor. Duis sit amet sapien lectus.
-                        Integer eleifend pretium laoreet. Nullam lacus sapien,
-                        luctus ut varius eu, ultricies nec erat. Suspendisse
-                        efficitur elementum ligula ut tincidunt. Morbi fringilla
-                        leo non maximus luctus. Aenean nec sapien magna. Sed
-                        lobortis tincidunt leo, consequat aliquam lorem varius
-                        id. Quisque tellus elit, condimentum in mauris et,
-                        fermentum ullamcorper nibh. Nulla at tortor sem. Nam eu
-                        auctor enim. Sed ante orci, tincidunt a tristique vel,
-                        lacinia non enim.
-                    </p>
+                    <a
+                        className='text-muted'
+                        href='https://www.sciencedirect.com/science/article/abs/pii/S0004370220301831?via%3Dihub'
+                    >
+                        Xiaohui Bei, Zihao Li, Jinyan Liu, Shengxin Liu, Xinhang
+                        Lu, “Fair division of mixed divisible and indivisible
+                        goods”, Artificial Intelligence, Volume 293, 2021.
+                    </a>
                     <h3 id='section4' className='mt-5'>
-                        Section 4
+                        Sharing Rent
                     </h3>
                     <hr />
                     <p>
-                        Maecenas enim mauris, vehicula et erat hendrerit,
-                        vulputate suscipit ipsum. Maecenas quis arcu eget tellus
-                        imperdiet vulputate vel et quam. Suspendisse a dolor
-                        erat. Vivamus dapibus tempus risus, ut egestas arcu
-                        sollicitudin. Nullam gravida leo at lorem hendrerit, vel
-                        ultricies erat tempor. Duis sit amet sapien lectus.
-                        Integer eleifend pretium laoreet. Nullam lacus sapien,
-                        luctus ut varius eu, ultricies nec erat. Suspendisse
-                        efficitur elementum ligula ut tincidunt. Morbi fringilla
-                        leo non maximus luctus. Aenean nec sapien magna. Sed
-                        lobortis tincidunt leo, consequat aliquam lorem varius
-                        id. Quisque tellus elit, condimentum in mauris et,
-                        fermentum ullamcorper nibh. Nulla at tortor sem. Nam eu
-                        auctor enim. Sed ante orci, tincidunt a tristique vel,
-                        lacinia non enim.
-                    </p>
-                    <h3 id='section5'>Section 5</h3>
-                    <hr />
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus interdum nisi sapien. Nulla lobortis gravida
-                        auctor. Aliquam ac ipsum viverra arcu ullamcorper
-                        malesuada. Pellentesque varius egestas nibh, a eleifend
-                        nisi cursus sit amet. Proin dictum posuere erat non
-                        facilisis. Vivamus id interdum sapien. Proin imperdiet
-                        risus id odio condimentum aliquam. Curabitur sagittis
-                        tempor scelerisque. Vestibulum non neque dictum, porta
-                        mi ut, dignissim elit. Nam sit amet lacinia sapien.
-                        Maecenas mollis nisl nec mollis aliquam. Pellentesque
-                        dictum laoreet metus, a condimentum elit rhoncus tempor.
-                        Curabitur vehicula sit amet sem at pulvinar. Nunc
-                        bibendum odio sapien, sed ullamcorper leo commodo vitae.
-                        Fusce sit amet ullamcorper leo. Vivamus venenatis augue
-                        ut lectus euismod, sed hendrerit nulla imperdiet. <br />
-                        Praesent luctus nunc ut eleifend tempor. Etiam a
-                        venenatis diam. Morbi in lobortis arcu, ut fermentum
-                        sem. Suspendisse nibh lacus, mattis nec ex sodales,
-                        elementum pharetra nisl. Donec condimentum laoreet nisi
-                        sed luctus. Morbi malesuada eu magna vel vulputate. Cras
-                        quis purus urna. Donec odio nulla, vehicula sed laoreet
-                        ut, malesuada semper nibh. Mauris in maximus odio, ac
-                        fermentum dolor. Aliquam sed libero et mauris euismod
-                        mollis commodo vitae felis. Aenean eget justo cursus,
-                        consectetur magna in, aliquam lectus. Maecenas nisi
-                        quam, tincidunt quis tristique a, vestibulum at purus.
-                        Integer urna ligula, scelerisque sit amet velit ut,
-                        porta tincidunt elit. Suspendisse ac nibh et diam auctor
-                        gravida. Etiam faucibus feugiat eros, sed faucibus arcu
-                        accumsan quis. Pellentesque at urna tempor, aliquet
-                        risus ac, tincidunt libero. Aenean hendrerit ipsum
-                        tempus, semper nulla id, volutpat dui. Fusce euismod
-                        vitae augue non vehicula. Donec commodo porta rutrum.
-                        Mauris imperdiet gravida ligula sit amet semper. Donec
-                        dolor est, feugiat at tortor viverra, imperdiet finibus
-                        metus. Praesent tincidunt laoreet enim vitae vestibulum.
-                        Maecenas purus ipsum, dictum quis ex ac, suscipit
-                        efficitur neque. Fusce malesuada augue urna, nec dictum
-                        massa porta maximus. Suspendisse potenti. <br />
-                        Curabitur placerat in ex sed convallis. Nam rhoncus
-                        lorem nec neque sollicitudin posuere. Duis sem nibh,
-                        dignissim suscipit ante vitae, consectetur luctus ex.
-                        Sed at nunc quis lacus consectetur eleifend. Sed vitae
-                        luctus mauris. Curabitur semper id eros quis vulputate.
+                        Rental harmony is a problem where items and a monetary
+                        cost must be allocated together. A use case for this is
+                        sharing rent. <br />
+                        There are many solutions to the rental harmony division
+                        problem, such as the Gap Procedure devised by Brams and
+                        Kilgour or an auction type algorithm by Abdulkadiroglu,
+                        Sonmez and Unver. The algorithm that we have implemented
+                        is presented by Haake, Raith, and Su. Their algorithm
+                        has a property called the Compensation Procedure. The
+                        algorithm first finds a maxsum allocation. Then, a pool
+                        of money is formed by charging the players the value of
+                        their allocations. Crucially, if there is money left
+                        over after paying the cost, then the algorithm
+                        eliminates envy by compensating envious players. The sum
+                        of compensations is the smallest sum required to
+                        eliminate envy, with any money remaining being divided
+                        in an envy-free way, e.g., equal amount to each person.
                     </p>
                     <p>
-                        Maecenas enim mauris, vehicula et erat hendrerit,
-                        vulputate suscipit ipsum. Maecenas quis arcu eget tellus
-                        imperdiet vulputate vel et quam. Suspendisse a dolor
-                        erat. Vivamus dapibus tempus risus, ut egestas arcu
-                        dignissim eu. Suspendisse rutrum lacus ipsum, sed
-                        placerat turpis aliquam vitae. Aliquam pulvinar, quam in
-                        ornare vulputate, nisl sapien molestie neque, sed
-                        bibendum mi nibh a sapien. Pellentesque sagittis feugiat
-                        aliquet. Aliquam erat volutpat. Nulla luctus porta
-                        velit, in fermentum tellus accumsan non. In nec
-                        condimentum urna. Cras porta nisl id velit volutpat
-                        sollicitudin. Nullam gravida leo at lorem hendrerit, vel
-                        ultricies erat tempor. Duis sit amet sapien lectus.
-                        Integer eleifend pretium laoreet. Nullam lacus sapien,
-                        luctus ut varius eu, ultricies nec erat. Suspendisse
-                        efficitur elementum ligula ut tincidunt. Morbi fringilla
-                        leo non maximus luctus. Aenean nec sapien magna. Sed
-                        lobortis tincidunt leo, consequat aliquam lorem varius
-                        id. Quisque tellus elit, condimentum in mauris et,
-                        fermentum ullamcorper nibh. Nulla at tortor sem. Nam eu
-                        auctor enim. Sed ante orci, tincidunt a tristique vel,
-                        lacinia non enim.
+                        <a
+                            className='text-muted'
+                            href='https://link.springer.com/article/10.1007/s003550100149'
+                        >
+                            C. Haake, M. G. Raith, F. E. Su, “Bidding for
+                            envy-freeness: A procedural approach to n-player
+                            fair-division problems”, Social Choice and Welfare,
+                            vol. 19, pp. 723-749, Oct 2002.
+                        </a>
                     </p>
                 </Col>
             </Row>
