@@ -69,7 +69,7 @@ const MainPage = () => {
                             to='/Learn'
                         >
                             <Button variant='outline-secondary' size='sm'>
-                                <span className='smButtonText'>Learn</span>
+                                <span className='smButtonText'>Learn More</span>
                             </Button>
                         </Link>
                     </div>
