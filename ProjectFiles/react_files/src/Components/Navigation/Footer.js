@@ -98,9 +98,15 @@ const Footer = () => {
                             undraw.co
                         </a>
                     </h2>
-                    <h2 className='footerText'>
-                        Website designed and built by Emmanuils Borovikovs (EB)
-                    </h2>
+                    <a
+                        style={{ textDecoration: "none" }}
+                        href='https://eb1811.github.io/'
+                    >
+                        <h2 className='footerText'>
+                            Website designed and built by Emmanuils Borovikovs
+                            (EB)
+                        </h2>
+                    </a>
                     <a
                         style={{ textDecoration: "none" }}
                         href='https://github.com/EB1811'

@@ -328,21 +328,21 @@ a:visited {
 }
 /* This is modifying the btn-secondary colors */
 .btn-secondary {
-    color: #fff !important;
-    background-color: #4096ff !important;
+    color: #4096ff !important;
+    background-color: #fff !important;
     border-color: transparent !important;
     box-shadow: 0 1px 4px #4096ff !important;
 }
 .btn-secondary:hover,
 .open > .dropdown-toggle.btn-secondary {
     color: #fff !important;
-    background-color: #2b8aff !important;
+    background-color: #4096ff !important;
     box-shadow: 0 1px 4px #4096ff !important;
 }
 /* Outline */
 .btn-outline-secondary {
-    color: #0d7aff !important;
-    border-color: #4e9cfc !important;
+    color: #fff !important;
+    border-color: #fff !important;
     box-shadow: 0 1px 4px #56a2ff !important;
 }
 .btn-outline-secondary:hover,

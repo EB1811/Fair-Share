@@ -140,14 +140,14 @@ const MainPage = () => {
             >
                 <div className='' style={{ maxWidth: "1250px" }}>
                     <h3 className=''>We can help you</h3>
-                    <Row className='mt-5 justify-content-center align-items-center'>
+                    <Row className='mt-4 justify-content-center align-items-center'>
                         <Col
                             style={{ display: "inline" }}
                             xs='12'
                             sm='12'
                             md='6'
                             lg='4'
-                            className='my-3'
+                            className='my-4'
                         >
                             <img
                                 src={logo4}
@@ -178,7 +178,7 @@ const MainPage = () => {
                             sm='12'
                             md='6'
                             lg='4'
-                            className='my-3'
+                            className='my-4'
                         >
                             <img
                                 src={logo5}
@@ -210,7 +210,7 @@ const MainPage = () => {
                             sm='12'
                             md='6'
                             lg='4'
-                            className='my-3'
+                            className='my-4'
                         >
                             <img
                                 src={logo6}
