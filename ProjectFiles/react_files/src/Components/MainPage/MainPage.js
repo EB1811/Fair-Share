@@ -48,7 +48,7 @@ const MainPage = () => {
                     <h1 className='Title w-100'>Fair / Share</h1>
                     <h5 className='descText mt-2'>
                         Our service helps you solve day-to-day sharing problems
-                        using mathematical algorithms that are tailored to you.
+                        using mathematical algorithms that achieve fair results.
                         <br />
                         Sharing a house with friends? Need to divide financial
                         assets fairly?
@@ -79,6 +79,7 @@ const MainPage = () => {
                         src={titleImage}
                         alt='group-selfie-happy-fair'
                         style={{ maxWidth: "100%" }}
+                        className='group-image-home'
                     />
                 </Col>
             </Row>
@@ -108,10 +109,10 @@ const MainPage = () => {
                                 alt='icon-team-diverse'
                                 style={{ width: "125px", height: "125px" }}
                             />
-                            <h1 className='iconDesc'>Personalised</h1>
+                            <h1 className='iconDesc'>Convenient</h1>
                             <p className='iconDescSmall'>
-                                You decide how your want to share, based on your
-                                preferences.
+                                You can share with a remote group or by using a
+                                local device.
                             </p>
                         </div>
                     </Col>

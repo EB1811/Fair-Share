@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 
 const Footer = () => {
     return (
-        <Container fluid style={{ height: "75vh" }}>
+        <Container fluid style={{ height: "75vh", minHeight: "500px" }}>
             <Row
                 className='align-items-center h-75 justify-content-center'
                 style={{ backgroundColor: "#303030", zIndex: "10" }}

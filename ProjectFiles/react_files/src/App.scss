@@ -86,6 +86,13 @@ $container-max-widths: (
     font-weight: 300;
 }
 
+/* Home main image */
+@media only screen and (max-width: 775px) {
+    .group-image-home {
+        margin: 1rem 0;
+    }
+}
+
 /* Word below icon */
 .iconDesc {
     color: #59e483;
@@ -334,9 +341,9 @@ a:visited {
 }
 /* Outline */
 .btn-outline-secondary {
-    color: #fff !important;
-    border-color: #4096ff !important;
-    box-shadow: 0 1px 4px #4096ff !important;
+    color: #0d7aff !important;
+    border-color: #4e9cfc !important;
+    box-shadow: 0 1px 4px #56a2ff !important;
 }
 .btn-outline-secondary:hover,
 .open > .dropdown-toggle.btn-outline-secondary {
