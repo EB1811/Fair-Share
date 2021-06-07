@@ -332,6 +332,19 @@ a:visited {
     background-color: #2b8aff !important;
     box-shadow: 0 1px 4px #4096ff !important;
 }
+/* Outline */
+.btn-outline-secondary {
+    color: #1277f3 !important;
+    border-color: #4096ff !important;
+    box-shadow: 0 1px 4px #4096ff !important;
+}
+.btn-outline-secondary:hover,
+.open > .dropdown-toggle.btn-outline-secondary {
+    color: #fff !important;
+    background-color: #4096ff !important;
+    border-color: transparent !important;
+    box-shadow: 0 1px 4px #4096ff !important;
+}
 
 .btn:active,
 .btn:focus {

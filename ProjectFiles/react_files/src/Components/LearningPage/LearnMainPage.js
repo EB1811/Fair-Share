@@ -25,21 +25,28 @@ const LearnMainPage = () => {
                                 active={false}
                                 style={{ padding: "4px" }}
                             >
-                                Section 1
+                                Fair Division
                             </Nav.Link>
                             <Nav.Link
                                 href='#section2'
                                 active={false}
                                 style={{ padding: "4px" }}
                             >
-                                Section 2
+                                Sharing Goods
                             </Nav.Link>
                             <Nav.Link
                                 href='#section3'
                                 active={false}
                                 style={{ padding: "4px" }}
                             >
-                                Section 3
+                                Sharing Finances
+                            </Nav.Link>
+                            <Nav.Link
+                                href='#section4'
+                                active={false}
+                                style={{ padding: "4px" }}
+                            >
+                                Sharing Rent
                             </Nav.Link>
                         </Nav>
                     </Navbar>
