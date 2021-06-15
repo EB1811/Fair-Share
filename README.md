@@ -5,3 +5,5 @@ This is done by using rental harmony algorithms that try to solve sharing proble
 The algorithms take everyone’s monetary valuations and compute an allocation which result in no one feeling envy towards someone else. Additionally, these algorithms result in a pareto-efficient situation, where no one would be better of without making at least 1 other person worse of.
 Multiple harmony algorithms are included for each sharing case.
 Users can share their rent, indivisible goods, and their finances, which can include both indivisible goods and money.
+
+#### Created by [*Emmanuils Borovikovs*](https://eb1811.github.io)
