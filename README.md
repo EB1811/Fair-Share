@@ -6,4 +6,6 @@ The algorithms take everyone’s monetary valuations and compute an allocation w
 Multiple harmony algorithms are included for each sharing case.
 Users can share their rent, indivisible goods, and their finances, which can include both indivisible goods and money.
 
+#### [Visit Website](https://fairshare-48f9f.web.app/)
+---
 #### Created by [*Emmanuils Borovikovs*](https://eb1811.github.io)
