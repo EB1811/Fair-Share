@@ -1,4 +1,4 @@
-# Fair-Share
+# Fair / Share
 
 Website helping users share rent, share goods, and separate finances in a way that guarantees no person will feel envy towards someone else.
 This is done by using rental harmony algorithms that try to solve sharing problem, i.e., split goods between people in a way that doesn’t cause resentment.
