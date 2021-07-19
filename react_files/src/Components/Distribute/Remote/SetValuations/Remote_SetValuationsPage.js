@@ -75,7 +75,7 @@ const Remote_SetValuationsPage = (props) => {
     ]);
 
     // Create {userEmail?, username, userGoodsArr} and add to firestore valuations array.
-    const storeValuations = (userGoodsArray, total) => {
+    const storeValuations = async (userGoodsArray, total) => {
         // Algorithms expect valuations total value > total cost.
         const values = session.values
             ? JSON.parse(JSON.stringify(session.values))
@@ -88,19 +88,12 @@ const Remote_SetValuationsPage = (props) => {
         // Add or replace for each good.
         values[uid] = userValues;
 
-        firestore
-            .update(
-                { collection: "ShareSessions", doc: sessionID },
-                { values: values }
-            )
-            .then(() => {
-                console.log("Successfully added your values");
-
-                setEditValues(false);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
+        await firestore.update(
+            { collection: "ShareSessions", doc: sessionID },
+            { values: values }
+        );
+        console.log("Successfully added your values");
+        setEditValues(false);
     };
 
     // Wait for load.

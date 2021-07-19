@@ -267,7 +267,7 @@ const RemoteInputGroupInfoPage = (props) => {
             props.history.push(`/Distribute/Valuations/Remote/${sessionID}`);
         }
     };
-    const deleteUser = (userEmail) => {
+    const deleteUser = async (userEmail) => {
         if (session.owner === uid) {
             if (userEmail !== profile.email) {
                 // Return group without user with userEmail.
@@ -280,17 +280,11 @@ const RemoteInputGroupInfoPage = (props) => {
                         return email !== userEmail.toLowerCase();
                     }
                 );
-                firestore
-                    .update(
-                        { collection: "ShareSessions", doc: sessionID },
-                        { group: newGroup, invitedUsers: newInvitedUsers }
-                    )
-                    .then(() => {
-                        console.log("User Successfully Deleted.");
-                    })
-                    .catch((err) => {
-                        console.log(err.message);
-                    });
+                await firestore.update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { group: newGroup, invitedUsers: newInvitedUsers }
+                );
+                console.log("User Successfully Deleted.");
             }
         }
     };
@@ -385,8 +379,7 @@ const RemoteInputGroupInfoPage = (props) => {
                                                           (user) => (
                                                               <Card
                                                                   style={{
-                                                                      color:
-                                                                          "#000",
+                                                                      color: "#000",
                                                                       textAlign:
                                                                           "left",
                                                                   }}
