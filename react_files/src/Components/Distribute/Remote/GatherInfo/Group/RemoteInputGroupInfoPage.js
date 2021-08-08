@@ -216,30 +216,23 @@ const RemoteInputGroupInfoPage = (props) => {
                 //console.log(userCurInvitations);
                 userCurInvitations[sessionID] = inviteInfo;
 
-                firestore
-                    .set(
-                        {
-                            collection: "SessionInvitations",
-                            doc: userEmail,
-                        },
-                        {
-                            invites: userCurInvitations,
-                        }
-                    )
-                    .then(() => {
-                        firestore
-                            .update(
-                                { collection: "ShareSessions", doc: sessionID },
-                                { invitedUsers: invitedUsers }
-                            )
-                            .then(() => {
-                                setInviteSent(true);
-                                setUserEmail("");
-                                setErrorMessage("");
-                            })
-                            .catch((err) => console.log(err.message));
-                    })
-                    .catch((err) => console.log(err.message));
+                await firestore.set(
+                    {
+                        collection: "SessionInvitations",
+                        doc: userEmail,
+                    },
+                    {
+                        invites: userCurInvitations,
+                    }
+                );
+                await firestore.update(
+                    { collection: "ShareSessions", doc: sessionID },
+                    { invitedUsers: invitedUsers }
+                );
+
+                setInviteSent(true);
+                setUserEmail("");
+                setErrorMessage("");
             }
         } else if (!user.length > 0) {
             setErrorMessage("Error! User with that email does not exist.");

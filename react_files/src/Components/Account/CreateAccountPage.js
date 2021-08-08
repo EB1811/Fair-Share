@@ -31,39 +31,33 @@ const CreateAccount = (props) => {
         setError("Signup Failed: " + error.message);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (email && pass) {
             if (username) {
-                firebase
-                    .createUser(
+                try {
+                    await firebase.createUser(
                         { email: email, password: pass },
                         { username: username, email: email }
-                    )
-                    .then(async () => {
-                        const user = firebase.auth().currentUser;
-                        try {
-                            await user.updateProfile({
-                                displayName: username,
-                            });
-                            await user.sendEmailVerification();
-                            await firestore.set(
-                                {
-                                    collection: "SessionInvitations",
-                                    doc: email,
-                                },
-                                { invites: {} }
-                            );
-                        } catch (err) {
-                            errorMessage(err);
-                        }
-                    })
-                    .then(() => {
-                        props.history.push("/");
-                    })
-                    .catch((err) => {
-                        errorMessage(err);
+                    );
+
+                    const user = await firebase.auth().currentUser;
+                    await user.updateProfile({
+                        displayName: username,
                     });
+                    await user.sendEmailVerification();
+                    await firestore.set(
+                        {
+                            collection: "SessionInvitations",
+                            doc: email,
+                        },
+                        { invites: {} }
+                    );
+                } catch (err) {
+                    errorMessage(err);
+                }
+
+                props.history.push("/");
             } else {
                 setEmail("");
                 setUsername("");

@@ -31,20 +31,18 @@ const Login = (props) => {
         setError("Login Failed: " + error.message);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (email && pass) {
-            firebase
-                .login({ email: email, password: pass })
-                .then(() => {
-                    props.history.push("/");
-                })
-                .catch((err) => {
-                    setEmail("");
-                    setPass("");
-                    errorMessage(err);
-                });
+            try {
+                await firebase.login({ email: email, password: pass });
+                props.history.push("/");
+            } catch (err) {
+                setEmail("");
+                setPass("");
+                errorMessage(err);
+            }
         }
     };
 
