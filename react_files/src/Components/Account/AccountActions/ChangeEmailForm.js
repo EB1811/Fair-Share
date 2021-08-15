@@ -9,19 +9,15 @@ const ChangeEmailForm = (props) => {
 
     // Change email.
     const [email, setEmail] = useState("");
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (email) {
-            firebase
-                .updateEmail(email, true)
-                .then(() => {
-                    console.log("Email Updated");
-                    props.setEmailChange(false);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                    props.setErrorMessage(err.message);
-                });
+            await firebase.updateEmail(email, true).catch((err) => {
+                console.log(err.message);
+                props.setErrorMessage(err.message);
+            });
+            console.log("Email Updated");
+            props.setEmailChange(false);
         }
     };
     //! If the user clicks the email link asking to revert email change, profile and auth emails are out of sync, i.e., profile email is not reverted.
