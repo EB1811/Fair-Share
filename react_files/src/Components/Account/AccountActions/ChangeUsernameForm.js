@@ -9,29 +9,23 @@ const ChangeUsernameForm = (props) => {
 
     // Change email.
     const [username, setUsername] = useState("");
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (username) {
-            firebase
-                .updateProfile({ username: username })
-                .then(async () => {
-                    const user = firebase.auth().currentUser;
-                    try {
-                        await user.updateProfile({
-                            displayName: username,
-                        });
-                    } catch (err) {
-                        props.setErrorMessage(err.message);
-                    }
-                })
-                .then(() => {
-                    console.log("Username Updated");
-                    props.setUsernameChange(false);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                    props.setErrorMessage(err.message);
+            try {
+                await firebase.updateProfile({ username: username });
+
+                const user = await firebase.auth().currentUser;
+                await user.updateProfile({
+                    displayName: username,
                 });
+
+                console.log("Username Updated");
+                props.setUsernameChange(false);
+            } catch (err) {
+                console.log(err.message);
+                props.setErrorMessage(err.message);
+            }
         }
     };
 

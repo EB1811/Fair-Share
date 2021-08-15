@@ -9,20 +9,18 @@ const ChangePasswordForm = (props) => {
 
     // Change email.
     const [password, setPassword] = useState("");
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (password) {
             var user = firebase.auth().currentUser;
 
-            user.updatePassword(password)
-                .then(() => {
-                    console.log("Password Changed");
-                    props.setPassChange(false);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                    props.setErrorMessage(err.message);
-                });
+            await user.updatePassword(password).catch((err) => {
+                console.log(err.message);
+                props.setErrorMessage(err.message);
+            });
+
+            console.log("Password Changed");
+            props.setPassChange(false);
         }
     };
 
