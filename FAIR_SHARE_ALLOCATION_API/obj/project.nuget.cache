@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3iwiiMH9eKSgxRWCl67+YcUQ70srzeWYDDkFo1C1s98P+5Q9KyOIf1giXdHNNEVfPH5ZvEPmsti6mws5b9Wq8Q==",
+  "dgSpecHash": "+hBqpzA/ivVoma/iAWhgykfMKYR0N2lDpQ1nO5iIxwg3NGpYiSiMcToFLQAx/Wwj9ksFEQBTqU7548MaGlnhCw==",
   "success": true,
-  "projectFilePath": "D:\\Users\\Emmanuils\\Documents\\CE301\\ce301_borovikovs_emmanuils\\ProjectFiles\\FAIR_SHARE_ALLOCATION_API\\FAIR_SHARE_ALLOCATION_API.csproj",
+  "projectFilePath": "D:\\Users\\Emmanuils\\Documents\\WEBSITES\\fair-share\\Fair-Share\\FAIR_SHARE_ALLOCATION_API\\FAIR_SHARE_ALLOCATION_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eman\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Eman\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
