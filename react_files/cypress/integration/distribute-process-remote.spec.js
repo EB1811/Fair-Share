@@ -99,7 +99,7 @@ describe("Remote sharing process", () => {
 
             // Results should be correct.
             cy.get("[data-testid=result_card]").within(() => {
-                cy.contains("Room 2 at $475").should("exist");
+                cy.contains("Room 1 at $525").should("exist");
             });
         });
     });
