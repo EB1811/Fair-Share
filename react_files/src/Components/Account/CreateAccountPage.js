@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Helmet } from "react-helmet-async";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -71,6 +71,13 @@ const CreateAccount = (props) => {
         if (!authId) {
             return (
                 <Container fluid style={{ height: "100vh" }}>
+                    <Helmet>
+                        <title>Create Account</title>
+                        <meta
+                            name='description'
+                            content='Create an account to share remotely and see your past split sessions.'
+                        />
+                    </Helmet>
                     <Row className='align-items-center min-vh-100 justify-content-center divBlockWithContentTertiary'>
                         <Col
                             xs={10}

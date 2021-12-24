@@ -14,6 +14,7 @@ import ScrollToTop from "./Components/Helpers/ScrollToTop";
 import LoadingScreen from "./Components/LoadingScreen/LoadingScreen";
 // Navigation bar.
 import NavCom from "./Components/Navigation/NavCom";
+import { Helmet } from "react-helmet-async";
 
 //* Import all react components. Lazy.
 const MainPage = lazy(() => import("./Components/MainPage/MainPage"));
@@ -96,6 +97,21 @@ function App() {
     //? Change questions and group info route to a single route if no difference in questions or group data collection.
     return (
         <div className='App'>
+            <Helmet>
+                <title>Fair / Share</title>
+                <meta
+                    name='description'
+                    content='We help users share rent, split goods, and separate finances in a way that mathematically guarantees no person will feel envy towards someone else.
+                    This is done by using fair division and rental harmony algorithms that are made to solve sharing problems, i.e., split goods between people in a way that doesn’t cause resentment.
+                    The algorithms take everyone’s monetary valuations and compute an allocation which result in no one feeling envy towards someone else. Additionally, these algorithms result in a pareto-efficient situation, where no one would be better of without making at least 1 other person worse of.
+                    Multiple harmony algorithms are included for each sharing case.
+                    Users can share their rent, indivisible goods, and their finances, which can include both indivisible goods and money.'
+                />
+                <meta
+                    name='keywords'
+                    content='sharing, share rent, rental harmony, fair division, splitsum, split'
+                />
+            </Helmet>
             <NavCom />
             <ScrollToTop />
             {profile.isLoaded && !profile.isEmpty ? (

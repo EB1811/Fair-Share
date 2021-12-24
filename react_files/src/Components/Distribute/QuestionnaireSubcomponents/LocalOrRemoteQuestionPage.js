@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { Helmet } from "react-helmet-async";
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -73,6 +73,19 @@ const LocalOrRemoteQuestion = (props) => {
                     fluid
                     className='divBlockWithContentTertiary min-vh-100'
                 >
+                    <Helmet>
+                        <title>
+                            Share{" "}
+                            {goodType === "Divorce" ? "Finances" : goodType}
+                        </title>
+                        <meta
+                            name='description'
+                            content={`Share ${(goodType === "Divorce"
+                                ? "Finances"
+                                : goodType
+                            ).toLowerCase()} in a way that guarantees envy-freeness using our algorithms remotely or locally.`}
+                        />
+                    </Helmet>
                     <Row className='justify-content-center align-items-center min-vh-100'>
                         <Col
                             xs={11}

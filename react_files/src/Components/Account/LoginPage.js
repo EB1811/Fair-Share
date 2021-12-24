@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Helmet } from "react-helmet-async";
 // React Bootstrap.
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -50,6 +50,13 @@ const Login = (props) => {
         if (!authId) {
             return (
                 <Container fluid style={{ height: "100vh" }}>
+                    <Helmet>
+                        <title>Log In</title>
+                        <meta
+                            name='description'
+                            content='Log in to your account to share remotely or see your past split sessions.'
+                        />
+                    </Helmet>
                     <Row className='align-items-center min-vh-100 justify-content-center divBlockWithContentTertiary'>
                         <Col
                             xs={10}

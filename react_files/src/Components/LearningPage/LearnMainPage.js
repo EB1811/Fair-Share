@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Helmet } from "react-helmet-async";
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -13,6 +13,14 @@ const LearnMainPage = () => {
             fluid
             className='divBlockWithContentTertiary min-vh-100 blackText'
         >
+            <Helmet>
+                <title>Learn</title>
+                <meta
+                    name='description'
+                    content='Learn how our service uses fair division and rental harmony algorithms to compute an allocation which result in no one feeling envy towards someone else.'
+                />
+                <meta name='keywords' content='sharing, learn, algorithms' />
+            </Helmet>
             <Row className='min-vh-100' style={{ textAlign: "left" }}>
                 {/* Left */}
                 <Col sm={4} md={3} lg={2} xl={2} className='sidebar p-4'>

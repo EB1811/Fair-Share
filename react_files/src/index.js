@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import { HelmetProvider } from "react-helmet-async";
 // Redux
 import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
@@ -44,11 +44,13 @@ const rrfProps = {
 ReactDOM.render(
     <Provider store={reduxStore}>
         <ReactReduxFirebaseProvider {...rrfProps}>
-            <Router>
-                <React.StrictMode>
-                    <App />
-                </React.StrictMode>
-            </Router>
+            <HelmetProvider>
+                <Router>
+                    <React.StrictMode>
+                        <App />
+                    </React.StrictMode>
+                </Router>
+            </HelmetProvider>
         </ReactReduxFirebaseProvider>
     </Provider>,
     document.getElementById("root")
