@@ -35,8 +35,7 @@ import { Link } from "react-router-dom";
 const MainPage = () => {
     // Scrolling.
     const goodsDesc = useRef(null);
-    const executeScroll = () =>
-        goodsDesc.current.scrollIntoView({ behavior: "smooth" });
+    const aboutUs = useRef(null);
 
     return (
         <div className='min-vh-100'>
@@ -56,7 +55,7 @@ const MainPage = () => {
                             className='justify-content-center align-items-center'
                         >
                             <h1 className='Title w-100'>
-                                Split Goods Fairly and Quickly
+                                Split Goods Without Fights
                             </h1>
                             <h5
                                 className='mt-2'
@@ -74,29 +73,32 @@ const MainPage = () => {
                                 <Button
                                     variant='secondary'
                                     size='sm'
-                                    onClick={executeScroll}
+                                    onClick={() =>
+                                        goodsDesc.current.scrollIntoView({
+                                            behavior: "smooth",
+                                        })
+                                    }
                                 >
                                     <span className='smButtonText'>
                                         Begin Sharing
                                     </span>
                                 </Button>
-                                <Link
-                                    className='m-2'
-                                    style={{ textDecoration: "none" }}
-                                    to='/Learn'
+                                <Button
+                                    variant='link'
+                                    size='sm'
+                                    style={{
+                                        color: "#f5f5f5",
+                                    }}
+                                    onClick={() =>
+                                        aboutUs.current.scrollIntoView({
+                                            behavior: "smooth",
+                                        })
+                                    }
                                 >
-                                    <Button
-                                        variant='link'
-                                        size='sm'
-                                        style={{
-                                            color: "#f5f5f5",
-                                        }}
-                                    >
-                                        <span className='smButtonText'>
-                                            Learn More
-                                        </span>
-                                    </Button>
-                                </Link>
+                                    <span className='smButtonText'>
+                                        Learn More
+                                    </span>
+                                </Button>
                             </div>
                         </Col>
                         <Col xs='12' md='6' lg='7'>
@@ -110,10 +112,160 @@ const MainPage = () => {
                     </Row>
                 </Container>
             </section>
-            <section>
+            <section
+                style={{ padding: "60px", backgroundColor: "#fff" }}
+                ref={aboutUs}
+            >
+                <Container>
+                    <div
+                        style={{
+                            paddingBottom: "20px",
+                        }}
+                    >
+                        <h1
+                            style={{
+                                color: "#49db64",
+                                textAlign: "center",
+                            }}
+                        >
+                            About Us
+                        </h1>
+                        <hr />
+                        <Row
+                            style={{
+                                color: "#555",
+                                textAlign: "left",
+                            }}
+                        >
+                            <Col xs='12' md='6'>
+                                <p>
+                                    Our service helps you solve day-to-day
+                                    sharing problems using mathematical
+                                    algorithms that achieve fair results.
+                                </p>
+                                <ul className='pr-5'>
+                                    <li>
+                                        We can help users share rent, share
+                                        goods, and separate finances in the
+                                        event of a divorce.
+                                    </li>
+                                    <li>
+                                        Sharing is done by using fair division
+                                        and rental harmony algorithms that are
+                                        created to share goods fairly
+                                    </li>
+                                    <li>
+                                        The results leave everyone in the group
+                                        happy and not envious of other partners.
+                                    </li>
+                                    {/* <li>
+                                        We are constantly looking for new areas
+                                        and problems to apply our algorithms to.
+                                    </li> */}
+                                </ul>
+                            </Col>
+                            <Col xs='12' md='6'>
+                                <p>
+                                    Goods such as rent, or tasks commonly need
+                                    to be split among a group. However,
+                                    allocating things in a way that doesn’t
+                                    leave at least someone upset is very
+                                    difficult. Fair division algorithms are made
+                                    to try to solve this problem; split goods
+                                    between people in a way that doesn’t cause
+                                    resentment.
+                                    <br />
+                                    Decades of fair division and rental harmony
+                                    research is applied to help groups share
+                                    without fights.
+                                </p>
+                                <Link
+                                    style={{ textDecoration: "none" }}
+                                    to='/Learn'
+                                >
+                                    <Button variant='primary' size='md'>
+                                        <span>Learn More</span>
+                                    </Button>
+                                </Link>
+                            </Col>
+                        </Row>
+                        <h1
+                            style={{
+                                color: "#49db64",
+                                textAlign: "center",
+                                marginTop: "100px",
+                            }}
+                        >
+                            Our Service Is
+                        </h1>
+                        <div
+                            className='d-flex justify-content-center align-items-center p-5'
+                            style={{}}
+                        >
+                            <Row
+                                style={{ maxWidth: "950px", minWidth: "300px" }}
+                            >
+                                <Col xs='12' sm='6' md='4' className='my-3'>
+                                    <div>
+                                        <img
+                                            src={logo1}
+                                            alt='icon-fair-division'
+                                            style={{
+                                                width: "125px",
+                                                height: "125px",
+                                            }}
+                                        />
+                                        <h1 className='iconDesc'>Fair</h1>
+                                        <p className='iconDescSmall'>
+                                            Our algorithms results in
+                                            mathematically proven fair
+                                            solutions.
+                                        </p>
+                                    </div>
+                                </Col>
+                                <Col xs='12' sm='6' md='4' className='my-3'>
+                                    <div>
+                                        <img
+                                            src={logo2}
+                                            alt='icon-team-diverse'
+                                            style={{
+                                                width: "125px",
+                                                height: "125px",
+                                            }}
+                                        />
+                                        <h1 className='iconDesc'>Convenient</h1>
+                                        <p className='iconDescSmall'>
+                                            You can share with a remote group or
+                                            by using a local device.
+                                        </p>
+                                    </div>
+                                </Col>
+                                <Col xs='12' sm='6' md='4' className='my-3'>
+                                    <div className='h-100'>
+                                        <img
+                                            src={logo3}
+                                            alt='icon-check-star'
+                                            style={{
+                                                width: "125px",
+                                                height: "125px",
+                                            }}
+                                        />
+                                        <h1 className='iconDesc'>Easy</h1>
+                                        <p className='iconDescSmall'>
+                                            Our service is as quick and
+                                            straightforward to use as possible.
+                                        </p>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+            {/* <section style={{ minHeight: "45vh", backgroundColor: "#fff" }}>
                 <div
-                    className='d-flex justify-content-center align-items-center p-4'
-                    style={{ minHeight: "55vh", backgroundColor: "#fff" }}
+                    className='d-flex justify-content-center align-items-center p-5'
+                    style={{ minHeight: "50vh", backgroundColor: "#fff" }}
                 >
                     <Row style={{ maxWidth: "950px", minWidth: "300px" }}>
                         <Col xs='12' sm='6' md='4' className='my-3'>
@@ -121,7 +273,10 @@ const MainPage = () => {
                                 <img
                                     src={logo1}
                                     alt='icon-fair-division'
-                                    style={{ width: "125px", height: "125px" }}
+                                    style={{
+                                        width: "125px",
+                                        height: "125px",
+                                    }}
                                 />
                                 <h1 className='iconDesc'>Fair</h1>
                                 <p className='iconDescSmall'>
@@ -135,7 +290,10 @@ const MainPage = () => {
                                 <img
                                     src={logo2}
                                     alt='icon-team-diverse'
-                                    style={{ width: "125px", height: "125px" }}
+                                    style={{
+                                        width: "125px",
+                                        height: "125px",
+                                    }}
                                 />
                                 <h1 className='iconDesc'>Convenient</h1>
                                 <p className='iconDescSmall'>
@@ -149,7 +307,10 @@ const MainPage = () => {
                                 <img
                                     src={logo3}
                                     alt='icon-check-star'
-                                    style={{ width: "125px", height: "125px" }}
+                                    style={{
+                                        width: "125px",
+                                        height: "125px",
+                                    }}
                                 />
                                 <h1 className='iconDesc'>Easy</h1>
                                 <p className='iconDescSmall'>
@@ -160,7 +321,7 @@ const MainPage = () => {
                         </Col>
                     </Row>
                 </div>
-            </section>
+            </section> */}
 
             <section>
                 <div
