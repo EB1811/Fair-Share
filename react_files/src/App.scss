@@ -51,7 +51,7 @@ $container-max-widths: (
 /* Smaller Titles */
 @media only screen and (max-width: 930px) {
     .Title {
-        font-size: 3.9em;
+        font-size: 3em;
     }
     .descText {
         font-size: 1.1rem;
@@ -62,7 +62,7 @@ $container-max-widths: (
 }
 @media only screen and (max-width: 774px) {
     .Title {
-        font-size: 5em;
+        font-size: 3.5em;
     }
     .descText {
         font-size: 1.25rem;
@@ -70,12 +70,40 @@ $container-max-widths: (
 }
 @media only screen and (max-width: 500px) {
     .Title {
-        font-size: 3.525em;
+        font-size: 2.5em;
     }
     .descText {
         font-size: 1rem;
     }
 }
+.padPhone {
+    padding: 70px;
+}
+.padPhoneS {
+    padding: 70px;
+}
+@media only screen and (max-width: 774px) {
+    .padPhone {
+        padding: 40px;
+    }
+    .padPhoneS {
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .padPhone {
+        padding: 30px 0px;
+    }
+    .padPhoneS {
+        padding: 30px 5px;
+    }
+}
+
+ul {
+    list-style-position: inside;
+    padding-left: 20px;
+}
+
 /* Text link */
 .textLink {
     font-size: 0.9rem;
@@ -340,6 +368,16 @@ a:visited {
     box-shadow: 0 1px 4px #4096ff !important;
 }
 /* Outline */
+.btn-outline-primary {
+    color: #4096ff !important;
+    border-color: #4096ff !important;
+}
+.btn-outline-primary:hover,
+.open > .dropdown-toggle.btn-outline-primary {
+    color: #fff !important;
+    background-color: #4096ff !important;
+    border-color: transparent !important;
+}
 .btn-outline-secondary {
     color: #fff !important;
     border-color: #fff !important;
