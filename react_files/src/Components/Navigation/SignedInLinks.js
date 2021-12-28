@@ -28,11 +28,17 @@ const SignedInLinks = (props) => {
     if (userLetter) {
         return (
             <Nav className='justify-content-end' style={{ flex: 1 }}>
-                <span style={{ padding: "0.5rem", color: "#777777" }}>|</span>
+                <span style={{ padding: "10px 0 10px 30px", color: "#fff" }}>
+                    |
+                </span>
                 <Nav.Item>
                     <NavLink
                         className='nav-link'
-                        style={{ textDecoration: "none" }}
+                        style={{
+                            padding: "10px 0 10px 30px",
+                            textDecoration: "none",
+                            transition: "0.2s",
+                        }}
                         to='/Account'
                         onClick={() =>
                             setTimeout(() => {
@@ -47,7 +53,11 @@ const SignedInLinks = (props) => {
                     <span
                         onClick={logout}
                         className='nav-link'
-                        style={{ cursor: "pointer" }}
+                        style={{
+                            cursor: "pointer",
+                            padding: "10px 0 10px 30px",
+                            transition: "0.2s",
+                        }}
                     >
                         Logout
                     </span>

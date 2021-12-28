@@ -25,13 +25,23 @@ const NavCom = (props) => {
         <NavBar
             expanded={expanded}
             expand='md'
-            style={{ backgroundColor: "#fff" }}
+            style={{
+                backgroundColor: "#6daffe",
+                boxShadow: "0 1px 3px #5798e6",
+                zIndex: 1000,
+                fontSize: "16px",
+                fontWeight: "500",
+                top: 0,
+            }}
             variant='light'
         >
-            <Container fluid>
+            <Container>
                 <Navbar.Brand>
                     <Link style={{ textDecoration: "none" }} to='/'>
-                        <span className='brandName'>Fair / Share</span>
+                        <span className='brandName'>
+                            Split
+                            <span style={{ color: "#0555b6" }}>Sum</span>
+                        </span>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle
@@ -39,9 +49,13 @@ const NavCom = (props) => {
                     onClick={() => setExpanded(expanded ? false : "expanded")}
                 />
                 <Navbar.Collapse id='basic-navbar-nav' className='ml-3'>
-                    <Nav className='mr-auto'>
+                    <Nav className='ml-auto'>
                         <NavLink
                             className='nav-link'
+                            style={{
+                                padding: "10px 0 10px 30px",
+                                transition: "0.2s",
+                            }}
                             exact
                             to='/'
                             onClick={() =>
@@ -54,6 +68,10 @@ const NavCom = (props) => {
                         </NavLink>
                         <NavLink
                             className='nav-link'
+                            style={{
+                                padding: "10px 0 10px 30px",
+                                transition: "0.2s",
+                            }}
                             exact
                             to='/Learn'
                             onClick={() =>
@@ -64,22 +82,31 @@ const NavCom = (props) => {
                         >
                             Learn
                         </NavLink>
-                        <span style={{ padding: "0.5rem", color: "#777777" }}>
+                        <span
+                            style={{
+                                padding: "10px 0 10px 30px",
+                                color: "#fff",
+                            }}
+                        >
                             |
                         </span>
 
                         <span
-                            className=''
                             style={{
                                 display: "block",
-                                padding: "0.5rem",
+                                padding: "10px 0 10px 30px",
                                 fontWeight: "500",
+                                color: "#fff",
                             }}
                         >
                             Share:
                         </span>
                         <NavLink
                             className='nav-link'
+                            style={{
+                                padding: "10px 0 10px 30px",
+                                transition: "0.2s",
+                            }}
                             to='/Distribute/localremote/Rent'
                             onClick={() =>
                                 setTimeout(() => {
@@ -91,6 +118,10 @@ const NavCom = (props) => {
                         </NavLink>
                         <NavLink
                             className='nav-link'
+                            style={{
+                                padding: "10px 0 10px 30px",
+                                transition: "0.2s",
+                            }}
                             to='/Distribute/localremote/Goods'
                             onClick={() =>
                                 setTimeout(() => {
@@ -102,6 +133,10 @@ const NavCom = (props) => {
                         </NavLink>
                         <NavLink
                             className='nav-link'
+                            style={{
+                                padding: "10px 0 10px 30px",
+                                transition: "0.2s",
+                            }}
                             to='/Distribute/localremote/Divorce'
                             onClick={() =>
                                 setTimeout(() => {
@@ -111,16 +146,16 @@ const NavCom = (props) => {
                         >
                             Finances
                         </NavLink>
+                        {props.authStatus.isLoaded &&
+                            (props.authStatus.uid ? (
+                                <SignedInLinks
+                                    profile={props.profile}
+                                    setExpanded={setExpanded}
+                                />
+                            ) : (
+                                <SignedOutLinks setExpanded={setExpanded} />
+                            ))}
                     </Nav>
-                    {props.authStatus.isLoaded &&
-                        (props.authStatus.uid ? (
-                            <SignedInLinks
-                                profile={props.profile}
-                                setExpanded={setExpanded}
-                            />
-                        ) : (
-                            <SignedOutLinks setExpanded={setExpanded} />
-                        ))}
                 </Navbar.Collapse>
             </Container>
         </NavBar>

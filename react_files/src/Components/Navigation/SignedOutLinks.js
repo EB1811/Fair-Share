@@ -11,11 +11,17 @@ import Nav from "react-bootstrap/Nav";
 const SignedOutLinks = (props) => {
     return (
         <Nav className='justify-content-end' style={{ flex: 1 }}>
-            <span style={{ padding: "0.5rem", color: "#777777" }}>|</span>
+            <span style={{ padding: "10px 0 10px 30px", color: "#fff" }}>
+                |
+            </span>
             <Nav.Item>
                 <NavLink
                     className='nav-link'
-                    style={{ textDecoration: "none" }}
+                    style={{
+                        textDecoration: "none",
+                        padding: "10px 0 10px 30px",
+                        transition: "0.2s",
+                    }}
                     to='/Login'
                     onClick={() =>
                         setTimeout(() => {
@@ -29,7 +35,12 @@ const SignedOutLinks = (props) => {
             <Nav.Item>
                 <NavLink
                     className='nav-link'
-                    style={{ textDecoration: "none", cursor: "pointer" }}
+                    style={{
+                        textDecoration: "none",
+                        cursor: "pointer",
+                        padding: "10px 0 10px 30px",
+                        transition: "0.2s",
+                    }}
                     to='/CreateAccount'
                     onClick={() =>
                         setTimeout(() => {
