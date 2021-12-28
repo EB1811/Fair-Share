@@ -1,8 +1,8 @@
 //Redefining bootstrap variables.
 
-$navbar-light-color: #777777;
-$navbar-light-hover-color: #4096ff;
-$navbar-light-active-color: #4096ff;
+$navbar-light-color: #f5f5f5;
+$navbar-light-hover-color: #0555b6;
+$navbar-light-active-color: #0555b6;
 
 // Dropdowns
 //$dropdown-link-color
@@ -16,14 +16,14 @@ $grid-breakpoints: (
     sm: 576px,
     md: 775px,
     lg: 1200px,
-    xl: 1800px,
+    xl: 1400px,
 );
 
 $container-max-widths: (
     sm: 540px,
     md: 720px,
     lg: 1040px,
-    xl: 1740px,
+    xl: 1320px,
 );
 
 @import "~bootstrap/scss/bootstrap";
@@ -36,8 +36,8 @@ $container-max-widths: (
 }
 
 .Title {
-    font-weight: 500;
-    font-size: 5em;
+    font-weight: 700;
+    font-size: 48px;
     display: inline-block;
     margin: 0;
     z-index: 1;
@@ -185,9 +185,9 @@ $container-max-widths: (
 }
 
 .brandName {
-    color: #4096ff;
-    font-weight: 500;
-    font-size: 1.25em;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
 }
 
 .descText {
@@ -287,7 +287,7 @@ a:visited {
 
 .smButtonText {
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 18px;
 }
 .medButtonText {
     font-weight: 700;

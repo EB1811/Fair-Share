@@ -98,7 +98,7 @@ function App() {
     return (
         <div className='App'>
             <Helmet>
-                <title>Fair / Share</title>
+                <title>SplitSum</title>
                 <meta
                     name='description'
                     content='We help users share rent, split goods, and separate finances in a way that mathematically guarantees no person will feel envy towards someone else.
