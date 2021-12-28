@@ -113,7 +113,7 @@ const MainPage = () => {
                 </Container>
             </section>
             <section
-                style={{ padding: "60px", backgroundColor: "#fff" }}
+                style={{ padding: "70px", backgroundColor: "#fff" }}
                 ref={aboutUs}
             >
                 <Container>
@@ -193,13 +193,13 @@ const MainPage = () => {
                             style={{
                                 color: "#49db64",
                                 textAlign: "center",
-                                marginTop: "100px",
+                                marginTop: "115px",
                             }}
                         >
                             Our Service Is
                         </h1>
                         <div
-                            className='d-flex justify-content-center align-items-center p-5'
+                            className='d-flex justify-content-center align-items-center p-4'
                             style={{}}
                         >
                             <Row
@@ -330,7 +330,7 @@ const MainPage = () => {
                     ref={goodsDesc}
                 >
                     <div className='' style={{ maxWidth: "1250px" }}>
-                        <h3 className=''>We can help you</h3>
+                        <h1 className=''>We can help you</h1>
                         <Row className='mt-4 justify-content-center align-items-center'>
                             <Col
                                 style={{ display: "inline" }}
@@ -340,30 +340,41 @@ const MainPage = () => {
                                 lg='4'
                                 className='my-4'
                             >
-                                <img
-                                    src={logo4}
-                                    alt='icon-house-rent'
-                                    style={{ width: "125px", height: "125px" }}
-                                />
-                                <h1 className='iconDesc2'>Share Rent</h1>
-                                <p className='mt-2 goodDescParagraph'>
-                                    Renting an apartment with your friends can
-                                    be tricky. How do you decide who gets what
-                                    room without anyone feeling upset. Our
-                                    algorithms use your values for each room to
-                                    give you a mathematically fair allocation.
-                                </p>
-                                <Link
-                                    className='m-2'
-                                    style={{ textDecoration: "none" }}
-                                    to='/Distribute/localremote/Rent'
+                                <div
+                                    style={{
+                                        borderRadius: "0.375rem",
+                                    }}
+                                    className='p-3'
                                 >
-                                    <Button variant='secondary' size='sm'>
-                                        <span className='smButtonText'>
-                                            Start
-                                        </span>
-                                    </Button>
-                                </Link>
+                                    <img
+                                        src={logo4}
+                                        alt='icon-house-rent'
+                                        style={{
+                                            width: "125px",
+                                            height: "125px",
+                                        }}
+                                    />
+                                    <h1 className='iconDesc2'>Share Rent</h1>
+                                    <p className='mt-2 goodDescParagraph'>
+                                        Renting an apartment with your friends
+                                        can be tricky. How do you decide who
+                                        gets what room without anyone feeling
+                                        upset. Our algorithms use your values
+                                        for each room to give you a
+                                        mathematically fair allocation.
+                                    </p>
+                                    <Link
+                                        className='m-2'
+                                        style={{ textDecoration: "none" }}
+                                        to='/Distribute/localremote/Rent'
+                                    >
+                                        <Button variant='secondary' size='sm'>
+                                            <span className='smButtonText'>
+                                                Start
+                                            </span>
+                                        </Button>
+                                    </Link>
+                                </div>
                             </Col>
                             <Col
                                 style={{ display: "inline" }}
@@ -373,31 +384,41 @@ const MainPage = () => {
                                 lg='4'
                                 className='my-4'
                             >
-                                <img
-                                    src={logo5}
-                                    alt='icon-jewelry-goods'
-                                    style={{ width: "125px", height: "125px" }}
-                                />
-                                <h1 className='iconDesc2'>Share Goods</h1>
-                                <p className='mt-2 goodDescParagraph'>
-                                    Share any type of good such as jewelry,
-                                    financial assets, or real estate. Simply
-                                    enter the details of each good. By assigning
-                                    a monetary valuation for each good, we give
-                                    you a envy-free allocation that maximizes
-                                    the sum of bids.
-                                </p>
-                                <Link
-                                    className='m-2'
-                                    style={{ textDecoration: "none" }}
-                                    to='/Distribute/localremote/Goods'
+                                <div
+                                    style={{
+                                        borderRadius: "0.375rem",
+                                    }}
+                                    className='p-3'
                                 >
-                                    <Button variant='secondary' size='sm'>
-                                        <span className='smButtonText'>
-                                            Start
-                                        </span>
-                                    </Button>
-                                </Link>
+                                    <img
+                                        src={logo5}
+                                        alt='icon-jewelry-goods'
+                                        style={{
+                                            width: "125px",
+                                            height: "125px",
+                                        }}
+                                    />
+                                    <h1 className='iconDesc2'>Share Goods</h1>
+                                    <p className='mt-2 goodDescParagraph'>
+                                        Share any type of good such as jewelry,
+                                        financial assets, or real estate. Simply
+                                        enter the details of each good. By
+                                        assigning a monetary valuation for each
+                                        good, we give you a envy-free allocation
+                                        that maximizes the sum of bids.
+                                    </p>
+                                    <Link
+                                        className='m-2'
+                                        style={{ textDecoration: "none" }}
+                                        to='/Distribute/localremote/Goods'
+                                    >
+                                        <Button variant='secondary' size='sm'>
+                                            <span className='smButtonText'>
+                                                Start
+                                            </span>
+                                        </Button>
+                                    </Link>
+                                </div>
                             </Col>
                             <Col
                                 style={{ display: "inline" }}
@@ -407,31 +428,44 @@ const MainPage = () => {
                                 lg='4'
                                 className='my-4'
                             >
-                                <img
-                                    src={logo6}
-                                    alt='divorce-assets-finance-fair'
-                                    style={{ width: "125px", height: "125px" }}
-                                />
-                                <h1 className='iconDesc2'>Separate Finances</h1>
-                                <p className='mt-2 goodDescParagraph'>
-                                    When you divorce or end a civil partnership,
-                                    separating your money and property is very
-                                    tricky. Our service can help start things
-                                    off by giving you a fair distribution of
-                                    assets based on which goods you value. And
-                                    this isn't limited to finances.
-                                </p>
-                                <Link
-                                    className='m-2'
-                                    style={{ textDecoration: "none" }}
-                                    to='/Distribute/localremote/Divorce'
+                                <div
+                                    style={{
+                                        borderRadius: "0.375rem",
+                                    }}
+                                    className='p-3'
                                 >
-                                    <Button variant='secondary' size='sm'>
-                                        <span className='smButtonText'>
-                                            Start
-                                        </span>
-                                    </Button>
-                                </Link>
+                                    <img
+                                        src={logo6}
+                                        alt='divorce-assets-finance-fair'
+                                        style={{
+                                            width: "125px",
+                                            height: "125px",
+                                        }}
+                                    />
+                                    <h1 className='iconDesc2'>
+                                        Separate Finances
+                                    </h1>
+                                    <p className='mt-2 goodDescParagraph'>
+                                        When you divorce or end a civil
+                                        partnership, separating your money and
+                                        property is very tricky. Our service can
+                                        help start things off by giving you a
+                                        fair distribution of assets based on
+                                        which goods you value. And this isn't
+                                        limited to finances.
+                                    </p>
+                                    <Link
+                                        className='m-2'
+                                        style={{ textDecoration: "none" }}
+                                        to='/Distribute/localremote/Divorce'
+                                    >
+                                        <Button variant='secondary' size='sm'>
+                                            <span className='smButtonText'>
+                                                Start
+                                            </span>
+                                        </Button>
+                                    </Link>
+                                </div>
                             </Col>
                         </Row>
                     </div>
@@ -494,6 +528,8 @@ const MainPage = () => {
                     </Container>
                 </div>
             </section>
+
+            <section style={{ padding: "60px" }}></section>
 
             <section>
                 <div
