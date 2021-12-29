@@ -26,7 +26,7 @@ $container-max-widths: (
     xl: 1320px,
 );
 
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
 /* cool color: 219a99, 32c4c4 */
 
@@ -256,6 +256,13 @@ h6 {
 a:active,
 a:visited {
     color: #fff;
+}
+
+.bg-brand-blue {
+    background-color: #6daffe;
+}
+.text-brand-blue {
+    color: #4096ff;
 }
 
 /* For big divs spanning page length */
