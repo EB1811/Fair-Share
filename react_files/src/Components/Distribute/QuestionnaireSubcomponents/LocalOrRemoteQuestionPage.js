@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 import { withRouter, useParams, Redirect } from "react-router";
 import { useFirestore } from "react-redux-firebase";
@@ -30,6 +31,15 @@ const LocalOrRemoteQuestion = (props) => {
         // Only execute once so
         // eslint-disable-next-line
     }, []);
+
+    const registerInterest = async () =>
+        await firestore.add(
+            { collection: "PaymentInterest" },
+            {
+                interest: true,
+                at: new Date().toString(),
+            }
+        );
 
     // Set the group info gathering method (local or remote) then go to next question page. User must be logged in to use the remote option.
     const setMethod = (method) => {
@@ -111,7 +121,6 @@ const LocalOrRemoteQuestion = (props) => {
                                     >
                                         Share locally, passing your device
                                         around to gather everyone's valuations.
-                                        No login needed.
                                     </p>
                                 </Col>
                                 <Col xs={12} sm={6} className='my-2'>
@@ -119,7 +128,7 @@ const LocalOrRemoteQuestion = (props) => {
                                         src={shareOnlineGroup}
                                         className='SVGButton'
                                         alt='share-online-group_ICON.svg'
-                                        onClick={() => setMethod("remote")}
+                                        // onClick={() => setMethod("remote")}
                                         data-testid='start_remote'
                                     />
                                     <p
@@ -130,6 +139,20 @@ const LocalOrRemoteQuestion = (props) => {
                                         members login and get invited to your
                                         party.
                                     </p>
+                                    <h5
+                                        className='text-muted'
+                                        style={{ margin: "0" }}
+                                    >
+                                        Currently Closed
+                                    </h5>
+                                    <Button
+                                        className='mt-2'
+                                        variant='outline-primary'
+                                        size='md'
+                                        onClick={registerInterest}
+                                    >
+                                        <span>Register Interest</span>
+                                    </Button>
                                 </Col>
                             </Row>
                         </Col>

@@ -48,6 +48,10 @@ const LocalInputGroupInfoPage = ({
     const checkGroup = () => {
         if (stateUserArray.length < 2) {
             setErrorMessage("Error! Must have at least 2 users.");
+        } else if (stateUserArray.length > 3) {
+            setErrorMessage(
+                "Error! Under the Free Plan, a group can contain a maximum of 3 people."
+            );
         } else if (
             // In rent sharing, the number of users and rooms must be equal.
             goodType === "Rent" &&

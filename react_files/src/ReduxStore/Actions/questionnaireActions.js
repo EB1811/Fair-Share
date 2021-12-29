@@ -6,6 +6,7 @@ const setShareMethod = (method) => {
     };
 };
 
+// eslint-disable-next-line
 export default {
     setShareMethod,
 };
