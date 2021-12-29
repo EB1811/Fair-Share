@@ -14,6 +14,9 @@ module.exports = {
                 bBlue: '#4096ff',
                 bBlueDark: '#2b8aff',
             },
+            // boxShadow: {
+            //     def: defaultTheme.boxShadow.DEFAULT,
+            // },
         },
     },
     plugins: [],

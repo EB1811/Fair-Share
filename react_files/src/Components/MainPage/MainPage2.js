@@ -1,5 +1,19 @@
 import titleImage from '../../Images/group-selfie-happy-fair.svg'
 
+import logo1 from '../../Images/fair_ICON.svg'
+import logo2 from '../../Images/team_ICON.svg'
+import logo3 from '../../Images/check_ICON.svg'
+import logo4 from '../../Images/house_ICON.svg'
+import logo5 from '../../Images/jewelry_ICON.svg'
+import logo6 from '../../Images/divorce-assets-finance_ICON.svg'
+import logoStep1 from '../../Images/Information-Entry-step1_ICON.svg'
+import logoStep2 from '../../Images/Allocation-step4_ICON.svg'
+import logoStep3 from '../../Images/Values-step3_ICON.svg'
+import logoStep4 from '../../Images/Questions-step2_ICON.svg'
+
+// React Router
+import { Link } from 'react-router-dom'
+
 const MainPage2 = () => {
     return (
         <div className='min-h-screen bg-white'>
@@ -80,12 +94,253 @@ const MainPage2 = () => {
             </section>
             <section className='bg-gray-100'>
                 <div className='max-w-screen-xl mx-auto px-4 py-12 sm:py-16 md:py-20 xl:py-28'>
-                    <div className='space-y-4'>
+                    <div>
                         <h2 className='text-3xl md:text-4xl font-semibold text-gray-800'>
                             Key Features
                         </h2>
                     </div>
-                    <div className='mt-10 lg:mt-16'></div>
+                    <div className='mt-10 lg:mt-16 grid xl:grid-cols-3 gap-6 lg:gap-10'>
+                        <div className='bg-bWhite p-6 rounded-lg space-y-6 shadow-md hover:shadow-xl duration-200'>
+                            <div className='flex items-center justify-center'>
+                                <img
+                                    src={logo1}
+                                    alt='icon-fair-division'
+                                    style={{
+                                        width: '125px',
+                                        height: '125px',
+                                    }}
+                                />
+                            </div>
+                            <div className='space-y-4'>
+                                <h4 className='text-2xl md:text-3xl font-semibold text-green-400'>
+                                    Fair
+                                </h4>
+                                <p className='text-gray-700'>
+                                    Our algorithms results in mathematically
+                                    proven envy-free solutions.
+                                </p>
+                            </div>
+                        </div>
+                        <div className='bg-bWhite p-6 rounded-lg space-y-6 shadow-md hover:shadow-xl duration-200'>
+                            <div className='flex items-center justify-center'>
+                                <img
+                                    src={logo2}
+                                    alt='icon-team-diverse'
+                                    style={{
+                                        width: '125px',
+                                        height: '125px',
+                                    }}
+                                />
+                            </div>
+                            <div className='space-y-4'>
+                                <h4 className='text-2xl md:text-3xl font-semibold text-green-400'>
+                                    Convenient
+                                </h4>
+                                <p className='text-gray-700'>
+                                    You can share with a remote group or by
+                                    using a local device.
+                                </p>
+                            </div>
+                        </div>
+                        <div className='bg-bWhite p-6 rounded-lg space-y-6 shadow-md hover:shadow-xl duration-200'>
+                            <div className='flex items-center justify-center'>
+                                <img
+                                    src={logo3}
+                                    alt='icon-happy-star'
+                                    style={{
+                                        width: '125px',
+                                        height: '125px',
+                                    }}
+                                />
+                            </div>
+                            <div className='space-y-4'>
+                                <h4 className='text-2xl md:text-3xl font-semibold text-green-400'>
+                                    Easy
+                                </h4>
+                                <p className='text-gray-700'>
+                                    Our service is as quick and straightforward
+                                    to use as possible.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className='bg-white'>
+                <div className='max-w-screen-lg mx-auto px-3 py-16'>
+                    <div className='text-center'>
+                        <h2 className='text-xl md:text-2xl font-normal text-gray-800'>
+                            How does it work?
+                        </h2>
+                        <h1 className='text-4xl md:text-5xl font-semibold text-green-400'>
+                            Simple
+                        </h1>
+                    </div>
+                    <hr />
+                    <div className='mt-10 lg:mt-16 grid grid-flow-row sm:grid-cols-2 md:gap-8'>
+                        <div className='flex flex-col items-center justify-center w-full text-center sm:px-6'>
+                            <h3 className='text-2xl md:text-3xl text-gray-800 font-semibold'>
+                                1. Enter Goods Info
+                            </h3>
+                            <p className='mt-2 m-0 text-gray-700'>
+                                We need info about the goods you want to share.
+                                This could be the goods names, or just tell us
+                                how many rooms you are splitting.
+                            </p>
+                        </div>
+                        <div className='w-full p-6 '>
+                            <img src={logoStep1} alt='icon good info entry' />
+                        </div>
+                    </div>
+                    <div className='mt-10 lg:mt-16 grid grid-flow-row sm:grid-cols-2 md:gap-8'>
+                        <div className='flex flex-col items-center justify-center w-full text-center sm:px-6 sm:order-2'>
+                            <h3 className='text-2xl md:text-3xl text-gray-800 font-semibold'>
+                                2. Create a Group
+                            </h3>
+                            <p className='mt-2 m-0 text-gray-700'>
+                                Tell us who you plan to share the goods with.
+                                Simply enter their names, or if sharing
+                                remotely, invite registered users.
+                            </p>
+                        </div>
+                        <div className='w-full p-6 '>
+                            <img src={logoStep2} alt='icon good info entry' />
+                        </div>
+                    </div>
+                    <div className='mt-10 lg:mt-16 grid grid-flow-row sm:grid-cols-2 md:gap-8'>
+                        <div className='flex flex-col items-center justify-center w-full text-center sm:px-6'>
+                            <h3 className='text-2xl md:text-3xl text-gray-800 font-semibold'>
+                                3. Give your valuations.
+                            </h3>
+                            <p className='mt-2 m-0 text-gray-700'>
+                                Enter each person's valuation for each item.
+                                When sharing remotely, each user will give their
+                                own valuations.
+                            </p>
+                        </div>
+                        <div className='w-full p-6 '>
+                            <img src={logoStep3} alt='icon good info entry' />
+                        </div>
+                    </div>
+                    <div className='mt-10 lg:mt-16 grid grid-flow-row sm:grid-cols-2 md:gap-8'>
+                        <div className='flex flex-col items-center justify-center w-full text-center sm:px-6 sm:order-2'>
+                            <h3 className='text-2xl md:text-3xl text-gray-800 font-semibold'>
+                                4. See Who Gets What.
+                            </h3>
+                            <p className='mt-2 m-0 text-gray-700'>
+                                Our algorithms will use everybody's values to
+                                compute a fair allocation.
+                            </p>
+                        </div>
+                        <div className='w-full p-6 '>
+                            <img src={logoStep4} alt='icon good info entry' />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className='bg-bBgBlue'>
+                <div className='max-w-screen-md lg:max-w-screen-xl mx-auto px-3 py-16'>
+                    <div className='text-center'>
+                        <h1 className='text-3xl md:text-4xl font-semibold text-white'>
+                            We Can Help You
+                        </h1>
+                        <div className='mt-10 lg:mt-16 grid grid-flow-row lg:grid-cols-3 md:gap-2'>
+                            <div className='p-6'>
+                                <div className='flex items-center justify-center'>
+                                    <img
+                                        src={logo4}
+                                        alt='icon-house-rent'
+                                        style={{
+                                            width: '125px',
+                                            height: '125px',
+                                        }}
+                                    />
+                                </div>
+                                <h2 className='text-white font-light text-4xl xl:text-5xl'>
+                                    Share Rent
+                                </h2>
+                                <p className='mt-2 text-white m-0'>
+                                    Renting an apartment with your friends can
+                                    be tricky. How do you decide who gets what
+                                    room without anyone feeling upset. Our
+                                    algorithms use your values for each room to
+                                    give you a mathematically fair allocation.
+                                </p>
+                                <Link
+                                    style={{ textDecoration: 'none' }}
+                                    to='/Distribute/localremote/Rent'
+                                >
+                                    <button className='mt-3 py-2 px-3 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'>
+                                        Start
+                                    </button>
+                                </Link>
+                            </div>
+                            <div className='p-6'>
+                                <div className='flex items-center justify-center'>
+                                    <img
+                                        src={logo5}
+                                        alt='icon-divisible-goods'
+                                        style={{
+                                            width: '125px',
+                                            height: '125px',
+                                        }}
+                                    />
+                                </div>
+                                <h2 className='text-white font-light text-4xl xl:text-5xl'>
+                                    Share Goods
+                                </h2>
+                                <p className='mt-2 text-white m-0'>
+                                    Share any type of good such as jewelry,
+                                    financial assets, or real estate. Simply
+                                    enter the details of each good. By assigning
+                                    a monetary valuation for each good, we give
+                                    you a envy-free allocation that maximizes
+                                    the sum of bids.
+                                </p>
+                                <Link
+                                    style={{ textDecoration: 'none' }}
+                                    to='/Distribute/localremote/Rent'
+                                >
+                                    <button className='mt-3 py-2 px-3 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'>
+                                        Start
+                                    </button>
+                                </Link>
+                            </div>
+                            <div className='p-6'>
+                                <div className='flex items-center justify-center'>
+                                    <img
+                                        src={logo6}
+                                        alt='icon-house-rent'
+                                        style={{
+                                            width: '125px',
+                                            height: '125px',
+                                        }}
+                                    />
+                                </div>
+                                <h2 className='text-white font-light text-4xl xl:text-5xl'>
+                                    Separate Finances
+                                </h2>
+                                <p className='mt-2 text-white m-0'>
+                                    When you divorce or end a civil partnership,
+                                    separating your money and property is very
+                                    tricky. Our service can help start things
+                                    off by giving you a fair distribution of
+                                    assets based on which goods you value. And
+                                    this isn't limited to finances.
+                                </p>
+                                <Link
+                                    style={{ textDecoration: 'none' }}
+                                    to='/Distribute/localremote/Rent'
+                                >
+                                    <button className='mt-3 py-2 px-3 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'>
+                                        Start
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
