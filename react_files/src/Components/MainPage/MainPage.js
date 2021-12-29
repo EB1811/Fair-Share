@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -20,10 +20,11 @@ import logoStep4 from "../../Images/Allocation-step4_ICON.svg";
 
 import titleImage from "../../Images/group-selfie-happy-fair.svg";
 
+import { useFirestore } from "react-redux-firebase";
+
 // React Router
 import { Link } from "react-router-dom";
 
-//TODO: [A301212-85] Dependencies outdated. Update to React 17.
 //// [A301212-87] Ability to reset password in login screen.
 ////
 //? Create a value matrix in input valuations component instead of results page.
@@ -33,6 +34,21 @@ import { Link } from "react-router-dom";
 ////
 
 const MainPage = () => {
+    const firestore = useFirestore();
+    const [interest, setInterest] = useState(false);
+
+    const registerInterest = async () => {
+        await firestore.add(
+            { collection: "PaymentInterest" },
+            {
+                interest: true,
+                at: new Date().toString(),
+            }
+        );
+        setInterest(true);
+        console.log("done");
+    };
+
     // Scrolling.
     const goodsDesc = useRef(null);
     const aboutUs = useRef(null);
@@ -40,8 +56,8 @@ const MainPage = () => {
     return (
         <div className='min-vh-100'>
             <section
-                className='d-flex divBlockWithContentTitle w-100 align-items-center'
-                style={{ height: "70vh" }}
+                className='d-flex divBlockWithContentTitle w-100 align-items-center pb-4'
+                style={{ minHeight: "70vh" }}
             >
                 <Container>
                     <Row
@@ -52,7 +68,7 @@ const MainPage = () => {
                             xs='12'
                             md='6'
                             lg='5'
-                            className='justify-content-center align-items-center'
+                            className='justify-content-center align-items-center order-2 order-md-1 pt-4 pt-md-0'
                         >
                             <h1 className='Title w-100'>
                                 Split Goods Without Fights
@@ -101,7 +117,12 @@ const MainPage = () => {
                                 </Button>
                             </div>
                         </Col>
-                        <Col xs='12' md='6' lg='7'>
+                        <Col
+                            xs='12'
+                            md='6'
+                            lg='7'
+                            className='order-1 order-md-2'
+                        >
                             <img
                                 src={titleImage}
                                 alt='group-selfie-happy-fair'
@@ -113,8 +134,9 @@ const MainPage = () => {
                 </Container>
             </section>
             <section
-                style={{ padding: "70px", backgroundColor: "#fff" }}
+                style={{ backgroundColor: "#fff" }}
                 ref={aboutUs}
+                className='padPhoneS'
             >
                 <Container>
                     <div
@@ -124,7 +146,7 @@ const MainPage = () => {
                     >
                         <h1
                             style={{
-                                color: "#49db64",
+                                color: "#0555b6",
                                 textAlign: "center",
                             }}
                         >
@@ -164,7 +186,7 @@ const MainPage = () => {
                                     </li> */}
                                 </ul>
                             </Col>
-                            <Col xs='12' md='6'>
+                            <Col xs='12' md='6' className='pt-4 pt-lg-0'>
                                 <p>
                                     Goods such as rent, or tasks commonly need
                                     to be split among a group. However,
@@ -189,7 +211,7 @@ const MainPage = () => {
                                 </Link>
                             </Col>
                         </Row>
-                        <h1
+                        {/* <h1
                             style={{
                                 color: "#49db64",
                                 textAlign: "center",
@@ -258,14 +280,14 @@ const MainPage = () => {
                                     </div>
                                 </Col>
                             </Row>
-                        </div>
+                        </div> */}
                     </div>
                 </Container>
             </section>
-            {/* <section style={{ minHeight: "45vh", backgroundColor: "#fff" }}>
+            <section style={{ backgroundColor: "#fff" }}>
                 <div
                     className='d-flex justify-content-center align-items-center p-5'
-                    style={{ minHeight: "50vh", backgroundColor: "#fff" }}
+                    style={{ minHeight: "45vh", backgroundColor: "#fff" }}
                 >
                     <Row style={{ maxWidth: "950px", minWidth: "300px" }}>
                         <Col xs='12' sm='6' md='4' className='my-3'>
@@ -321,7 +343,7 @@ const MainPage = () => {
                         </Col>
                     </Row>
                 </div>
-            </section> */}
+            </section>
 
             <section>
                 <div
@@ -529,24 +551,264 @@ const MainPage = () => {
                 </div>
             </section>
 
-            <section style={{ padding: "60px" }}></section>
-
             <section>
                 <div
-                    className='d-flex justify-content-center divBlockWithContentGreen align-items-center p-4'
-                    style={{ minHeight: "20vh" }}
+                    className='d-flex justify-content-center align-items-center p-4'
+                    style={{
+                        minHeight: "20vh",
+                        backgroundColor: "#6daffe",
+                        color: "#fff",
+                    }}
                 >
                     <Col>
                         <h5>
                             Want to learn more about the underlying algorithms?
                         </h5>
                         <a href='/Learn' style={{ textDecoration: "none" }}>
-                            <h4 className='bigTextLink'>
+                            <h4
+                                className='bigTextLink'
+                                style={{
+                                    color: "#fff",
+                                }}
+                            >
                                 Go to our learning page.
                             </h4>
                         </a>
                     </Col>
                 </div>
+            </section>
+
+            <section style={{ backgroundColor: "#fff" }} className='padPhone'>
+                <Container>
+                    <div style={{ textAlign: "center" }}>
+                        <h1
+                            style={{
+                                color: "#49db64",
+                            }}
+                        >
+                            Pricing
+                        </h1>
+                        <hr />
+                    </div>
+                    <Row className='justify-content-center'>
+                        <Col sm='12' lg='4' className='my-3'>
+                            <div
+                                style={{
+                                    padding: "60px 40px",
+                                    boxShadow:
+                                        "0 3px 20px -2px rgb(20 45 100 / 10%)",
+                                    backgroundColor: "#fff",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    borderTop: "4px solid #fff",
+                                    borderRadius: "5px",
+                                }}
+                            >
+                                <h5 style={{ color: "#49db64" }}>Free Plan</h5>
+                                <h4
+                                    className='mt-4'
+                                    style={{ fontSize: "50px", color: "#333" }}
+                                >
+                                    <sup style={{ fontSize: "28px" }}>$</sup>0
+                                    <span style={{ fontSize: "18px" }}>
+                                        per month
+                                    </span>
+                                </h4>
+                                <ul className='mt-4' style={{ color: "#888" }}>
+                                    <li className='py-1'>Local - Share Rent</li>
+                                    <li className='py-1'>
+                                        Local - Share Goods
+                                    </li>
+                                    <li className='py-1'>
+                                        Local - Seperate Finances
+                                    </li>
+                                    <li className='py-1'>
+                                        Share with up to <b>3</b> people
+                                    </li>
+                                    <li className='py-1'>
+                                        Share sessions a month: <b>1</b>
+                                    </li>
+                                    <li className='py-1'>
+                                        <span
+                                            style={{
+                                                textDecoration: "line-through",
+                                            }}
+                                        >
+                                            Remote - Share Rent
+                                        </span>
+                                    </li>
+                                    <li className='py-1'>
+                                        <span
+                                            style={{
+                                                textDecoration: "line-through",
+                                            }}
+                                        >
+                                            Remote - Share Goods
+                                        </span>
+                                    </li>
+                                    <li className='py-1'>
+                                        <span
+                                            style={{
+                                                textDecoration: "line-through",
+                                            }}
+                                        >
+                                            Remote - Seperate Finances
+                                        </span>
+                                    </li>
+                                </ul>
+                                <Link
+                                    style={{ textDecoration: "none" }}
+                                    to='/CreateAccount'
+                                >
+                                    <Button
+                                        variant='outline-primary'
+                                        size='md'
+                                        className='mt-3'
+                                    >
+                                        <span>Create Account</span>
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Col>
+                        <Col sm='12' lg='4' className='my-3'>
+                            <div
+                                style={{
+                                    padding: "60px 40px",
+                                    boxShadow:
+                                        "0 3px 20px -2px rgb(20 45 100 / 10%)",
+                                    backgroundColor: "#fff",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    borderTop: "4px solid #fff",
+                                    borderTopColor: "#49db64",
+                                    borderRadius: "5px",
+                                }}
+                            >
+                                <h5 style={{ color: "#49db64" }}>
+                                    Premium Plan
+                                </h5>
+                                <h4
+                                    className='mt-4'
+                                    style={{ fontSize: "50px", color: "#333" }}
+                                >
+                                    <sup style={{ fontSize: "28px" }}>$</sup>3
+                                    <span style={{ fontSize: "18px" }}>
+                                        per month
+                                    </span>
+                                </h4>
+                                <ul className='mt-4' style={{ color: "#888" }}>
+                                    <li className='py-1'>Local - Share Rent</li>
+                                    <li className='py-1'>
+                                        Local - Share Goods
+                                    </li>
+                                    <li className='py-1'>
+                                        Local - Seperate Finances
+                                    </li>
+                                    <li className='py-1'>
+                                        Share with up to <b>6</b> people
+                                    </li>
+                                    <li className='py-1'>
+                                        Share sessions a month: <b>5</b>
+                                    </li>
+                                    <li className='py-1'>
+                                        Remote - Share Rent
+                                    </li>
+                                    <li className='py-1'>
+                                        Remote - Share Goods
+                                    </li>
+                                    <li className='py-1'>
+                                        Remote - Seperate Finances
+                                    </li>
+                                </ul>
+                                {!interest ? (
+                                    <Button
+                                        variant='outline-primary'
+                                        size='md'
+                                        className='mt-3'
+                                        onClick={registerInterest}
+                                    >
+                                        <span>Register Interest</span>
+                                    </Button>
+                                ) : (
+                                    <h5
+                                        className='mt-3'
+                                        style={{ display: "inline-block" }}
+                                    >
+                                        Done
+                                    </h5>
+                                )}
+                            </div>
+                        </Col>
+                        <Col sm='12' lg='4' className='my-3'>
+                            <div
+                                style={{
+                                    padding: "60px 40px",
+                                    boxShadow:
+                                        "0 3px 20px -2px rgb(20 45 100 / 10%)",
+                                    backgroundColor: "#fff",
+                                    height: "100%",
+                                    textAlign: "left",
+                                    borderTop: "4px solid #fff",
+                                    borderRadius: "5px",
+                                }}
+                            >
+                                <h5 style={{ color: "#49db64" }}>
+                                    Enthusiast Plan
+                                </h5>
+                                <h4
+                                    className='mt-4'
+                                    style={{ fontSize: "50px", color: "#333" }}
+                                >
+                                    <sup style={{ fontSize: "28px" }}>$</sup>6
+                                    <span style={{ fontSize: "18px" }}>
+                                        per month
+                                    </span>
+                                </h4>
+                                <ul className='mt-4' style={{ color: "#888" }}>
+                                    <li className='py-1'>Local - Share Rent</li>
+                                    <li className='py-1'>
+                                        Local - Share Goods
+                                    </li>
+                                    <li className='py-1'>
+                                        Local - Seperate Finances
+                                    </li>
+                                    <li className='py-1'>
+                                        Share with up to <b>1000</b> people
+                                    </li>
+                                    <li className='py-1'>
+                                        Share sessions a month: <b>Unlimited</b>
+                                    </li>
+                                    <li className='py-1'>
+                                        Remote - Share Rent
+                                    </li>
+                                    <li className='py-1'>
+                                        Remote - Share Goods
+                                    </li>
+                                    <li className='py-1'>
+                                        Remote - Seperate Finances
+                                    </li>
+                                </ul>
+                                {!interest ? (
+                                    <Button
+                                        variant='outline-primary'
+                                        size='md'
+                                        className='mt-3'
+                                        onClick={registerInterest}
+                                    >
+                                        <span>Register Interest</span>
+                                    </Button>
+                                ) : (
+                                    <h5
+                                        className='mt-3'
+                                        style={{ display: "inline-block" }}
+                                    >
+                                        Done
+                                    </h5>
+                                )}
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
             </section>
         </div>
     );

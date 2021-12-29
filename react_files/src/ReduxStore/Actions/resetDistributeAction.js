@@ -5,6 +5,7 @@ const resetInfo = () => {
     };
 };
 
+// eslint-disable-next-line
 export default {
     resetInfo,
 };
