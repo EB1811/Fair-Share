@@ -128,7 +128,7 @@ const LocalOrRemoteQuestion = (props) => {
                                         src={shareOnlineGroup}
                                         className='SVGButton'
                                         alt='share-online-group_ICON.svg'
-                                        // onClick={() => setMethod("remote")}
+                                        onClick={() => setMethod("remote")}
                                         data-testid='start_remote'
                                     />
                                     <p

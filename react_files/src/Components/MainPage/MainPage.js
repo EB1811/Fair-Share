@@ -71,7 +71,7 @@ const MainPage = () => {
                             className='justify-content-center align-items-center order-2 order-md-1 pt-4 pt-md-0'
                         >
                             <h1 className='Title w-100'>
-                                Split Goods Without Fights
+                                Split Goods Without Envy
                             </h1>
                             <h5
                                 className='mt-2'
@@ -581,13 +581,7 @@ const MainPage = () => {
             <section style={{ backgroundColor: "#fff" }} className='padPhone'>
                 <Container>
                     <div style={{ textAlign: "center" }}>
-                        <h1
-                            style={{
-                                color: "#49db64",
-                            }}
-                        >
-                            Pricing
-                        </h1>
+                        <h1 className='text-indigo-600'>Pricing</h1>
                         <hr />
                     </div>
                     <Row className='justify-content-center'>
