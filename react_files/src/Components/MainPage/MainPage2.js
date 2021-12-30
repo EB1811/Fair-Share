@@ -82,7 +82,7 @@ const MainPage2 = () => {
                     </div>
                 </div>
             </section>
-            <section className='bg-white lg:py-10' ref={about}>
+            <section className='bg-white lg:py-10' ref={about} id='aboutUs'>
                 <div className='max-w-screen-xl px-6 md:px-8 xl:px-16 mt-6 mb-6 sm:mt-12 sm:mb-12 mx-auto'>
                     <div className='grid grid-flow-row md:grid-flow-col md:grid-rows-1 sm:grid-cols-2 gap-7 lg:gap-8 py-10 sm:py-20'>
                         <div className='w-full'>
@@ -271,7 +271,7 @@ const MainPage2 = () => {
                 </div>
             </section>
 
-            <section className='bg-bBgBlue' ref={services}>
+            <section className='bg-bBgBlue' ref={services} id='services'>
                 <div className='max-w-screen-md lg:max-w-screen-xl mx-auto px-3 py-16 lg:py-24'>
                     <div className='text-center'>
                         <h1 className='text-3xl md:text-4xl font-semibold text-white'>
@@ -538,7 +538,7 @@ const MainPage2 = () => {
                 </div>
             </section>
 
-            <section className='bg-bBgBlue'>
+            <section className='bg-green-400'>
                 <div className='flex flex-col justify-center align-middle px-3 py-10 md:py-14'>
                     <h3 className='text-xl md:text-2xl font-normal text-gray-800'>
                         Want to learn more about the underlying algorithms?

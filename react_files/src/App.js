@@ -23,7 +23,7 @@ const About = lazy(() => import('./Components/MainPage/About'))
 const LearnMainPage = lazy(() =>
     import('./Components/LearningPage/LearnMainPage')
 )
-const Footer = lazy(() => import('./Components/Navigation/Footer'))
+const Footer2 = lazy(() => import('./Components/Navigation/Footer2'))
 // Account.
 const CreateAccountPage = lazy(() =>
     import('./Components/Account/CreateAccountPage')
@@ -207,7 +207,7 @@ function App() {
                 </Switch>
             </Suspense>
             <Suspense fallback={<LoadingScreen />}>
-                <Footer />
+                <Footer2 />
             </Suspense>
         </div>
     )
