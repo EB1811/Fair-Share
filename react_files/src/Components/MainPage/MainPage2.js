@@ -1,5 +1,5 @@
+import { useRef, useState, useCallback } from 'react'
 import titleImage from '../../Images/group-selfie-happy-fair.svg'
-
 import logo1 from '../../Images/fair_ICON.svg'
 import logo2 from '../../Images/team_ICON.svg'
 import logo3 from '../../Images/check_ICON.svg'
@@ -10,11 +10,28 @@ import logoStep1 from '../../Images/Information-Entry-step1_ICON.svg'
 import logoStep2 from '../../Images/Allocation-step4_ICON.svg'
 import logoStep3 from '../../Images/Values-step3_ICON.svg'
 import logoStep4 from '../../Images/Questions-step2_ICON.svg'
-
-// React Router
 import { Link } from 'react-router-dom'
+import { useFirestore } from 'react-redux-firebase'
 
 const MainPage2 = () => {
+    const firestore = useFirestore()
+    const [interest, setInterest] = useState(false)
+
+    const registerInterest = useCallback(async () => {
+        await firestore.add(
+            { collection: 'PaymentInterest' },
+            {
+                interest: true,
+                at: new Date().toString(),
+            }
+        )
+        setInterest(true)
+        console.log('done')
+    }, [])
+
+    const services = useRef(null)
+    const about = useRef(null)
+
     return (
         <div className='min-h-screen bg-white'>
             <section className='bg-bBgBlue lg:py-10'>
@@ -30,10 +47,24 @@ const MainPage2 = () => {
                                 achieve fair results.
                             </p>
                             <div className='w-100 lg:mt-12'>
-                                <button className='py-3 lg:py-4 px-6 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'>
+                                <button
+                                    className='py-3 lg:py-4 px-6 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'
+                                    onClick={() =>
+                                        services.current.scrollIntoView({
+                                            behavior: 'smooth',
+                                        })
+                                    }
+                                >
                                     Get Started
                                 </button>
-                                <button className='mt-2 lg:mt-0 xs:ml-4 py-3 lg:py-4 px-8 lg:px-10 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'>
+                                <button
+                                    className='mt-2 lg:mt-0 xs:ml-4 py-3 lg:py-4 px-8 lg:px-10 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'
+                                    onClick={() =>
+                                        about.current.scrollIntoView({
+                                            behavior: 'smooth',
+                                        })
+                                    }
+                                >
                                     About Us
                                 </button>
                             </div>
@@ -51,7 +82,7 @@ const MainPage2 = () => {
                     </div>
                 </div>
             </section>
-            <section className='bg-white lg:py-10'>
+            <section className='bg-white lg:py-10' ref={about}>
                 <div className='max-w-screen-xl px-6 md:px-8 xl:px-16 mt-6 mb-6 sm:mt-12 sm:mb-12 mx-auto'>
                     <div className='grid grid-flow-row md:grid-flow-col md:grid-rows-1 sm:grid-cols-2 gap-7 lg:gap-8 py-10 sm:py-20'>
                         <div className='w-full'>
@@ -93,7 +124,7 @@ const MainPage2 = () => {
                 </div>
             </section>
             <section className='bg-gray-100'>
-                <div className='max-w-screen-xl mx-auto px-4 py-12 sm:py-16 md:py-20 xl:py-28'>
+                <div className='max-w-screen-sm xl:max-w-screen-xl mx-auto px-4 py-12 sm:py-16 md:py-20 xl:py-28'>
                     <div>
                         <h2 className='text-3xl md:text-4xl font-semibold text-gray-800'>
                             Key Features
@@ -240,8 +271,8 @@ const MainPage2 = () => {
                 </div>
             </section>
 
-            <section className='bg-bBgBlue'>
-                <div className='max-w-screen-md lg:max-w-screen-xl mx-auto px-3 py-16'>
+            <section className='bg-bBgBlue' ref={services}>
+                <div className='max-w-screen-md lg:max-w-screen-xl mx-auto px-3 py-16 lg:py-24'>
                     <div className='text-center'>
                         <h1 className='text-3xl md:text-4xl font-semibold text-white'>
                             We Can Help You
@@ -340,6 +371,184 @@ const MainPage2 = () => {
                                 </Link>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                className='bg-gradient-to-b from-gray-100 to-white'
+                id='pricing'
+            >
+                <div className='max-w-screen-sm md:max-w-screen-xl mx-auto px-6 md:px-2 lg:px-8 py-16 pb-28'>
+                    <h1 className='text-3xl md:text-4xl font-semibold text-gray-800'>
+                        Choose Your Plan
+                    </h1>
+                    <p>
+                        We have a variety of packages that are tailored for each
+                        individual's needs.
+                    </p>
+                    <div className='mt-10 lg:mt-16 grid grid-flow-row md:grid-cols-3 gap-5 md:gap-2 xl:gap-8'>
+                        <div className='bg-white py-16 px-6 lg:px-10 shadow-md rounded-lg text-left border-t-4 border-white hover:shadow-lg duration-200'>
+                            <div className='flex flex-col h-100'>
+                                <h5 className='text-green-400 font-bold'>
+                                    Free Plan
+                                </h5>
+                                <h4 className='mt-3 text-gray-700 text-5xl'>
+                                    <sup className='text-3xl'>$</sup>0
+                                    <span className='text-lg'>per month</span>
+                                </h4>
+                                <ul className='text-gray-500 list-disc list-outside text-left mt-3'>
+                                    <li className='py-1'>
+                                        Use our algorithms to share rent, share
+                                        goods, and separate finances locally
+                                    </li>
+                                    <li className='py-1'>
+                                        Share with up to <b>2</b> other people
+                                    </li>
+                                    <li className='py-1'>
+                                        Share sessions a month: <b>1</b>
+                                    </li>
+                                </ul>
+                                <div className='flex flex-col flex-grow align-bottom'>
+                                    <Link
+                                        style={{ textDecoration: 'none' }}
+                                        to='/CreateAccount'
+                                        className='mt-auto mr-auto'
+                                    >
+                                        <button className='mt-2 lg:mt-0 py-2 lg:py-4 px-3 lg:px-8 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'>
+                                            Create Account
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='bg-white py-16 px-6 lg:px-10 shadow-md rounded-lg text-left border-t-4 border-green-400 hover:shadow-lg duration-200'>
+                            <div className='flex flex-col h-100'>
+                                <h5 className='text-green-400 font-bold'>
+                                    Premium Plan
+                                </h5>
+                                <h4 className='mt-3 text-gray-700 text-5xl'>
+                                    <sup className='text-3xl'>$</sup>5
+                                    <span className='text-lg'>per month</span>
+                                </h4>
+                                <ul className='text-gray-500 list-disc list-outside text-left mt-3'>
+                                    <li className='py-1'>
+                                        Use our algorithms to share rent, share
+                                        goods, and separate finances locally
+                                    </li>
+                                    <li className='py-1'>
+                                        Share with up to <b>5</b> other people
+                                    </li>
+                                    <li className='py-1'>
+                                        Share sessions a month: <b>5</b>
+                                    </li>
+                                    <li className='py-1'>
+                                        Easily share remotely by inviting other
+                                        accounts to your sharing sessions
+                                    </li>
+                                    <li className='py-1'>
+                                        View all your past allocations in your
+                                        account page
+                                    </li>
+                                </ul>
+                                <div className='flex flex-col flex-grow align-bottom'>
+                                    <div className='mt-auto'>
+                                        {!interest ? (
+                                            <button
+                                                className='mt-2 lg:mt-0 py-2 lg:py-4 px-3 lg:px-8 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'
+                                                onClick={registerInterest}
+                                            >
+                                                Register Interest
+                                            </button>
+                                        ) : (
+                                            <h5
+                                                className='mt-3'
+                                                style={{
+                                                    display: 'inline-block',
+                                                }}
+                                            >
+                                                Done
+                                            </h5>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='bg-white py-16 px-6 lg:px-10 shadow-md rounded-lg text-left border-t-4 border-white hover:shadow-lg duration-200'>
+                            <div className='flex flex-col h-100'>
+                                <h5 className='text-green-400 font-bold'>
+                                    Enthusiast Plan
+                                </h5>
+                                <h4 className='mt-3 text-gray-700 text-5xl'>
+                                    <sup className='text-3xl'>$</sup>10
+                                    <span className='text-lg'>per month</span>
+                                </h4>
+                                <ul className='text-gray-500 list-disc list-outside text-left mt-3'>
+                                    <li className='py-1'>
+                                        Use our algorithms to share rent, share
+                                        goods, and separate finances locally
+                                    </li>
+                                    <li className='py-1'>
+                                        Share with up to <b>99</b> other people
+                                    </li>
+                                    <li className='py-1'>
+                                        Share sessions a month: <b>Unlimited</b>
+                                    </li>
+                                    <li className='py-1'>
+                                        Easily share remotely by inviting other
+                                        accounts to your sharing sessions
+                                    </li>
+                                    <li className='py-1'>
+                                        View all your past allocations in your
+                                        account page
+                                    </li>
+                                    <li className='py-1'>
+                                        Personal access to the API that powers
+                                        our service.
+                                    </li>
+                                    <li className='py-1'>
+                                        Be the first to use new algorithms and
+                                        features
+                                    </li>
+                                </ul>
+                                <div className='flex flex-col flex-grow align-bottom'>
+                                    <div className='mt-auto'>
+                                        {!interest ? (
+                                            <button
+                                                className='mt-2 lg:mt-0 py-2 lg:py-4 px-3  lg:px-8 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'
+                                                onClick={registerInterest}
+                                            >
+                                                Register Interest
+                                            </button>
+                                        ) : (
+                                            <h5
+                                                className='mt-3'
+                                                style={{
+                                                    display: 'inline-block',
+                                                }}
+                                            >
+                                                Done
+                                            </h5>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className='bg-bBgBlue'>
+                <div className='flex flex-col justify-center align-middle px-3 py-10 md:py-14'>
+                    <h3 className='text-xl md:text-2xl font-normal text-gray-800'>
+                        Want to learn more about the underlying algorithms?
+                    </h3>
+                    <div>
+                        <a href='/Learn' style={{ textDecoration: 'none' }}>
+                            <h1 className='text-2xl md:text-4xl font-bold text-gray-800 underline'>
+                                Go to our learning page.
+                            </h1>
+                        </a>
                     </div>
                 </div>
             </section>
