@@ -406,7 +406,7 @@ const MainPage2 = () => {
                                         Share with up to <b>2</b> other people
                                     </li>
                                     <li className='py-1'>
-                                        Share sessions a month: <b>1</b>
+                                        Share sessions a month: <b>5</b>
                                     </li>
                                 </ul>
                                 <div className='flex flex-col flex-grow align-bottom'>
@@ -440,7 +440,7 @@ const MainPage2 = () => {
                                         Share with up to <b>5</b> other people
                                     </li>
                                     <li className='py-1'>
-                                        Share sessions a month: <b>5</b>
+                                        Share sessions a month: <b>100</b>
                                     </li>
                                     <li className='py-1'>
                                         Easily share remotely by inviting other
