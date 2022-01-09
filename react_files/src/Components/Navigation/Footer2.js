@@ -14,10 +14,36 @@ const Footer2 = () => (
                     Designed and Built by Emmanuil B.
                 </p>
                 <a href='https://eb1811.github.io/'>
-                    <p className=' text-gray-400 underline hover:text-gray-100'>
+                    <p className='mb-1 text-gray-400 underline hover:text-gray-100'>
                         eb1811.github.io
                     </p>
                 </a>
+                <p className='m-0 text-gray-400'>
+                    'Key Features' icons made by{' '}
+                    <a
+                        style={{
+                            textDecoration: 'none',
+                        }}
+                        href='https://www.flaticon.com/authors/freepik'
+                        title='Freepik'
+                    >
+                        <span className='text-gray-400 underline hover:text-gray-100'>
+                            Freepik
+                        </span>
+                    </a>{' '}
+                    from{' '}
+                    <a
+                        style={{
+                            textDecoration: 'none',
+                        }}
+                        href='https://www.flaticon.com/'
+                        title='Flaticon'
+                    >
+                        <span className=' text-gray-400 underline hover:text-gray-100'>
+                            www.flaticon.com
+                        </span>
+                    </a>
+                </p>
             </div>
             <div className='row-span-2 sm:col-span-2 sm:col-start-7 sm:col-end-9 flex flex-col text-left font-semibold'>
                 <h5 className='text-gray-100 mb-3 text-2xl'>Share</h5>
