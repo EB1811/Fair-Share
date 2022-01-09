@@ -18,12 +18,11 @@ import { Helmet } from 'react-helmet-async'
 
 //* Import all react components. Lazy.
 const MainPage = lazy(() => import('./Components/MainPage/MainPage'))
-const MainPage2 = lazy(() => import('./Components/MainPage/MainPage2'))
 const About = lazy(() => import('./Components/MainPage/About'))
 const LearnMainPage = lazy(() =>
     import('./Components/LearningPage/LearnMainPage')
 )
-const Footer2 = lazy(() => import('./Components/Navigation/Footer2'))
+const Footer = lazy(() => import('./Components/Navigation/Footer'))
 // Account.
 const CreateAccountPage = lazy(() =>
     import('./Components/Account/CreateAccountPage')
@@ -123,7 +122,6 @@ function App() {
             <Suspense fallback={<LoadingScreen />}>
                 <Switch location={location} key={location.pathname}>
                     <Route exact path='/' component={MainPage} />
-                    <Route exact path='/2' component={MainPage2} />
                     <Route exact path='/About' component={About} />
                     <Route exact path='/Learn' component={LearnMainPage} />
 
@@ -207,7 +205,7 @@ function App() {
                 </Switch>
             </Suspense>
             <Suspense fallback={<LoadingScreen />}>
-                <Footer2 />
+                <Footer />
             </Suspense>
         </div>
     )
