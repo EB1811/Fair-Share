@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback } from 'react'
 import titleImage from '../../Images/group-selfie-happy-fair.svg'
+import aboutUs from '../../Images/group-sharing-fun.svg'
 import logo1 from '../../Images/fair_ICON.svg'
 import logo2 from '../../Images/team_ICON.svg'
 import logo3 from '../../Images/check_ICON.svg'
@@ -89,10 +90,7 @@ const MainPage2 = () => {
                             {!titleImage ? (
                                 <div className='pt-56 block box-border'></div>
                             ) : (
-                                <img
-                                    src={titleImage}
-                                    alt='group-selfie-happy-fair'
-                                />
+                                <img src={aboutUs} alt='group-sharing-fun' />
                             )}
                         </div>
                         <div className='flex flex-col justify-center items-end ml-auto w-full lg:w-9/12'>
