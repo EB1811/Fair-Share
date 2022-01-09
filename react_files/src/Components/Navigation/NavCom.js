@@ -24,7 +24,7 @@ const NavCom = (props) => {
     return (
         <NavBar
             expanded={expanded}
-            expand='md'
+            expand='lg'
             style={{
                 backgroundColor: '#6daffe',
                 boxShadow: '0 1px 3px #5798e6',
@@ -32,10 +32,12 @@ const NavCom = (props) => {
                 fontSize: '16px',
                 fontWeight: '500',
                 top: 0,
+                paddingLeft: 0,
+                paddingRight: 0,
             }}
             variant='light'
         >
-            <Container>
+            <div className='max-w-screen-2xl flex flex-wrap justify-between mx-auto w-100 px-6 md:px-8 xl:px-16'>
                 <Navbar.Brand>
                     <Link style={{ textDecoration: 'none' }} to='/'>
                         <span className='brandName'>
@@ -53,7 +55,7 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             style={{
-                                padding: '10px 0 10px 30px',
+                                padding: '10px 15px 10px 15px',
                                 transition: '0.2s',
                             }}
                             exact
@@ -69,7 +71,7 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             style={{
-                                padding: '10px 0 10px 30px',
+                                padding: '10px 15px 10px 15px',
                                 transition: '0.2s',
                             }}
                             exact
@@ -82,21 +84,13 @@ const NavCom = (props) => {
                         >
                             Learn
                         </NavLink>
-                        {/* <span
-                            style={{
-                                padding: "10px 0 10px 30px",
-                                color: "#fff",
-                            }}
-                        >
-                            |
-                        </span>
 
                         <span
                             style={{
-                                display: "block",
-                                padding: "10px 0 10px 30px",
-                                fontWeight: "500",
-                                color: "#fff",
+                                display: 'block',
+                                padding: '10px 15px 10px 15px',
+                                fontWeight: '500',
+                                color: '#0555b6',
                             }}
                         >
                             Share:
@@ -104,13 +98,13 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             style={{
-                                padding: "10px 0 10px 30px",
-                                transition: "0.2s",
+                                padding: '10px 15px 10px 15px',
+                                transition: '0.2s',
                             }}
                             to='/Distribute/localremote/Rent'
                             onClick={() =>
                                 setTimeout(() => {
-                                    setExpanded(false);
+                                    setExpanded(false)
                                 }, 50)
                             }
                         >
@@ -119,13 +113,13 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             style={{
-                                padding: "10px 0 10px 30px",
-                                transition: "0.2s",
+                                padding: '10px 15px 10px 15px',
+                                transition: '0.2s',
                             }}
                             to='/Distribute/localremote/Goods'
                             onClick={() =>
                                 setTimeout(() => {
-                                    setExpanded(false);
+                                    setExpanded(false)
                                 }, 50)
                             }
                         >
@@ -134,13 +128,13 @@ const NavCom = (props) => {
                         <NavLink
                             className='nav-link'
                             style={{
-                                padding: "10px 0 10px 30px",
-                                transition: "0.2s",
+                                padding: '10px 15px 10px 15px',
+                                transition: '0.2s',
                             }}
                             to='/Distribute/localremote/Divorce'
                             onClick={() =>
                                 setTimeout(() => {
-                                    setExpanded(false);
+                                    setExpanded(false)
                                 }, 50)
                             }
                         >
@@ -154,10 +148,10 @@ const NavCom = (props) => {
                                 />
                             ) : (
                                 <SignedOutLinks setExpanded={setExpanded} />
-                            ))} */}
+                            ))}
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
+            </div>
         </NavBar>
     )
 }

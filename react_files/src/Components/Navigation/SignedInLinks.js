@@ -1,48 +1,48 @@
-import React from "react";
+import React from 'react'
 
 // Router
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from 'react-router-dom'
 
 // Bootstrap Components
-import Nav from "react-bootstrap/Nav";
+import Nav from 'react-bootstrap/Nav'
 
 // Redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 // rrf
-import { useFirebase } from "react-redux-firebase";
+import { useFirebase } from 'react-redux-firebase'
 
 const SignedInLinks = (props) => {
-    const firebase = useFirebase();
-    const userLetter = props.profile.username ? props.profile.username : "";
+    const firebase = useFirebase()
+    const userLetter = props.profile.username ? props.profile.username : ''
 
     const logout = () => {
         setTimeout(() => {
-            props.setExpanded(false);
-        }, 50);
+            props.setExpanded(false)
+        }, 50)
         firebase.logout().then(() => {
-            props.logoutSuccess();
-        });
-        props.history.push("/");
-    };
+            props.logoutSuccess()
+        })
+        props.history.push('/')
+    }
 
     if (userLetter) {
         return (
             <Nav className='justify-content-end' style={{ flex: 1 }}>
-                <span style={{ padding: "10px 0 10px 30px", color: "#fff" }}>
+                <span style={{ padding: '10px 0 10px 0px', color: '#fff' }}>
                     |
                 </span>
                 <Nav.Item>
                     <NavLink
                         className='nav-link'
                         style={{
-                            padding: "10px 0 10px 30px",
-                            textDecoration: "none",
-                            transition: "0.2s",
+                            padding: '10px 15px 10px 15px',
+                            textDecoration: 'none',
+                            transition: '0.2s',
                         }}
                         to='/Account'
                         onClick={() =>
                             setTimeout(() => {
-                                props.setExpanded(false);
+                                props.setExpanded(false)
                             }, 50)
                         }
                     >
@@ -54,27 +54,27 @@ const SignedInLinks = (props) => {
                         onClick={logout}
                         className='nav-link'
                         style={{
-                            cursor: "pointer",
-                            padding: "10px 0 10px 30px",
-                            transition: "0.2s",
+                            cursor: 'pointer',
+                            padding: '10px 15px 10px 15px',
+                            transition: '0.2s',
                         }}
                     >
                         Logout
                     </span>
                 </Nav.Item>
             </Nav>
-        );
+        )
     } else {
-        return null;
+        return null
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         logoutSuccess: () => {
-            dispatch({ type: "LOGOUT_SUCCESS" });
+            dispatch({ type: 'LOGOUT_SUCCESS' })
         },
-    };
-};
+    }
+}
 
-export default withRouter(connect(null, mapDispatchToProps)(SignedInLinks));
+export default withRouter(connect(null, mapDispatchToProps)(SignedInLinks))
