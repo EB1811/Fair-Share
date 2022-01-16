@@ -330,7 +330,7 @@ const MainPage = () => {
                                 </p>
                                 <Link
                                     style={{ textDecoration: 'none' }}
-                                    to='/Distribute/localremote/Rent'
+                                    to='/Distribute/localremote/Goods'
                                 >
                                     <button className='mt-3 py-2 px-3 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'>
                                         Start
@@ -361,7 +361,7 @@ const MainPage = () => {
                                 </p>
                                 <Link
                                     style={{ textDecoration: 'none' }}
-                                    to='/Distribute/localremote/Rent'
+                                    to='/Distribute/localremote/Divorce'
                                 >
                                     <button className='mt-3 py-2 px-3 lg:px-10 text-bBlue font-bold rounded-lg bg-bWhite hover:bg-bBlue hover:text-white duration-300'>
                                         Start
@@ -543,7 +543,7 @@ const MainPage = () => {
                     </h3>
                     <div>
                         <a href='/Learn' style={{ textDecoration: 'none' }}>
-                            <h1 className='text-2xl md:text-4xl font-bold text-gray-800 underline'>
+                            <h1 className='text-2xl md:text-4xl font-bold text-gray-800 hover:text-black underline'>
                                 Go to our learning page.
                             </h1>
                         </a>

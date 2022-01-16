@@ -1,57 +1,57 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 // Bootstrap Components
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
-import { withRouter, useParams, Redirect } from "react-router";
-import { useFirestore } from "react-redux-firebase";
+import { withRouter, useParams, Redirect } from 'react-router'
+import { useFirestore } from 'react-redux-firebase'
 
-import { useDispatch, useSelector } from "react-redux";
-import questionnaireActions from "../../../ReduxStore/Actions/questionnaireActions";
-import resetDistributeAction from "../../../ReduxStore/Actions/resetDistributeAction";
+import { useDispatch, useSelector } from 'react-redux'
+import questionnaireActions from '../../../ReduxStore/Actions/questionnaireActions'
+import resetDistributeAction from '../../../ReduxStore/Actions/resetDistributeAction'
 
-import shareLocal from "../../../Images/meeting-local-group_ICON.svg";
-import shareOnlineGroup from "../../../Images/share-online-group_ICON.svg";
+import shareLocal from '../../../Images/meeting-local-group_ICON.svg'
+import shareOnlineGroup from '../../../Images/share-online-group_ICON.svg'
 
-import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import LoadingScreen from '../../LoadingScreen/LoadingScreen'
 
 const LocalOrRemoteQuestion = (props) => {
-    let { goodType } = useParams();
-    const firestore = useFirestore();
+    let { goodType } = useParams()
+    const firestore = useFirestore()
 
-    const auth = useSelector((state) => state.firebase.auth);
-    const dispatch = useDispatch();
+    const auth = useSelector((state) => state.firebase.auth)
+    const dispatch = useDispatch()
 
     // Reset goods info upon entering.
     useEffect(() => {
-        dispatch(resetDistributeAction.resetInfo());
+        dispatch(resetDistributeAction.resetInfo())
         // Only execute once so
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     const registerInterest = async () =>
         await firestore.add(
-            { collection: "PaymentInterest" },
+            { collection: 'PaymentInterest' },
             {
                 interest: true,
                 at: new Date().toString(),
             }
-        );
+        )
 
     // Set the group info gathering method (local or remote) then go to next question page. User must be logged in to use the remote option.
     const setMethod = (method) => {
-        dispatch(questionnaireActions.setShareMethod(method));
+        dispatch(questionnaireActions.setShareMethod(method))
 
-        if (method === "remote" && auth.isEmpty) {
-            props.history.push("/login");
-        } else if (method === "remote") {
+        if (method === 'remote' && auth.isEmpty) {
+            props.history.push('/login')
+        } else if (method === 'remote') {
             // Setup session info and add to firestore.
             firestore
                 .add(
-                    { collection: "ShareSessions" },
+                    { collection: 'ShareSessions' },
                     {
                         owner: auth.uid,
                         type: goodType,
@@ -59,23 +59,23 @@ const LocalOrRemoteQuestion = (props) => {
                     }
                 )
                 .then((docSnapshot) => {
-                    console.log(docSnapshot);
+                    console.log(docSnapshot)
                     props.history.push(
                         `/Distribute/GoodInfo/Remote/${docSnapshot.id}`
-                    );
+                    )
                 })
                 .catch((err) => {
-                    console.log(err);
-                });
+                    console.log(err)
+                })
         } else {
-            props.history.push(`/Distribute/GoodInfo/Local/${goodType}`);
+            props.history.push(`/Distribute/GoodInfo/Local/${goodType}`)
         }
-    };
+    }
 
     if (
-        (goodType === "Rent") |
-        (goodType === "Goods") |
-        (goodType === "Divorce")
+        (goodType === 'Rent') |
+        (goodType === 'Goods') |
+        (goodType === 'Divorce')
     ) {
         if (auth.isLoaded) {
             return (
@@ -85,13 +85,13 @@ const LocalOrRemoteQuestion = (props) => {
                 >
                     <Helmet>
                         <title>
-                            Share{" "}
-                            {goodType === "Divorce" ? "Finances" : goodType}
+                            Share{' '}
+                            {goodType === 'Divorce' ? 'Finances' : goodType}
                         </title>
                         <meta
                             name='description'
-                            content={`Share ${(goodType === "Divorce"
-                                ? "Finances"
+                            content={`Share ${(goodType === 'Divorce'
+                                ? 'Finances'
                                 : goodType
                             ).toLowerCase()} in a way that guarantees envy-freeness using our algorithms remotely or locally.`}
                         />
@@ -104,20 +104,20 @@ const LocalOrRemoteQuestion = (props) => {
                             lg={7}
                             xl={5}
                             className='centerCard m-3'
-                            style={{ maxWidth: "800px" }}
+                            style={{ maxWidth: '800px' }}
                         >
                             <Row>
                                 <Col xs={12} sm={6} className='my-2'>
                                     <img
                                         src={shareLocal}
-                                        className='SVGButton'
+                                        className='SVGButton mx-auto'
                                         alt='meeting-local-group_ICON'
-                                        onClick={() => setMethod("local")}
+                                        onClick={() => setMethod('local')}
                                         data-testid='start_local'
                                     />
                                     <p
                                         className='mt-3 text-muted'
-                                        style={{ fontSize: "0.9rem" }}
+                                        style={{ fontSize: '0.9rem' }}
                                     >
                                         Share locally, passing your device
                                         around to gather everyone's valuations.
@@ -126,14 +126,14 @@ const LocalOrRemoteQuestion = (props) => {
                                 <Col xs={12} sm={6} className='my-2'>
                                     <img
                                         src={shareOnlineGroup}
-                                        className='SVGButton'
+                                        className='SVGButton mx-auto'
                                         alt='share-online-group_ICON.svg'
-                                        onClick={() => setMethod("remote")}
+                                        onClick={() => setMethod('remote')}
                                         data-testid='start_remote'
                                     />
                                     <p
                                         className='mt-3 text-muted'
-                                        style={{ fontSize: "0.9rem" }}
+                                        style={{ fontSize: '0.9rem' }}
                                     >
                                         Share using an online group, having
                                         members login and get invited to your
@@ -141,7 +141,7 @@ const LocalOrRemoteQuestion = (props) => {
                                     </p>
                                     <h5
                                         className='text-muted'
-                                        style={{ margin: "0" }}
+                                        style={{ margin: '0' }}
                                     >
                                         Currently Closed
                                     </h5>
@@ -158,13 +158,13 @@ const LocalOrRemoteQuestion = (props) => {
                         </Col>
                     </Row>
                 </Container>
-            );
+            )
         } else {
-            return <LoadingScreen />;
+            return <LoadingScreen />
         }
     } else {
-        return <Redirect to='/' />;
+        return <Redirect to='/' />
     }
-};
+}
 
-export default withRouter(LocalOrRemoteQuestion);
+export default withRouter(LocalOrRemoteQuestion)

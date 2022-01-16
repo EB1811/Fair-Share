@@ -1,11 +1,11 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import React from 'react'
+import { Helmet } from 'react-helmet-async'
 // Bootstrap Components
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 
 const LearnMainPage = () => {
     return (
@@ -21,7 +21,7 @@ const LearnMainPage = () => {
                 />
                 <meta name='keywords' content='sharing, learn, algorithms' />
             </Helmet>
-            <Row className='min-vh-100' style={{ textAlign: "left" }}>
+            <Row className='min-vh-100' style={{ textAlign: 'left' }}>
                 {/* Left */}
                 <Col sm={4} md={3} lg={2} xl={2} className='sidebar p-4'>
                     <h3>Learn</h3>
@@ -31,28 +31,28 @@ const LearnMainPage = () => {
                             <Nav.Link
                                 href='#section1'
                                 active={false}
-                                style={{ padding: "4px" }}
+                                style={{ padding: '4px', color: '#969696' }}
                             >
                                 Fair Division
                             </Nav.Link>
                             <Nav.Link
                                 href='#section2'
                                 active={false}
-                                style={{ padding: "4px" }}
+                                style={{ padding: '4px', color: '#969696' }}
                             >
                                 Sharing Goods
                             </Nav.Link>
                             <Nav.Link
                                 href='#section3'
                                 active={false}
-                                style={{ padding: "4px" }}
+                                style={{ padding: '4px', color: '#969696' }}
                             >
                                 Sharing Finances
                             </Nav.Link>
                             <Nav.Link
                                 href='#section4'
                                 active={false}
-                                style={{ padding: "4px" }}
+                                style={{ padding: '4px', color: '#969696' }}
                             >
                                 Sharing Rent
                             </Nav.Link>
@@ -167,7 +167,7 @@ const LearnMainPage = () => {
                 </Col>
             </Row>
         </Container>
-    );
-};
+    )
+}
 
-export default LearnMainPage;
+export default LearnMainPage
