@@ -11,7 +11,9 @@ import Nav from 'react-bootstrap/Nav'
 const SignedOutLinks = (props) => {
     return (
         <Nav className='justify-content-end' style={{ flex: 1 }}>
-            <span style={{ padding: '10px 0 10px 0px', color: '#fff' }}>|</span>
+            <span style={{ padding: '10px 15px 10px 15px', color: '#fff' }}>
+                |
+            </span>
             <Nav.Item>
                 <NavLink
                     className='nav-link'

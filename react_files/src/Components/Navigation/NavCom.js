@@ -5,7 +5,6 @@ import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
 // Bootstrap Components
-import Container from 'react-bootstrap/Container'
 import NavBar from 'react-bootstrap/NavBar'
 import Nav from 'react-bootstrap/Nav'
 
