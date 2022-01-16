@@ -1,22 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react'
 
 // Bootstrap Components
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
-import LoadingScreen from "../../../LoadingScreen/LoadingScreen";
+import LoadingScreen from '../../../LoadingScreen/LoadingScreen'
 
 // Redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 
 // React Router
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams } from 'react-router-dom'
 
-import { getRentResults } from "../../../../ApiFunctions/getRentResults";
-import { getGoodsResults } from "../../../../ApiFunctions/getGoodsResults";
-import { getDivorceResults } from "../../../../ApiFunctions/getDivorceResults";
+import { getRentResults } from '../../../../ApiFunctions/getRentResults'
+import { getGoodsResults } from '../../../../ApiFunctions/getGoodsResults'
+import { getDivorceResults } from '../../../../ApiFunctions/getDivorceResults'
+import { useFirestore } from 'react-redux-firebase'
 
 const LocalResultsPage = ({
     userArray,
@@ -26,26 +27,40 @@ const LocalResultsPage = ({
     totalCost,
     moneyAmount,
 }) => {
-    let { goodType } = useParams();
+    const firestore = useFirestore()
+
+    useEffect(
+        () =>
+            firestore.add(
+                { collection: 'ShareSessions' },
+                {
+                    type: 'local',
+                    at: new Date().toString(),
+                }
+            ),
+        []
+    )
+
+    let { goodType } = useParams()
     // Get results from API.
     useEffect(() => {
         if (userArray.length > 0 && goodsArray.length > 0) {
             // First convert valuations in user array into a format compatible with API (see value matrix in /ApiFunctions).
-            const userCount = userArray.length;
-            const goodsCount = userArray[0].userGoodsArr.length;
+            const userCount = userArray.length
+            const goodsCount = userArray[0].userGoodsArr.length
             var valueMatrix = Array.from(
                 Array(userCount),
                 () => new Array(goodsCount)
-            );
+            )
             for (var i = 0; i < userCount; i++) {
                 for (var j = 0; j < goodsCount; j++) {
-                    valueMatrix[i][j] = userArray[i].userGoodsArr[j].Value;
+                    valueMatrix[i][j] = userArray[i].userGoodsArr[j].Value
                 }
             }
 
             // Goods or Rooms route.
-            const allocationsArr = [];
-            if (goodType === "Rent") {
+            const allocationsArr = []
+            if (goodType === 'Rent') {
                 getRentResults(valueMatrix, totalCost)
                     .then((allocation) => {
                         allocation.map((user) =>
@@ -54,13 +69,13 @@ const LocalResultsPage = ({
                                 room: user.room,
                                 price: user.price,
                             })
-                        );
-                        setStateAllocation(allocationsArr);
+                        )
+                        setStateAllocation(allocationsArr)
                     })
                     .catch((err) => {
-                        console.log(err.message);
-                    });
-            } else if (goodType === "Goods") {
+                        console.log(err.message)
+                    })
+            } else if (goodType === 'Goods') {
                 getGoodsResults(valueMatrix)
                     .then((allocation) => {
                         allocation.map((user) =>
@@ -68,14 +83,14 @@ const LocalResultsPage = ({
                                 username: userArray[user.who].username,
                                 alloGoods: user.goodsList,
                             })
-                        );
+                        )
 
-                        setStateAllocation(allocationsArr);
+                        setStateAllocation(allocationsArr)
                     })
                     .catch((err) => {
-                        console.log(err.message);
-                    });
-            } else if (goodType === "Divorce") {
+                        console.log(err.message)
+                    })
+            } else if (goodType === 'Divorce') {
                 getDivorceResults(valueMatrix, moneyAmount)
                     .then((allocation) => {
                         allocation.map((user) =>
@@ -84,13 +99,13 @@ const LocalResultsPage = ({
                                 alloGoods: user.goodsList,
                                 money: user.money,
                             })
-                        );
+                        )
 
-                        setStateAllocation(allocationsArr);
+                        setStateAllocation(allocationsArr)
                     })
                     .catch((err) => {
-                        console.log(err.message);
-                    });
+                        console.log(err.message)
+                    })
             }
         }
     }, [
@@ -100,7 +115,7 @@ const LocalResultsPage = ({
         goodType,
         totalCost,
         moneyAmount,
-    ]);
+    ])
 
     if (userArray.length > 0) {
         if (stateAllocation.length > 0) {
@@ -116,7 +131,7 @@ const LocalResultsPage = ({
                             md={7}
                             lg={6}
                             className='centerCardCompact m-3'
-                            style={{ maxWidth: "700px" }}
+                            style={{ maxWidth: '700px' }}
                         >
                             <h4>Results</h4>
                             <Col sm='12 mt-5'>
@@ -154,7 +169,7 @@ const LocalResultsPage = ({
                                                 &nbsp;
                                             </span>
                                         )}
-                                        {goodType === "Divorce" ? (
+                                        {goodType === 'Divorce' ? (
                                             <span>
                                                 + ${allocationObject.money}
                                             </span>
@@ -162,7 +177,7 @@ const LocalResultsPage = ({
                                     </p>
                                 ))}
                             </Col>
-                            <a href='/' style={{ textDecoration: "none" }}>
+                            <a href='/' style={{ textDecoration: 'none' }}>
                                 <Button
                                     variant='primary'
                                     size='sm'
@@ -176,14 +191,14 @@ const LocalResultsPage = ({
                         </Col>
                     </Row>
                 </Container>
-            );
+            )
         } else {
-            return <LoadingScreen />;
+            return <LoadingScreen />
         }
     } else {
-        return <Redirect to={`/Distribute/localremote/${goodType}`} />;
+        return <Redirect to={`/Distribute/localremote/${goodType}`} />
     }
-};
+}
 
 // To access and modify redux store.
 const mapStateToProps = (state) => {
@@ -193,14 +208,14 @@ const mapStateToProps = (state) => {
         goodsArray: state.distGoodsInfo.goodsArray,
         totalCost: state.distGoodsInfo.totalValue,
         moneyAmount: state.distGoodsInfo.moneyAmount,
-    };
-};
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         setStateAllocation: (allocationArr) => {
-            dispatch({ type: "SET_ALLOCATIONS", allocationArr: allocationArr });
+            dispatch({ type: 'SET_ALLOCATIONS', allocationArr: allocationArr })
         },
-    };
-};
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocalResultsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LocalResultsPage)
