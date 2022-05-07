@@ -404,21 +404,25 @@ const MainPage = () => {
                                         Share with up to <b>2</b> other people
                                     </li>
                                     <li className='py-1'>
-                                        Share sessions a month: <b>5</b>
+                                        Share locally as many times as you want
                                     </li>
                                 </ul>
                                 <div className='flex flex-col flex-grow align-bottom'>
-                                    <Link
-                                        style={{ textDecoration: 'none' }}
-                                        to='/CreateAccount'
-                                        className='mt-auto mr-auto'
+                                    <button
+                                        className='mt-auto mr-auto lg:mt-0 py-2 lg:py-4 px-3 lg:px-8 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'
+                                        onClick={() =>
+                                            services.current.scrollIntoView({
+                                                behavior: 'smooth',
+                                            })
+                                        }
                                     >
-                                        <button className='mt-2 lg:mt-0 py-2 lg:py-4 px-3 lg:px-8 text-white font-bold rounded-lg bg-bBlue hover:bg-bBlueDark duration-300'>
-                                            Create Account
-                                        </button>
-                                    </Link>
+                                        Try Now
+                                    </button>
                                 </div>
                             </div>
+                            <p className='m-0 mt-3 text-sm text-gray-400'>
+                                *No login needed
+                            </p>
                         </div>
                         <div className='bg-white py-16 px-6 lg:px-10 shadow-md rounded-lg text-left border-t-4 border-green-400 hover:shadow-lg duration-200'>
                             <div className='flex flex-col h-100'>

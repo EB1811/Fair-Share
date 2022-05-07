@@ -32,15 +32,6 @@ const LocalOrRemoteQuestion = (props) => {
         // eslint-disable-next-line
     }, [])
 
-    const registerInterest = async () =>
-        await firestore.add(
-            { collection: 'PaymentInterest' },
-            {
-                interest: true,
-                at: new Date().toString(),
-            }
-        )
-
     // Set the group info gathering method (local or remote) then go to next question page. User must be logged in to use the remote option.
     const setMethod = (method) => {
         dispatch(questionnaireActions.setShareMethod(method))
@@ -139,20 +130,6 @@ const LocalOrRemoteQuestion = (props) => {
                                         members login and get invited to your
                                         party.
                                     </p>
-                                    <h5
-                                        className='text-muted'
-                                        style={{ margin: '0' }}
-                                    >
-                                        Currently Closed
-                                    </h5>
-                                    <Button
-                                        className='mt-2'
-                                        variant='outline-primary'
-                                        size='md'
-                                        onClick={registerInterest}
-                                    >
-                                        <span>Register Interest</span>
-                                    </Button>
                                 </Col>
                             </Row>
                         </Col>
